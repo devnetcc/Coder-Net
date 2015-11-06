@@ -3,6 +3,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
 var port = process.env.PORT || 3000;
+// var wellknown = require('nodemailer-wellknown');
+// var nodemailer = require("nodemailer");
 var passport = require("passport");
 var mongoose = require('mongoose');
 require('./models/Comment');
@@ -37,6 +39,7 @@ var commentRoutes = require('./routes/CommentRoutes');
 var forumRoutes = require('./routes/ForumRoutes');
 var userRoutes = require('./routes/UserRoutes');
 var profileRoutes = require('./routes/ProfileRoutes');
+var resetRoutes = require('./routes/ResetPassRoutes')
 
 
 //on homepage load, render the index page
@@ -49,6 +52,7 @@ app.use('/api/comments', commentRoutes);
 app.use('/api/forums', forumRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/profiles', profileRoutes);
+app.use('/api/reset', resetRoutes);
 
 
 
