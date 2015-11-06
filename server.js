@@ -48,7 +48,7 @@ app.get('/', function(req, res) {
 app.use('/api/comments', commentRoutes);
 app.use('/api/forums', forumRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/profiles', profitRoutes);
+app.use('/api/profiles', profileRoutes);
 
 
 

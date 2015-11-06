@@ -1,47 +1,47 @@
-<div style ="padding-top: 100px" ng-controller='GlobalController as nav'>
+<div style="padding-top: 100px" ng-controller='GlobalController as nav'>
 
-<!-- Show the Login Form -->
-<div ng-show="nav.isLogin">
-  <form class="well container" ng-submit="nav.login()">
-          <md-input-container>
-      <label>Email</label>
-      <input type="email" class="form-control" ng-model="nav.user.email">
-    </md-input-container>
+  <!-- Show the Login Form -->
+  <div ng-show="nav.isLogin">
+    <form class="well container" ng-submit="nav.login()">
       <md-input-container>
-      <label>Password</label>
-      <input type="password" class="form-control" ng-model="nav.user.password">
-    </md-input-container>
+        <label>Email</label>
+        <input type="email" class="form-control" ng-model="nav.user.email">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" class="form-control" ng-model="nav.user.password">
+      </md-input-container>
       <div style="text-align:center">
-        <md-button type="submit" class="md-raised" >Login</md-button>
+        <md-button type="submit" class="md-raised">Login</md-button>
         <md-button type="button" class="md-raised" ng-click="nav.isLogin = false;" class="btn btn-primary">Register</md-button>
       </div>
-  </form>
-</div>
+    </form>
+  </div>
 
-<!-- Show the Register Form -->
-<div ng-show="!nav.isLogin">
-  <form class="well container" ng-submit="nav.register()">
+  <!-- Show the Register Form -->
+  <div ng-show="!nav.isLogin">
+    <form class="well container" ng-submit="nav.register()">
       <md-input-container>
-      <label>Name</label>
-      <input class="form-control"  ng-model="nav.user.name">
-    </md-input-container>
-        <md-input-container>
-      <label>Last Name</label>
-      <input class="form-control"  ng-model="nav.user.lastName">
-    </md-input-container>
+        <label>Name</label>
+        <input class="form-control" ng-model="nav.user.name">
+      </md-input-container>
       <md-input-container>
-      <label>Email</label>
-      <input type="email" class="form-control" ng-model="nav.user.email">
-    </md-input-container>
-    <md-input-container>
-      <label>Password</label>
-      <input type="password" class="form-control" ng-model="nav.user.password">
-    </md-input-container>
+        <label>Last Name</label>
+        <input class="form-control" ng-model="nav.user.lastName">
+      </md-input-container>
+      <md-input-container>
+        <label>Email</label>
+        <input type="email" class="form-control" ng-model="nav.user.email">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" class="form-control" ng-model="nav.user.password">
+      </md-input-container>
       <div style="text-align:center">
-          <md-button type="submit" class="md-raised">Register</md-button>
+        <md-button type="submit" class="md-raised">Register</md-button>
         <md-button type="button" ng-click="nav.isLogin = true;" class="md-raised">Cancel</md-button>
       </div>
-  </form>
-</div>
+    </form>
+  </div>
 
 </div>

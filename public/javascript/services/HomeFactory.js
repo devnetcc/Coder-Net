@@ -1,11 +1,11 @@
 (function() {
-	'use strict';
-	angular.module('app')
-	.factory('HomeFactory', HomeFactory);
+  'use strict';
+  angular.module('app')
+    .factory('HomeFactory', HomeFactory);
 
-	function HomeFactory($http, $q) {
-		var o = {};
-		
-		return o;
-	}
+  function HomeFactory($http, $q) {
+    var o = {};
+
+    return o;
+  }
 })();

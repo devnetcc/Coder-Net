@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html ng-app="app">
+
 <head>
 	<title> DevNet </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="/angular-material/angular-material.css" >
+	<link rel="stylesheet" href="/angular-material/angular-material.css">
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
+
 <body ng-controller='GlobalController as nav'>
 
-	<md-toolbar style=" background-color: #448aff"  layout="row">
+	<md-toolbar style=" background-color: #448aff" layout="row">
 
 		<section layout="row" flex="35" layout-align="left" layout-wrap>
-			<div ui-sref="Home" ><h1 style="padding-left: 17px"> Dev Net </h1></div>
+			<div ui-sref="Home">
+				<h1 style="padding-left: 17px"> Dev Net </h1>
+			</div>
 		</section>
 
-	
+
 		<section layout layout-align="right" layout-wrap style="padding : 15px">
-			<md-button ui-sref="Profile({id: nav.status._id})"  ng-show='nav.status.email;'> Welcome {{nav.status.name}} </md-button>
+			<md-button ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.name}} </md-button>
 			<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.email;'> Logout </md-button>
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
 		</section>
@@ -27,7 +31,7 @@
 	<!-- Ext Libs -->
 	<script src="angular/angular.min.js"></script>
 	<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
-		<!-- Material -->
+	<!-- Material -->
 	<script src="/angular-material/angular-material.min.js"></script>
 	<script src="/angular-aria/angular-aria.min.js"></script>
 	<script src="/angular-animate/angular-animate.min.js"></script>
@@ -48,4 +52,5 @@
 
 
 </body>
+
 </html>
