@@ -5,9 +5,6 @@ var User = mongoose.model('User');
 var ProfilePost = mongoose.model('ProfilePost');
 var Comment = mongoose.model('Comment');
 var ForumPost = mongoose.model('ForumPost');
-
-
-
 var passport = require('passport');
 
 router.post('/register', function(req, res, next) {
@@ -30,8 +27,24 @@ router.post('/login', function(req, res, next) {
 
 
 router.post('/profile', function(req, res, next){
-  
-})
+
+});
+
+
+/*-----------THIRD PARTY LOGINS----------------------------
+---------------------------------------------------------*/
+
+router.get('/auth/linkedin',
+  passport.authenticate('linkedin'));
+
+router.get('/auth/linkedin/callback', 
+  passport.authenticate('linkedin', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+
 
 
 

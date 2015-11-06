@@ -1,3 +1,6 @@
+if(!process.env.NODE_ENV){
+	require('dotenv').load();
+}
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
@@ -5,12 +8,14 @@ var app = express();
 var port = process.env.PORT || 3000;
 var passport = require("passport");
 var mongoose = require('mongoose');
+var session = require('express-session');
+var uuid = require('uuid');
+// var LinkedInStrategy = require('passport-linkedin').Strategy;
 require('./models/Comment');
 require('./models/ForumPost');
 require('./models/ProfilePost');
 require('./models/User');
 require('./config/passport');
-
 
 mongoose.connect("mongodb://localhost/DevNet");
 
@@ -29,6 +34,24 @@ app.set('view options', {
 
 //middleware that allows for us to parse JSON and UTF-8 from the body of an HTTP request
 passport.initialize();
+// passport.use(new LinkedInStrategy({
+// 		consumerKey: LINKEDIN_API_KEY,
+//     consumerSecret: LINKEDIN_SECRET_KEY,
+//     callbackURL: "http://127.0.0.1:3000/auth/linkedin/callback"
+//   },
+//   function(token, tokenSecret, profile, done) {
+//     User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
+//       return done(err, user);
+//     });
+//   }
+// ));
+app.use(session({
+  genid: function(req) {
+    return uuid() // use UUIDs for session IDs
+  },
+  secret: process.env.LINK_UUID_SECRET
+}));
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
