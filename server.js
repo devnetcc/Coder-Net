@@ -34,9 +34,9 @@ app.use(bodyParser.json());
 
 // Route Links
 var commentRoutes = require('./routes/CommentRoutes');
-var profileRoutes = require('./routes/ProfileRoutes');
 var forumRoutes = require('./routes/ForumRoutes');
 var userRoutes = require('./routes/UserRoutes');
+var profileRoutes = require('./routes/ProfileRoutes');
 
 
 //on homepage load, render the index page
@@ -46,9 +46,9 @@ app.get('/', function(req, res) {
 
 //API
 app.use('/api/comments', commentRoutes);
-app.use('/api/profile', profileRoutes);
 app.use('/api/forums', forumRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/profiles', profitRoutes);
 
 
 

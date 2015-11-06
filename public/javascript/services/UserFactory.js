@@ -88,14 +88,14 @@
 
     if (getToken()) setUser();
 
-    o.getAllByUser = function(id) {
-      var q = $q.defer();
-      $http.get('/api/users/profile/' + id).then(function(res) {
-				console.log(res);
-        q.resolve(res.data);
-      });
-      return q.promise;
-    };
+    // o.getAllByUser = function(id) {
+    //   var q = $q.defer();
+    //   $http.get('/api/users/profile/' + id).then(function(res) {
+				// console.log(res);
+    //     q.resolve(res.data);
+    //   });
+    //   return q.promise;
+    // };
 
     return o;
   }

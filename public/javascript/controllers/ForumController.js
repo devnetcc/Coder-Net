@@ -3,7 +3,7 @@
 	angular.module('app')
 	.controller('ForumController', ForumController);
 
-	function ForumController() {
+	function ForumController(ForumFactory, $state) {
 		var vm = this;
 
 

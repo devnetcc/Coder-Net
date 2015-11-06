@@ -11,11 +11,11 @@
 	<md-toolbar style=" background-color: #448aff"  layout="row">
 
 		<section layout="row" flex="35" layout-align="left" layout-wrap>
-			<div ui-sref="Home" ><h1 style="padding-left: 17px">Dev Net</h1></div>
+			<div ui-sref="Home" ><h1 style="padding-left: 17px"> Dev Net </h1></div>
 		</section>
 
 	
-		<section layout= layout-align="right" layout-wrap style="padding : 15px">
+		<section layout layout-align="right" layout-wrap style="padding : 15px">
 			<md-button ui-sref="Profile({id: nav.status._id})"  ng-show='nav.status.email;'> Welcome {{nav.status.name}} </md-button>
 			<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.email;'> Logout </md-button>
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
@@ -36,11 +36,13 @@
 	<!-- Factories -->
 	<script src="/javascript/services/HomeFactory.js"></script>
 	<script src="/javascript/services/UserFactory.js"></script>
+	<script src="/javascript/services/ProfileFactory.js"></script>
+	<script src="/javascript/services/ForumFactory.js"></script>
+
 	<script src="/javascript/services/AuthInterceptor.js"></script>
 	<!-- Controllers -->
 	<script src="/javascript/controllers/HomeController.js"></script>
 	<script src="/javascript/controllers/GlobalController.js"></script>
-	<script src="/javascript/controllers/EditUserController.js"></script>
 	<script src="/javascript/controllers/ForumController.js"></script>
 	<script src="/javascript/controllers/ProfileController.js"></script>
 

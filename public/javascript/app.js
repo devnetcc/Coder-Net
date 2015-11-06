@@ -38,7 +38,11 @@
       	 })
         .state('EditProfile', {
         	url: '/editprofile',
-        	templateUrl: 'views/editprofile.html'        	       	
+        	templateUrl: 'views/editprofile.html'
+        })
+        .state('CreateProfile', {
+          url: '/createprofile',
+          templateUrl: 'views/createprofile.html'          	       	
 		});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');
