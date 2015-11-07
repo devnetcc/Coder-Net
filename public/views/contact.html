@@ -1,30 +1,31 @@
 <div ng-controller="HomeController as vm">
 
-<form ng-submit="vm.contact()" style="padding: 90px">
-<p style="padding-bottom: 30px"> Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. </p>
-  <md-input-container layout-padding>
-    <label> Name </label>
-    <input ng-model="vm.msg.name" ></input>
-  </md-input-container>
-  <md-input-container layout-padding>
-    <label> Last Name </label>
-    <input ng-model="vm.msg.lastName"></input>
-  </md-input-container>
-  <md-input-container layout-padding>
-  <label> Email </label>
-  <input ng-model="vm.msg.email"></input>
-  </md-input-container>
-  <md-input-container layout-padding>
-    <label> Message </label>
-    <textarea required ng-model="vm.msg.msg" md-maxlength="2000"></textarea>
-  </md-input-container>
+  <form ng-submit="vm.contact()" style="padding: 90px">
+    <p style="padding-bottom: 30px"> Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus,
+      iaculis vel, suscipit quis, luctus non, massa. </p>
+    <md-input-container layout-padding>
+      <label> Name </label>
+      <input ng-model="vm.msg.name"></input>
+    </md-input-container>
+    <md-input-container layout-padding>
+      <label> Last Name </label>
+      <input ng-model="vm.msg.lastName"></input>
+    </md-input-container>
+    <md-input-container layout-padding>
+      <label> Email </label>
+      <input ng-model="vm.msg.email"></input>
+    </md-input-container>
+    <md-input-container layout-padding>
+      <label> Message </label>
+      <textarea required ng-model="vm.msg.msg" md-maxlength="2000"></textarea>
+    </md-input-container>
 
-  <div style="padding-top:50px" layout>
-    <md-button type="submit" class="md-raised" > Send </md-button> 
-    <!-- have a toast saying 'message sent' -->
-    <md-button type="button" class="md-raised" ui-sref="Home">Cancel</md-button>
-    <!-- by clicking cancel can this go back to previous state? or home  -->
-</div>
-</form>
+    <div style="padding-top:50px" layout>
+      <md-button type="submit" class="md-raised"> Send </md-button>
+      <!-- have a toast saying 'message sent' -->
+      <md-button type="button" class="md-raised" ui-sref="Home">Cancel</md-button>
+      <!-- by clicking cancel can this go back to previous state? or home  -->
+    </div>
+  </form>
 
 </div>

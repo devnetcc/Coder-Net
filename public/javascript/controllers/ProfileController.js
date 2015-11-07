@@ -1,7 +1,7 @@
 (function() {
-	'use strict';
-	angular.module('app')
-	.controller('ProfileController', ProfileController);
+  'use strict';
+  angular.module('app')
+    .controller('ProfileController', ProfileController);
 
 	function ProfileController(ProfileFactory, UserFactory, $state, $stateParams) {
 		var vm = this;
@@ -13,9 +13,11 @@ ProfileFactory.getProfile($stateParams.id).then(function(res){
 });
 
 
+
 vm.goToEdit = function(id, obj){
 	$state.go('EditProfile', {id:id, obj:obj});
 		};
+
 
 vm.editProfile = function (profile){
 		ProfileFactory.editProfile(profile).then(function(){
@@ -31,4 +33,5 @@ vm.deleteProfile = function(profile) {
 };
 
 	}
+
 })();

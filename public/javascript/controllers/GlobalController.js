@@ -1,19 +1,19 @@
 (function() {
-	'use strict';
-	angular.module('app')
-	.controller('GlobalController', GlobalController);
+  'use strict';
+  angular.module('app')
+    .controller('GlobalController', GlobalController);
 
-	function GlobalController(UserFactory, $state) {
-		var vm = this;
-		    vm.isLogin = true;
-    		vm.user = {};
-		    vm.status = UserFactory.status;
+  function GlobalController(UserFactory, $state) {
+    var vm = this;
+    vm.isLogin = true;
+    vm.user = {};
+    vm.status = UserFactory.status;
 
 
-	vm.logout = function() {
+    vm.logout = function() {
       UserFactory.logout();
-        $state.go('Home');
-  	};
+      $state.go('Home');
+    };
 
     vm.register = function() {
       UserFactory.register(vm.user).then(function() {
@@ -27,7 +27,5 @@
       });
     };
 
-
-
-	}
+  }
 })();
