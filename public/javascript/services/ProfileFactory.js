@@ -5,7 +5,7 @@
 
 	function ProfileFactory($http, $q) {
 		var o = {};
-		
+
 
 		o.postProfile = function (user) {
 		var q = $q.defer();
@@ -17,9 +17,9 @@
 
 
 		o.getProfile = function(user){
-			var q = q.defer();
+			var q = $q.defer();
 		$http.get('api/profiles'+ user).then(function(res){
-			q.resolve(res.data);	
+			q.resolve(res.data);
 			});
 			return q.promise;
 		};

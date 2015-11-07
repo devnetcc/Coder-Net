@@ -1,0 +1,29 @@
+<div ng-controller="ForumController as vm">
+  <form ng-submit="vm.createforumpost()" layout style="padding: 90px">
+      <div>
+       <md-input-container >
+          <label> Title</label>
+          <input required ng-model="vm.fpost.title"></input>
+        </md-input-container>
+        <md-input-container >
+          <label>Body </label>
+          <textarea ng-model="vm.fpost.body"></textarea>
+        </md-input-container>
+        <md-input-container layout-padding>
+            <label> Channel </label>
+            <md-select ng-model="vm.fpost.channel">
+              <md-option value="General">General</md-option>
+              <md-option value="Job Board"> Job Board </md-option>
+              <md-option value="Interview Prep"> Interview Prep </md-option>
+              <md-option value="Projects"> Projects</md-option>
+              <md-option value="Bootcamp Reviews"> Bootcamp Reviews </md-option>
+            </md-select>
+          </md-input-container>
+            <div layout="row" style="padding-top:50px">
+            <md-button type="submit" class="md-raised"> Create</md-button>
+            <md-button type="button" class="md-raised" ui-sref="Home"> Cancel</md-button>
+          </div>
+      </div>
+    </form>
+
+</div>

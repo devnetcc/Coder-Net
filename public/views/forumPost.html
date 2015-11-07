@@ -1,4 +1,25 @@
 <div ng-controller="ForumController as vm">
 
 <h1> This is the forum post section </h1>
+
+<h3>Title: {{vm.apost.title}}</h3>
+
+<h4>Body: {{vm.apost.body}}</h4>
+
+<h5>Author: {{vm.apost.createdBy}}</h5>
+
+<md-button ui-sref="EditFPost({id: vm.apost._id})">Edit</md-button>
+<md-button ng-click="vm.deleteFPost(vm.apost)">Delete</md-button>
+
+
+
+<h2>Comments</h2>
+<h3>Add a Comment</h3>
+<md-input-container>
+<textarea ng-model="vm.newComment.body"></textarea>
+</md-input-container>
+
+<div ng-repeat=" c in vm.comments">
+  <h4>{{c.body}}</h4>
+</div>
 </div>

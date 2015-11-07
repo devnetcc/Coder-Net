@@ -1,4 +1,32 @@
 <div ng-controller="ForumController as vm">
 
 <h1> This is the forum section </h1>
+<div layout>
+  <div flex="20" style="text-align:center;"><h2>Channels</h2></div>
+<div flex style="text-align:center;"><h2>Topics</h2></div>
+</div>
+
+<div layout>
+  <div flex="20">
+  <div layout="column" ng-repeat="t in vm.topics">
+    <md-button ng-click="" ><h4>{{t}}</h4></md-button>
+
+  </div>
+</div>
+<div flex-offset="10">
+<div layout="column" ng-repeat="f in vm.forumPosts">
+<!-- <div ng-show="sometopic"> -->
+<a ui-sref="ForumPost({id: f._id})"> <h4>{{f.title}}</h4></a><br>
+<!-- <div layout-fill><h3>{{f}}</h3></div> -->
+<h5>Posted by {{f.createdBy}}</a></h5>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+
+
 </div>

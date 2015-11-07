@@ -5,9 +5,6 @@ var User = mongoose.model('User');
 var ProfilePost = mongoose.model('ProfilePost');
 var Comment = mongoose.model('Comment');
 var ForumPost = mongoose.model('ForumPost');
-
-
-
 var passport = require('passport');
 
 router.post('/register', function(req, res, next) {
@@ -18,6 +15,8 @@ router.post('/register', function(req, res, next) {
   res.send(user.createToken());
   });
 });
+
+
 
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user) {
@@ -30,7 +29,7 @@ router.post('/login', function(req, res, next) {
 
 
 router.post('/profile', function(req, res, next){
-  
+
 })
 
 

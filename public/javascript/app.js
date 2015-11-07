@@ -29,9 +29,16 @@
         	templateUrl: 'views/editForum.html'
          })
         .state('ForumPost', {
-        	url: '/forumpost',
-        	templateUrl: 'views/forumPost.html' 
+        	url: '/forumpost/:id',
+        	templateUrl: 'views/forumPost.html'
       	 })
+				 .state('CreateForumPost', {
+         	url: '/createforumpost',
+         	templateUrl: 'views/createforumPost.html'
+				}).state('EditFPost', {
+					url: '/editforumpost/:id',
+				  templateUrl: 'views/editfpost.html'
+				  })
         .state('RegLog', {
         	url: '/reglog',
         	templateUrl: 'views/reglog.html'
@@ -42,7 +49,7 @@
         })
         .state('CreateProfile', {
           url: '/createprofile',
-          templateUrl: 'views/createprofile.html'          	       	
+          templateUrl: 'views/createprofile.html'
 		});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');

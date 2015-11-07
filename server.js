@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT ||8080;
 var passport = require("passport");
 var mongoose = require('mongoose');
 require('./models/Comment');
@@ -11,6 +11,7 @@ require('./models/ProfilePost');
 require('./models/User');
 require('./config/passport');
 
+console.log('inserver top');
 
 mongoose.connect("mongodb://localhost/DevNet");
 
@@ -44,12 +45,12 @@ app.get('/', function(req, res) {
 	res.render('index');
 });
 
+console.log('inserver')
 //API
 app.use('/api/comments', commentRoutes);
-app.use('/api/forums', forumRoutes);
+app.use('/api/forum', forumRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/profiles', profitRoutes);
-
+app.use('/api/profiles', profileRoutes);
 
 
 var server = app.listen(port, function() {
