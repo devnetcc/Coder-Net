@@ -1,6 +1,6 @@
 (function() {
 	'use strict';
-	angular.module('app', ['ui.router', 'ngMaterial'])
+	angular.module('app', ['ui.router', 'ngMaterial','ui.bootstrap'])
 	.config(Config);
 	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
 		$stateProvider
@@ -30,7 +30,7 @@
          })
         .state('ForumPost', {
         	url: '/forumpost',
-        	templateUrl: 'views/forumPost.html' 
+        	templateUrl: 'views/forumPost.html'
       	 })
         .state('RegLog', {
         	url: '/reglog',
@@ -42,7 +42,11 @@
         })
         .state('CreateProfile', {
           url: '/createprofile',
-          templateUrl: 'views/createprofile.html'          	       	
+          templateUrl: 'views/createprofile.html'
+				})
+				.state('PassReset', {
+					url: '/reset',
+					templateUrl: 'views/passwordReset.html'
 		});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');

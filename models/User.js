@@ -7,14 +7,14 @@ name: {required: true, type: String, lowercase: true, trim: true},
 lastName: {required: true, type: String, lowercase: true, trim: true},
 email: {required: true, unique: true, type:String, lowercase: true, trim: true},
 pic: String,
-location: String, //should there be separate props for city, state, country? 
+location: String, //should there be separate props for city, state, country?
 role: String,
 title: String,
 userBeen: String,
 userAt: String,
-userGoing: String, 
+userGoing: String,
 github: String,
-linkedin: String, 
+linkedin: String,
 profilePosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ProfilePost'}],
 forumPosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ForumPost'}],
 followers: [],
@@ -23,6 +23,8 @@ languages: [{lang: String, level: Number}],
 joined: Date,
 passwordHash: String,
 salt: String,
+resetPasswordToken: String,
+resetPasswordExpires: Date
 });
 
 UserSchema.methods.setPassword = function(password) {

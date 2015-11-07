@@ -3,8 +3,12 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
 var port = process.env.PORT || 3000;
-// var wellknown = require('nodemailer-wellknown');
-// var nodemailer = require("nodemailer");
+var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt-nodejs');
+var async = require('async');
+var crypto = require('crypto');
+var passport = require('passport');
+var session = require('express-session');
 var passport = require("passport");
 var mongoose = require('mongoose');
 require('./models/Comment');
@@ -30,9 +34,11 @@ app.set('view options', {
 });
 
 //middleware that allows for us to parse JSON and UTF-8 from the body of an HTTP request
-passport.initialize();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(session({ secret: 'session secret key' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Route Links
 var commentRoutes = require('./routes/CommentRoutes');
