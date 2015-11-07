@@ -1,17 +1,23 @@
+if(!process.env.NODE_ENV){
+	require('dotenv').load();
+}
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
-var port = process.env.PORT ||8080;
+var port = process.env.PORT || 3000;
+// var wellknown = require('nodemailer-wellknown');
+// var nodemailer = require("nodemailer");
 var passport = require("passport");
 var mongoose = require('mongoose');
+var session = require('express-session');
+var uuid = require('uuid');
+// var LinkedInStrategy = require('passport-linkedin').Strategy;
 require('./models/Comment');
 require('./models/ForumPost');
 require('./models/ProfilePost');
 require('./models/User');
 require('./config/passport');
-
-console.log('inserver top');
 
 mongoose.connect("mongodb://localhost/DevNet");
 
@@ -30,6 +36,24 @@ app.set('view options', {
 
 //middleware that allows for us to parse JSON and UTF-8 from the body of an HTTP request
 passport.initialize();
+// passport.use(new LinkedInStrategy({
+// 		consumerKey: LINKEDIN_API_KEY,
+//     consumerSecret: LINKEDIN_SECRET_KEY,
+//     callbackURL: "http://127.0.0.1:3000/auth/linkedin/callback"
+//   },
+//   function(token, tokenSecret, profile, done) {
+//     User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
+//       return done(err, user);
+//     });
+//   }
+// ));
+app.use(session({
+  genid: function(req) {
+    return uuid() // use UUIDs for session IDs
+  },
+  secret: process.env.LINK_UUID_SECRET
+}));
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -38,6 +62,7 @@ var commentRoutes = require('./routes/CommentRoutes');
 var forumRoutes = require('./routes/ForumRoutes');
 var userRoutes = require('./routes/UserRoutes');
 var profileRoutes = require('./routes/ProfileRoutes');
+var resetRoutes = require('./routes/ResetPassRoutes')
 
 
 //on homepage load, render the index page
@@ -51,6 +76,8 @@ app.use('/api/comments', commentRoutes);
 app.use('/api/forum', forumRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/profiles', profileRoutes);
+app.use('/api/reset', resetRoutes);
+
 
 
 var server = app.listen(port, function() {

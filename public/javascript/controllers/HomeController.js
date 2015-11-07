@@ -1,11 +1,11 @@
 (function() {
-	'use strict';
-	angular.module('app')
-	.controller('HomeController', HomeController);
+  'use strict';
+  angular.module('app')
+    .controller('HomeController', HomeController);
 
-	function HomeController(HomeFactory, UserFactory,  $state) {
-		var vm = this;
-		    vm.status = UserFactory.status;
+  function HomeController(HomeFactory, UserFactory, $state) {
+    var vm = this;
+    vm.status = UserFactory.status;
 
 
 
@@ -15,5 +15,5 @@
 
 
 
-	}
+  }
 })();

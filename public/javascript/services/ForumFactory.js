@@ -1,9 +1,10 @@
 (function() {
-	'use strict';
-	angular.module('app')
-	.factory('ForumFactory', ForumFactory);
+  'use strict';
+  angular.module('app')
+    .factory('ForumFactory', ForumFactory);
 
 
+<<<<<<< HEAD
 	function ForumFactory($http, $q) {
 		var o = {};
 console.log("outside edit function but in factory");
@@ -66,4 +67,11 @@ q.resolve(res.data);
 
 		return o;
 	}
+=======
+  function ForumFactory($http, $q) {
+    var o = {};
+
+    return o;
+  }
+>>>>>>> 92fa0191cdbb38e725ede91dcd295be59fc4c8ea
 })();
