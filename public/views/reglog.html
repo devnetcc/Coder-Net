@@ -13,12 +13,18 @@
       </md-input-container>
       <div style="text-align:center">
         <md-button type="submit" class="md-raised">Login</md-button>
+        <a href="api/users/auth/linkedin">
+          <img class="linkedlogin" src="/imgs/login/small_default.png" onmouseover="this.src='/imgs/login/small_hover.png'" onmouseout="this.src='/imgs/login/small_default.png'"
+          onclick="this.src='/imgs/login/small_active.png'"/>
+        </a>
         <md-button type="button" class="md-raised" ng-click="nav.isLogin = false;" class="btn btn-primary">Register</md-button>
       </div>
     </form>
     <center>
      <md-button type="button" class="md-warn" style="text-align:center" ui-sref='PassReset' class="btn btn-primary">Forgot Password</md-button>
    </center>
+      <md-button type="button" class="md-warn" style="text-align:center" ng-click='vm.ResetPassword()' class="btn btn-primary">Forgot Password</md-button>
+    </center>
   </div>
 
   <!-- Show the Register Form -->

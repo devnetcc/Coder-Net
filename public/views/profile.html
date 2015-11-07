@@ -1,4 +1,9 @@
 <div ng-controller="ProfileController as vm">
 
-  <h1> This is the profile </h1>
+<h1> This is the profile </h1>
+
+<p> Hi {{vm.profile.name}} {{vm.profile.lastName}}</p>
+
+<md-button class="md-raised" ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button>
+
 </div>

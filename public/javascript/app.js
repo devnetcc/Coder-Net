@@ -17,7 +17,7 @@
         	templateUrl: 'views/contact.html'
          })
         .state('Profile', {
-        	url: '/profile',
+        	url: '/profile/:id',
         	templateUrl: '/views/profile.html'
          })
         .state('Forum', {
@@ -25,19 +25,27 @@
         	templateUrl: 'views/forum.html'
          })
         .state('EditForum', {
-        	url: '/editforum',
+        	url: '/editforum/:id',
         	templateUrl: 'views/editForum.html'
          })
         .state('ForumPost', {
         	url: '/forumpost',
+        	url: '/forumpost/:id',
         	templateUrl: 'views/forumPost.html'
       	 })
+				 .state('CreateForumPost', {
+         	url: '/createforumpost',
+         	templateUrl: 'views/createforumPost.html'
+				}).state('EditFPost', {
+					url: '/editforumpost/:id',
+				  templateUrl: 'views/editfpost.html'
+				  })
         .state('RegLog', {
         	url: '/reglog',
         	templateUrl: 'views/reglog.html'
       	 })
         .state('EditProfile', {
-        	url: '/editprofile',
+        	url: '/editprofile/:id',
         	templateUrl: 'views/editprofile.html'
         })
         .state('CreateProfile', {
