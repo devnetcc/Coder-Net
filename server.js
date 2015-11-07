@@ -1,25 +1,21 @@
-if(!process.env.NODE_ENV){
-	require('dotenv').load();
-}
+// if(!process.env.NODE_ENV){
+// 	require('dotenv').load();
+// }
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
 var port = process.env.PORT || 3000;
 var LocalStrategy = require('passport-local').Strategy;
-var bcrypt = require('bcrypt-nodejs');
-var async = require('async');
+// var bcrypt = require('bcrypt-nodejs');
+// var async = require('async');
 var crypto = require('crypto');
 var passport = require('passport');
-var session = require('express-session');
-var passport = require("passport");
-var port = process.env.PORT || 3000;
+// var session = require('express-session');
 // var wellknown = require('nodemailer-wellknown');
 // var nodemailer = require("nodemailer");
-var passport = require("passport");
 var mongoose = require('mongoose');
-var session = require('express-session');
-var uuid = require('uuid');
+// var uuid = require('uuid');
 // var LinkedInStrategy = require('passport-linkedin').Strategy;
 require('./models/Comment');
 require('./models/ForumPost');
@@ -59,16 +55,16 @@ passport.initialize();
 //     });
 //   }
 // ));
-app.use(session({
-  genid: function(req) {
-    return uuid(); // use UUIDs for session IDs
-  },
-  secret: process.env.LINK_UUID_SECRET
-}));
+// app.use(session({
+//   genid: function(req) {
+    // return uuid(); // use UUIDs for session IDs
+//   },
+//   secret: process.env.LINK_UUID_SECRET
+// }));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(session({ secret: 'session secret key' }));
+// app.use(session({ secret: 'session secret key' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -88,7 +84,7 @@ app.get('/', function(req, res) {
 app.use('/api/comments', commentRoutes);
 app.use('/api/forum', forumRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/profiles', profileRoutes);
+// app.use('/api/profiles', profileRoutes);
 app.use('/api/reset', resetRoutes);
 
 

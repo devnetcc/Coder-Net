@@ -15,6 +15,15 @@ passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password
   });
 }));
 
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 //   THESE BELOW ADDED FOR RESET FUNCTION USING BCRYPT METHOD FROM PEARL LINK.
 // passport.serializeUser(function(user, done) {
@@ -41,13 +50,13 @@ passport.use(new LocalStrategy({
     });
   }));
 
-passport.use(new LinkedInStrategy({
-    consumerKey: process.env.LINKEDIN_KEY,
-    consumerSecret: process.env.LINKEDIN_SECRET,
-    callbackURL: "http://localhost:3000/api/users/auth/linkedin/callback"
-  },
-  function(token, tokenSecret, profile, done) {
-		console.log(profile.id);
+// passport.use(new LinkedInStrategy({
+//     consumerKey: process.env.LINKEDIN_KEY,
+//     consumerSecret: process.env.LINKEDIN_SECRET,
+//     callbackURL: "http://localhost:3000/api/users/auth/linkedin/callback"
+//   },
+//   function(token, tokenSecret, profile, done) {
+// 		console.log(profile.id);
     //-----------NEEDS FUNCTION-------------------------------------
     // User.findOne({ profile.id}, function(err, result) {
     //   res.send(result);
@@ -55,5 +64,5 @@ passport.use(new LinkedInStrategy({
     // User.find({ linkedinId: profile.id }, function (err, user) {
     //   return done(err, user);
     // });
-  }
-));
+  // }
+// ));

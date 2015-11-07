@@ -16,7 +16,7 @@
 
 ForumFactory.getAllPost().then(function(res){
 							vm.forumPosts = res;
-						});
+});
 
 ForumFactory.getPostById($stateParams.id).then(function(res){
 	vm.apost = res;
