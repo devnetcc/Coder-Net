@@ -19,7 +19,11 @@ require('./models/ProfilePost');
 require('./models/User');
 require('./config/passport');
 
-mongoose.connect("mongodb://localhost/DevNet");
+mongoose.connect("mongodb://localhost/DevNet", function (err) {
+	if(err) return console.log("Error database");
+	console.log("Database Connected");
+});
+
 
 
 app.set('views', path.join(__dirname, 'views'));
@@ -49,7 +53,7 @@ passport.initialize();
 // ));
 app.use(session({
   genid: function(req) {
-    return uuid() // use UUIDs for session IDs
+    return uuid(); // use UUIDs for session IDs
   },
   secret: process.env.LINK_UUID_SECRET
 }));
@@ -61,8 +65,7 @@ app.use(bodyParser.json());
 var commentRoutes = require('./routes/CommentRoutes');
 var forumRoutes = require('./routes/ForumRoutes');
 var userRoutes = require('./routes/UserRoutes');
-var profileRoutes = require('./routes/ProfileRoutes');
-var resetRoutes = require('./routes/ResetPassRoutes')
+var resetRoutes = require('./routes/ResetPassRoutes');
 
 
 //on homepage load, render the index page
@@ -70,13 +73,13 @@ app.get('/', function(req, res) {
 	res.render('index');
 });
 
-console.log('inserver')
 //API
 app.use('/api/comments', commentRoutes);
 app.use('/api/forum', forumRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/profiles', profileRoutes);
 app.use('/api/reset', resetRoutes);
+
 
 
 

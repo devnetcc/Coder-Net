@@ -17,7 +17,7 @@
         	templateUrl: 'views/contact.html'
          })
         .state('Profile', {
-        	url: '/profile',
+        	url: '/profile/:id',
         	templateUrl: '/views/profile.html'
          })
         .state('Forum', {
@@ -25,7 +25,7 @@
         	templateUrl: 'views/forum.html'
          })
         .state('EditForum', {
-        	url: '/editforum',
+        	url: '/editforum/:id',
         	templateUrl: 'views/editForum.html'
          })
         .state('ForumPost', {
@@ -44,12 +44,15 @@
         	templateUrl: 'views/reglog.html'
       	 })
         .state('EditProfile', {
-        	url: '/editprofile',
+        	url: '/editprofile/:id',
         	templateUrl: 'views/editprofile.html'
+<<<<<<< HEAD
         })
         .state('CreateProfile', {
           url: '/createprofile',
           templateUrl: 'views/createprofile.html'
+=======
+>>>>>>> 442910e4d2e6e6e171d9a360b63fee38e0d50a01
 		});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');

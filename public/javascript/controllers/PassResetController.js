@@ -5,8 +5,8 @@
   PassResetController.$inject = ['$state', '$http', '$statParams', '$timeout', '$window'];
   function PassResetController($state, $http, $statParams, $timeout, $window) {
     var vm = this;
-    vm.newPassword;
-    vm.confirmPassword;
+    vm.newPassword
+    vm.confirmPassword
     vm.errMsg = '';
     vm.okToSend = false;
 
@@ -20,7 +20,7 @@
           vm.errMsg = 'Password is missing!';
         } else {
           if (vm.newPassword !== vm.confirmPassword) {
-            vm.errMsg = 'Passwords do not match!'
+            vm.errMsg = 'Passwords do not match!';
           } else {
           vm.okToSend = true;
           $http.post('/api/rest',{
@@ -30,11 +30,11 @@
             vm.okToSend = false;
             vm.errMsg = res.data.success;
             $timout(function() {
-              $state.go('Home')
+              $state.go('Home');
             }, 500);
           }, function(res) {
             console.log(res.data);
-          })
+          });
           }
         }
       }

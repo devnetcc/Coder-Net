@@ -3,7 +3,6 @@
   angular.module('app')
     .controller('ForumController', ForumController);
 
-<<<<<<< HEAD
 	function ForumController(ForumFactory, UserFactory, $state,$stateParams) {
 		var vm = this;
 		vm.status = vm.UserFactory;
@@ -13,10 +12,7 @@
 		vm.apost = {};
 		vm.epost={};
 		vm.newComment ={};
-=======
-  function ForumController(ForumFactory, $state) {
-    var vm = this;
->>>>>>> 92fa0191cdbb38e725ede91dcd295be59fc4c8ea
+
 
 ForumFactory.getAllPost().then(function(res){
 							vm.forumPosts = res;
@@ -55,9 +51,5 @@ vm.deleteFPost = function(fpost){
 	});
 }
 
-<<<<<<< HEAD
-	}
-=======
-  }
->>>>>>> 92fa0191cdbb38e725ede91dcd295be59fc4c8ea
+
 })();
