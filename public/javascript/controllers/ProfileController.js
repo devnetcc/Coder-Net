@@ -3,41 +3,32 @@
 	angular.module('app')
 	.controller('ProfileController', ProfileController);
 
-	function ProfileController(ProfileFactory, UserFactory, $state) {
+	function ProfileController(ProfileFactory, UserFactory, $state, $stateParams) {
 		var vm = this;
-		 vm.status = UserFactory.status;
-		 vm.user = {}; // this needs to be populated 
-		 vm.user.languages = [];
+		 vm.profile = {};
+		 vm.profile.languages = [];
 
-
-ProfileFactory.getProfile(vm.status.user).then(function(res){
-	vm.user = res;
-})
-
-vm.postProfile = function() {
-ProfileFactory.postProfile(vm.user).then(function(res){
-	$state.go("Profile");
+ProfileFactory.getProfile($stateParams.id).then(function(res){
+	vm.profile = res;
 });
+
+
+vm.goToEdit = function(id, obj){
+	$state.go('EditProfile', {id:id, obj:obj});
+		};
+
+vm.editProfile = function (profile){
+		ProfileFactory.editProfile(profile).then(function(){
+			$state.go('Profile', {id: $stateParams.id});
+		});
 };
 
-
-
-vm.editProfile = function(id, obj) {
-      localStorage.setItem('tempPet', JSON.stringify(obj));
-      $state.go('EditProfile', {
-      	id: id
-	});
-};
-
-
-
-vm.deleteProfile = function(user) {
-// have an alert box asking the user if they are sure they want to delete
-	ProfileFactory.deleteProfile(user).then(function(){
+vm.deleteProfile = function(profile) {
+	ProfileFactory.deleteProfile(vm.profile._id).then(function(){
+		UserFactory.logout();
 		$state.go("Home");
 	});
 };
-
 
 	}
 })();

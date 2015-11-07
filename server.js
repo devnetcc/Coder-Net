@@ -12,7 +12,10 @@ require('./models/User');
 require('./config/passport');
 
 
-mongoose.connect("mongodb://localhost/DevNet");
+mongoose.connect("mongodb://localhost/DevNet", function (err) {
+	if(err) return console.log("Error database");
+	console.log("Database Connected");
+});
 
 
 app.set('views', path.join(__dirname, 'views'));
@@ -36,7 +39,6 @@ app.use(bodyParser.json());
 var commentRoutes = require('./routes/CommentRoutes');
 var forumRoutes = require('./routes/ForumRoutes');
 var userRoutes = require('./routes/UserRoutes');
-var profileRoutes = require('./routes/ProfileRoutes');
 
 
 //on homepage load, render the index page
@@ -48,7 +50,6 @@ app.get('/', function(req, res) {
 app.use('/api/comments', commentRoutes);
 app.use('/api/forums', forumRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/profiles', profitRoutes);
 
 
 

@@ -5,38 +5,31 @@
 
 	function ProfileFactory($http, $q) {
 		var o = {};
-		
 
-		o.postProfile = function (user) {
-		var q = $q.defer();
-		$http.post('api/profiles', user).then(function(res){
+
+
+		o.getProfile = function(id){
+			var q = $q.defer();
+		$http.get('api/users/'+ id).then(function(res){
 			q.resolve(res.data);
-		});
-		return q.promise;
-		};
-
-
-		o.getProfile = function(user){
-			var q = q.defer();
-		$http.get('api/profiles'+ user).then(function(res){
-			q.resolve(res.data);	
 			});
 			return q.promise;
 		};
 
 
-		o.editProfileU = function(user) {
+		o.editProfile = function(profile) {
+			console.log(profile);
+
 		var q = $q.defer();
-		$http.put('api/profiles'+ user._id, user).then(function(res){
+		$http.put('api/users/'+ profile._id, profile).then(function(res){
 			q.resolve(res.data);
 		});
 		return q.promise;
 		};
 
-
-		o.deleteProfile = function(user) {
-		var q = q.defer();
-		$http.delete('api/profiles'+ user._id).then(function(res){
+		o.deleteProfile = function(id) {
+		var q = $q.defer();
+		$http.delete('api/users/'+ id).then(function(res){
 			q.resolve();
 		});
 		return q.promise;
