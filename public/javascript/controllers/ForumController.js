@@ -3,7 +3,7 @@
   angular.module('app')
     .controller('ForumController', ForumController);
 console.log('forum controller');
-	function ForumController(ForumFactory, UserFactory, $state,$stateParams) {
+	function ForumController(ForumFactory, UserFactory, $state, $stateParams) {
 		var vm = this;
 		vm.status = vm.UserFactory;
 		vm.topics=["General", "Job Board", ""];
@@ -15,6 +15,7 @@ console.log('forum controller');
 
 
 vm.showTest = function() {
+
   console.log('test function');
 }
 vm.showTest();

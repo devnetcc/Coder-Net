@@ -7,6 +7,7 @@
     var o = {};
     o.status = {};
 
+console.log("in userfactory!")
     o.register = function(user) {
       var q = $q.defer();
       $http.post('/api/users/register', user).then(function(res) {
