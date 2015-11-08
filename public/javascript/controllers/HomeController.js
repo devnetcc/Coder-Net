@@ -8,6 +8,10 @@
 		    vm.status = UserFactory.status;
 
 
+HomeFactory.getAllPosts().then(function(res){
+  vm.allPosts=res;
+});
+
 
     vm.contact = function() { // this is for the mock contact form we have.
       $state.go("Home");

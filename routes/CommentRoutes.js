@@ -6,7 +6,7 @@ var Comment = mongoose.model('Comment');
 var jwt = require('express-jwt');
 var auth = jwt({
   userProperty: "payload", //req.payload._id in the Route
-  secret: "Coder Camps" //matches the secret in model
+  secret: "CoderCamps" //matches the secret in model
 });
 
 

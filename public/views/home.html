@@ -2,4 +2,43 @@
 
   <h1> Home Page </h1>
 
+<div ng-controller="ProfilePostController as vm">
+  <div layout="row" layout-align="center center" ng-show ='nav.status.name;'>
+    <div flex="50">
+      <form ng-submit="vm.createPost();">
+        <md-input-container layout-padding>
+          <label>Title</label>
+          <input required ng-model="vm.post.title" />
+        </md-input-container>
+        <md-input-container layout-padding>
+          <label> Content </label>
+          <input required ng-model="vm.post.body" />
+        </md-input-container>
+        <br>
+        <br>
+        <md-button type="submit" class="md-raised" > Post the Post </md-button>
+</form>
+</div>
+</div>
+</div>
+
+<md-content>
+  <md-list>
+    <md-list-item ng-repeat='p in vm.allPosts'>
+      <div class='md-list-item-text' style='padding:10px; padding-left:30px'>
+        <h5> Title: {{p.title}}</h5>
+        <h5> Content: {{p.body}}</h5>
+        <h5> Created By: {{p.createdBy}}</h5>
+        <h5> Created On: {{p.date}}</h5>
+    </md-list-item>
+  </md-list>
+    </div>
+</md-content>
+
+
+
+
+
+
+
 </div>

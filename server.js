@@ -43,7 +43,6 @@ app.set('view options', {
 });
 
 //middleware that allows for us to parse JSON and UTF-8 from the body of an HTTP request
-passport.initialize();
 // passport.use(new LinkedInStrategy({
 // 		consumerKey: LINKEDIN_API_KEY,
 //     consumerSecret: LINKEDIN_SECRET_KEY,
@@ -72,6 +71,7 @@ app.use(passport.session());
 var commentRoutes = require('./routes/CommentRoutes');
 var forumRoutes = require('./routes/ForumRoutes');
 var userRoutes = require('./routes/UserRoutes');
+var profilePostRoutes = require('./routes/ProfilePostRoutes');
 var resetRoutes = require('./routes/ResetPassRoutes');
 
 
@@ -84,10 +84,8 @@ app.get('/', function(req, res) {
 app.use('/api/comments', commentRoutes);
 app.use('/api/forum', forumRoutes);
 app.use('/api/users', userRoutes);
-// app.use('/api/profiles', profileRoutes);
+app.use('/api/posts', profilePostRoutes);
 app.use('/api/reset', resetRoutes);
-
-
 
 
 var server = app.listen(port, function() {

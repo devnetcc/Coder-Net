@@ -4,7 +4,6 @@
     .factory('ForumFactory', ForumFactory);
 
 
-<<<<<<< HEAD
 	function ForumFactory($http, $q) {
 		var o = {};
 console.log("outside edit function but in factory");
@@ -18,7 +17,7 @@ o.editFPost = function(epost){
 	        q.resolve(res.data);
 	      });
 	      return q.promise;
-}
+};
 
 o.deleteFPost = function (fpostID){
 	var q = $q.defer();
@@ -28,7 +27,7 @@ o.deleteFPost = function (fpostID){
 		q.resolve();
 	});
 	return q.promise;
-}
+};
 
 	o.createforumpost = function(fpost){
 		var q = $q.defer();
@@ -39,7 +38,7 @@ o.deleteFPost = function (fpostID){
 				q.resolve();
 			});
 			return q.promise;
-	}
+	};
 
 	o.getAllPost = function(){
 		var q = $q.defer();
@@ -47,7 +46,7 @@ o.deleteFPost = function (fpostID){
 	q.resolve(res.data);
 });
 	 return q.promise;
-}
+};
 
 o.getPostById = function(id){
 	var q = $q.defer();
@@ -55,7 +54,7 @@ o.getPostById = function(id){
 q.resolve(res.data);
 });
  return q.promise;
-}
+};
 
 o.startFPost = function(id){
 	var q = $q.defer();
@@ -63,15 +62,9 @@ o.startFPost = function(id){
 q.resolve(res.data);
 });
  return q.promise;
-}
+};
 
 		return o;
 	}
-=======
-  function ForumFactory($http, $q) {
-    var o = {};
 
-    return o;
-  }
->>>>>>> 92fa0191cdbb38e725ede91dcd295be59fc4c8ea
 })();
