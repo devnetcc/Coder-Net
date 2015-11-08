@@ -2,7 +2,7 @@
   'use strict';
   angular.module('app')
     .controller('ForumController', ForumController);
-
+console.log('forum controller');
 	function ForumController(ForumFactory, UserFactory, $state,$stateParams) {
 		var vm = this;
 		vm.status = vm.UserFactory;
@@ -13,6 +13,11 @@
 		vm.epost={};
 		vm.newComment ={};
 
+
+vm.showTest = function() {
+  console.log('test function');
+}
+vm.showTest();
 
 ForumFactory.getAllPost().then(function(res){
 							vm.forumPosts = res;
@@ -51,5 +56,5 @@ vm.deleteFPost = function(fpost){
 	});
 }
 
-
+}
 })();

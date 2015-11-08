@@ -4,7 +4,6 @@
     .factory('ForumFactory', ForumFactory);
 
 
-<<<<<<< HEAD
 	function ForumFactory($http, $q) {
 		var o = {};
 console.log("outside edit function but in factory");
@@ -42,6 +41,7 @@ o.deleteFPost = function (fpostID){
 	}
 
 	o.getAllPost = function(){
+    console.log('getting all posts');
 		var q = $q.defer();
 		$http.get('/api/forum').then(function(res){
 	q.resolve(res.data);
@@ -67,11 +67,9 @@ q.resolve(res.data);
 
 		return o;
 	}
-=======
   function ForumFactory($http, $q) {
     var o = {};
 
     return o;
   }
->>>>>>> 92fa0191cdbb38e725ede91dcd295be59fc4c8ea
 })();
