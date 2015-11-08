@@ -65,6 +65,10 @@
       return q.promise;
     }
 
+    o.addComments = function(id, comment) {
+      var q = $q.defer();
+      $http.post('/api/forum/' + id, comment )
+    }
     return o;
   }
 

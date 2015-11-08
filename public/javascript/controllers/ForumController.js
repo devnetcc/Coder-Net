@@ -6,7 +6,7 @@ console.log('forum controller');
 	function ForumController(ForumFactory, UserFactory, $state, $stateParams) {
 		var vm = this;
 		vm.status = vm.UserFactory;
-		vm.topics=["General", "Job Board", ""];
+		vm.topics=["General", "Job Board", "Interview Prep", "Projects", "Bootcamp Reviews"];
 		vm.fpost = {};
 		vm.forumPosts = {};
 		vm.apost = {};
@@ -55,6 +55,14 @@ vm.deleteFPost = function(fpost){
 		$state.go('Forum');
 
 	});
+}
+
+vm.addComments = function() {
+  vm.newComment = {};
+  ForumFactory.addComments(vm.newComment, $stateParams.id)
+.then(function(res) {
+    vm.newComment = res;
+  });
 }
 
 }

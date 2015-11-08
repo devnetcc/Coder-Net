@@ -16,7 +16,9 @@
 <h2>Comments</h2>
 <h3>Add a Comment</h3>
 <md-input-container>
-<textarea ng-model="vm.newComment.body"></textarea>
+  <label>Add Comments...</label>
+<textarea  ng-model="vm.newComment.body"></textarea>
+<md-button ng-click='vm.addComments()'>Post Comment</md-button>
 </md-input-container>
 
 <div ng-repeat=" c in vm.comments">

@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var ForumPost = mongoose.model('ForumPost');
+var Comment = mongoose.model('Comment');
 var jwt = require('express-jwt');
 var auth = jwt({
   userProperty: "payload", //req.payload._id in the Route
@@ -78,7 +79,7 @@ ForumPost.update({_id: req.params.id},req.body,
 });
 });
 
-//Delete a forrum post by it's id
+//Delete a forum post by it's id
 router.delete('/:id', function(req,res,next){
   // console.log("I made it to the route file");
   ForumPost.remove({_id: req.params.id}, function(err,result){
@@ -87,6 +88,16 @@ router.delete('/:id', function(req,res,next){
 });
 });
 
+router.post('/:id', auth, function(req, res, next) {
+  var comment = new Comment(req.body);
+  comment.createdBy = req.payload._id;
+  comment.date = new Date();
+  comment.save(function(err,result){
+    if(err) return next(err);
+  if(!result) return next({err: "Couldn't find a comment with that id"});
+  });
+res.send(result);
+});
 
 
 
