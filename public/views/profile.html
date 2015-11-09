@@ -1,8 +1,8 @@
 <div ng-controller="ProfileController as vm">
 
-<h1> Profile </h1>
+  <h5 style="text-align: center"> Profile </h5>
 
-<p> Hi {{vm.profile.name}} {{vm.profile.lastName}}</p>
+<!-- <p> {{vm.profile.name}} {{vm.profile.lastName}}</p> -->
 <md-button class="md-raised" ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button>
 </div>
 
@@ -20,7 +20,7 @@
         </md-input-container>
         <br>
         <br>
-        <md-button type="submit" class="md-raised" > Post the Post </md-button>
+        <md-button type="submit" class="md-raised" > Post </md-button>
 </form>
 </div>
 </div>
@@ -35,7 +35,7 @@
         <h5> Created On: {{p.date}}</h5>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true'> Edit </md-button>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
-      <form ng-show = 'showEdit' style="padding:30px; padding-top:100px" style='text-align:center' ng-submit='vm.editPost(p._id, editingPost); showEdit = false;'>
+      <form ng-show = 'showEdit' style="padding:30px; padding-top:100px" style='text-align:center' ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
                 <md-input-container>
                   <label> Title </label>
                   <input type='text' ng-model='vm.editingPost.title'>
