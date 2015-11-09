@@ -8,8 +8,6 @@
     vm.user = {};
     vm.newPassword;
     vm.confirmPassword;
-    vm.newPassword
-    vm.confirmPassword
     vm.errMsg = '';
     vm.okToSend = false;
     vm.sendEmail = sendEmail;
@@ -22,7 +20,7 @@ console.log('inside PassResetController');
         $timeout(function() {
           vm.errMsg = '';
         }, 1000);
-        return
+        return;
       } // all clear
       vm.okToSend = true;
         console.log('sending email');
@@ -31,11 +29,11 @@ console.log('inside PassResetController');
         })
         .then(function(responseSuccess) {
           vm.okToSend = false;
-          vm.errMsg = "Success! Email Sent!!! Check your email, please.\nClosing so you can login.."
+          vm.errMsg = "Success! Email Sent!!! Check your email, please.\nClosing so you can login..";
           $timeout(function() {
           console.log('waiting for email');
             vm.errMsg = '';
-          }, 2000)
+          }, 2000);
         }, function(responseError) {
           vm.okToSend = false;
           vm.errMsg = responseError.data;

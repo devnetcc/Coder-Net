@@ -18,11 +18,12 @@
 <md-input-container>
   <label>Add Comments...</label>
 <textarea  ng-model="vm.newComment.body"></textarea>
-<md-button ng-click='vm.addComments()'>Post Comment</md-button>
+<md-button ng-click='vm.postComments()'>Post Comment</md-button>
 </md-input-container>
 
-<div ng-repeat=" c in vm.comments">
+<div ng-repeat="c in vm.comment">
   <h4>{{c.body}}</h4>
 </div>
+  <h1>test</h1>
 
 </div>

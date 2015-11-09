@@ -56,14 +56,28 @@ vm.deleteFPost = function(fpost){
 
 	});
 }
+// ---------------------
 
-vm.addComments = function() {
-  vm.newComment = {};
-  ForumFactory.addComments(vm.newComment, $stateParams.id)
-.then(function(res) {
+
+
+vm.postComments = function(){
+  console.log(vm.newComment);
+  // console.log($stateParams.id);
+  // vm.newComment = {};
+  ForumFactory.postComments(vm.newComment, $stateParams.id).then(function(res){
     vm.newComment = res;
+    $state.go('ForumPost', {id:$stateParams.id});
   });
 }
+
+vm.showComments = function(){
+  console.log('getting comments');
+  ForumFactory.showComments().then(function(res){
+  							vm.comment = res;
+                console.log(res);
+  });
+}
+vm.showComments();
 
 }
 })();

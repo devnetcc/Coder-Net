@@ -7,7 +7,6 @@
 		var o = {};
 
 
-
 		o.getProfile = function(id){
 			var q = $q.defer();
 		$http.get('api/users/'+ id).then(function(res){
@@ -15,7 +14,6 @@
 			});
 			return q.promise;
 		};
-
 
 		o.editProfile = function(profile) {
 			console.log(profile);

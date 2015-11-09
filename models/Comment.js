@@ -6,7 +6,7 @@ var CommentSchema = new mongoose.Schema({
  date: Date,
  pic: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
  //post: {type: mongoose.Schema.Types.ObjectId, ref:'ForumPost'}, shouldnt we link it to forum?
- //votes: Number 
+ //votes: Number
 });
 
 mongoose.model('Comment', CommentSchema);

@@ -5,7 +5,7 @@
 	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
 		$stateProvider
 		.state('Home',{
-			url: '/',
+			url: '/home/:id',
 			templateUrl: 'views/home.html'
         })
 		.state('About', {
@@ -29,14 +29,14 @@
         	templateUrl: 'views/editForum.html'
          })
         .state('ForumPost', {
-        	url: '/forumpost',
         	url: '/forumpost/:id',
         	templateUrl: 'views/forumPost.html'
       	 })
 				 .state('CreateForumPost', {
          	url: '/createforumpost',
          	templateUrl: 'views/createforumPost.html'
-				}).state('EditFPost', {
+				})
+				.state('EditFPost', {
 					url: '/editforumpost/:id',
 				  templateUrl: 'views/editfpost.html'
 				  })
@@ -48,10 +48,6 @@
         	url: '/editprofile/:id',
         	templateUrl: 'views/editprofile.html'
         })
-        .state('CreateProfile', {
-          url: '/createprofile',
-          templateUrl: 'views/createprofile.html'
-				})
 				.state('PassReset', {
 					url: '/reset',
 					templateUrl: 'views/passwordReset.html'

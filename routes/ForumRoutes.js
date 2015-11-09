@@ -88,16 +88,30 @@ router.delete('/:id', function(req,res,next){
 });
 });
 
-router.post('/:id', auth, function(req, res, next) {
+router.post('/:id', auth , function(req, res, next) {
   var comment = new Comment(req.body);
+  console.log(comment);
+  console.log(req.payload._id);
   comment.createdBy = req.payload._id;
   comment.date = new Date();
   comment.save(function(err,result){
     if(err) return next(err);
   if(!result) return next({err: "Couldn't find a comment with that id"});
   });
-res.send(result);
+res.send();
 });
+
+// router.get('/comments' , auth, function(req, res, next) {
+//   // console.log(res.body);
+//   Comment.find({}, function(err , result) {
+//     if(err) return next (err);
+//     if(!result) return next(err);
+//   });
+//   res.send();
+// });
+
+
+
 
 
 

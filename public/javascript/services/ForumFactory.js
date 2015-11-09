@@ -65,11 +65,28 @@
       return q.promise;
     }
 
-    o.addComments = function(id, comment) {
+    o.postComments = function(comment, postId) {
       var q = $q.defer();
-      $http.post('/api/forum/' + id, comment )
+      // console.log(postId);
+      console.log(comment.body);
+      $http.post('/api/forum/' + postId , comment ).then(function(res){
+      q.resolve(res.data)
+      console.log(res.data);
+    });
+    return q.promise;
     }
+
+    o.showComments = function() {
+      console.log('factory show comments');
+      var q = $q.defer();
+      $http.get('/api/comment').then(function(res) {
+        q.resolve(res.data);
+      });
+      return q.promise;
+    };
+
+
+
     return o;
   }
-
 })();
