@@ -7,6 +7,9 @@ var UserSchema = new mongoose.Schema({
 name: {required: true, type: String, lowercase: true, trim: true},
 lastName: {required: true, type: String, lowercase: true, trim: true},
 email: {required: true, unique: true, type:String, lowercase: true, trim: true},
+isValidated: Boolean, // Checks if the user has been validated via email
+rand: Number,
+create: Date,
 pic: String,
 location: String, //should there be separate props for city, state, country?
 role: String,
@@ -38,7 +41,7 @@ UserSchema.methods.checkPassword = function(password) {
  return (passwordHash === this.passwordHash);
 };
 
-UserSchema.methods.createToken = function() {
+UserSchema.methods.generateJWT = function() {
  return jwt.sign({
    _id: this._id,
    name: this.name,

@@ -1,98 +1,175 @@
-var express = require('express');
-var router = express.Router();
-var uuid = require('uuid');
-var mongoose = require('mongoose');
-var User = mongoose.model("User");
-var wellknown = require('nodemailer-wellknown');
-var nodemailer = require('nodemailer');
-var jwt = require("jsonwebtoken");
-// var LocalStrategy = require('passport-local').Strategy;
-// var bcrypt = require('bcrypt-nodejs');
-// var async = require('async');
-// var crypto = require('crypto');
-// var passport = require('passport');
-// var session = require('express-session');
+var express = require('express') ;
+var router = express.Router() ;
+var mongoose = require('mongoose') ;
+var User = mongoose.model('User') ;
+var jwt = require('express-jwt');
+var passport = require('passport') ;
+var nodemailer = require('nodemailer') ;
+var flash = require('express-flash') ;
 
+var async = require("async");
+var crypto = require('crypto') ;
 
-// ---------------------------------------------------
-// Kareem Group code below. Not working
-// ---------------------------------------------------
-// create reusable transporter object using SMTP transport
-// var transporter = nodemailer.createTransport({
-//     service: 'Gmail',
-//     auth: {
-//         user: 'dojadeveloper@gmail.com',
-//         pass: ''
-//     }
-// });
-//
-// function SendEmail(user, resObj) {
-//   var date = new Date().getTime();
-//   var fiveMins = 1000 * 600;
-//   date += fiveMins;
-//   resetPassToken = jwt.sign({
-//     expirationDate: date,
-//     user: {
-//       id: user._id,
-//       name: user.name
-//     }
-//   }, passwordSecret);
-//   var name = user.name;
-//   var linkbase = 'http://localhost:3000/';
-//   var link = linkbase + '#/reset/' + resetPassToken;
-//   var text = "<h2>Hello, " + name + "!<br><br>You recently requested to have your password reset. If you received this in error, ignore this message it will expire. Otherwise, click <a href='" + link + "'>here</a> to begin the process......... you have 10 minutes. Let the games begin.</h2>" +
-//     "<br><br>" +
-//     "<p>Sincerely,</p>" + "<p>DevNet Team</p>";
-//   var mailOptions = {
-//     from: 'DevNet Admins  <no-reply@DevNet.com>', // sender address
-//     to: user.email, // list of receivers
-//     subject: 'Password Reset', // Subject line
-//     // text: 'Hello world', // plaintext body
-//     html: text // html body
-//   }
-//   transporter.sendMail(mailOptions, function(error, info) {
-//     if (error) {
-//       return resObj.status(500).send({
-//         err: "Error sending email"
-//       })
-//     }
-//     return resObj.send()
-//   });
-// }
-
-// ---------------------------------------------------
-// GitHub code below. works but need linked. I believe all dependencies have been added
-// ---------------------------------------------------
-//  THIS CODE WORKS AUTOMATICALLY TO SEND EMAIL ONCE TRANSPORTER USER & PASS ARE VALID
-var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'dojadeveloper@gmail.com',
-        pass: ''
-    }
+var auth = jwt({
+	userProperty: 'payload',
+	secret: 'CoderCamps'
 });
 
-// NB! No need to recreate the transporter object. You can use
-// the same transporter object for all e-mails
+router.post('/register', function (req, res) {
+	var smtpTransport = nodemailer.createTransport("SMTP", {
+		service: "Gmail",
+		auth: {
+			user: "pearlmcphee@gmail.com",
+			pass: "byqtpoc101"
+		}
+	}) ;
+	var rand, mailOptions, host, link ;
 
-// setup e-mail data with unicode symbols
-var mailOptions = {
-    from: 'Fred Foo ✔ <foo@blurdybloop.com>', // sender address
-    to: 'micdoja@yahoo.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world ✔', // plaintext body
-    html: '<b>Hello world ✔</b>' // html body
-};
+	rand = Math.floor((Math.random() * 100) + 54) ;
 
-// send mail with defined transport object
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        return console.log(error);
-    }
-    console.log('Message sent: ' + info.response);
-
-});
+	// Set created date
+	req.body.joined = new Date() ;
 
 
+	// Bring in request, and add document from schema
+	var user = new User(req.body) ;
 
+	// User is not valid until his email is verified.
+	user.isValidated = false ;
+
+	user.rand = rand ;
+
+	// run model function, which encrypts password
+	user.setPassword(req.body.password) ;
+
+	// save user to collection
+	user.save(function(err, result) {
+		if(err) console.log(err) ;
+		if(err) return res.status(500).send({ err: "Issues with the server" }) ;
+		if(!result) return res.status(400).send({ err: "Server unable to understand request. Maybe request malformed." });
+
+
+		// Nodemailer code
+		// rand = Math.floor((Math.random() * 100) + 54) ;
+		host = req.get('host') ;
+		link = "http://" + req.get('host') + "/api/reset/verify?id=" + rand + "&email=" + user.email;
+		mailOptions = {
+		to : user.email, // req.query.to,
+		subject : "Please confirm your Email account",
+		// html : 'Hello, <br> Please Click on the link to verify your email.<br><a href="' + link + '">Click here to verify</a>"'
+		html : 'Hello, <br> Please Click on the link to verify your email.<br><a href="' + link + '">Click here to verify</a>'
+	}
+	smtpTransport.sendMail(mailOptions, function(error, response) {
+		if(error) {
+			console.log(error) ;
+			res.end("error") ;
+		} else {
+			console.log("Message sent: " + response.message);
+			res.end("sent") ;
+		}
+	});
+		// Complete post
+		res.send() ;
+	}) ;
+
+
+}) ;
+
+
+router.get('/verify', function(req, res) {
+	// Gets rand and email from URL.
+	var rand = req.query.id ;
+	var email = req.query.email ;
+
+
+	// Need to find username on db
+	// if rand on username document matches rand,
+	// set isValidated on document to true
+
+	User.findOne({ email : email }, function(err, user) {
+		if(email === user.email) {
+			// Now need to set isValidated to true.
+			user.isValidated = true ;
+
+			// Getting host from req.
+			var host = req.get('host') ;
+
+			var appUrl = "http://" + host ;
+
+
+			User.update({ _id : user._id }, user)
+			.exec(function(err, user) {
+				if(err) return res.status(500).send({ err: "error getting user to edit" }) ;
+				if(!user) return res.status(400).send({ err: "user profile doesn't exist" }) ;
+				res.send('You have been validated. Please login <a href="' + appUrl + '">here</a>') ;
+			}) ;
+		} else {
+			res.send("Cannot verify. Token did not match.") ;
+		}
+	}) ;
+}) ;
+
+
+
+
+router.post('/forgot', function(req, res, next) {
+	var smtpTransport = nodemailer.createTransport("SMTP", {
+		service: "Yahoo",
+		auth: {
+			user: "info.devnet@yahoo.com",
+			pass: "codercamps"
+		}
+	}) ;
+	var rand, mailOptions, host, link ;
+
+	rand = Math.floor((Math.random() * 100) + 54) ;
+	email = req.body.username ;
+
+	// Look for user on db
+	User.findOne({ email : email }, function(err, user) {
+		if(err) console.log(err) ;
+		if(err) return res.status(500).send({ err: "Issues with the server" }) ;
+		if(!user) {
+			return res.send("Error: No account with that email address.") ;
+		}
+
+		host = req.get('host') ;
+		link = 'http://' + host + '/#/PasswordReset/' + user._id ;
+
+		mailOptions = {
+			to: email,
+			subject: "Password Reset",
+			html : 'Please click on the link to reset your password.<a href="' + link + '">Click here to reset</a>'
+		}
+
+		smtpTransport.sendMail(mailOptions, function(error, response) {
+			if(error) {
+				console.log(error) ;
+				res.end("error") ;
+			} else {
+				console.log("Message sent: " + response.message) ;
+				res.end("sent") ;
+			}
+		});
+	}) ;
+}) ;
+
+
+router.put('/resetPassword/:id', function(req, res) {
+	User.findOne({ _id : req.body.id }, function(err, user) {
+		if(err) console.log(err) ;
+		if(err) return res.status(500).send({ err: "Issues with the server" }) ;
+		if (!user) {
+			return res.send("Error: Not found.") ;
+		}
+		user.setPassword(req.body.password) ;
+		User.update({ _id: req.body.id }, user)
+		.exec(function(err, user) {
+			if(err) ;
+			if(!user) ;
+			res.send(user) ;
+		}) ;
+	}) ;
+
+}) ;
 module.exports = router;

@@ -9,13 +9,31 @@
 
     o.register = function(user) {
       var q = $q.defer();
-      $http.post('/api/users/register', user).then(function(res) {
-        setToken(res.data);
-        setUser();
+      $http.post('/api/reset/register', user).then(function(res) {
+        // setToken(res.data);
+        // setUser();
         q.resolve(res.data);
       });
       return q.promise;
     };
+
+    o.forgot = function(user) {
+			var q = $q.defer() ;
+			$http.post('/api/reset/forgot', user).success(function(res) {
+				q.resolve() ;
+			}) ;
+
+			return q.promise ;
+		} ;
+
+    o.resetPassword = function(editedUser) {
+    var q = $q.defer() ;
+    $http.put('/api/reset/resetPassword/' + editedUser.id, editedUser).success(
+      function(res) {
+        q.resolve(res) ;
+      }) ;
+    return q.promise ;
+  }
 
     o.login = function(user) {
       var q = $q.defer();
@@ -31,6 +49,18 @@
       removeToken();
       removeUser();
     };
+
+//     o.isLoggedIn = function() {
+//   var token = getToken() ;
+//   if(token) {
+//     var payload = JSON.parse(urlBase64Decoder(token.split(".")[1])) ;
+//     if(payload.exp > Date.now() / 1000) {
+//       return payload ;
+//     }
+//   } else {
+//     return false ;
+//   }
+// } ;
 
     function setUser() {
       var user = JSON.parse(urlBase64Decode(getToken().split('.')[1]));
@@ -85,6 +115,15 @@
       }
       return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
     }
+    function getAuth() {
+    var auth = {
+      headers: {
+        Authorization: "Bearer " +
+        localStorage.getItem("token")
+      }
+    }
+    return auth ;
+  };
 
     if (getToken()) setUser();
 

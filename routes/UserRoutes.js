@@ -22,6 +22,41 @@ router.param('id', function(req, res, next, id) {
     });
 });
 
+// Login router
+router.post('/login', function(req, res, next) {
+console.log("made it to /login in userRoutes");
+console.log(req.body, " req.body");
+	var email = req.body.email ;
+
+	var isUserValidated ;
+
+	// Check if user has been validated.
+	User.findOne({ email : email }, function(err, user) {
+		if(err) return res.status(500).send({ err: "Error inside the server" }) ;
+		if(!user) return res.status(400).send("Invalid Email or Password") ;
+		if(!user.isValidated) {
+			isUserValidated = false ;
+			return res.send("Please confirm email to continue") ;
+
+		}
+		loginUser() ;
+	}) ;
+
+	function loginUser() {
+
+
+	// calling from passport
+	passport.authenticate('local', function(err, user, info) {
+		// if(!user) return res.status(400).send(info);
+		// Should send Incorrect Password
+		if(!user) return res.status(400).send("Invalid Email or Password");
+
+		// generate a token when we find a user in the collection
+		res.send({ token: user.generateJWT() });
+	}) (req, res, next);
+}
+}) ;
+
 
 router.post('/register', function(req, res, next) {
   var user = new User(req.body);
@@ -34,12 +69,12 @@ router.post('/register', function(req, res, next) {
 
 
 
-router.post('/login', function(req, res, next) {
-  passport.authenticate('local', function(err, user) {
-    if(err) return next(err);
-    res.send(user.createToken());
-  })(req, res, next);
-});
+// router.post('/login', function(req, res, next) {
+//   passport.authenticate('local', function(err, user) {
+//     if(err) return next(err);
+//     res.send(user.createToken());
+//   })(req, res, next);
+// });
 
 
 router.get('/:id', function(req, res, next) {
