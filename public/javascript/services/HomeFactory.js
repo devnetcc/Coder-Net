@@ -40,6 +40,16 @@ o.getAllPosts = function(){
 };
 
 
+o.editPost = function(id, post){
+  console.log(id);
+  var q = $q.defer();
+  $http.put('/api/posts/'+ id, post).then(function(res) {
+    q.resolve(res.data);
+  });
+  return q.promise;
+};
+
+
     return o;
   }
 })();

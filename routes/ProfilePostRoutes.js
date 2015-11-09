@@ -36,13 +36,22 @@ router.get('/', function(req, res, next){
 });
 
 
-
 router.delete('/:id', function(req, res, next) {
   ProfilePost.remove({_id: req.params.id}, function(err, result) {
       if(err) return next(err);
       res.send();
   });
 });
+
+router.put('/:id', function(req,res, next){
+  ProfilePost.update({_id: req.params.id}, req.body, function(err, result){
+    if (err) return next(err);
+    if (!result) return next ({err: "That post wasnt found for updating"});
+    res.send(result);
+    });
+  });
+
+
 
 
 module.exports = router;
