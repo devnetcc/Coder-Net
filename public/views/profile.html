@@ -1,11 +1,16 @@
 <div ng-controller="ProfileController as vm">
+  <!-- <script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script> -->
+
 
   <h5 style="text-align: center"> Profile </h5>
 
 <!-- <p> {{vm.profile.name}} {{vm.profile.lastName}}</p> -->
-<md-button class="md-raised" ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button>
+<div style="height:250px;width:225px; background-color:tan;margin-left:15px;text-align:center"><h3>Photo Here!{{vm.user.pic}}</h3></div>
+<md-button class="md-raised" style='margin-left:50px;margin-top:15px' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button>
 </div>
 
+<!-- <input type="filepicker" data-fp-apikey="ANDYMo7mqQjawgErCA0F0z"
+onchange="alert(event.fpfile.url)"> -->
 <div ng-controller="ProfilePostController as vm">
   <div layout="row" layout-align="center center" ng-show ='nav.status.name;'>
     <div flex="50">

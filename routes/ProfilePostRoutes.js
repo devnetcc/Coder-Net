@@ -52,6 +52,19 @@ router.put('/:id', function(req,res, next){
   });
 
 
+  // post pro pic
+      console.log('pic route');
+    router.post('/:id/pic',  function(req,res,next){
+      console.log(req.body);
+      User.findOne({pic: req.params.pic},{
+        pic: req.body.url,
+      },
+      function(err,result){
+      if(err) return next(err);
+      if(!result) return next("Could not create the object. Please check all fields.");
+      res.send(result);
+    });
+    });
 
 
 module.exports = router;
