@@ -21,7 +21,13 @@
       var q = $q.defer();
       $http.post('/api/users/login', user).then(function(res) {
         setToken(res.data);
-        setUser();
+        // setUser();
+        var user = JSON.parse(urlBase64Decode(getToken().split('.')[1]));
+        o.status.name = user.name;
+        o.status.lastName = user.lastName;
+        o.status.pic = user.pic;
+        o.status.email = user.email;
+        o.status._id = user._id;
         q.resolve(res.data);
       });
       return q.promise;
@@ -64,27 +70,16 @@
     function urlBase64Decode(str) {
       var output = str.replace(/-/g, '+').replace(/_/g, '/');
       switch (output.length % 4) {
-        case 0:
-          {
-            break;
-          }
-        case 2:
-          {
-            output += '==';
-            break;
-          }
-        case 3:
-          {
-            output += '=';
-            break;
-          }
-        default:
-          {
-            throw 'Illegal base64url string!';
-          }
+        case 0: { break; }
+        case 2: { output += '=='; break; }
+        case 3: { output += '='; break; }
+        default: {
+          throw 'Illegal base64url string!';
+        }
       }
       return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
     }
+
 
     if (getToken()) setUser();
 
