@@ -89,9 +89,8 @@ router.delete('/:id', function(req,res,next){
 });
 
 router.post('/:id', auth , function(req, res, next) {
+  console.log(req);
   var comment = new Comment(req.body);
-  console.log(comment);
-  console.log(req.payload._id);
   comment.createdBy = req.payload._id;
   comment.date = new Date();
   comment.save(function(err,result){
@@ -101,14 +100,14 @@ router.post('/:id', auth , function(req, res, next) {
 res.send();
 });
 
-// router.get('/comments' , auth, function(req, res, next) {
-//   // console.log(res.body);
-//   Comment.find({}, function(err , result) {
-//     if(err) return next (err);
-//     if(!result) return next(err);
-//   });
-//   res.send();
-// });
+router.get('/:id', auth, function(req, res, next) {
+  // console.log(req);
+  Comment.find({id: req.params.id}, function(err , result) {
+    if(err) return next (err);
+    if(!result) return next(err);
+  });
+  res.send();
+});
 
 
 

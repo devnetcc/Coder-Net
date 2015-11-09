@@ -12,6 +12,7 @@ console.log('forum controller');
 		vm.apost = {};
 		vm.epost={};
 		vm.newComment ={};
+    vm.comments ={};
 
 
 vm.showTest = function() {
@@ -61,20 +62,18 @@ vm.deleteFPost = function(fpost){
 
 
 vm.postComments = function(){
-  console.log(vm.newComment);
   // console.log($stateParams.id);
   // vm.newComment = {};
   ForumFactory.postComments(vm.newComment, $stateParams.id).then(function(res){
-    vm.newComment = res;
+    vm.comments.push(res);
     $state.go('ForumPost', {id:$stateParams.id});
   });
 }
 
 vm.showComments = function(){
-  console.log('getting comments');
-  ForumFactory.showComments().then(function(res){
-  							vm.comment = res;
-                console.log(res);
+  ForumFactory.showComments($stateParams.id).then(function(res){
+  							vm.comments = res;
+                console.log(vm.comments);
   });
 }
 vm.showComments();

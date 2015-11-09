@@ -33,14 +33,14 @@ router.param('id', function(req,res,next,id){
 // });
 
 
-router.get('/:id', function(req, res, next) {
-  // console.log(res.body);
-  Comment.find({forum:}, function(err , result) {
-    if(err) return next (err);
-    if(!result) return next(err);
-  });
-  res.send();
-});
+// router.get('/', function(req, res, next) {
+//   console.log(req);
+//   Comment.find({}, function(err , result) {
+//     if(err) return next (err);
+//     if(!result) return next(err);
+//   });
+//   res.send();
+// });
 
 
 

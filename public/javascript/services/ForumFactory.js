@@ -67,20 +67,18 @@
 
     o.postComments = function(comment, postId) {
       var q = $q.defer();
-      // console.log(postId);
-      console.log(comment.body);
       $http.post('/api/forum/' + postId , comment ).then(function(res){
       q.resolve(res.data)
-      console.log(res.data);
     });
     return q.promise;
     }
 
-    o.showComments = function() {
-      console.log('factory show comments');
+    o.showComments = function(postId) {
+      console.log(postId);
       var q = $q.defer();
-      $http.get('/api/comment').then(function(res) {
+      $http.get('/api/forum/'+ postId).then(function(res) {
         q.resolve(res.data);
+        console.log("this is result " + res.data);
       });
       return q.promise;
     };
