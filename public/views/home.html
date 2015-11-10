@@ -1,44 +1,41 @@
 <div ng-controller="HomeController as vm">
 
-  <h1> Home Page </h1>
+  <h5 style="text-align: center"> Home Page </h5>
 
-<div ng-controller="ProfilePostController as vm">
-  <div layout="row" layout-align="center center" ng-show ='nav.status.name;'>
-    <div flex="50">
+<!-- <div ng-controller="ProfilePostController as vm"> -->
+  <div layout layout-align="center center" ng-show ='nav.status.name;'>
+    <div flex="40" style="padding-bottom: 20px;">
       <form ng-submit="vm.createPost();">
         <md-input-container layout-padding>
-          <label>Title</label>
+          <label> Post Title</label>
           <input required ng-model="vm.post.title" />
         </md-input-container>
         <md-input-container layout-padding>
-          <label> Content </label>
+          <label> Post Content </label>
           <input required ng-model="vm.post.body" />
         </md-input-container>
         <br>
         <br>
-        <md-button type="submit" class="md-raised" > Post the Post </md-button>
+        <md-button type="submit" class="md-raised" > Post </md-button>
 </form>
 </div>
 </div>
-</div>
+<md-divider ng-if="!$last" ></md-divider>
+<!-- </div> -->
 
+<h5 style="text-align: center"> News Feed </h5>
 <md-content>
   <md-list>
     <md-list-item ng-repeat='p in vm.allPosts'>
       <div class='md-list-item-text' style='padding:10px; padding-left:30px'>
         <h5> Title: {{p.title}}</h5>
         <h5> Content: {{p.body}}</h5>
-        <h5> Created By: {{p.createdBy}}</h5>
+        <h5> Created By: {{p.name}}</h5>
         <h5> Created On: {{p.date}}</h5>
+        <md-divider ng-if="!$last" style="padding: 5px"></md-divider>
     </md-list-item>
   </md-list>
     </div>
 </md-content>
-
-
-
-
-
-
 
 </div>

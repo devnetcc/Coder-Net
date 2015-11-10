@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var ForumPost = mongoose.model('ForumPost');
+var Comment = mongoose.model('Comment');
 var jwt = require('express-jwt');
 var auth = jwt({
   userProperty: "payload", //req.payload._id in the Route
@@ -21,7 +22,6 @@ router.param('id', function(req,res,next,id){
 
 
 router.post('/',auth, function(req,res,next){
-  console.log(req.body);
   var post = new ForumPost(req.body);
   post.createdBy = req.payload;
   User.findOne({email: req.payload.email}, function(err,result){
@@ -78,7 +78,7 @@ ForumPost.update({_id: req.params.id},req.body,
 });
 });
 
-//Delete a forrum post by it's id
+//Delete a forum post by it's id
 router.delete('/:id', function(req,res,next){
   // console.log("I made it to the route file");
   ForumPost.remove({_id: req.params.id}, function(err,result){

@@ -13,9 +13,8 @@ var auth = jwt({
 });
 
 router.param('id', function(req, res, next, id) {
-  User.findOne({
-      _id: id
-    })
+  User.findOne({_id: id})
+  .populate('comments profilePosts forumPosts')
     .exec(function(err, result) {
       if (!result) {
         res.status(404).send({
@@ -100,6 +99,22 @@ router.put('/:id', function(req,res, next){
         res.send();
     });
   });
+  // post pro pic
+      console.log('pic route');
+    router.put('/:id/pic',  function(req,res,next){
+      console.log(req.body);
+      User.update({_id: req.params.id},{
+        pic: req.body.url,
+      },
+      function(err,result){
+        console.log(req.params);
+      if(err) return next(err);
+      if(!result) return next("Could not create the object. Please check all fields.");
+      res.send(req.body.url);
+    });
+    });
+
+
 
 
 /*-----------THIRD PARTY LOGINS----------------------------

@@ -2,10 +2,10 @@ var mongoose = require('mongoose');
 
 var CommentSchema = new mongoose.Schema({
  body: {required: true, type: String},
- createdBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+ createdBy: {},
  date: Date,
- pic: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
- //post: {type: mongoose.Schema.Types.ObjectId, ref:'ForumPost'}, shouldnt we link it to forum?
+ // forumPost: [{type: mongoose.Schema.Types.String, ref:'ForumPost'}],
+ forumPost: String
  //votes: Number
 });
 

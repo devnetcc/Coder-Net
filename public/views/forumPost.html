@@ -6,7 +6,7 @@
 
 <h4>Body: {{vm.apost.body}}</h4>
 
-<h5>Author: {{vm.apost.createdBy}}</h5>
+<h5>Author: {{vm.apost.createdBy.name}} {{vm.apost.createdBy.lastName}}</h5>
 
 <md-button ui-sref="EditFPost({id: vm.apost._id})">Edit</md-button>
 <md-button ng-click="vm.deleteFPost(vm.apost)">Delete</md-button>
@@ -16,10 +16,12 @@
 <h2>Comments</h2>
 <h3>Add a Comment</h3>
 <md-input-container>
-<textarea ng-model="vm.newComment.body"></textarea>
+  <label>Add Comments...</label>
+<textarea  ng-model="vm.newComment.body"></textarea>
+<md-button ng-click='vm.postComments()'>Post Comment</md-button>
 </md-input-container>
 
-<div ng-repeat=" c in vm.comments">
+<div ng-repeat="c in vm.comments">
   <h4>{{c.body}}</h4>
 </div>
 

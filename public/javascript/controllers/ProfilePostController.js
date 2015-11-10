@@ -6,16 +6,17 @@
 	function ProfilePostController(HomeFactory, UserFactory,  $state, $stateParams) {
 		var vm = this;
 		    vm.status = UserFactory.status;
-        vm.post = {createdBy: vm.status._id, pic: vm.status.pic};
+        vm.post = {};
 
 
-
-HomeFactory.getAllPostsByProfile($stateParams.id).then(function(res){
-  vm.posts=res;
-});
+// 
+// HomeFactory.getAllPostsByUser($stateParams.id).then(function(res){
+//   vm.posts=res;
+// });
 
 vm.createPost = function (){
 HomeFactory.postPost(vm.post).then(function(res){
+	vm.posts.push(vm.post);
 	vm.post = {};
 });
 };
@@ -24,23 +25,17 @@ HomeFactory.postPost(vm.post).then(function(res){
 // 	return angular.copy(post);
 // };
 //
-// vm.editPost = function (postID) {
-// 	console.log(post);
-// HomeFactory.editPost(postID).then(function(res){
-// 	vm.editingPost = null;
-// });
-// };
-
-
+vm.editPost = function (postID, post) {
+HomeFactory.editPost(postID, post).then(function(res){
+	vm.editingPost = null;
+});
+};
 
 vm.deletePost = function(postID) {
 HomeFactory.deletePost(postID).then(function() {
 		vm.posts.splice(vm.posts.indexOf(postID), 1);
 		});
 };
-
-
-
 
 	}
 })();
