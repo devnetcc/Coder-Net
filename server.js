@@ -11,6 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 // var async = require('async');
 var crypto = require('crypto');
 var passport = require('passport');
+var GithubStrategy = require('passport-github').Strategy;
 // var session = require('express-session');
 // var wellknown = require('nodemailer-wellknown');
 // var nodemailer = require("nodemailer");
@@ -63,7 +64,7 @@ app.set('view options', {
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-// app.use(session({ secret: 'session secret key' }));
+// app.use(session({ secret: 'mysecret' })); //add for GithubStrategy
 app.use(passport.initialize());
 app.use(passport.session());
 

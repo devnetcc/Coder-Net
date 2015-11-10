@@ -64,6 +64,8 @@ router.put('/:id', function(req,res, next){
         res.send();
     });
   });
+
+
   // post pro pic
       console.log('pic route');
     router.put('/:id/pic',  function(req,res,next){

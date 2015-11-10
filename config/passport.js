@@ -50,6 +50,21 @@ passport.use(new LocalStrategy({
     });
   }));
 
+	// GithubStrategy
+	// passport.use(new GithubStrategy({
+	//   clientID: '687f365bddcf9b455b65',
+	//   clientSecret: 'your app client secret',
+	//   callbackURL: 'http://localhost:3000/auth/callback'
+	// }, function(accessToken, refreshToken, profile, done){
+	//   done(null, {
+	//     accessToken: accessToken,
+	//     profile: profile
+	//   });
+	// }));
+
+
+
+
 // passport.use(new LinkedInStrategy({
 //     consumerKey: process.env.LINKEDIN_KEY,
 //     consumerSecret: process.env.LINKEDIN_SECRET,
