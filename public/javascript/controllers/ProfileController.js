@@ -8,12 +8,11 @@
 		 vm.profile = {};
 		 vm.profile.languages = [];
      vm.status = UserFactory.status;
-     vm.user = {}
+     vm.user = {};
 
 
 ProfileFactory.getProfile($stateParams.id).then(function(res){
 	vm.profile = res;
-  console.log(vm.profile);
 });
 
 
