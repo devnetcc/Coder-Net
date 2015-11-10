@@ -7,16 +7,19 @@ var bodyParser = require('body-parser');
 var app = express();
 var port = process.env.PORT || 3000;
 var LocalStrategy = require('passport-local').Strategy;
-// var bcrypt = require('bcrypt-nodejs');
-// var async = require('async');
 var crypto = require('crypto');
 var passport = require('passport');
+var GithubStrategy = require('passport-github').Strategy;
 // var session = require('express-session');
 // var wellknown = require('nodemailer-wellknown');
 // var nodemailer = require("nodemailer");
 var mongoose = require('mongoose');
 // var uuid = require('uuid');
 // var LinkedInStrategy = require('passport-linkedin').Strategy;
+require('./models/Comment');
+var session = require('express-session');
+var mongoose = require('mongoose');
+
 require('./models/Comment');
 require('./models/ForumPost');
 require('./models/ProfilePost');
@@ -42,28 +45,11 @@ app.set('view options', {
 	layout: false
 });
 
-//middleware that allows for us to parse JSON and UTF-8 from the body of an HTTP request
-// passport.use(new LinkedInStrategy({
-// 		consumerKey: LINKEDIN_API_KEY,
-//     consumerSecret: LINKEDIN_SECRET_KEY,
-//     callbackURL: "http://127.0.0.1:3000/auth/linkedin/callback"
-//   },
-//   function(token, tokenSecret, profile, done) {
-//     User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
-//       return done(err, user);
-//     });
-//   }
-// ));
-// app.use(session({
-//   genid: function(req) {
-    // return uuid(); // use UUIDs for session IDs
-//   },
-//   secret: process.env.LINK_UUID_SECRET
-// }));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-// app.use(session({ secret: 'session secret key' }));
+// app.use(session({ secret: 'mysecret' })); //add for GithubStrategy
+app.use(session({ secret: 'session secret key',cookie: { secure: false } }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -73,6 +59,7 @@ var forumRoutes = require('./routes/ForumRoutes');
 var userRoutes = require('./routes/UserRoutes');
 var profilePostRoutes = require('./routes/ProfilePostRoutes');
 var resetRoutes = require('./routes/ResetPassRoutes');
+var authRoutes = require('./routes/authRoutes');
 
 
 //on homepage load, render the index page
@@ -86,6 +73,7 @@ app.use('/api/forum', forumRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/posts', profilePostRoutes);
 app.use('/api/reset', resetRoutes);
+app.use('/api/auth', authRoutes);
 
 
 var server = app.listen(port, function() {

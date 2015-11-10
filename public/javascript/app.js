@@ -52,7 +52,10 @@
 				.state('PassReset', {
 					url: '/reset',
 					templateUrl: 'views/passwordReset.html'
-		});
+		}).state('Forgot', {
+			url: '/forgot',
+			templateUrl: 'views/forgot.html'
+});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');
 

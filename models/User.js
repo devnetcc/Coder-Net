@@ -4,9 +4,12 @@ var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 
 var UserSchema = new mongoose.Schema({
-name: {required: true, type: String, lowercase: true, trim: true},
-lastName: {required: true, type: String, lowercase: true, trim: true},
-email: {required: true, unique: true, type:String, lowercase: true, trim: true},
+name: {type: String, lowercase: true, trim: true},
+lastName: { type: String, lowercase: true, trim: true},
+email: { unique: true, type:String, lowercase: true, trim: true},
+isValidated: Boolean, // Checks if the user has been validated via email
+rand: Number,
+create: Date,
 pic: String,
 location: String, //should there be separate props for city, state, country?
 role: String,
@@ -15,7 +18,7 @@ userBeen: String,
 userAt: String,
 userGoing: String,
 github: String,
-linkedin: String,
+linkedinUrl: String,
 profilePosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ProfilePost'}],
 forumPosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ForumPost'}],
 comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
@@ -25,8 +28,17 @@ languages: [{lang: String, level: Number}],
 joined: Date,
 passwordHash: String,
 salt: String,
-resetPasswordToken: String,
-resetPasswordExpires: Date
+summary: String,
+linkedin: {
+  id: String,
+  token: String,
+  email: String,
+  name: String,
+  lastName: String,
+  photo: String,
+  summary: String,
+  profileUrl: String,
+},
 });
 
 UserSchema.methods.setPassword = function(password) {
@@ -39,7 +51,7 @@ UserSchema.methods.checkPassword = function(password) {
  return (passwordHash === this.passwordHash);
 };
 
-UserSchema.methods.createToken = function() {
+UserSchema.methods.generateJWT = function() {
  return jwt.sign({
    _id: this._id,
    name: this.name,

@@ -68,4 +68,5 @@ vm.showComments = function(){
 vm.showComments();
 
 }
+
 })();
