@@ -36,7 +36,7 @@ onchange="alert(event.fpfile.url)"> -->
       <div class='md-list-item-text' layout-align="center center" style='text-align:center;padding:10px; padding-left:30px;margin-left:150px;margin-top:30px;'>
         <h5> Title: {{p.title}}</h5>
         <h5> Content: {{p.body}}</h5>
-        <h5> Created By: {{nav.status.name}}</h5>
+        <h5> Created By: {{p.name}}</h5>
         <h5> Created On: {{p.date}}</h5>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true'> Edit </md-button>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
