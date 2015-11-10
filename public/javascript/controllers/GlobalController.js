@@ -9,15 +9,15 @@
     vm.user = {};
     vm.status = UserFactory.status;
 
-
+console.log(vm.status.email + " vm.status.email");
     	vm.forgot = function() {
     		UserFactory.forgot(vm.user).then(function() {
-    			$state.go('Login') ;
+    			$state.go('Home') ;
     		}) ;
     	} ;
 
     	vm.resetPassword = function() {
-    		vm.user.id = $stateParams.id ;
+    		vm.user.id = vm.status._id ;
     		UserFactory.resetPassword(vm.user).then(function(res) {
     			$state.go('Home') ;
     		}) ;

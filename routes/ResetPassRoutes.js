@@ -113,17 +113,20 @@ router.get('/verify', function(req, res) {
 
 
 router.post('/forgot', function(req, res, next) {
+  console.log("made it to /forgot in reset routes");
 	var smtpTransport = nodemailer.createTransport("SMTP", {
-		service: "Yahoo",
+		service: "Gmail",
 		auth: {
-			user: "info.devnet@yahoo.com",
-			pass: "codercamps"
+			user: "pearlmcphee@gmail.com",
+			pass: "byqtpoc101"
 		}
 	}) ;
 	var rand, mailOptions, host, link ;
 
 	rand = Math.floor((Math.random() * 100) + 54) ;
-	email = req.body.username ;
+	console.log(req.body, "req.body");
+	email = req.body.email;
+	console.log(email, " email");
 
 	// Look for user on db
 	User.findOne({ email : email }, function(err, user) {
@@ -134,10 +137,10 @@ router.post('/forgot', function(req, res, next) {
 		}
 
 		host = req.get('host') ;
-		link = 'http://' + host + '/#/PasswordReset/' + user._id ;
+		link = 'http://' + host + '/#/reset';
 
 		mailOptions = {
-			to: email,
+			to: user.email,
 			subject: "Password Reset",
 			html : 'Please click on the link to reset your password.<a href="' + link + '">Click here to reset</a>'
 		}
@@ -155,7 +158,9 @@ router.post('/forgot', function(req, res, next) {
 }) ;
 
 
-router.put('/resetPassword/:id', function(req, res) {
+router.put('/resetPassword/', function(req, res) {
+	console.log("in /resetPassword");
+	console.log(req.body, "req.body");
 	User.findOne({ _id : req.body.id }, function(err, user) {
 		if(err) console.log(err) ;
 		if(err) return res.status(500).send({ err: "Issues with the server" }) ;

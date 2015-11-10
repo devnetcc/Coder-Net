@@ -6,6 +6,11 @@ var ProfilePost = mongoose.model('ProfilePost');
 var Comment = mongoose.model('Comment');
 var ForumPost = mongoose.model('ForumPost');
 var passport = require('passport');
+var jwt = require('express-jwt')
+var auth = jwt({
+	userProperty: 'payload',
+	secret: 'CoderCamps'
+});
 
 router.param('id', function(req, res, next, id) {
   User.findOne({
@@ -44,16 +49,10 @@ console.log(req.body, " req.body");
 
 	function loginUser() {
 
-
-	// calling from passport
-	passport.authenticate('local', function(err, user, info) {
-		// if(!user) return res.status(400).send(info);
-		// Should send Incorrect Password
-		if(!user) return res.status(400).send("Invalid Email or Password");
-
-		// generate a token when we find a user in the collection
-		res.send({ token: user.generateJWT() });
-	}) (req, res, next);
+    passport.authenticate('local', function(err, user) {
+       if(err) return next(err);
+       res.send(user.generateJWT());
+     })(req, res, next);
 }
 }) ;
 
@@ -78,7 +77,9 @@ router.post('/register', function(req, res, next) {
 
 
 router.get('/:id', function(req, res, next) {
+	console.log(req.params.id, " req.params.id");
   User.findOne({_id: req.params.id}, function(err, result) {
+		console.log(result, " result");
     res.send(result);
   });
 });
@@ -104,15 +105,15 @@ router.put('/:id', function(req,res, next){
 /*-----------THIRD PARTY LOGINS----------------------------
 ---------------------------------------------------------*/
 
-router.get('/auth/linkedin',
-  passport.authenticate('linkedin'));
-
-router.get('/auth/linkedin/callback',
-  passport.authenticate('linkedin', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+// router.get('/auth/linkedin',
+//   passport.authenticate('linkedin'));
+//
+// router.get('/auth/linkedin/callback',
+//   passport.authenticate('linkedin', { failureRedirect: '/login' }),
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/');
+//   });
 
 
 module.exports = router;

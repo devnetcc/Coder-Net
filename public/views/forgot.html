@@ -1,17 +1,18 @@
-<h2>Password Reset</h2>
-<form ng-submit="nav.resetPassword()">
+<h2>Forgot password?</h2>
+<form ng-submit="nav.forgot()">
 
+Please Enter your Email
 	<div class="form-group">
-		<label>Password</label>
-		<input type="password" placeholder="Password..." required ng-model="nav.user.password" />
+		<label>Email</label>
+		<input type="text" placeholder="Email..." required ng-model="nav.user.email" />
 	</div>
 
 	<div class="form-group">
-		<label>Confirm Password</label>
-		<input type="password" placeholder="Confirm Password..." required ng-model="nav.user.confirmPass" />
+		<label>Confirm Email</label>
+		<input type="text" placeholder="Confirm Email..." required ng-model="nav.user.confirmEmail" />
 	</div>
 
 	<div class="form-group">
-		<button type="submit" ng-disabled="!nav.user.password || !nav.user.confirmPass">Submit</button>
+		<button type="submit" ng-disabled="!nav.user.email || !nav.user.confirmEmail">Submit</button>
 	</div>
 </form>

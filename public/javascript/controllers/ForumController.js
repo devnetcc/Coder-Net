@@ -24,7 +24,7 @@ ForumFactory.getPostById($stateParams.id).then(function(res){
 
 ForumFactory.startFPost($stateParams.id).then(function(res){
 	vm.epost = res
-})
+});
 
 vm.createforumpost = function(){
 	ForumFactory.createforumpost(vm.fpost)
@@ -51,5 +51,7 @@ vm.deleteFPost = function(fpost){
 	});
 }
 
+
+}
 
 })();
