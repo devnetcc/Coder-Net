@@ -22,7 +22,6 @@ router.param('id', function(req,res,next,id){
 
 
 router.post('/',auth, function(req,res,next){
-  console.log(req.body);
   var post = new ForumPost(req.body);
   post.createdBy = req.payload;
   User.findOne({email: req.payload.email}, function(err,result){
@@ -87,29 +86,6 @@ router.delete('/:id', function(req,res,next){
   res.send();
 });
 });
-
-router.post('/:id', auth , function(req, res, next) {
-  console.log(req);
-  var comment = new Comment(req.body);
-  comment.createdBy = req.payload._id;
-  comment.date = new Date();
-  comment.save(function(err,result){
-    if(err) return next(err);
-  if(!result) return next({err: "Couldn't find a comment with that id"});
-  });
-res.send();
-});
-
-router.get('/:id', auth, function(req, res, next) {
-  // console.log(req);
-  Comment.find({id: req.params.id}, function(err , result) {
-    if(err) return next (err);
-    if(!result) return next(err);
-  });
-  res.send();
-});
-
-
 
 
 

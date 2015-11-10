@@ -6,13 +6,13 @@
 	function ProfilePostController(HomeFactory, UserFactory,  $state, $stateParams) {
 		var vm = this;
 		    vm.status = UserFactory.status;
-        vm.post = {createdBy: vm.status._id, pic: vm.status.pic};
+        vm.post = {};
 
 
-
-HomeFactory.getAllPostsByProfile($stateParams.id).then(function(res){
-  vm.posts=res;
-});
+// 
+// HomeFactory.getAllPostsByUser($stateParams.id).then(function(res){
+//   vm.posts=res;
+// });
 
 vm.createPost = function (){
 HomeFactory.postPost(vm.post).then(function(res){

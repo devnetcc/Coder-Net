@@ -6,7 +6,7 @@
 
 <h4>Body: {{vm.apost.body}}</h4>
 
-<h5>Author: {{vm.apost.createdBy}}</h5>
+<h5>Author: {{vm.apost.createdBy.name}} {{vm.apost.createdBy.lastName}}</h5>
 
 <md-button ui-sref="EditFPost({id: vm.apost._id})">Edit</md-button>
 <md-button ng-click="vm.deleteFPost(vm.apost)">Delete</md-button>
@@ -24,6 +24,5 @@
 <div ng-repeat="c in vm.comments">
   <h4>{{c.body}}</h4>
 </div>
-  <h1>test</h1>
 
 </div>

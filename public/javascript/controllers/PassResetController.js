@@ -41,7 +41,8 @@ console.log('inside PassResetController');
             vm.errMsg = '';
           }, 2000);
         });
-    } // func bott
+    } ;
+    // func bott
     function ResestPassword() {
       var token = JSON.parse(urlBase64Decoder(stateParams.info.split('.')[1]));
       if (token.expirationDate < Date.now()) {

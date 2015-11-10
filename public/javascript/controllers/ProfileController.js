@@ -10,10 +10,11 @@
      vm.status = UserFactory.status;
      vm.user = {}
 
+
 ProfileFactory.getProfile($stateParams.id).then(function(res){
 	vm.profile = res;
+  console.log(vm.profile);
 });
-
 
 
 vm.goToEdit = function(id, obj){

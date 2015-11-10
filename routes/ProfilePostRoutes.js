@@ -9,24 +9,32 @@ var auth = jwt({
   secret: "CoderCamps" //matches the secret in model
 });
 
-router.post('/:userID', function(req, res, next) {
+router.post('/', auth, function(req, res, next) {
   var post = new ProfilePost(req.body);
+  post.createdBy = req.payload;
   post.date = new Date();
   post.save(function(err, result) {
     if(err) return next(err);
     if(!result) return next("Could not Create Post");
-    res.send(result);
+    User.findOne({email: req.payload.email}, function(err, user){
+      if(!user) return res.status(404).send({err: "Could not find that user."});
+    user.profilePosts.push(result);
+    user.save(function(err, user) {
+    });
+    res.send();
+    });
   });
 });
 
-router.get('/:id', function(req, res, next){
-  ProfilePost.find({createdBy: req.params.id}, function(err, result){
-    if(err) {return next(err);}
-    if(!result) {return next({err: "Error finding post by that user ID"});}
-    res.send(result);
-  });
-});
+// router.get('/:id', function(req, res, next){
+//   ProfilePost.find({createdBy: req.params.id}, function(err, result){
+//     if(err) {return next(err);}
+//     if(!result) {return next({err: "Error finding post by that user ID"});}
+//     res.send(result);
+//   });
+// });
 
+//get call for all the posts - home page.
 router.get('/', function(req, res, next){
   ProfilePost.find({}, function(err, result){
     if(err) {return next(err);}
@@ -51,7 +59,5 @@ router.put('/:id', function(req,res, next){
     });
   });
 
-
-  
 
 module.exports = router;

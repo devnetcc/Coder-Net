@@ -3,9 +3,8 @@ var mongoose = require('mongoose');
 var ProfilePostSchema = new mongoose.Schema({
  title: {required: true, type: String},
  body: {required: true, type: String},
- createdBy: {required: true, type: String},
+ createdBy: {},
  date: Date,
- pic: String,
  //tags: [],
  //votes: Number
 });

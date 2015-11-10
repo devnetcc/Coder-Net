@@ -25,16 +25,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-//   THESE BELOW ADDED FOR RESET FUNCTION USING BCRYPT METHOD FROM PEARL LINK.
-// passport.serializeUser(function(user, done) {
-//   done(null, user.id);
-// });
-//
-// passport.deserializeUser(function(id, done) {
-//   User.findById(id, function(err, user) {
-//     done(err, user);
-//   });
-// });
+
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
@@ -62,22 +53,79 @@ passport.use(new LocalStrategy({
 	//   });
 	// }));
 
+passport.use(new LinkedInStrategy({
+    consumerKey: '75njqmr45tlthj',
+    consumerSecret: 'EgY1y6V9PhBr84iM',
+    callbackURL: "/api/auth/linkedin/callback",
+		profileFields: ['id', 'email-address','first-name','last-name', 'summary', 'picture-urls::(original)', 'public-profile-url'],
+  },
+	function(accessToken, refreshToken, profile, done) {
+		// process.nextTick is a Node.js function for asynchronous
+		// Waits for data to come back before continuing.
+		process.nextTick(function() {
+			// Information for accessing our database
+			// Whatever is returned will be stored in profile.
+			// Returns err if it cannot connect
+			User.findOne({ 'linkedin.id' : profile.id }, function(err, user) {
+				if(err) {
+					console.log('DEBUG: Error connecting') ;
+					return done(err) ;
+				}
+				if(user) {
+					console.log('DEBUG: Current user') ;
+					console.log(profile.emails[0].value);
+					return done(null, user) ;
+				}
+				// Else no user is found. We need to create a new user.
+				else {
+					console.log("DEBUG: New User.") ;
+					console.log(profile.id) ;
+
+					var newUser = new User() ;
+					newUser.linkedin.id = profile.id ;
+					newUser.linkedin.token = accessToken ;
+
+					newUser.linkedin.name = profile.name.givenName;
+					newUser.linkedin.lastName = profile.name.familyName;
+
+					newUser.name = newUser.linkedin.name;
+					newUser.lastName = newUser.linkedin.lastName;
 
 
+					newUser.linkedin.email = profile.emails[0].value;
 
-// passport.use(new LinkedInStrategy({
-//     consumerKey: process.env.LINKEDIN_KEY,
-//     consumerSecret: process.env.LINKEDIN_SECRET,
-//     callbackURL: "http://localhost:3000/api/users/auth/linkedin/callback"
-//   },
-//   function(token, tokenSecret, profile, done) {
-// 		console.log(profile.id);
-    //-----------NEEDS FUNCTION-------------------------------------
-    // User.findOne({ profile.id}, function(err, result) {
-    //   res.send(result);
-    // });
-    // User.find({ linkedinId: profile.id }, function (err, user) {
-    //   return done(err, user);
-    // });
-  // }
-// ));
+					// Setting username to email from linkedin
+					newUser.email = newUser.linkedin.email ;
+
+					// Photo
+					// Photo returned by linkedin is 200x200 because of picture.type(large)
+					// in profileFields above.
+					console.log(profile);
+					// console.log(profile.pictureUrls);
+					// newUser.linkedin.photo = profile.pictureUrls.values[0] ;
+					// newUser.pic = newUser.linkedin.photo;
+					// Getting bigger photo URL from linkedin
+					// Sending size 300x300.
+
+					newUser.linkedin.profileUrl = profile.publicProfileUrl;
+					newUser.linkedinUrl = newUser.linkedin.profileUrl;
+
+					newUser.linkedin.summary = profile.summary;
+					newUser.summary = newUser.linkedin.summary;
+					// Created. Stores date created in the database.
+					newUser.joined = new Date() ;
+					console.log(newUser, " new User");
+
+					// Save the newUser to the database.
+					newUser.save(function(err) {
+						if(err)
+							throw err ;
+						// Otherwise return done, no error and newUser.
+						return done(null, newUser) ;
+					})
+				}
+			}) ;
+
+});
+  }
+));

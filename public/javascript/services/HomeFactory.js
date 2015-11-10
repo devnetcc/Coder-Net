@@ -8,20 +8,20 @@
 
 o.postPost = function(post) {
   var q = $q.defer();
- $http.post('api/posts/' + post.createdBy, post).then(function(res){
+ $http.post('api/posts', post).then(function(res){
    q.resolve(res);
  });
  return q.promise;
 };
 
 
-o.getAllPostsByProfile = function(id) {
-      var q = $q.defer();
-      $http.get('/api/posts/'+ id, id).then(function(res) {
-        q.resolve(res.data);
-      });
-      return q.promise;
-    };
+// o.getAllPostsByUser = function(id) {
+//       var q = $q.defer();
+//       $http.get('/api/posts/'+ id, id).then(function(res) {
+//         q.resolve(res.data);
+//       });
+//       return q.promise;
+//     };
 
 o.deletePost = function(id) {
       var q = $q.defer();

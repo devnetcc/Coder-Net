@@ -6,7 +6,8 @@
 	function HomeController(HomeFactory, UserFactory,  $state) {
 		var vm = this;
 		    vm.status = UserFactory.status;
-				vm.post = {createdBy: vm.status._id, pic: vm.status.pic};
+				vm.post = {};
+				// createdBy: vm.status._id, pic: vm.status.pic
 
 		HomeFactory.getAllPosts().then(function(res){
   			vm.allPosts=res;

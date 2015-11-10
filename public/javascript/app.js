@@ -2,6 +2,7 @@
 	'use strict';
 	angular.module('app', ['ui.router', 'ngMaterial','ui.bootstrap'])
 	.config(Config);
+
 	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
 		$stateProvider
 		.state('Home',{
@@ -51,7 +52,10 @@
 				.state('PassReset', {
 					url: '/reset',
 					templateUrl: 'views/passwordReset.html'
-		});
+		}).state('Forgot', {
+			url: '/forgot',
+			templateUrl: 'views/forgot.html'
+});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');
 
