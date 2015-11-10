@@ -8,6 +8,7 @@
 		 vm.profile = {};
 		 vm.profile.languages = [];
      vm.status = UserFactory.status;
+     vm.user = {}
 
 ProfileFactory.getProfile($stateParams.id).then(function(res){
 	vm.profile = res;
@@ -55,8 +56,8 @@ vm.uploadPic = function(){
         ProfileFactory.uploadPic(blob,vm.status._id).then(function(res){
           console.log(res);
 
-          vm.users.pic = res;
-          console.log(vm.users.pic +"vm.users2");
+          vm.profile.pic = res;
+          console.log(vm.profile);
 
         });
 

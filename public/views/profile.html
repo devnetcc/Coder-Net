@@ -1,12 +1,12 @@
-<div ng-controller="ProfileController as vm">
+<div style='float:left' ng-controller="ProfileController as vm">
   <!-- <script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script> -->
 
 
   <h5 style="text-align: center"> Profile </h5>
 
 <!-- <p> {{vm.profile.name}} {{vm.profile.lastName}}</p> -->
-<div style="height:250px;width:225px; background-color:tan;margin-left:15px;text-align:center"><h3>Photo Here!{{vm.user.pic}}</h3></div>
-<md-button class="md-raised" style='margin-left:50px;margin-top:15px' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button>
+<div style="height:250px;width:225px; background-color:tan;margin-left:15px;text-align:center;"><h3>Your Photo</h3><img style='max-width:100%; max-height:100%' src='{{vm.profile.pic}}'></div>
+<md-button class="md-raised" style='margin-left:50px;margin-top:35px;' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button>
 </div>
 
 <!-- <input type="filepicker" data-fp-apikey="ANDYMo7mqQjawgErCA0F0z"
@@ -14,7 +14,7 @@ onchange="alert(event.fpfile.url)"> -->
 <div ng-controller="ProfilePostController as vm">
   <div layout="row" layout-align="center center" ng-show ='nav.status.name;'>
     <div flex="50">
-      <form ng-submit="vm.createPost();">
+      <form style="margin-top:50px;"ng-submit="vm.createPost();">
         <md-input-container layout-padding>
           <label>Title</label>
           <input required ng-model="vm.post.title" />
@@ -30,13 +30,13 @@ onchange="alert(event.fpfile.url)"> -->
 </div>
 </div>
 
-<md-content>
+<md-content >
   <md-list>
     <md-list-item ng-repeat='p in vm.posts'>
-      <div class='md-list-item-text' style='padding:10px; padding-left:30px'>
+      <div class='md-list-item-text' layout-align="center center" style='text-align:center;padding:10px; padding-left:30px;margin-left:150px;margin-top:30px;'>
         <h5> Title: {{p.title}}</h5>
         <h5> Content: {{p.body}}</h5>
-        <h5> Created By: {{p.createdBy}}</h5>
+        <h5> Created By: {{nav.status.name}}</h5>
         <h5> Created On: {{p.date}}</h5>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true'> Edit </md-button>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
