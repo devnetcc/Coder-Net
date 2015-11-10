@@ -22,9 +22,9 @@ passport.authenticate('linkedin', { scope: ['r_basicprofile','r_emailaddress']})
   	function(req, res) {
   		if(req.user) {
 
-        res.send(req.user.generateJWT());
+        req.user.generateJWT();
 
-  			res.redirect("/profile/"+ req.user._id) ;
+  			res.redirect("/#/profile/"+ req.user._id) ;
   		} else {
   			res.send("You are not authenticated") ;
   		}
