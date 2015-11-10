@@ -9,7 +9,6 @@
     vm.user = {};
     vm.status = UserFactory.status;
 
-console.log(vm.status.email + " vm.status.email");
     	vm.forgot = function() {
     		UserFactory.forgot(vm.user).then(function() {
     			$state.go('Home') ;
@@ -32,7 +31,7 @@ console.log(vm.status.email + " vm.status.email");
 
     vm.register = function() {
       UserFactory.register(vm.user).then(function() {
-        $state.go('Profile');
+        $state.go('Home');
       });
     };
 

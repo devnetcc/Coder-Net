@@ -6,7 +6,7 @@ var ProfilePost = mongoose.model('ProfilePost');
 var Comment = mongoose.model('Comment');
 var ForumPost = mongoose.model('ForumPost');
 var passport = require('passport');
-var jwt = require('express-jwt')
+var jwt = require('express-jwt');
 var auth = jwt({
 	userProperty: 'payload',
 	secret: 'CoderCamps'
@@ -47,7 +47,6 @@ console.log(req.body, " req.body");
 	}) ;
 
 	function loginUser() {
-
     passport.authenticate('local', function(err, user) {
        if(err) return next(err);
        res.send(user.generateJWT());
@@ -99,6 +98,8 @@ router.put('/:id', function(req,res, next){
         res.send();
     });
   });
+
+
   // post pro pic
       console.log('pic route');
     router.put('/:id/pic',  function(req,res,next){

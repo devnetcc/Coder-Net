@@ -9,6 +9,14 @@ var port = process.env.PORT || 3000;
 var LocalStrategy = require('passport-local').Strategy;
 var crypto = require('crypto');
 var passport = require('passport');
+var GithubStrategy = require('passport-github').Strategy;
+// var session = require('express-session');
+// var wellknown = require('nodemailer-wellknown');
+// var nodemailer = require("nodemailer");
+var mongoose = require('mongoose');
+// var uuid = require('uuid');
+// var LinkedInStrategy = require('passport-linkedin').Strategy;
+require('./models/Comment');
 var session = require('express-session');
 var mongoose = require('mongoose');
 
@@ -40,6 +48,7 @@ app.set('view options', {
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+// app.use(session({ secret: 'mysecret' })); //add for GithubStrategy
 app.use(session({ secret: 'session secret key',cookie: { secure: false } }));
 app.use(passport.initialize());
 app.use(passport.session());

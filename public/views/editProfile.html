@@ -5,7 +5,7 @@
 <form ng-submit="vm.editProfile(vm.profile)" layout style="padding: 90px">
 
     <div>
-      <md-input-container>        
+      <md-input-container>
         <md-button required class="md-primary"ng-click="vm.uploadPic()">Upload a Photo</md-button>
         <!-- dont know what type of input field we need for this -->
       </md-input-container>
@@ -19,7 +19,7 @@
       </md-input-container>
       <md-input-container>
         <label> Email </label>
-        <input required ng-model="vm.profile.email"></input>
+        <input  required ng-model="vm.profile.email"></input>
       </md-input-container>
       <md-input-container>
         <label> Location </label>
@@ -27,7 +27,7 @@
       </md-input-container>
        <md-input-container >
         <label> Title  </label>
-        <input required ng-model="vm.profile.title"></input>
+        <input  ng-model="vm.profile.title"></input>
       </md-input-container>
         <md-input-container layout-padding>
           <label> Role </label>
@@ -41,20 +41,20 @@
         </md-input-container>
        <md-input-container >
         <label> Where You've Been  </label>
-        <input required ng-model="vm.profile.userBeen"></input>
+        <input  ng-model="vm.profile.userBeen"></input>
       </md-input-container>
       <md-input-container >
         <label> Where You're At  </label>
-        <input required ng-model="vm.profile.userAt"></input>
+        <input  ng-model="vm.profile.userAt"></input>
       </md-input-container>
       <md-input-container >
       <div layout="row" ng-repeat="a in vm.profile.languages" style="padding-left:6px;">
         <md-input-container >
         <label> Languages </label>
-        <input required ng-model="vm.profile.languages[$index].lang"></input>
+        <input  ng-model="vm.profile.languages[$index].lang"></input>
       </md-input-container>
            <label> Proficiency from 1 to 5 </label>
-        <input required ng-model="vm.profile.languages[$index].level"></input>
+        <input  ng-model="vm.profile.languages[$index].level"></input>
       </md-input-container>
               <md-button type="button" ng-click="vm.profile.languages.splice($index, 1)">X</md-button>
         </div>
@@ -63,7 +63,7 @@
         </div>
 
           <div layout="row" style="padding-top:50px">
-          <md-button type="submit" class="md-raised"> Edit Profile </md-button>
+          <md-button type="submit" class="md-raised"> Update Profile </md-button>
           <md-button type="button" class="md-raised" ui-sref="Profile"> Cancel</md-button>
           <md-button type="button" class="md-raised"> Reset Password </md-button>
           <md-button type="button" class="md-raised" ng-click="vm.deleteProfile(vm.profile)" > Delete Account </md-button>

@@ -41,6 +41,18 @@ passport.use(new LocalStrategy({
     });
   }));
 
+	// GithubStrategy
+	// passport.use(new GithubStrategy({
+	//   clientID: '687f365bddcf9b455b65',
+	//   clientSecret: 'your app client secret',
+	//   callbackURL: 'http://localhost:3000/auth/callback'
+	// }, function(accessToken, refreshToken, profile, done){
+	//   done(null, {
+	//     accessToken: accessToken,
+	//     profile: profile
+	//   });
+	// }));
+
 passport.use(new LinkedInStrategy({
     consumerKey: '75njqmr45tlthj',
     consumerSecret: 'EgY1y6V9PhBr84iM',
@@ -111,7 +123,7 @@ passport.use(new LinkedInStrategy({
 							throw err ;
 						// Otherwise return done, no error and newUser.
 						return done(null, newUser) ;
-					})
+					});
 				}
 			}) ;
 

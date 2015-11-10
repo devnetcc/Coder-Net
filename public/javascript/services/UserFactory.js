@@ -18,7 +18,7 @@
 
     function removeToken() {
       return localStorage.removeItem('token');
-    };
+    }
 
     function urlBase64Decode(token) {
       // token = getToken();
@@ -80,7 +80,7 @@
         q.resolve(res) ;
       }) ;
     return q.promise ;
-  }
+  };
 
     o.login = function(user) {
       var q = $q.defer();
@@ -137,9 +137,9 @@
         Authorization: "Bearer " +
         localStorage.getItem("token")
       }
-    }
+    };
     return auth ;
-  };
+  }
 
     if (getToken()) setUser();
 
