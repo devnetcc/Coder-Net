@@ -8,9 +8,8 @@ var ForumPost = mongoose.model('ForumPost');
 var passport = require('passport');
 
 router.param('id', function(req, res, next, id) {
-  User.findOne({
-      _id: id
-    })
+  User.findOne({_id: id})
+  .populate('comments profilePosts forumPosts')
     .exec(function(err, result) {
       if (!result) {
         res.status(404).send({

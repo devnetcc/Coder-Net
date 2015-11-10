@@ -31,7 +31,7 @@
       <div class='md-list-item-text' style='padding:10px; padding-left:30px'>
         <h5> Title: {{p.title}}</h5>
         <h5> Content: {{p.body}}</h5>
-        <h5> Created By: {{p.createdBy}}</h5>
+        <h5> Created By: {{p.createdBy.name}}</h5>
         <h5> Created On: {{p.date}}</h5>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true'> Edit </md-button>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>

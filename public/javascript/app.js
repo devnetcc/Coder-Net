@@ -2,6 +2,7 @@
 	'use strict';
 	angular.module('app', ['ui.router', 'ngMaterial','ui.bootstrap'])
 	.config(Config);
+
 	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
 		$stateProvider
 		.state('Home',{
