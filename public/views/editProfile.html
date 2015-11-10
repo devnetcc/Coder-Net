@@ -1,12 +1,12 @@
 <div ng-controller="ProfileController as vm">
 
 
+
 <form ng-submit="vm.editProfile(vm.profile)" layout style="padding: 90px">
 
     <div>
-      <md-input-container>
-        <label> Upload a Photo</label>
-        <input required ng-model="vm.profile.pic"></input>
+      <md-input-container>        
+        <md-button required class="md-primary"ng-click="vm.uploadPic()">Upload a Photo</md-button>
         <!-- dont know what type of input field we need for this -->
       </md-input-container>
       <md-input-container>

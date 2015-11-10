@@ -33,7 +33,23 @@
 		return q.promise;
 		};
 
+		o.uploadPic = function(pic,userId){
+			console.log(pic);
+			console.log(userId);
+			var q = $q.defer();
+			// console.log("heading to route");
+			// console.log(pic);
+			$http.put('/api/users/' + userId + '/pic', pic).then(function(res){
+				console.log(res);
+			q.resolve(res.data);
+		});
+		return q.promise;
+		}
+
+
+
+
+
 		return o;
 	}
-
 })();
