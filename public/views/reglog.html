@@ -1,8 +1,8 @@
-<div style="padding-top: 100px" ng-controller='GlobalController as nav'>
+<div style="padding-top: 100px" ng-controller='GlobalController as nav' >
 
   <!-- Show the Login Form -->
   <div ng-show="nav.isLogin">
-    <form class="well container" ng-submit="nav.login()">
+    <form ng-submit="nav.login()" style="padding:100px">
       <md-input-container>
         <label>Email</label>
         <input type="email" class="form-control" ng-model="nav.user.email">
@@ -13,22 +13,24 @@
       </md-input-container>
       <div style="text-align:center">
         <md-button type="submit" class="md-raised">Login</md-button>
-        <a href="api/auth/linkedin">
-          <img class="linkedlogin" src="/imgs/login/small_default.png" onmouseover="this.src='/imgs/login/small_hover.png'" onmouseout="this.src='/imgs/login/small_default.png'"
-          onclick="this.src='/imgs/login/small_active.png'"/>
-        </a>
         <md-button type="button" class="md-raised" ng-click="nav.isLogin = false;" class="btn btn-primary">Register</md-button>
       </div>
     </form>
+  <center>
+     <md-button type="button" class="md-flat" style="text-align:center" ui-sref='PassReset' ng-click="nav.forgot();" class="btn btn-primary">Forgot Password</md-button>
     <center>
-     <md-button type="button" class="md-warn" style="text-align:center" ui-sref='PassReset' class="btn btn-primary">Forgot Password</md-button>
-   </center>
-      <md-button type="button" class="md-warn" style="text-align:center" ng-click="nav.forgot();" class="btn btn-primary">Forgot Password</md-button>
-    </center>
+      <br>
+      <br>
+    <center>
+      <a href="api/auth/linkedin" style="text-align:center">
+        <img class="linkedlogin" src="/imgs/login/small_default.png" onmouseover="this.src='/imgs/login/small_hover.png'" onmouseout="this.src='/imgs/login/small_default.png'"
+        onclick="this.src='/imgs/login/small_active.png'"/>
+      </a>
+  </center>
   </div>
 
   <!-- Show the Register Form -->
-  <div ng-show="!nav.isLogin">
+  <div ng-show="!nav.isLogin"  style="padding:100px">
     <form class="well container" ng-submit="nav.register()">
       <md-input-container>
         <label>Name</label>
@@ -51,6 +53,14 @@
         <md-button type="button" ng-click="nav.isLogin = true;" class="md-raised">Cancel</md-button>
       </div>
     </form>
+    <br>
+    <br>
+    <center>
+      <a href="api/auth/linkedin" style="text-align:center">
+        <img class="linkedlogin" src="/imgs/login/small_default.png" onmouseover="this.src='/imgs/login/small_hover.png'" onmouseout="this.src='/imgs/login/small_default.png'"
+        onclick="this.src='/imgs/login/small_active.png'"/>
+      </a>
+  </center>
   </div>
 
 </div>

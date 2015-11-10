@@ -122,7 +122,7 @@ passport.use(new LinkedInStrategy({
 							throw err ;
 						// Otherwise return done, no error and newUser.
 						return done(null, newUser) ;
-					})
+					});
 				}
 			}) ;
 

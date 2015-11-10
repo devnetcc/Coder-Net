@@ -9,7 +9,10 @@ var auth = jwt({
   secret: "CoderCamps" //matches the secret in model
 });
 
+
+
 router.post('/', auth, function(req, res, next) {
+  console.log("req body" + req.body);
   var post = new ProfilePost(req.body);
   post.createdBy = req.payload;
   post.date = new Date();

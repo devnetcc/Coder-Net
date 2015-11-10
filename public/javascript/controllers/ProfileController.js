@@ -3,20 +3,23 @@
   angular.module('app')
     .controller('ProfileController', ProfileController);
 
-	function ProfileController(ProfileFactory, UserFactory, $state, $stateParams) {
+	function ProfileController(ProfileFactory, HomeFactory, UserFactory, $state, $stateParams) {
 		var vm = this;
 		 vm.profile = {};
 		 vm.profile.languages = [];
      vm.status = UserFactory.status;
      vm.user = {};
+     vm.post = {};
 
 
 ProfileFactory.getProfile($stateParams.id).then(function(res){
 	vm.profile = res;
+  vm.profilePosts = vm.profile.profilePosts;
 });
 
 
 vm.goToEdit = function(id, obj){
+
 	$state.go('EditProfile', {id:id, obj:obj});
 		};
 
@@ -36,7 +39,6 @@ vm.deleteProfile = function(profile) {
 
 vm.uploadPic = function(){
       filepicker.setKey("ANDYMo7mqQjawgErCA0F0z");
-      console.log('send pic');
       filepicker.pick({
           mimetype: 'image/*', /* Images only */
           maxSize: 1024 * 1024 * 5, /* 5mb */
@@ -51,19 +53,30 @@ vm.uploadPic = function(){
           var isWriteable = blob.isWriteable;
           var mimetype = blob.mimetype;
           var size = blob.size;
-          // console.log(blob);
-          // console.log(vm.status._id);
         ProfileFactory.uploadPic(blob,vm.status._id).then(function(res){
-          console.log(res);
-
           vm.profile.pic = res;
-          console.log(vm.profile);
-
         });
-
     });
   };
 
+  vm.createPost = function (){
+  HomeFactory.postPost(vm.post).then(function(res){
+    vm.profilePosts.push(vm.post);
+  	vm.post = {};
+  });
+  };
+
+  vm.editPost = function (postID, post) {
+  HomeFactory.editPost(postID, post).then(function(res){
+  	vm.editingPost = null;
+  });
+  };
+
+  vm.deletePost = function(postID) {
+  HomeFactory.deletePost(postID).then(function() {
+  		vm.profilePosts.splice(vm.profilePosts.indexOf(postID), 1);
+  		});
+  };
 
 	}
 
