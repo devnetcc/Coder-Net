@@ -1,6 +1,6 @@
 (function() {
 	'use strict';
-	angular.module('app', ['ui.router', 'ngMaterial','ui.bootstrap'])
+	angular.module('app', ['ui.router', 'ngMaterial','ui.bootstrap','720kb.socialshare'])
 	.config(Config);
 
 	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -12,7 +12,10 @@
 		.state('About', {
         	url: '/about',
         	templateUrl: '/views/about.html'
-         })
+				})		.state('Test', {
+				         	url: '/test',
+				         	templateUrl: '/views/test.html'
+				          })
         .state('Contact', {
         	url: '/contact',
         	templateUrl: 'views/contact.html'

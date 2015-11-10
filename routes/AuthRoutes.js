@@ -6,13 +6,7 @@ var jwt = require('express-jwt');
 var passport = require('passport') ;
 var linkedin = require('passport-linkedin');
 
-router.post('/auth/linkedin/token',
-  passport.authenticate('linkedin-token'),
-  function (req, res) {
-    // do something with req.user
-    res.send(req.user? 200 : 401);
-  }
-);
+
 
 router.get('/linkedin',
 passport.authenticate('linkedin', { scope: ['r_basicprofile','r_emailaddress']})) ;

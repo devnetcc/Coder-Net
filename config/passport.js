@@ -67,7 +67,7 @@ passport.use(new LinkedInStrategy({
 				// Else no user is found. We need to create a new user.
 				else {
 					console.log("DEBUG: New User.") ;
-					console.log(profile.id) ;
+					console.log(profile + " profile") ;
 
 					var newUser = new User() ;
 					newUser.linkedin.id = profile.id ;
@@ -88,17 +88,18 @@ passport.use(new LinkedInStrategy({
 					// Photo
 					// Photo returned by linkedin is 200x200 because of picture.type(large)
 					// in profileFields above.
-					console.log(profile);
 					// console.log(profile.pictureUrls);
-					// newUser.linkedin.photo = profile.pictureUrls.values[0] ;
-					// newUser.pic = newUser.linkedin.photo;
+					newUser.linkedin.photo = profile.pictureUrls.values[0] ;
+					newUser.pic = newUser.linkedin.photo;
+					console.log(profile);
+
 					// Getting bigger photo URL from linkedin
 					// Sending size 300x300.
 
 					newUser.linkedin.profileUrl = profile.publicProfileUrl;
 					newUser.linkedinUrl = newUser.linkedin.profileUrl;
 
-					newUser.linkedin.summary = profile.summary;
+					newUser.linkedin.summary = profile._json.summary;
 					newUser.summary = newUser.linkedin.summary;
 					// Created. Stores date created in the database.
 					newUser.joined = new Date() ;
