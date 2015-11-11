@@ -1,4 +1,4 @@
-<div style='float:left' ng-controller="ProfileController as vm">
+<div ng-controller="ProfileController as vm">
   <!-- <script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script> -->
 
 
@@ -39,7 +39,7 @@ onchange="alert(event.fpfile.url)"> -->
         <h5> Content: {{p.body}}</h5>
         <h5> Created By: {{p.createdBy.name}}</h5>
         <h5> Created On: {{p.date}}</h5>
-        <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true'> Edit </md-button>
+        <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
       <form ng-show = 'showEdit' style="padding:30px; padding-top:100px" style='text-align:center' ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
                 <md-input-container>

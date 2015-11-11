@@ -75,10 +75,9 @@ router.post('/register', function(req, res, next) {
 
 
 router.get('/:id', function(req, res, next) {
-	console.log(req.params.id, " req.params.id");
   User.findOne({_id: req.params.id}, function(err, result) {
 		console.log(result, " result");
-    res.send(result);
+    res.send(req.user);
   });
 });
 
