@@ -60,7 +60,7 @@ router.post('/register', function(req, res, next) {
   user.setPassword(req.body.password);
   user.save(function(err, result) {
     if(err) return next(err);
-  res.send(user.createToken());
+  res.send(user.generateJWT());
   });
 });
 
@@ -78,6 +78,7 @@ router.get('/:id', function(req, res, next) {
   User.findOne({_id: req.params.id}, function(err, result) {
 		console.log(result, " result");
     res.send(req.user);
+
   });
 });
 
