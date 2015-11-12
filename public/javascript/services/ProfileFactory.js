@@ -44,10 +44,6 @@
 		return q.promise;
 	};
 
-
-
-
-
 		return o;
 	}
 })();
