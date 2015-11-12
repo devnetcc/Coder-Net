@@ -7,7 +7,16 @@
     var vm = this;
     vm.isLogin = true;
     vm.user = {};
+    vm.luser = {};
     vm.status = UserFactory.status;
+
+console.log("something");
+      vm.linkLogin = function(){
+        console.log(vm.status.name + " vm.user");
+          UserFactory.getLUser().then(function(){
+            vm.status = res;
+          });
+      }
 
     	vm.forgot = function() {
     		UserFactory.forgot(vm.user).then(function() {

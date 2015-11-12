@@ -92,6 +92,7 @@
       return q.promise;
     };
 
+
     o.logout = function() {
       removeToken();
       removeUser();

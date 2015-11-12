@@ -13,9 +13,13 @@
 
 ProfileFactory.getProfile($stateParams.id).then(function(res){
 	vm.profile = res;
+  vm.status.email = vm.profile.email;
+  vm.status.name = vm.profile.name;
+  vm.status.lastName = vm.profile.lastName;
+  vm.status.pic = vm.profile.pic;
+  vm.status._id = vm.profile._id;
   vm.profilePosts = vm.profile.profilePosts;
 });
-
 
 vm.goToEdit = function(id, obj){
 	$state.go('EditProfile', {id:id, obj:obj});
