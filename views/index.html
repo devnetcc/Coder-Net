@@ -15,6 +15,7 @@
 
 <body ng-controller='GlobalController as nav'>
 
+
 	<md-toolbar style=" background-color:#32B2B2;" layout>
 		<section layout flex layout-align="left" style="padding-left:20px">
 				<h1 class="logo" style="padding-left: 17px" ui-sref="Home"> &#060;&nbsp;Coder Net&nbsp;&#062; </h1>
@@ -63,6 +64,15 @@ onchange="alert(event.fpfile.url)"> -->
 		</div>
 	</footer>
 
+	<!-- facebook login stuff -->
+	<!-- <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1109973309042696";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script> -->
 
 	<!-- Ext Libs -->
 	<script src="angular/angular.min.js"></script>
@@ -89,7 +99,6 @@ onchange="alert(event.fpfile.url)"> -->
 	<script src="/javascript/controllers/GlobalController.js"></script>
 	<script src="/javascript/controllers/ForumController.js"></script>
 	<script src="/javascript/controllers/ProfileController.js"></script>
-	<script src="/javascript/controllers/ProfilePostController.js"></script>
 	<script src="/javascript/controllers/TestController.js"></script>
 
 

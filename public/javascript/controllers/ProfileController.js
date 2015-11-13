@@ -4,6 +4,7 @@
     .controller('ProfileController', ProfileController);
 
 	function ProfileController(ProfileFactory, HomeFactory, UserFactory, $state, $stateParams) {
+
 		var vm = this;
 		 vm.profile = {};
 		//  vm.profile.languages = [];
@@ -11,6 +12,7 @@
      vm.user = {};
      vm.post = {};
     //  vm.profilePosts = {};
+
 
 
 ProfileFactory.getProfile($stateParams.id).then(function(res){
@@ -70,6 +72,8 @@ vm.uploadPic = function(){
         });
     });
   };
+
+
 
   vm.createPost = function (){
   HomeFactory.postPost(vm.post, vm.profile).then(function(res){

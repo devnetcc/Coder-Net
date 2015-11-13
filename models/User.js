@@ -45,6 +45,13 @@ linkedin: {
   summary: String,
   profileUrl: String,
 },
+facebook: {
+id: String,
+token: String,
+email: String,
+name: String,
+photo: String  
+}
 });
 
 UserSchema.methods.setPassword = function(password) {

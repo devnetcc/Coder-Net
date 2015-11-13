@@ -5,6 +5,7 @@ var User = mongoose.model('User') ;
 var jwt = require('express-jwt');
 var passport = require('passport') ;
 var linkedin = require('passport-linkedin');
+var facebook = require('passport-facebook');
 
 
 
@@ -20,5 +21,25 @@ passport.authenticate('linkedin', { failureRedirect: '/' }),
   		} else {
   			res.send("You are not authenticated") ;
   		}
-  	});
+
+  	}) ;
+
+
+router.get('/facebook',
+passport.authenticate('facebook', { scope:
+["email", "public_profile"]}));
+
+router.get('/facebook/callback',
+passport.authenticate('facebook', {failureRedirect: '/'}),
+function(req, res) {
+  if(req.user) {
+    req.user.generateJWT();
+    res.redirect("/#/profile" + req.user._id);
+  } else {
+    res.send("You are not authenticated");
+  }
+});
+
+
+>>>>>>> 15eefed0ab44580ca69069a9114dea229ed70a61
 module.exports = router;

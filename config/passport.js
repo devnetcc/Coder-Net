@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var LinkedInStrategy = require('passport-linkedin').Strategy;
+var FacebookStrategy = require('passport-facebook');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
@@ -120,6 +121,67 @@ passport.use(new LinkedInStrategy({
 				}
 			}) ;
 
-});
+		});
   }
 ));
+
+function generateFacebookPhotoUrl(id, accessToken, height, width) {
+	var picUrl = "https://graph.facebook.com/" ;
+	picUrl += id ;
+	picUrl += "/picture?width=" ;
+	picUrl += width ;
+	picUrl += "&height=" ;
+	picUrl += height ;
+	picUrl += "&access_token=" ;
+	picUrl += accessToken ;
+	return picUrl ;
+}
+
+passport.use(new FacebookStrategy({
+	clientID: "1109973309042696",
+	clientSecret: "81f7555642ab258249d2034b33f562c8",
+	callbackURL: "/api/auth/facebook/callback",
+	profileFields: ['emails','name','picture']
+}, function(accessToken, refreshToken, profile, done) {
+	process.nextTick(function() {
+		console.log(profile);
+		User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
+					if(err) {
+						return done(err) ;
+					}
+					if(user) {
+						return done(null, user) ;
+					}
+					else {
+
+						var newUser = new User() ;
+
+						newUser.facebook.id = profile.id ;
+
+						newUser.facebook.token = accessToken ;
+
+						newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName ;
+
+						newUser.name = newUser.facebook.name ;
+
+						newUser.facebook.email = profile.emails ? profile.emails[0].value : profile.username + "@facebook.com";
+
+						newUser.username = newUser.facebook.email ;
+
+						newUser.facebook.photo = profile.photos[0].value ;
+
+						newUser.pic = generateFacebookPhotoUrl(profile.id, accessToken, 300, 300) ;
+
+						newUser.created = new Date() ;
+
+						newUser.save(function(err) {
+							if(err)
+								throw err ;
+							// Otherwise return done, no error and newUser.
+							return done(null, newUser) ;
+						});
+					}
+				}) ;
+		}) ;
+	}
+)) ;
