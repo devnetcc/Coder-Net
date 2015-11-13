@@ -31,6 +31,7 @@
         <h5> Title: {{p.title}}</h5>
         <h5> Content: {{p.body}}</h5>
         <h5> Created By: {{p.createdBy.name}}</h5>
+        <md-button ng-click="vm.followOnPost(p);">Follow</md-button>
         <h5> Created On: {{p.date}}</h5>
         <div class="share">
           <a href="#" id="linkedin" class="social-btn"

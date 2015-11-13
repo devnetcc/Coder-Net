@@ -5,7 +5,7 @@ var ForumPostSchema = new mongoose.Schema({
  channel: String,
  body: {required: true, type: String},
  date: Date,
- createdBy: {},
+ createdBy: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
  comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}]
  //tags: [],
  //votes: Number

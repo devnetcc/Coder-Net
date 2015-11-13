@@ -64,21 +64,66 @@ router.post('/register', function(req, res, next) {
   });
 });
 
+router.put('/followOnProfile/:id', function(req,res,next){
+	User.findOne({_id: req.body._id}, function(err,result){
+		if(err) return next(err);
+		if(!result) return next({err: "Couldnt find that user for updating!"});
 
+		result.update({$push: {following:{
+			celebrityId: req.params.id,
+		}}},
+			function(err,result){
+				if(err) return next(err);
+				if(!result) return next ({err: "That user wasnt found for updating!"});
+			});
 
-// router.post('/login', function(req, res, next) {
-//   passport.authenticate('local', function(err, user) {
-//     if(err) return next(err);
-//     res.send(user.createToken());
-//   })(req, res, next);
-// });
+	User.update({_id: req.params.id},{$push: {followers: {
+		followerID: req.body._id,
+		followerName: req.body.name,
+	}}},
+		 function(err, result){
+		if(err) return next(err);
+		if(!result) return next ({err: "That user wasnt found for updating!"});
+	});
 
+		res.send(result);
+
+	});
+});
+
+router.put('/followOnPost/:id', function(req,res,next){
+	//updates the folling array of the signed in user (the person who clicked the 'follow' button)
+	User.findOne({_id: req.body._id}, function(err,result){
+		if(err) return next(err);
+		if(!result) return next({err: "Couldnt find that user for updating!"});
+
+		result.update({$push: {following:{
+			celebrityId: req.params.id,
+		}}},
+			function(err,result){
+				if(err) return next(err);
+				if(!result) return next ({err: "That user wasnt found for updating!"});
+			});
+
+	User.update({_id: req.params.id},{$push: {followers: {
+		followerID: req.body._id,
+		followerName: req.body.name,
+	}}},
+		 function(err, result){
+		if(err) return next(err);
+		if(!result) return next ({err: "That user wasnt found for updating!"});
+	});
+
+		res.send(result);
+
+	});
+});
 
 router.get('/:id', function(req, res, next) {
-  User.findOne({_id: req.params.id}, function(err, result) {
-		console.log(result, " result");
-    res.send(req.user);
 
+  User.findOne({_id: req.params.id}, function(err, result) {
+		// console.log(result.token);
+    res.send(req.user);
   });
 });
 

@@ -20,6 +20,12 @@
       return localStorage.removeItem('token');
     }
 
+    function externalLogin(token) {
+      setToken(token);
+      setUser();
+    }
+
+
     function urlBase64Decode(token) {
       // token = getToken();
       if(token ===  undefined){
@@ -57,8 +63,6 @@
     o.register = function(user) {
       var q = $q.defer();
       $http.post('/api/reset/register', user).then(function(res) {
-        // setToken(res.data);
-        // setUser();
         q.resolve(res.data);
       });
       return q.promise;
@@ -98,21 +102,27 @@
       removeUser();
     };
 
-//     o.isLoggedIn = function() {
-//   var token = getToken() ;
-//   if(token) {
-//     var payload = JSON.parse(urlBase64Decoder(token.split(".")[1])) ;
-//     if(payload.exp > Date.now() / 1000) {
-//       return payload ;
-//     }
-//   } else {
-//     return false ;
-//   }
-// } ;
+    o.followOnProfile = function(celebrityId, followerObj){
+      var q = $q.defer();
+      $http.put('/api/users/followOnProfile/' +celebrityId, followerObj)
+      .then(function(res){
+        console.log("came back from routes");
+        q.resolve(res.data);
+      });
+      return q.promise;
+    }
+
+    o.followOnPost = function(celerityId, followerObj){
+      var q = $q.defer();
+      $http.put('/api/users/followOnPost/' +celerityId, followerObj)
+      .then(function(res){
+        q.resolve(res.data);
+      });
+      return q.promise;
+    }
 
     function setUser() {
-      // token  = getToken();
-      // console.log(token);
+
       var user = JSON.parse(urlBase64Decode(getToken().split('.')[1]));
       o.status.name = user.name;
       o.status.lastName = user.lastName;
@@ -129,8 +139,6 @@
       o.status._id = null;
     }
 
-
-// console.log("made it below comma in userfactory");
 
     function getAuth() {
     var auth = {

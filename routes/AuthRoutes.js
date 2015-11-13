@@ -11,16 +11,14 @@ var linkedin = require('passport-linkedin');
 router.get('/linkedin',
 passport.authenticate('linkedin', { scope: ['r_basicprofile','r_emailaddress']})) ;
 
-  router.get('/linkedin/callback',
-  	passport.authenticate('linkedin', { failureRedirect: '/' }),
+router.get('/linkedin/callback',
+passport.authenticate('linkedin', { failureRedirect: '/' }),
   	function(req, res) {
   		if(req.user) {
-
         req.user.generateJWT();
-
   			res.redirect("/#/profile/"+ req.user._id) ;
   		} else {
   			res.send("You are not authenticated") ;
   		}
-  	}) ;
+  	});
 module.exports = router;

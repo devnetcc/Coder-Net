@@ -7,6 +7,7 @@
 		var vm = this;
 		    vm.status = UserFactory.status;
 				vm.post = {};
+				vm.allPosts = {};
 				// createdBy: vm.status._id, pic: vm.status.pic
 
 		HomeFactory.getAllPosts().then(function(res){
@@ -24,6 +25,12 @@
       $state.go("Home");
     };
 
+		vm.followOnPost = function(post){
+			UserFactory.followOnPost(post.creatorId, vm.status)
+			.then(function(res){
+				console.log("You have a new follower");
+			})
+		}
 
 
 	}
