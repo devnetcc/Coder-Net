@@ -41,5 +41,4 @@ function(req, res) {
 });
 
 
->>>>>>> 15eefed0ab44580ca69069a9114dea229ed70a61
 module.exports = router;
