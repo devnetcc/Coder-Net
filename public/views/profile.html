@@ -6,6 +6,12 @@
 <div>
 <div style="height:225px;width:225px; background-color:#ffdb58; margin-left:50px;text-align:center;"><img style='max-width:100%; max-height:100%' src='{{vm.profile.pic}}'></div>
 <md-button class="md-raised" style='margin-left:50px;margin-top:35px;' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button>
+<md-button class="md-raised" ng-click="nav.followOnProfile();">Follow</md-button><br>
+Followers: <a ui-sref="Followers({id: vm.profile._id})">{{vm.profile.followers.length}}</a><br>
+Following: <a ui-sref="Following({id: vm.profile._id})">{{vm.profile.following.length}}</a>
+
+
+
 
 <!-- <input type="filepicker" data-fp-apikey="ANDYMo7mqQjawgErCA0F0z"
 onchange="alert(event.fpfile.url)"> -->
@@ -28,6 +34,8 @@ onchange="alert(event.fpfile.url)"> -->
 </form>
 </div>
 </div>
+
+
 
 <md-content >
   <md-list>

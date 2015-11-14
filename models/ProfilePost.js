@@ -4,6 +4,7 @@ var ProfilePostSchema = new mongoose.Schema({
  title: {required: true, type: String},
  body: {required: true, type: String},
  createdBy: {},
+ creatorId: String,
  date: Date,
  //tags: [],
  //votes: Number

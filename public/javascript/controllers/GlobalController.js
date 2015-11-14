@@ -10,11 +10,17 @@
     vm.luser = {};
     vm.status = UserFactory.status;
 
-      vm.linkLogin = function(){
-          UserFactory.getLUser().then(function(){
-            vm.status = res;
-          });
-      };
+      // vm.linkLogin = function(){
+      //     UserFactory.getLUser().then(function(){
+      //       vm.status = res;
+      //     });
+      // };
+      // vm.linkLogin = function(){
+      //   console.log(vm.status.name + " vm.user");
+      //     UserFactory.getLUser().then(function(){
+      //       vm.status = res;
+      //     });
+      // }
 
     	vm.forgot = function() {
     		UserFactory.forgot(vm.user).then(function() {
@@ -49,9 +55,21 @@
       });
     };
 
+
     vm.toggleSidenav = function() {
       $mdSidenav("left").toggle();
     };
+
+
+
+    vm.followOnProfile = function(){
+      UserFactory.followOnProfile($stateParams.id,vm.status)
+        .then(function(res){
+          console.log("got a new follower");
+          //change follow button to unfollow button
+      });
+    };
+
 
 
 

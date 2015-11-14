@@ -59,6 +59,12 @@
 				.state('Forgot', {
 					url: '/forgot',
 					templateUrl: 'views/forgot.html'
+				}).state('Followers', {
+					url: '/profile/followers/:id',
+					templateUrl: 'views/followers.html'
+				}).state('Following', {
+					url: '/profile/following/:id',
+					templateUrl: 'views/following.html'
 				});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');
