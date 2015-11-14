@@ -151,7 +151,7 @@ passport.use(new FacebookStrategy({
 	profileFields: ['emails','name','picture']
 }, function(accessToken, refreshToken, profile, done) {
 	process.nextTick(function() {
-		console.log(profile);
+		// console.log(profile);
 		User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
 					if(err) {
 						return done(err) ;

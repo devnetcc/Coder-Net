@@ -11,15 +11,15 @@
 <md-button ng-click="vm.deleteFPost(vm.apost)">Delete</md-button>
 </div>
 
+<div layout="column" layout-align="center">
 <md-input-container>
   <label>Add a comment...</label>
 <input  ng-model="vm.newComment.body"></input>
 </md-input-container>
 <md-button ng-click='vm.postComments()'> Post Comment </md-button>
-<br>
-<br>
-<br>
-<div ng-repeat="c in vm.comments">
+</div>
+
+<div ng-repeat="c in vm.comments"  style="padding-top: 50px">
   <h5>{{c.createdBy.name | firstLetterFilter}} {{c.createdBy.lastName | firstLetterFilter}}: </h5><h4>{{c.body | firstLetterFilter}}</h4>
   <md-divider ng-if="!$last" style="padding: 5px"></md-divider>
 </div>

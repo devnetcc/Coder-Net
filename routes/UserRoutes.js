@@ -28,8 +28,6 @@ router.param('id', function(req, res, next, id) {
 
 // Login router
 router.post('/login', function(req, res, next) {
-console.log("made it to /login in userRoutes");
-console.log(req.body, " req.body");
 	var email = req.body.email ;
 
 	var isUserValidated ;
@@ -76,7 +74,6 @@ router.post('/register', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
   User.findOne({_id: req.params.id}, function(err, result) {
-		console.log(result, " result");
     res.send(req.user);
 
   });
@@ -101,14 +98,11 @@ router.put('/:id', function(req,res, next){
 
 
   // post pro pic
-      console.log('pic route');
     router.put('/:id/pic',  function(req,res,next){
-      console.log(req.body);
       User.update({_id: req.params.id},{
         pic: req.body.url,
       },
       function(err,result){
-        console.log(req.params);
       if(err) return next(err);
       if(!result) return next("Could not create the object. Please check all fields.");
       res.send(req.body.url);

@@ -49,7 +49,6 @@ router.get('/', function(req,res,next){
 
 //show a particular forum post on a single page
 router.get('/forumPost/:id', function(req,res,next){
-  console.log(req.params);
   ForumPost.findOne({_id: req.params.id}, function(err, result) {
     if(err) return next(err);
     if(!result) return next("Could not find that post");

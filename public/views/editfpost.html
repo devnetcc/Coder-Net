@@ -1,6 +1,5 @@
 <div ng-controller="ForumController as vm" class="bodyColor">
-  <form ng-submit="vm.editFPost()" layout style="padding: 90px">
-      <div>
+  <form ng-submit="vm.editFPost()" style="padding: 200px">
        <md-input-container >
           <label> Title</label>
           <input required ng-model="vm.epost.title"></input>
@@ -24,7 +23,6 @@
             <md-button type="submit" class="md-raised"> Edit</md-button>
             <md-button type="button" class="md-raised" ng-click="vm.cancelEdit();"> Cancel</md-button>
           </div>
-      </div>
     </form>
 
 </div>

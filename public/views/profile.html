@@ -32,13 +32,13 @@ onchange="alert(event.fpfile.url)"> -->
 <md-content >
   <md-list>
     <md-list-item ng-repeat='p in vm.profile.profilePosts'>
-      <div class='md-list-item-text' layout-align="center center" style='text-align:center;padding:10px; padding-left:30px;margin-left:150px;margin-top:30px;'>
+      <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:150px; margin-top:30px;'>
         <h5> Title: {{p.title}}</h5>
         <h5> Content: {{p.body}}</h5>
         <h5> Posted On: {{p.date}}</h5>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
-      <form ng-show = 'showEdit' style="padding:30px; padding-top:100px" style='text-align:center' ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
+      <form ng-show = 'showEdit' style="padding:30px;" ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
                 <md-input-container>
                   <label> Title </label>
                   <input type='text' ng-model='vm.editingPost.title'>
