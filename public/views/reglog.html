@@ -1,8 +1,8 @@
-<div style="padding-top: 100px" ng-controller='GlobalController as nav' >
+<div style="padding-top: 100px" ng-controller='GlobalController as nav' class="bodyColor">
 
   <!-- Show the Login Form -->
   <div ng-show="nav.isLogin">
-    <form ng-submit="nav.login()" style="padding:100px">
+    <form style="padding:100px">
       <md-input-container>
         <label>Email</label>
         <input type="email" class="form-control" ng-model="nav.user.email">
@@ -11,36 +11,26 @@
         <label>Password</label>
         <input type="password" class="form-control" ng-model="nav.user.password">
       </md-input-container>
-      <div style="text-align:center">
-        <md-button type="submit" class="md-raised">Login</md-button>
 
-        <md-button type="button" class="md-raised" ng-click="nav.isLogin = false;" class="btn btn-primary">Register</md-button>
-      </div>
     </form>
-  <center>
-     <md-button type="button" class="md-flat" style="text-align:center" ui-sref='PassReset' ng-click="nav.forgot();" class="btn btn-primary">Forgot Password</md-button>
-    <center>
-      <br>
-      <br>
-    <center>
-      <a href="api/auth/linkedin" ng-click="nav.linkLogin()" style="text-align:center">
-        <img class="linkedlogin" src="/imgs/login/small_default.png" onmouseover="this.src='/imgs/login/small_hover.png'" onmouseout="this.src='/imgs/login/small_default.png'"
-        onclick="this.src='/imgs/login/small_active.png'"/>
-      </a>
-  </center>
-  <br>
-  <br>
-  <center>
-  <a href="/api/auth/facebook" style="text-align:center">
-Facebook
-</a>
-</center>
-
-  </div>
+</div>
+    <content>
+      <center>
+              <div class="container">
+                <ul class="social">
+                  <li class="facebook"><a href="/api/auth/facebook" class="entypo-facebook"></a></li>
+                  <li class="twitter"><a href="#" class="entypo-twitter"></a></li>
+                  <li class="login"><a ng-click= "nav.login()" class=""> Login </a></li>
+                  <li class="register"><a ng-click="nav.isLogin = false;" class=""> Register</a></li>
+                  <li class="linked-in"><a href="api/auth/linkedin" class="entypo-linkedin"></a></li>
+                </ul>
+              </div>
+            </center>
+          </content>
 
   <!-- Show the Register Form -->
   <div ng-show="!nav.isLogin"  style="padding:100px">
-    <form class="well container" ng-submit="nav.register()">
+    <form class="well container">
       <md-input-container>
         <label>Name</label>
         <input class="form-control" ng-model="nav.user.name">
@@ -57,14 +47,29 @@ Facebook
         <label>Password</label>
         <input type="password" class="form-control" ng-model="nav.user.password">
       </md-input-container>
-      <div style="text-align:center">
-        <md-button type="submit" class="md-raised">Register</md-button>
-        <md-button type="button" ng-click="nav.isLogin = true;" class="md-raised">Cancel</md-button>
-      </div>
-    </form>
-    <br>
-    <br>
+
+        <!-- <md-button type="submit" class="md-raised">Register</md-button>
+        <md-button type="button" ng-click="nav.isLogin = true;" class="md-raised">Cancel</md-button> -->
+            </form>
+  </div>
+  <content>
     <center>
+            <div class="container">
+              <ul class="social">
+                <li class="facebook"><a href="/api/auth/facebook" class="entypo-facebook"></a></li>
+                <li class="twitter"><a href="#" class="entypo-twitter"></a></li>
+                <li class="login"><a ng-click="nav.isLogin = true;" class=""> Cancel </a></li>
+                <li class="register"><a ng-click="nav.register();"class=""> Register</a></li>
+                <li class="linked-in"><a href="api/auth/linkedin" class="entypo-linkedin"></a></li>
+              </ul>
+            </div>
+          </center>
+        </content>
+
+
+
+
+    <!-- <center>
       <a href="api/auth/linkedin" style="text-align:center">
         <img class="linkedlogin" src="/imgs/login/small_default.png" onmouseover="this.src='/imgs/login/small_hover.png'" onmouseout="this.src='/imgs/login/small_default.png'"
         onclick="this.src='/imgs/login/small_active.png'"/>
@@ -76,12 +81,9 @@ Facebook
   <a href="/api/auth/facebook" style="text-align:center" class="btn btn-block">
 Facebook
 </a>
-</center>
+</center> -->
 
 
 
-  <!-- <div class="fb-login-button" data-max-rows="2" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div> -->
-
-  </div>
 
 </div>

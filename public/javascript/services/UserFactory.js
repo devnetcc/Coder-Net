@@ -24,7 +24,6 @@
       // token = getToken();
       if(token ===  undefined){
         // return false;
-        console.log(token);
         return;
       }
       else {

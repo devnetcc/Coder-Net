@@ -6,37 +6,51 @@
 	function ForumController(ForumFactory, UserFactory, $state, $stateParams) {
 		var vm = this;
 		vm.status = vm.UserFactory;
-		vm.topics=["General", "Job Board", "Interview Prep", "Projects", "Bootcamp Reviews"];
+		vm.topics=["General", "Job Board", "Interview Prep", "Code Questions","Meetups", "Bootcamp Reviews"];
 		vm.fpost = {};
-		vm.forumPosts = {};
-		vm.apost = {};
-		vm.epost={};
+		// vm.forumPosts = {};
+    // vm.topicPosts = {};
 
 
-ForumFactory.getAllPost().then(function(res){
-							vm.forumPosts = res;
-});
+// ForumFactory.getAllPost().then(function(res){
+// 							vm.forumPosts = res;
+// });
 
+if ($stateParams.id){
+  // vm.apost = {};
 ForumFactory.getPostById($stateParams.id).then(function(res){
+  // console.log(vm.apost);
 	vm.apost = res;
 });
+}
+
+vm.cancelEdit = function(){
+  ForumFactory.getPostById($stateParams.id).then(function(res){
+  	vm.apost = res;
+    $state.go("ForumPost", {id: $stateParams.id});
+  });
+};
 
 ForumFactory.startFPost($stateParams.id).then(function(res){
 	vm.epost = res;
 });
 
+vm.getPostsByTopic = function (topic) {
+ForumFactory.getPostsByTopic(topic).then(function(res){
+  vm.topicPosts = res;
+});
+};
+
 vm.createforumpost = function(){
 	ForumFactory.createforumpost(vm.fpost)
 	.then(function(){
-		$state.go('Forum');
+		$state.go('Forums');
 	});
 };
 
 vm.editFPost = function(){
-	// console.log("inside the editfpost (controller)");
       ForumFactory.editFPost(vm.epost).then(function(){
-        // console.log("Made it back to the controller for editing");
-        $state.go('Forum');
+        $state.go('ForumPost', {id: $stateParams.id});
       });
     };
 
@@ -45,7 +59,7 @@ vm.deleteFPost = function(fpost){
 	.then(function(){
 		// console.log("Made it back to controller. about to splice!");
 		vm.forumPosts.splice(vm.forumPosts.indexOf(fpost),1);
-		$state.go('Forum');
+		$state.go('Forums');
 
 	});
 };

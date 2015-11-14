@@ -1,28 +1,27 @@
-<div ng-controller="ForumController as vm">
+<div ng-controller="ForumController as vm" class="bodyColor">
+<div style="padding:60px">
+<h3>Title: {{vm.apost.title | firstLetterFilter}}</h3>
 
-<h1> This is the forum post section </h1>
+<h4>Body: {{vm.apost.body | firstLetterFilter}}</h4>
 
-<h3>Title: {{vm.apost.title}}</h3>
+<h5>Author: {{vm.apost.createdBy.name | firstLetterFilter}} {{vm.apost.createdBy.lastName | firstLetterFilter }}</h5>
 
-<h4>Body: {{vm.apost.body}}</h4>
-
-<h5>Author: {{vm.apost.createdBy.name}} {{vm.apost.createdBy.lastName}}</h5>
-
+<div layout>
 <md-button ui-sref="EditFPost({id: vm.apost._id})">Edit</md-button>
 <md-button ng-click="vm.deleteFPost(vm.apost)">Delete</md-button>
-
-
-
-<h2>Comments</h2>
-<h3>Add a Comment</h3>
-<md-input-container>
-  <label>Add Comments...</label>
-<textarea  ng-model="vm.newComment.body"></textarea>
-<md-button ng-click='vm.postComments()'>Post Comment</md-button>
-</md-input-container>
-
-<div ng-repeat="c in vm.comments">
-  <h4>{{c.body}}</h4>
 </div>
 
+<md-input-container>
+  <label>Add a comment...</label>
+<input  ng-model="vm.newComment.body"></input>
+</md-input-container>
+<md-button ng-click='vm.postComments()'> Post Comment </md-button>
+<br>
+<br>
+<br>
+<div ng-repeat="c in vm.comments">
+  <h5>{{c.createdBy.name | firstLetterFilter}} {{c.createdBy.lastName | firstLetterFilter}}: </h5><h4>{{c.body | firstLetterFilter}}</h4>
+  <md-divider ng-if="!$last" style="padding: 5px"></md-divider>
+</div>
+</div>
 </div>

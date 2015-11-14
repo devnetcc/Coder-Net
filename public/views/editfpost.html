@@ -1,4 +1,4 @@
-<div ng-controller="ForumController as vm">
+<div ng-controller="ForumController as vm" class="bodyColor">
   <form ng-submit="vm.editFPost()" layout style="padding: 90px">
       <div>
        <md-input-container >
@@ -15,13 +15,14 @@
               <md-option value="General">General</md-option>
               <md-option value="Job Board"> Job Board </md-option>
               <md-option value="Interview Prep"> Interview Prep </md-option>
-              <md-option value="Projects"> Projects</md-option>
+              <md-option value="Projects"> Code Questions</md-option>
+              <md-option value="Projects"> Meetups </md-option>
               <md-option value="Bootcamp Reviews"> Bootcamp Reviews </md-option>
             </md-select>
           </md-input-container>
             <div layout="row" style="padding-top:50px">
             <md-button type="submit" class="md-raised"> Edit</md-button>
-            <md-button type="button" class="md-raised" ui-sref="Home"> Cancel</md-button>
+            <md-button type="button" class="md-raised" ng-click="vm.cancelEdit();"> Cancel</md-button>
           </div>
       </div>
     </form>

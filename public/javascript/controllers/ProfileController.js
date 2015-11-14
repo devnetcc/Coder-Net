@@ -11,6 +11,7 @@
      vm.user = {};
      vm.post = {};
 
+
 ProfileFactory.getProfile($stateParams.id).then(function(res){
 	vm.profile = res;
   vm.status.email = vm.profile.email;
@@ -31,6 +32,7 @@ vm.editProfile = function (profile){
 			$state.go('Profile', {id: $stateParams.id});
 		});
 };
+
 
 vm.deleteProfile = function(profile) {
 	ProfileFactory.deleteProfile(vm.profile._id).then(function(){
@@ -68,7 +70,6 @@ vm.uploadPic = function(){
   });
   };
   vm.startEdit = function(post) {
-    console.log("Clicked");
     vm.editingPost = angular.copy(post);
   };
 

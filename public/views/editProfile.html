@@ -1,9 +1,5 @@
-<div ng-controller="ProfileController as vm">
-
-
-
+<div ng-controller="ProfileController as vm" class="bodyColor">
 <form ng-submit="vm.editProfile(vm.profile)" layout style="padding: 90px">
-
     <div>
       <md-input-container>
         <md-button required class="md-primary"ng-click="vm.uploadPic()">Upload a Photo</md-button>
@@ -64,12 +60,11 @@
 
           <div layout="row" style="padding-top:50px">
           <md-button type="submit" class="md-raised"> Update Profile </md-button>
-          <md-button type="button" class="md-raised" ui-sref="Profile"> Cancel</md-button>
+          <md-button type="button" class="md-raised" ui-sref="Profile({id: nav.status._id})"> Cancel</md-button>
           <md-button type="button" class="md-raised"> Reset Password </md-button>
           <md-button type="button" class="md-raised" ng-click="vm.deleteProfile(vm.profile)" > Delete Account </md-button>
 
         </div>
     </div>
   </form>
-
 </div>

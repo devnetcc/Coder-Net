@@ -24,8 +24,8 @@
         	url: '/profile/:id',
         	templateUrl: '/views/profile.html'
          })
-        .state('Forum', {
-        	url: '/forum',
+        .state('Forums', {
+        	url: '/forums',
         	templateUrl: 'views/forum.html'
          })
         .state('EditForum', {
