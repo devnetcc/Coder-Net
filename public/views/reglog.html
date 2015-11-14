@@ -1,57 +1,63 @@
 <div style="padding-top: 100px" ng-controller='GlobalController as nav' class="bodyColor">
 
   <!-- Show the Login Form -->
-  <div ng-show="nav.isLogin">
-    <form style="padding:100px">
+  <div ng-show="nav.isLogin" style="padding:100px">
+    <form>
       <md-input-container>
         <label>Email</label>
-        <input type="email" class="form-control" ng-model="nav.user.email">
+        <input type="email"  ng-model="nav.user.email">
       </md-input-container>
       <md-input-container>
         <label>Password</label>
-        <input type="password" class="form-control" ng-model="nav.user.password">
+        <input type="password"  ng-model="nav.user.password">
       </md-input-container>
-
     </form>
+
+<br>
+<br>
+<br>
+<br>
+
+<content>
+  <center>
+          <div class="container">
+            <ul class="social">
+              <li class="facebook"><a href="/api/auth/facebook" class="entypo-facebook"></a></li>
+              <li class="twitter"><a href="#" class="entypo-twitter"></a></li>
+              <li class="login"><a ng-click= "nav.login()" class=""> Login </a></li>
+              <li class="register"><a ng-click="nav.isLogin = false;" class=""> Register</a></li>
+              <li class="linked-in"><a href="api/auth/linkedin" class="entypo-linkedin"></a></li>
+            </ul>
+          </div>
+        </center>
+    </content>
 </div>
-    <content>
-      <center>
-              <div class="container">
-                <ul class="social">
-                  <li class="facebook"><a href="/api/auth/facebook" class="entypo-facebook"></a></li>
-                  <li class="twitter"><a href="#" class="entypo-twitter"></a></li>
-                  <li class="login"><a ng-click= "nav.login()" class=""> Login </a></li>
-                  <li class="register"><a ng-click="nav.isLogin = false;" class=""> Register</a></li>
-                  <li class="linked-in"><a href="api/auth/linkedin" class="entypo-linkedin"></a></li>
-                </ul>
-              </div>
-            </center>
-          </content>
+
 
   <!-- Show the Register Form -->
   <div ng-show="!nav.isLogin"  style="padding:100px">
-    <form class="well container">
+    <form>
       <md-input-container>
         <label>Name</label>
-        <input class="form-control" ng-model="nav.user.name">
+        <input ng-model="nav.user.name">
       </md-input-container>
       <md-input-container>
         <label>Last Name</label>
-        <input class="form-control" ng-model="nav.user.lastName">
+        <input ng-model="nav.user.lastName">
       </md-input-container>
       <md-input-container>
         <label>Email</label>
-        <input type="email" class="form-control" ng-model="nav.user.email">
+        <input type="email"  ng-model="nav.user.email">
       </md-input-container>
       <md-input-container>
         <label>Password</label>
-        <input type="password" class="form-control" ng-model="nav.user.password">
+        <input type="password" ng-model="nav.user.password">
       </md-input-container>
-
-        <!-- <md-button type="submit" class="md-raised">Register</md-button>
-        <md-button type="button" ng-click="nav.isLogin = true;" class="md-raised">Cancel</md-button> -->
-            </form>
-  </div>
+    </form>
+  <br>
+  <br>
+  <br>
+  <br>
   <content>
     <center>
             <div class="container">
@@ -64,11 +70,8 @@
               </ul>
             </div>
           </center>
-        </content>
-
-
-
-
+      </content>
+  </div>
     <!-- <center>
       <a href="api/auth/linkedin" style="text-align:center">
         <img class="linkedlogin" src="/imgs/login/small_default.png" onmouseover="this.src='/imgs/login/small_hover.png'" onmouseout="this.src='/imgs/login/small_default.png'"

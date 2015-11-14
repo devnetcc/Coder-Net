@@ -240,3 +240,9 @@ ul {
 	left: 100%;
 	top: 0%;
 }
+
+md-sidenav {
+	width: 335px;
+min-width: 335px;
+max-width: 335px;
+}
