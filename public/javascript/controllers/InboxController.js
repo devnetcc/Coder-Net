@@ -5,9 +5,15 @@
 
 	// InboxController.$inject = ['InboxFactory', '$state', "$stateParams", '$rootScope'];
 
-	function InboxController(InboxFactory, $state, $stateParams, UserFactory, $rootScope) {
+	function InboxController( $state, $stateParams, UserFactory, $rootScope) {
 		var vm = this;
 		vm.status = UserFactory.status;
+		vm.inConversation;
+    vm.getConversations = getConversations;
+    vm.openConvo;
+    vm.closeConvo;
+    vm.conversations;
+    vm.sendMessage;
 
 
 		vm.pusher = new Pusher('ef1c8591b41568dacaaa',{
@@ -18,12 +24,12 @@
 			$state.go('Home');
 		}
 
-		vm.inConversation;
-    vm.getConversations = getConversations;
-    vm.openConvo = openConvo;
-    vm.closeConvo = closeConvo;
-    vm.conversations;
-    vm.sendMessage = sendMessage;
+		// vm.inConversation;
+    // vm.getConversations = getConversations;
+    // vm.openConvo = openConvo;
+    // vm.closeConvo = closeConvo;
+    // vm.conversations;
+    // vm.sendMessage = sendMessage;
     // vm.getConversations();
 
     vm.messageList = angular.element('#convoList');
