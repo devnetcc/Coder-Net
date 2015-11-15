@@ -1,30 +1,24 @@
-<div ng-controller="ForumController as vm">
+<div ng-controller="ForumController as vm" class="bodyColor">
 
-<h1> This is the forum section </h1>
-<div layout>
+<h1 style="text-align:center"> Forum Channels </h1>
+<!-- <div layout>
   <div flex="20" style="text-align:center;"><h2>Channels</h2></div>
 <div flex style="text-align:center;"><h2>Topics</h2></div>
-</div>
+</div> -->
 
-<div layout>
-  <div flex="20">
-  <div layout="column" ng-repeat="t in vm.topics">
-    <md-button ng-click="" ><h4>{{t}}</h4></md-button>
-
-  </div>
-</div>
-<div flex-offset="10">
-<div layout="column" ng-repeat="f in vm.forumPosts">
-<!-- <div ng-show="sometopic"> -->
-<a ui-sref="ForumPost({id: f._id})"> <h4>{{f.title}}</h4></a><br>
-<!-- <div layout-fill><h3>{{f}}</h3></div> -->
-<h5>Posted by {{f.createdBy.name}} {{f.createdBy.lastName}}</a></h5>
-</div>
-</div>
-</div>
-
-
-</div>
+  <md-tabs class="md-primary">
+    <md-tab style="text-align:center; color:#32B2B2 margin:auto" ng-repeat="t in vm.topics" ng-click="vm.getPostsByTopic(t)" >
+      <md-tab-label class="tabs"> {{t}} </md-tab-label>
+      <md-tab-body>
+        <div layout="column" ng-repeat="p in vm.topicPosts" >
+              <div style="padding-left:60px"class="md-list-item-text" style="padding:10px;">
+                <h4 ui-sref="ForumPost({id: p._id})" >{{p.title | firstLetterFilter}}</h4> <h5>Posted by: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}}</h5>
+              </div>
+              <md-divider ng-if="!$last" style="padding: 5px"></md-divider>
+        </div>
+      </md-tab-body>
+    </md-tab>
+  </md-tabs>
 
 
 </div>

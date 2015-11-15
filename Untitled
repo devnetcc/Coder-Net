@@ -1,0 +1,28 @@
+<!-- <content>
+  <center>
+          <div class="container">
+            <ul class="social">
+              <li class="facebook"><a href="#" class="entypo-facebook"></a></li>
+              <li class="twitter"><a href="#" class="entypo-twitter"></a></li>
+              <li class="login"><a ng-click="nav.isLogin = true;" class=""> Cancel </a></li>
+              <li class="register"><a ng-click="nav.register();"class=""> Register</a></li>
+              <li class="linked-in"><a href="api/auth/linkedin" class="entypo-linkedin"></a></li>
+            </ul>
+          </div>
+        </center>
+      </content> -->
+
+
+      <content>
+        <center>
+                <!-- <div class="container"> -->
+                  <ul class="social">
+                    <li class="facebook"><a href="/api/auth/facebook" class="entypo-facebook"></a></li>
+                    <li class="twitter"><a href="#" class="entypo-twitter"></a></li>
+                    <!-- <li class="login"><a ng-click= "nav.login()" class=""> Login </a></li>
+                    <li class="register"><a ng-click="nav.isLogin = false;" class=""> Register</a></li> -->
+                    <li class="linked-in"><a href="api/auth/linkedin" class="entypo-linkedin"></a></li>
+                  </ul>
+                <!-- </div> -->
+              </center>
+            </content>

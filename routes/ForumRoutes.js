@@ -10,8 +10,7 @@ var auth = jwt({
   secret: "CoderCamps" //matches the secret in model
 });
 
-router.param('id', function(req,res,next,id){
-  // console.log(id);
+router.param('id', function(req, res, next, id){
   ForumPost.findOne({_id: id}, function(err,result){
     if(err) return next(err);
     if(!result) return next({err: "couldnt find it"});
@@ -26,7 +25,6 @@ router.post('/',auth, function(req,res,next){
   post.createdBy = req.payload;
   User.findOne({email: req.payload.email}, function(err,result){
           if(err) return next(err);
-          console.log(result," result is...");
       if(!result) return next({err: "Couldnt find a user with that id"});
       result.update({$push:{forumPosts: post}},
         function(err,result){
@@ -44,20 +42,28 @@ router.post('/',auth, function(req,res,next){
 //show all post on the forum page
 router.get('/', function(req,res,next){
   ForumPost.find({}, function(err,result){
-    if(err) return next(err);
-    console.log(result);
+    if(err) return res.status(500).send(err);
     res.send(result);
   });
 });
 
 //show a particular forum post on a single page
-router.get('/:id', function(req,res,next){
+router.get('/forumPost/:id', function(req,res,next){
   ForumPost.findOne({_id: req.params.id}, function(err, result) {
     if(err) return next(err);
     if(!result) return next("Could not find that post");
     res.send(result);
   });
 });
+
+//get forum posts by topic
+router.get('/getOne/:topic', function(req,res,next){
+  ForumPost.find({channel: req.params.topic}, function(err,result){
+    if(err) return next(err);
+    res.send(result);
+  });
+});
+
 
 //show the forum post's data on the edit page
 router.get('/edit/:id', function(req,res,next){

@@ -25,8 +25,8 @@
         	url: '/profile/:id',
         	templateUrl: '/views/profile.html'
          })
-        .state('Forum', {
-        	url: '/forum',
+        .state('Forums', {
+        	url: '/forums',
         	templateUrl: 'views/forum.html'
          })
         .state('EditForum', {
@@ -66,7 +66,13 @@
 				  templateUrl: 'views/inbox.html',
 					controller: 'InboxController',
 					controllerAs: 'vm'
-				  });
+				}).state('Followers', {
+					url: '/profile/followers/:id',
+					templateUrl: 'views/followers.html'
+				}).state('Following', {
+					url: '/profile/following/:id',
+					templateUrl: 'views/following.html'
+				});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');
 

@@ -7,31 +7,56 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/angular-material/angular-material.css">
 	<link href='https://fonts.googleapis.com/css?family=Quicksand:700' rel='stylesheet' type='text/css'>
-	<!-- <link rel="stylesheet" href="css/demo.css"> -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
-	<!-- <link rel="stylesheet" href="css/footer-distributed.css"> -->
+  <link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=entypo">
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 
-<body ng-controller='GlobalController as nav'>
+<body ng-controller='GlobalController as nav' class="bodyColor">
 
+	<md-sidenav layout="column" class="md-sidenav-left bodyColor" md-component-id="left">
+		<md-toolbar class="md-medium-tall" style=" opacity:0.3; padding: 10px; background-color:#32B2B2;">
+			<div class="md-toolbar-tools">
+			<h2 class="logo" style="text-align: center">&#060;&nbsp;Coder Net&nbsp;&#062;</h2>
+			</div>
+		</md-toolbar>
+		<md-content style="background-color: #fffdf0;">
+<md-list>
+						<md-list-item ng-click="nav.toggleSidenav()" ui-sref="About"> About Us </md-list-item>
+						<md-divider ></md-divider>
+						<md-list-item ng-click="nav.toggleSidenav()" ui-sref="Home"> Home Page </md-list-item>
+						<md-divider ></md-divider>
+						<div ng-show='nav.status.email;'>
+						<md-list-item  ng-click="nav.toggleSidenav()" ui-sref="Profile({id: nav.status._id})"> Profile </md-list-item>
+							<md-divider ></md-divider>
+						</div>
+							<md-list-item ng-click="nav.toggleSidenav()" ui-sref="Forums"> Forums </md-list-item>
+								<md-divider></md-divider>
+								<md-list-item ng-click="nav.toggleSidenav()" ui-sref="Contact"> Contact </md-list-item>
+								</md-list>
+		</md-content>
+	</md-sidenav>
 
 	<md-toolbar style=" background-color:#32B2B2;" layout>
-		<section layout flex layout-align="left" style="padding-left:20px">
-				<h1 class="logo" style="padding-left: 17px" ui-sref="Home"> &#060;&nbsp;Coder Net&nbsp;&#062; </h1>
+		<section layout flex layout-align="left" style="padding-left:23px">
+			<md-button class="zmdi zmdi-menu zmdi-hc-2x" ng-click="nav.toggleSidenav()" style="padding-top: 20px" aria-label="Toggle Menu">
+
+			</md-button>
+				<h1 class="logo" ui-sref="Home"> &#060;&nbsp;Coder Net&nbsp;&#062; </h1>
+
 		</section>
 
 
 		<section layout layout-align="end end" >
+			<md-button ui-sref="Profile({id: nav.status._id})"> Test Profile button </md-button>
 			<md-button ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.name}} </md-button>
 			<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.email;'> Logout </md-button>
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
 		</section>
 
 	</md-toolbar>
-	<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
-	<!-- <input type="filepicker" data-fp-apikey="ANDYMo7mqQjawgErCA0F0z"
-onchange="alert(event.fpfile.url)"> -->
+
+
 	<ui-view></ui-view>
 
 	<footer class="footer-distributed" style=" background-color:#32B2B2">
@@ -42,7 +67,6 @@ onchange="alert(event.fpfile.url)"> -->
 			<a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-linkedin-box"></i></a>
 			<a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-twitter"></i></a>
 			<a class="list-group-item" href="https://github.com/devnetcc/DevNet" target="_blank"><i class="zmdi zmdi-github"></i></a>
-
 		</div>
 
 		<div class="footer-left">
@@ -57,22 +81,15 @@ onchange="alert(event.fpfile.url)"> -->
 				|
 				<a ui-sref="Contact">Contact</a>
 				|
-				<a ui-sref="Terms">Term of Service</a>
+				<a ui-sref="Terms">Terms of Service</a>
 			</p>
 
 			<p>Coder Net &copy; 2015</p>
 		</div>
 	</footer>
 
-	<!-- facebook login stuff -->
-	<!-- <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1109973309042696";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script> -->
+
+	<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
 
 	<!-- Ext Libs -->
 	<script src="angular/angular.min.js"></script>
@@ -103,6 +120,8 @@ onchange="alert(event.fpfile.url)"> -->
 	<script src="/javascript/controllers/ForumController.js"></script>
 	<script src="/javascript/controllers/ProfileController.js"></script>
 	<script src="/javascript/controllers/TestController.js"></script>
+	<script src="/javascript/filters/firstletterfilter.js"></script>
+
 
 
 </body>

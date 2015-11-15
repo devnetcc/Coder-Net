@@ -33,10 +33,18 @@
         });
       return q.promise;
     };
+    //
+    // o.getAllPost = function() {
+    //   var q = $q.defer();
+    //   $http.get('/api/forum').then(function(res) {
+    //     q.resolve(res.data);
+    //   });
+    //   return q.promise;
+    // };
 
-    o.getAllPost = function() {
+    o.getPostsByTopic = function(topic){
       var q = $q.defer();
-      $http.get('/api/forum').then(function(res) {
+      $http.get('/api/forum/getOne/'+ topic).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;
@@ -44,8 +52,9 @@
 
     o.getPostById = function(id) {
       var q = $q.defer();
-      $http.get('/api/forum/' + id).then(function(res) {
+      $http.get('/api/forum/forumPost/' + id).then(function(res) {
         q.resolve(res.data);
+
       });
       return q.promise;
     };
@@ -70,7 +79,6 @@
       var q = $q.defer();
       $http.get('/api/comments/' + postId).then(function(res) {
         q.resolve(res.data);
-        console.log("this is result " + res.data);
       });
       return q.promise;
     };

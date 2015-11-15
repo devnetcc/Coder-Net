@@ -40,7 +40,6 @@ router.get('/:id', function(req, res, next) {
   Comment.find({}, function(err , result) {
     if(err) return next (err);
     if(!result) return next(err);
-    console.log(result);
 
     res.send(result);
   });

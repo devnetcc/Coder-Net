@@ -3,20 +3,25 @@
   angular.module('app')
     .controller('GlobalController', GlobalController);
 
-  function GlobalController(UserFactory, $state, $stateParams, $rootScope) {
+
+  function GlobalController(UserFactory, $state, $stateParams, $mdSidenav) {
     var vm = this;
     vm.isLogin = true;
     vm.user = {};
     vm.luser = {};
     vm.status = UserFactory.status;
 
-console.log("something");
-      vm.linkLogin = function(){
-        console.log(vm.status.name + " vm.user");
-          UserFactory.getLUser().then(function(){
-            vm.status = res;
-          });
-      }
+      // vm.linkLogin = function(){
+      //     UserFactory.getLUser().then(function(){
+      //       vm.status = res;
+      //     });
+      // };
+      // vm.linkLogin = function(){
+      //   console.log(vm.status.name + " vm.user");
+      //     UserFactory.getLUser().then(function(){
+      //       vm.status = res;
+      //     });
+      // }
 
     	vm.forgot = function() {
     		UserFactory.forgot(vm.user).then(function() {
@@ -46,9 +51,28 @@ console.log("something");
 
     vm.login = function() {
       UserFactory.login(vm.user).then(function() {
-        $state.go('Profile');
+        console.log(vm.status);
+      $state.go('Profile', {id: vm.status._id});
       });
     };
+
+
+    vm.toggleSidenav = function() {
+      $mdSidenav("left").toggle();
+    };
+
+
+
+    vm.followOnProfile = function(){
+      UserFactory.followOnProfile($stateParams.id,vm.status)
+        .then(function(res){
+          console.log("got a new follower");
+          //change follow button to unfollow button
+      });
+    };
+
+
+
 
   }
 })();

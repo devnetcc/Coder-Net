@@ -28,8 +28,6 @@ router.param('id', function(req, res, next, id) {
 
 // Login router
 router.post('/login', function(req, res, next) {
-console.log("made it to /login in userRoutes");
-console.log(req.body, " req.body");
 	var email = req.body.email ;
 
 	var isUserValidated ;
@@ -64,20 +62,66 @@ router.post('/register', function(req, res, next) {
   });
 });
 
+router.put('/followOnProfile/:id', function(req,res,next){
+	User.findOne({_id: req.body._id}, function(err,result){
+		if(err) return next(err);
+		if(!result) return next({err: "Couldnt find that user for updating!"});
 
+		result.update({$push: {following:{
+			celebrityId: req.params.id,
+		}}},
+			function(err,result){
+				if(err) return next(err);
+				if(!result) return next ({err: "That user wasnt found for updating!"});
+			});
 
-// router.post('/login', function(req, res, next) {
-//   passport.authenticate('local', function(err, user) {
-//     if(err) return next(err);
-//     res.send(user.createToken());
-//   })(req, res, next);
-// });
+	User.update({_id: req.params.id},{$push: {followers: {
+		followerID: req.body._id,
+		followerName: req.body.name,
+	}}},
+		 function(err, result){
+		if(err) return next(err);
+		if(!result) return next ({err: "That user wasnt found for updating!"});
+	});
 
+		res.send(result);
+
+	});
+});
+
+router.put('/followOnPost/:id', function(req,res,next){
+	//updates the folling array of the signed in user (the person who clicked the 'follow' button)
+	User.findOne({_id: req.body._id}, function(err,result){
+		if(err) return next(err);
+		if(!result) return next({err: "Couldnt find that user for updating!"});
+
+		result.update({$push: {following:{
+			celebrityId: req.params.id,
+		}}},
+			function(err,result){
+				if(err) return next(err);
+				if(!result) return next ({err: "That user wasnt found for updating!"});
+			});
+
+	User.update({_id: req.params.id},{$push: {followers: {
+		followerID: req.body._id,
+		followerName: req.body.name,
+	}}},
+		 function(err, result){
+		if(err) return next(err);
+		if(!result) return next ({err: "That user wasnt found for updating!"});
+	});
+
+		res.send(result);
+
+	});
+});
 
 router.get('/:id', function(req, res, next) {
-	console.log(req);
+
   User.findOne({_id: req.params.id}, function(err, result) {
-		console.log(result, "result");
+
+		// console.log(result.token);
     res.send(req.user);
   });
 });
@@ -101,14 +145,11 @@ router.put('/:id', function(req,res, next){
 
 
   // post pro pic
-      console.log('pic route');
     router.put('/:id/pic',  function(req,res,next){
-      console.log(req.body);
       User.update({_id: req.params.id},{
         pic: req.body.url,
       },
       function(err,result){
-        console.log(req.params);
       if(err) return next(err);
       if(!result) return next("Could not create the object. Please check all fields.");
       res.send(req.body.url);

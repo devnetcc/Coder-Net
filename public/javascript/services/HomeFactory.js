@@ -6,10 +6,10 @@
   function HomeFactory($http, $q) {
     var o = {};
 
-o.postPost = function(post) {
+o.postPost = function(post,creator) {
   var q = $q.defer();
- $http.post('api/posts', post).then(function(res){
-   q.resolve(res);
+ $http.post('api/posts', post,creator).then(function(res){
+   q.resolve(res.data);
  });
  return q.promise;
 };
