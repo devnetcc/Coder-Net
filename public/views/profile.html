@@ -1,4 +1,4 @@
-<div ng-controller="ProfileController as vm" class="bodyColor">
+<div ng-controller="ProfileController as vm" class="bodyColor" style= "margin-left:150px; margin-right: 150px;">
   <!-- <script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script> -->
 
 
@@ -11,12 +11,6 @@ Followers: <a ui-sref="Followers({id: vm.profile._id})">{{vm.profile.followers.l
 Following: <a ui-sref="Following({id: vm.profile._id})">{{vm.profile.following.length}}</a>
 
 
-
-
-<!-- <input type="filepicker" data-fp-apikey="ANDYMo7mqQjawgErCA0F0z"
-onchange="alert(event.fpfile.url)"> -->
-
-<!-- <div ng-controller="ProfilePostController as vm"> -->
   <div layout layout-align="center" ng-show ='nav.status.name;'>
     <div flex="50">
       <form style="margin-top:50px;"ng-submit="vm.createPost();">
@@ -26,10 +20,9 @@ onchange="alert(event.fpfile.url)"> -->
         </md-input-container>
         <md-input-container >
           <label> Content </label>
-          <input required ng-model="vm.post.body" />
+          <textarea required ng-model="vm.post.body" columns="2"></textarea>
         </md-input-container>
-        <br>
-        <br>
+
         <md-button type="submit" class="md-raised" > Post </md-button>
 </form>
 </div>
@@ -40,7 +33,7 @@ onchange="alert(event.fpfile.url)"> -->
 <md-content >
   <md-list>
     <md-list-item ng-repeat='p in vm.profile.profilePosts'>
-      <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:150px; margin-top:30px;'>
+      <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:150px; margin-right: 150px; margin-top:30px;'>
         <h5> Title: {{p.title}}</h5>
         <h5> Content: {{p.body}}</h5>
         <h5> Posted On: {{p.date}}</h5>

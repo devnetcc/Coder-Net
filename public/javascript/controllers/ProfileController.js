@@ -100,10 +100,6 @@ vm.uploadPic = function(){
   vm.deletePost = function(postID) {
   HomeFactory.deletePost(postID).then(function() {
   		vm.profilePosts.splice(vm.profilePosts.indexOf(postID), 1);
-      ProfileFactory.getProfile($stateParams.id).then(function(res){
-        vm.profile = res;
-        vm.profilePosts = vm.profile.profilePosts;
-      });
   		});
   };
 

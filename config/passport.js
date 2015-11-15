@@ -2,6 +2,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var LinkedInStrategy = require('passport-linkedin').Strategy;
 var FacebookStrategy = require('passport-facebook');
+var TwitterStrategy = require('passport-twitter').Strategy;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
@@ -55,9 +56,9 @@ passport.use(new LocalStrategy({
 	// }));
 
 passport.use(new LinkedInStrategy({
-    consumerKey: '75njqmr45tlthj',
-    consumerSecret: 'EgY1y6V9PhBr84iM',
-    callbackURL: "/api/auth/linkedin/callback",
+    oauth_consumer_key: '75njqmr45tlthj',
+    oauth_consumer_secret: 'EgY1y6V9PhBr84iM',
+    oauth_callback: "/api/auth/linkedin/callback",
 		profileFields: ['id', 'email-address','first-name','last-name', 'summary', 'picture-urls::(original)', 'public-profile-url'],
   },
 	function(accessToken, refreshToken, profile, done) {
@@ -67,7 +68,7 @@ passport.use(new LinkedInStrategy({
 			// Information for accessing our database
 			// Whatever is returned will be stored in profile.
 			// Returns err if it cannot connect
-			User.findOne({ 'linkedin.id' : profile.id }, function(err, user) {
+			User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
 				if(err) {
 					console.log('DEBUG: Error connecting') ;
 					return done(err) ;
@@ -75,7 +76,7 @@ passport.use(new LinkedInStrategy({
 				if(user) {
 					console.log('DEBUG: Current user') ;
 					// user.setUser();
-					
+
 					return done(null, user) ;
 				}
 				// Else no user is found. We need to create a new user.
@@ -185,3 +186,40 @@ passport.use(new FacebookStrategy({
 		}) ;
 	}
 )) ;
+
+
+passport.use(new TwitterStrategy({
+	consumerKey: "8hFVmDVwXp7eKieiBZC3IgGwD",
+	consumerSecret: "cvyIF8s7yJ0o4RfnuRvli0UGDTACNERrSTp9w0rXdkttJBmGKc",
+	callbackURL: "/api/auth/twitter/callback",
+	profileFields: ['email','name','screen_name','profile_image']
+}, function(accessToken, refreshToken, profile, done) {
+	process.nextTick(function() {
+		User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
+					if(err) {
+						return done(err) ;
+					}
+					if(user) {
+						return done(null, user) ;
+					}
+					else {
+						var newUser = new User() ;
+						newUser.twitter.id = profile.id ;
+						newUser.twitter.screen_name = profile.screen_name;
+						newUser.twitter.token = accessToken ;
+						newUser.twitter.name = profile.name.givenName + ' ' + profile.name.familyName ;
+						newUser.name = newUser.twitter.name ;
+						newUser.twitter.email = profile.emails ? profile.emails[0].value : profile.username + "@twitter.com";
+						newUser.username = newUser.twitter.email ;
+						newUser.twitter.photo = profile.photos[0].value ;
+						newUser.created = new Date() ;
+						newUser.save(function(err) {
+							if(err)
+								throw err ;
+							return done(null, newUser) ;
+						});
+					}
+				});
+		});
+	}
+));

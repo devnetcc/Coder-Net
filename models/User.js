@@ -50,7 +50,15 @@ id: String,
 token: String,
 email: String,
 name: String,
-photo: String  
+lastName: String,
+photo: String
+},
+twitter: {
+id: String,
+token: String,
+email: String,
+photo: String,
+screen_name: String
 }
 });
 
