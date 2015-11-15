@@ -24,6 +24,7 @@ comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
 followers: [],
 following: [],
 languages: [{lang: String, level: Number}],
+message: [{type: mongoose.Schema.Types.ObjectId, ref: 'Message'}],
 joined: Date,
 passwordHash: String,
 salt: String,
@@ -43,7 +44,7 @@ id: String,
 token: String,
 email: String,
 name: String,
-photo: String  
+photo: String
 }
 });
 

@@ -1,6 +1,7 @@
 // if(!process.env.NODE_ENV){
 // 	require('dotenv').load();
 // }
+
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
@@ -13,6 +14,7 @@ require('./models/Comment');
 require('./models/ForumPost');
 require('./models/ProfilePost');
 require('./models/User');
+require('./models/inbox');
 require('./config/passport');
 
 mongoose.connect("mongodb://localhost/DevNet", function (err) {
@@ -48,6 +50,7 @@ var forumRoutes = require('./routes/ForumRoutes');
 var userRoutes = require('./routes/UserRoutes');
 var profilePostRoutes = require('./routes/ProfilePostRoutes');
 var resetRoutes = require('./routes/ResetPassRoutes');
+var inboxRoutes = require('./routes/InboxRoutes');
 var authRoutes = require('./routes/authRoutes');
 
 
@@ -62,6 +65,7 @@ app.use('/api/forum', forumRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/posts', profilePostRoutes);
 app.use('/api/reset', resetRoutes);
+app.use('/api/inbox', inboxRoutes);
 app.use('/api/auth', authRoutes);
 
 

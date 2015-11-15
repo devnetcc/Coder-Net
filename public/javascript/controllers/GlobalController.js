@@ -3,7 +3,7 @@
   angular.module('app')
     .controller('GlobalController', GlobalController);
 
-  function GlobalController(UserFactory, $state, $stateParams) {
+  function GlobalController(UserFactory, $state, $stateParams, $rootScope) {
     var vm = this;
     vm.isLogin = true;
     vm.user = {};
