@@ -9,7 +9,7 @@
 <md-button class="md-raised" ng-click="nav.followOnProfile();">Follow</md-button><br>
 Followers: <a ui-sref="Followers({id: vm.profile._id})">{{vm.profile.followers.length}}</a><br>
 Following: <a ui-sref="Following({id: vm.profile._id})">{{vm.profile.following.length}}</a>
-
+<img ng-src="{{vm.profile.badge}}" class="md-card-image" style="height:80px; width:80px; margin:auto; padding-top:20px">
 
   <div layout layout-align="center" ng-show ='nav.status.name;'>
     <div flex="50">

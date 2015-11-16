@@ -14,7 +14,7 @@ require('./models/Comment');
 require('./models/ForumPost');
 require('./models/ProfilePost');
 require('./models/User');
-require('./models/inbox');
+// require('./models/inbox');
 require('./config/passport');
 
 mongoose.connect("mongodb://localhost/DevNet", function (err) {
@@ -50,7 +50,7 @@ var forumRoutes = require('./routes/ForumRoutes');
 var userRoutes = require('./routes/UserRoutes');
 var profilePostRoutes = require('./routes/ProfilePostRoutes');
 var resetRoutes = require('./routes/ResetPassRoutes');
-var inboxRoutes = require('./routes/InboxRoutes');
+// var inboxRoutes = require('./routes/InboxRoutes');
 var authRoutes = require('./routes/authRoutes');
 
 
