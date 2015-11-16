@@ -11,8 +11,8 @@
      vm.status = UserFactory.status;
      vm.user = {};
      vm.post = {};
+     vm.colors = ['#baab75','#a5b5d5','#b946ca','#af80ab','#ffd751', '#84fddf', '#86b8ff', '#448bbf' ,'#cab8ff', '#124eff', '#f99a20','#91ba00', '#d1a3a3','#8e7979'];
     //  vm.profilePosts = {};
-
 
 
 
@@ -32,7 +32,7 @@ if(vm.status.email === undefined && vm.profile.token !== undefined){
   vm.profilePosts = vm.profile.profilePosts;
 }
 });
-console.log(vm.profile.email + "2");
+// console.log(vm.profile.email + "2");
 
 vm.goToEdit = function(id, obj){
 	$state.go('EditProfile', {id:id, obj:obj});

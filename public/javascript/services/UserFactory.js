@@ -123,7 +123,9 @@
     function setUser() {
 
       var user = JSON.parse(urlBase64Decode(getToken().split('.')[1]));
+      console.log(user);
       o.status.name = user.name;
+      o.status.userName = user.userName;
       o.status.lastName = user.lastName;
       o.status.pic = user.pic;
       o.status.email = user.email;
@@ -132,6 +134,7 @@
 
     function removeUser() {
       o.status.name = null;
+      o.status.userName = null;
       o.status.lastName = null;
       o.status.pic = null;
       o.status.email = null;
