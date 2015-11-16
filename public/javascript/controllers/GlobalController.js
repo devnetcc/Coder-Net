@@ -3,6 +3,7 @@
   angular.module('app')
     .controller('GlobalController', GlobalController);
 
+
   function GlobalController(UserFactory, $state, $stateParams, $mdSidenav) {
     var vm = this;
     vm.isLogin = true;

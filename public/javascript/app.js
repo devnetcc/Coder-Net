@@ -9,13 +9,14 @@
 			url: '/home/:id',
 			templateUrl: 'views/home.html'
         })
-		.state('About', {
+				.state('About', {
         	url: '/about',
         	templateUrl: '/views/about.html'
-				})		.state('Test', {
-				         	url: '/test',
-				         	templateUrl: '/views/test.html'
-				          })
+				})
+				.state('Test', {
+	       	url: '/test',
+	       	templateUrl: '/views/test.html'
+        })
         .state('Contact', {
         	url: '/contact',
         	templateUrl: 'views/contact.html'
@@ -59,6 +60,12 @@
 				.state('Forgot', {
 					url: '/forgot',
 					templateUrl: 'views/forgot.html'
+				})
+				.state('Inbox', {
+					url: '/inbox/:id',
+				  templateUrl: 'views/inbox.html',
+					controller: 'InboxController',
+					controllerAs: 'vm'
 				}).state('Followers', {
 					url: '/profile/followers/:id',
 					templateUrl: 'views/followers.html'
