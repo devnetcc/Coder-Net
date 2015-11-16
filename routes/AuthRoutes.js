@@ -41,7 +41,8 @@ function(req, res) {
   }
 });
 
-//
+
+//twitter-oauth
 // router.get('/twitter',
 // passport.authenticate('twitter', { scope:
 // ["email", "screen_name", "user_id", "name"]}));

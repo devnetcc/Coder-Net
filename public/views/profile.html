@@ -34,9 +34,9 @@ Following: <a ui-sref="Following({id: vm.profile._id})">{{vm.profile.following.l
   <md-list>
     <md-list-item ng-repeat='p in vm.profile.profilePosts'>
       <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:150px; margin-right: 150px; margin-top:30px;'>
-        <h5> Title: {{p.title}}</h5>
+        <h3> Title: {{p.title}}</h3>
         <h5> Content: {{p.body}}</h5>
-        <h5> Posted On: {{p.date}}</h5>
+        <h6> Posted On: {{p.date}}</h6>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
       <form ng-show = 'showEdit' style="padding:30px;" ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>

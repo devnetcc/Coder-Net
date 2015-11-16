@@ -58,8 +58,8 @@ passport.use(new LocalStrategy({
 passport.use(new LinkedInStrategy({
     consumerKey: '75njqmr45tlthj',
     consumerSecret: 'EgY1y6V9PhBr84iM',
-    oauth_callback: "/api/auth/linkedin/callback",
-		callbackURL: ['id', 'email-address','first-name','last-name', 'summary', 'picture-urls::(original)', 'public-profile-url'],
+    callbackURL: "/api/auth/linkedin/callback",
+		profileFields: ['id', 'email-address','first-name','last-name', 'summary', 'picture-urls::(original)', 'public-profile-url'],
   },
 	function(accessToken, refreshToken, profile, done) {
 		// process.nextTick is a Node.js function for asynchronous
@@ -188,10 +188,11 @@ passport.use(new FacebookStrategy({
 )) ;
 
 
+//
 // passport.use(new TwitterStrategy({
-// 	consumerKey: "8hFVmDVwXp7eKieiBZC3IgGwD",
-// 	consumerSecret: "cvyIF8s7yJ0o4RfnuRvli0UGDTACNERrSTp9w0rXdkttJBmGKc",
-// 	callbackURL: "/api/auth/twitter/callback",
+// 	oauth_consumer_key: "8hFVmDVwXp7eKieiBZC3IgGwD",
+// 	 oauth_consumer_secret:"cvyIF8s7yJ0o4RfnuRvli0UGDTACNERrSTp9w0rXdkttJBmGKc",
+// 	oauth_callback: "/api/auth/twitter/callback",
 // 	profileFields: ['email','name','screen_name','profile_image']
 // }, function(accessToken, refreshToken, profile, done) {
 // 	process.nextTick(function() {

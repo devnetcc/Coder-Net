@@ -22,17 +22,17 @@
 		</md-toolbar>
 		<md-content style="background-color: #fffdf0;">
 					<md-list>
-						<md-list-item ng-click="nav.toggleSidenav()" ui-sref="About"> About Us </md-list-item>
+						<md-list-item ng-click="nav.closeAndGo('About')" > About Us </md-list-item>
 						<md-divider ></md-divider>
-						<md-list-item ng-click="nav.toggleSidenav()" ui-sref="Home"> Home Page </md-list-item>
+						<md-list-item ng-click="nav.closeAndGo('Home')" > Home Page </md-list-item>
 						<md-divider ></md-divider>
 						<div ng-show='nav.status.email;'>
-						<md-list-item  ng-click="nav.toggleSidenav()" ui-sref="Profile({id: nav.status._id})"> Profile </md-list-item>
+						<md-list-item  ng-click="nav.closeAndGo('Profile',nav.status._id)"> Profile </md-list-item>
 							<md-divider ></md-divider>
 						</div>
-							<md-list-item ng-click="nav.toggleSidenav()" ui-sref="Forums"> Forums </md-list-item>
+							<md-list-item ng-click="nav.closeAndGo('Forums')"> Forums </md-list-item>
 								<md-divider></md-divider>
-								<md-list-item ng-click="nav.toggleSidenav()" ui-sref="Contact"> Contact </md-list-item>
+								<md-list-item ng-click="nav.closeAndGo('Contact')" > Contact </md-list-item>
 						</md-list>
 		</md-content>
 	</md-sidenav>
@@ -120,7 +120,7 @@
 	<script src="/javascript/controllers/ProfileController.js"></script>
 	<script src="/javascript/controllers/TestController.js"></script>
 	<script src="/javascript/filters/firstletterfilter.js"></script>
-
+	<script src="/javascript/filters/datefilter.js"></script>
 
 
 </body>

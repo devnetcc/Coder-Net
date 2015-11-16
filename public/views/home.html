@@ -3,7 +3,7 @@
   <h5 style="text-align: center"> Home Page </h5>
 
 <!-- <div ng-controller="ProfilePostController as vm"> -->
-  <div layout layout-align="center center" ng-show ='nav.status.name;'>
+<div layout layout-align="center center" ng-show ='nav.status.name;'>
     <div flex="40" style="padding-bottom: 20px;">
       <form ng-submit="vm.createPost();">
         <md-input-container layout-padding>
@@ -21,9 +21,9 @@
 </div>
 </div>
 <md-divider ng-if="!$last" ></md-divider>
-<!-- </div> -->
-
 <h5 style="text-align: center"> News Feed </h5>
+
+
 <md-content>
   <md-list style="padding-left: 70px">
     <md-list-item ng-repeat='p in vm.allPosts'>
@@ -32,8 +32,8 @@
         <h4> {{p.body}} </h4>
         <div layout>
           <md-button class="zmdi zmdi-plus-circle zmdi-hc-2x" ng-click="vm.followOnPost(p);"></md-button>
-        <h5> By: {{p.createdBy.name}} {{p.createdBy.lastName}} on {{p.date}}</h5>
-</div>
+        <h5> By: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
+      </div>
         <div class="share">
           <a href="#" id="linkedin" class="social-btn"
             socialshare
@@ -69,6 +69,6 @@
     </md-list-item>
   </md-list>
 </md-content>
-
+</div>
 
 </div>

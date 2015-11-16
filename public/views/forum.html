@@ -12,7 +12,7 @@
       <md-tab-body>
         <div layout="column" ng-repeat="p in vm.topicPosts" >
               <div style="padding-left:60px"class="md-list-item-text" style="padding:10px;">
-                <h4 ui-sref="ForumPost({id: p._id})" >{{p.title | firstLetterFilter}}</h4> <h5>Posted by: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}}</h5>
+                <h4 ui-sref="ForumPost({id: p._id})" >{{p.title | firstLetterFilter}}</h4> <h5>Posted by: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
               </div>
               <md-divider ng-if="!$last" style="padding: 5px"></md-divider>
         </div>
