@@ -13,11 +13,11 @@ var auth = jwt({
 
 
 router.post('/',auth, function(req, res, next) {
-  // console.log("req body" + req.body.email);
-  // console.log(req.body, "req.body");
+
 console.log(req.payload , "payload is");
   var post = new ProfilePost(req.body);
-  post.createdBy = req.payload.name;
+  post.createdBy.name = req.payload.name;
+  post.createdBy.lastName = req.payload.lastName;
   post.creatorId = req.payload._id;
   post.date = new Date();
   post.save(function(err, result) {

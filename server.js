@@ -65,7 +65,7 @@ app.use('/api/forum', forumRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/posts', profilePostRoutes);
 app.use('/api/reset', resetRoutes);
-app.use('/api/inbox', inboxRoutes);
+// app.use('/api/inbox', inboxRoutes);
 app.use('/api/auth', authRoutes);
 
 

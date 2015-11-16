@@ -109,7 +109,7 @@
         q.resolve(res.data);
       });
       return q.promise;
-    }
+    };
 
     o.followOnPost = function(celerityId, followerObj){
       var q = $q.defer();
@@ -118,7 +118,7 @@
         q.resolve(res.data);
       });
       return q.promise;
-    }
+    };
 
     function setUser() {
 
@@ -154,14 +154,6 @@
 
     if (getToken()) setUser();
 
-    // o.getAllByUser = function(id) {
-    //   var q = $q.defer();
-    //   $http.get('/api/users/profile/' + id).then(function(res) {
-    // console.log(res);
-    //     q.resolve(res.data);
-    //   });
-    //   return q.promise;
-    // };
 
     return o;
   }

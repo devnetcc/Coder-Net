@@ -53,8 +53,17 @@ id: String,
 token: String,
 email: String,
 name: String,
+lastName: String,
 photo: String
 }
+//,
+// twitter: {
+// id: String,
+// token: String,
+// email: String,
+// photo: String,
+// screen_name: String,
+// }
 });
 
 UserSchema.methods.setPassword = function(password) {
@@ -81,7 +90,7 @@ UserSchema.methods.generateJWT = function() {
 
 UserSchema.methods.getTokens = function() {
   return localStorage.getItem('token');
-}
+};
 
 UserSchema.methods.urlBase64Decodes = function(str) {
   var output = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -94,7 +103,7 @@ UserSchema.methods.urlBase64Decodes = function(str) {
     }
   }
   return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
-}
+};
 
 function getToken() {
   return localStorage.getItem('token');

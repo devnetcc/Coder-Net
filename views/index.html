@@ -21,19 +21,19 @@
 			</div>
 		</md-toolbar>
 		<md-content style="background-color: #fffdf0;">
-<md-list>
-						<md-list-item ng-click="nav.toggleSidenav()" ui-sref="About"> About Us </md-list-item>
+					<md-list>
+						<md-list-item ng-click="nav.closeAndGo('About')" > About Us </md-list-item>
 						<md-divider ></md-divider>
-						<md-list-item ng-click="nav.toggleSidenav()" ui-sref="Home"> Home Page </md-list-item>
+						<md-list-item ng-click="nav.closeAndGo('Home')" > Home Page </md-list-item>
 						<md-divider ></md-divider>
 						<div ng-show='nav.status.email;'>
-						<md-list-item  ng-click="nav.toggleSidenav()" ui-sref="Profile({id: nav.status._id})"> Profile </md-list-item>
+						<md-list-item  ng-click="nav.closeAndGo('Profile',nav.status._id)"> Profile </md-list-item>
 							<md-divider ></md-divider>
 						</div>
-							<md-list-item ng-click="nav.toggleSidenav()" ui-sref="Forums"> Forums </md-list-item>
+							<md-list-item ng-click="nav.closeAndGo('Forums')"> Forums </md-list-item>
 								<md-divider></md-divider>
-								<md-list-item ng-click="nav.toggleSidenav()" ui-sref="Contact"> Contact </md-list-item>
-								</md-list>
+								<md-list-item ng-click="nav.closeAndGo('Contact')" > Contact </md-list-item>
+						</md-list>
 		</md-content>
 	</md-sidenav>
 
@@ -48,8 +48,12 @@
 
 
 		<section layout layout-align="end end" >
+<<<<<<< HEAD
 			<md-button ui-sref="Profile({id: nav.status._id})"> Test Profile button </md-button>
 			<md-button ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.userName}} </md-button>
+=======
+			<md-button ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.name}} </md-button>
+>>>>>>> e76125081d5a0b0d589f7e022bcacf958a099c05
 			<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.email;'> Logout </md-button>
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
 		</section>
@@ -66,7 +70,7 @@
 			<a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-facebook"></i></a>
 			<a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-linkedin-box"></i></a>
 			<a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-twitter"></i></a>
-			<a class="list-group-item" href="https://github.com/devnetcc/DevNet" target="_blank"><i class="zmdi zmdi-github"></i></a>
+			<a class="list-group-item" href="https://github.com/devnetcc/Coder-Net" target="_blank"><i class="zmdi zmdi-github"></i></a>
 		</div>
 
 		<div class="footer-left">
@@ -121,7 +125,7 @@
 	<script src="/javascript/controllers/ProfileController.js"></script>
 	<script src="/javascript/controllers/TestController.js"></script>
 	<script src="/javascript/filters/firstletterfilter.js"></script>
-
+	<script src="/javascript/filters/datefilter.js"></script>
 
 
 </body>

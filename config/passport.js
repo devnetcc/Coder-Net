@@ -2,6 +2,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var LinkedInStrategy = require('passport-linkedin').Strategy;
 var FacebookStrategy = require('passport-facebook');
+// var TwitterStrategy = require('passport-twitter').Strategy;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
@@ -75,7 +76,7 @@ passport.use(new LinkedInStrategy({
 				if(user) {
 					console.log('DEBUG: Current user') ;
 					// user.setUser();
-					
+
 					return done(null, user) ;
 				}
 				// Else no user is found. We need to create a new user.
@@ -185,3 +186,41 @@ passport.use(new FacebookStrategy({
 		}) ;
 	}
 )) ;
+
+
+//
+// passport.use(new TwitterStrategy({
+// 	oauth_consumer_key: "8hFVmDVwXp7eKieiBZC3IgGwD",
+// 	 oauth_consumer_secret:"cvyIF8s7yJ0o4RfnuRvli0UGDTACNERrSTp9w0rXdkttJBmGKc",
+// 	oauth_callback: "/api/auth/twitter/callback",
+// 	profileFields: ['email','name','screen_name','profile_image']
+// }, function(accessToken, refreshToken, profile, done) {
+// 	process.nextTick(function() {
+// 		User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
+// 					if(err) {
+// 						return done(err) ;
+// 					}
+// 					if(user) {
+// 						return done(null, user) ;
+// 					}
+// 					else {
+// 						var newUser = new User() ;
+// 						newUser.twitter.id = profile.id ;
+// 						newUser.twitter.screen_name = profile.screen_name;
+// 						newUser.twitter.token = accessToken ;
+// 						newUser.twitter.name = profile.name.givenName + ' ' + profile.name.familyName ;
+// 						newUser.name = newUser.twitter.name ;
+// 						newUser.twitter.email = profile.emails ? profile.emails[0].value : profile.username + "@twitter.com";
+// 						newUser.username = newUser.twitter.email ;
+// 						newUser.twitter.photo = profile.photos[0].value ;
+// 						newUser.created = new Date() ;
+// 						newUser.save(function(err) {
+// 							if(err)
+// 								throw err ;
+// 							return done(null, newUser) ;
+// 						});
+// 					}
+// 				});
+// 		});
+// 	}
+// ));

@@ -29,8 +29,8 @@
 			UserFactory.followOnPost(post.creatorId, vm.status)
 			.then(function(res){
 				console.log("You have a new follower");
-			})
-		}
+			});
+		};
 
 
 	}

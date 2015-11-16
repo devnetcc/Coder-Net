@@ -3,7 +3,7 @@
   <h5 style="text-align: center"> Home Page </h5>
 
 <!-- <div ng-controller="ProfilePostController as vm"> -->
-  <div layout layout-align="center center" ng-show ='nav.status.name;'>
+<div layout layout-align="center center" ng-show ='nav.status.name;'>
     <div flex="40" style="padding-bottom: 20px;">
       <form ng-submit="vm.createPost();">
         <md-input-container layout-padding>
@@ -12,7 +12,7 @@
         </md-input-container>
         <md-input-container layout-padding>
           <label> Post Content </label>
-          <input required ng-model="vm.post.body" />
+          <textarea required ng-model="vm.post.body" columns="2"></textarea>
         </md-input-container>
         <br>
         <br>
@@ -21,18 +21,19 @@
 </div>
 </div>
 <md-divider ng-if="!$last" ></md-divider>
-<!-- </div> -->
-
 <h5 style="text-align: center"> News Feed </h5>
+
+
 <md-content>
-  <md-list>
+  <md-list style="padding-left: 70px">
     <md-list-item ng-repeat='p in vm.allPosts'>
       <div class='md-list-item-text' style='padding:10px; padding-left:30px'>
-        <h5> Title: {{p.title}}</h5>
-        <h5> Content: {{p.body}}</h5>
-        <h5> Created By: {{p.createdBy.name}}</h5>
-        <md-button ng-click="vm.followOnPost(p);">Follow</md-button>
-        <h5> Created On: {{p.date}}</h5>
+        <h2>  {{p.title}} </h2>
+        <h4> {{p.body}} </h4>
+        <div layout>
+          <md-button class="zmdi zmdi-plus-circle zmdi-hc-2x" ng-click="vm.followOnPost(p);"></md-button>
+        <h5> By: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
+      </div>
         <div class="share">
           <a href="#" id="linkedin" class="social-btn"
             socialshare
@@ -68,6 +69,6 @@
     </md-list-item>
   </md-list>
 </md-content>
-
+</div>
 
 </div>

@@ -6,6 +6,7 @@ var jwt = require('express-jwt');
 var passport = require('passport') ;
 var linkedin = require('passport-linkedin');
 var facebook = require('passport-facebook');
+// var twitter = require('passport-twitter');
 
 
 
@@ -39,6 +40,23 @@ function(req, res) {
     res.send("You are not authenticated");
   }
 });
+
+
+//twitter-oauth
+// router.get('/twitter',
+// passport.authenticate('twitter', { scope:
+// ["email", "screen_name", "user_id", "name"]}));
+//
+// router.get('/twitter/callback',
+// passport.authenticate('twitter', {failureRedirect: '/'}),
+// function(req, res) {
+//   if(req.user) {
+//     req.user.generateJWT();
+//     res.redirect("/#/profile" + req.user._id);
+//   } else {
+//     res.send("You are not authenticated");
+//   }
+// });
 
 
 module.exports = router;

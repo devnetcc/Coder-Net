@@ -73,6 +73,14 @@
     };
 
 
+vm.closeAndGo = function(page, id){
+  $mdSidenav("left").toggle();
+  if (id){
+    $state.go(page, {id: id});
+  } else {
+    $state.go(page);
+  }
+};
 
 
   }

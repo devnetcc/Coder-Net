@@ -1,8 +1,7 @@
 <div style="border:{{vm.profile.color}} 50px solid;padding-top:1px;margin-bottom:-80px;" ng-controller="ProfileController as vm" class="bodyColor">
   <div style="background-color:white;">
-  <!-- <script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script> -->
+<!-- <div ng-controller="ProfileController as vm" class="bodyColor" style= "margin-left:150px; margin-right: 150px;"> -->
 
-  <!-- <md-grid-tile ng-repeat="a in vm.communities" class="gridButton md-ink-ripple" ng-click="vm.goToCom(a._id)" style="background-color: {{a.color}};" > -->
   <h5 style="text-align: center"> Profile</h5>
 <div>
 
@@ -18,12 +17,6 @@
 
   </div>
 
-
-
-<!-- <input type="filepicker" data-fp-apikey="ANDYMo7mqQjawgErCA0F0z"
-onchange="alert(event.fpfile.url)"> -->
-
-<!-- <div ng-controller="ProfilePostController as vm"> -->
   <div layout layout-align="center" ng-show ='nav.status.name;'>
     <div flex="50">
       <form style="margin-top:50px;"ng-submit="vm.createPost();">
@@ -33,10 +26,9 @@ onchange="alert(event.fpfile.url)"> -->
         </md-input-container>
         <md-input-container >
           <label> Content </label>
-          <input required ng-model="vm.post.body" />
+          <textarea required ng-model="vm.post.body" columns="2"></textarea>
         </md-input-container>
-        <br>
-        <br>
+
         <md-button type="submit" class="md-raised" > Post </md-button>
 </form>
 </div>
@@ -47,10 +39,10 @@ onchange="alert(event.fpfile.url)"> -->
 <md-content style="background-color:{{vm.profile.color}};">
   <md-list>
     <md-list-item ng-repeat='p in vm.profile.profilePosts'>
-      <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:150px; margin-top:30px;'>
-        <h5> Title: {{p.title}}</h5>
+      <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:150px; margin-right: 150px; margin-top:30px;'>
+        <h3> Title: {{p.title}}</h3>
         <h5> Content: {{p.body}}</h5>
-        <h5> Posted On: {{p.date}}</h5>
+        <h6> Posted On: {{p.date}}</h6>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
         <hr style="width:400px">
