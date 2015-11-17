@@ -37,7 +37,6 @@ joined: Date,
 passwordHash: String,
 salt: String,
 summary: String,
-token: String,
 linkedin: {
   id: String,
   token: String,
@@ -55,15 +54,15 @@ email: String,
 name: String,
 lastName: String,
 photo: String
+},
+twitter: {
+name: String,
+id: String,
+token: String,
+email: String,
+photo: String,
+screen_name: String,
 }
-//,
-// twitter: {
-// id: String,
-// token: String,
-// email: String,
-// photo: String,
-// screen_name: String,
-// }
 });
 
 UserSchema.methods.setPassword = function(password) {
@@ -88,78 +87,77 @@ UserSchema.methods.generateJWT = function() {
  },  "CoderCamps"); //Add Passcode here
 };
 
-UserSchema.methods.getTokens = function() {
-  return localStorage.getItem('token');
-};
-
-UserSchema.methods.urlBase64Decodes = function(str) {
-  var output = str.replace(/-/g, '+').replace(/_/g, '/');
-  switch (output.length % 4) {
-    case 0: { break; }
-    case 2: { output += '=='; break; }
-    case 3: { output += '='; break; }
-    default: {
-      throw 'Illegal base64url string!';
-    }
-  }
-  return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
-};
-
-function getToken() {
-  return localStorage.getItem('token');
-}
-
-function setToken(token) {
-  return localStorage.setItem('token', token);
-}
-
-function removeToken() {
-  return localStorage.removeItem('token');
-}
-
-function urlBase64Decode(token) {
-  // token = getToken();
-  if(token ===  undefined){
-    // return false;
-    console.log(token);
-    return;
-  }
-  else {
-  var output = token.replace(/-/g, '+').replace(/_/g, '/');
-  switch (output.length % 4) {
-    case 0:
-      {
-        break;
-      }
-    case 2:
-      {
-        output += '==';
-        break;
-      }
-    case 3:
-      {
-        output += '=';
-        break;
-      }
-    default:
-      {
-        throw 'Illegal base64url string!';
-      }
-  }
-
-  return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
-}
-}
-
-// UserSchema.methods.setUsers = function(){
-//   var user = JSON.parse(urlBase64Decode(getToken().split('.')[1]));
-//   return {
-//   name = this.name;
-//   lastName = user.lastName;
-//   pic = user.pic;
-//   email = user.email;
-//   _id = user._id;
+// UserSchema.methods.getTokens = function() {
+//   return localStorage.getItem('token');
+// };
+//
+// UserSchema.methods.urlBase64Decodes = function(str) {
+//   var output = str.replace(/-/g, '+').replace(/_/g, '/');
+//   switch (output.length % 4) {
+//     case 0: { break; }
+//     case 2: { output += '=='; break; }
+//     case 3: { output += '='; break; }
+//     default: {
+//       throw 'Illegal base64url string!';
+//     }
+//   }
+//   return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
+// };
+//
+// function getToken() {
+//   return localStorage.getItem('token');
 // }
+//
+// function setToken(token) {
+//   return localStorage.setItem('token', token);
+// }
+//
+// function removeToken() {
+//   return localStorage.removeItem('token');
+// }
+//
+// function urlBase64Decode(token) {
+//   // token = getToken();
+//   if(token ===  undefined){
+//     // return false;
+//     return;
+//   }
+//   else {
+//   var output = token.replace(/-/g, '+').replace(/_/g, '/');
+//   switch (output.length % 4) {
+//     case 0:
+//       {
+//         break;
+//       }
+//     case 2:
+//       {
+//         output += '==';
+//         break;
+//       }
+//     case 3:
+//       {
+//         output += '=';
+//         break;
+//       }
+//     default:
+//       {
+//         throw 'Illegal base64url string!';
+//       }
+//   }
+//
+//   return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
+// }
+// }
+//
+// // UserSchema.methods.setUsers = function(){
+// //   var user = JSON.parse(urlBase64Decode(getToken().split('.')[1]));
+// //   return {
+// //   name = this.name;
+// //   lastName = user.lastName;
+// //   pic = user.pic;
+// //   email = user.email;
+// //   _id = user._id;
+// // }
 
 
 mongoose.model('User', UserSchema);

@@ -14,7 +14,7 @@
       // vm.linkLogin = function(){
       //     UserFactory.getLUser().then(function(){
       //       vm.status = res;
-      //     });
+      //     });``
       // };
       // vm.linkLogin = function(){
       //   console.log(vm.status.name + " vm.user");

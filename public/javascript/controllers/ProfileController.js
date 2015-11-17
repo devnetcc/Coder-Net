@@ -31,6 +31,26 @@ if(vm.status.email === undefined && vm.profile.token !== undefined){
   vm.status._id = vm.profile._id;
   vm.profilePosts = vm.profile.profilePosts;
 }
+
+switch (vm.profile.role) {
+  case 'Newbie':
+  vm.profile.badge = "/imgs/badges/newbie.png";
+  break;
+  case 'Student':
+  vm.profile.badge = "/imgs/badges/student.png";
+  break;
+  case 'Recent Graduate':
+    vm.profile.badge = "/imgs/badges/grad.png";
+    break;
+  case 'Mentor':
+    vm.profile.badge = "/imgs/badges/mentor.png";
+    break;
+    case 'Recruiter':
+    vm.profile.badge = "/imgs/badges/recruiter.png";
+    break;
+    default:
+    vm.profile.badge = "/imgs/badges/coder.png";
+}
 });
 // console.log(vm.profile.email + "2");
 
@@ -41,6 +61,26 @@ vm.goToEdit = function(id, obj){
 
 vm.editProfile = function (profile){
 		ProfileFactory.editProfile(profile).then(function(){
+      console.log(vm.profile.role);
+      switch (vm.profile.role) {
+        case 'Newbie':
+        vm.profile.badge = "/imgs/badges/newbie.png";
+        break;
+        case 'Student':
+        vm.profile.badge = "/imgs/badges/student.png";
+        break;
+        case 'Recent Graduate':
+          vm.profile.badge = "/imgs/badges/grad.png";
+          break;
+        case 'Mentor':
+          vm.profile.badge = "/imgs/badges/mentor.png";
+          break;
+          case 'Recruiter':
+          vm.profile.badge = "/imgs/badges/recruiter.png";
+          break;
+          default:
+          vm.profile.badge = "/imgs/badges/coder.png";
+      }
 			$state.go('Profile', {id: $stateParams.id});
 		});
 };
@@ -103,6 +143,9 @@ vm.uploadPic = function(){
   		});
   };
 
-	}
 
+
+
+
+	}
 })();
