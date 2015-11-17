@@ -52,6 +52,7 @@
     vm.login = function() {
       UserFactory.login(vm.user).then(function() {
         console.log(vm.status);
+        console.log(vm.status.userName);
       $state.go('Profile', {id: vm.status._id});
       });
     };

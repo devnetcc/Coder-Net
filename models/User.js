@@ -3,11 +3,13 @@ var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 
 var UserSchema = new mongoose.Schema({
+userName: {type: String, lowercase: true, trim: true},
 name: {type: String, lowercase: true, trim: true},
 lastName: { type: String, lowercase: true, trim: true},
 email: { unique: true, type:String, lowercase: true, trim: true},
 isValidated: Boolean, // Checks if the user has been validated via email
 rand: Number,
+color: String,
 create: Date,
 pic: String,
 location: String, //should there be separate props for city, state, country?
@@ -79,7 +81,8 @@ UserSchema.methods.generateJWT = function() {
    name: this.name,
    lastName: this.lastName,
    email: this.email,
-   pic: this.pic
+   pic: this.pic,
+   userName: this.userName
 
  },  "CoderCamps"); //Add Passcode here
 };
