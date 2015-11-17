@@ -12,8 +12,8 @@
     </div>
     <md-button class="md-raised" style='margin-left:50px;margin-top:35px;' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button>
     <md-button class="md-raised" ng-click="nav.followOnProfile();">Follow</md-button><br>
-    Followers: <a ui-sref="Followers({id: vm.profile._id})">{{vm.profile.followers.length}}</a><br>
-    Following: <a ui-sref="Following({id: vm.profile._id})">{{vm.profile.following.length}}</a>
+    <span style="padding-left:15px">Followers:</span> <a ui-sref="Followers({id: vm.profile._id})">{{vm.profile.followers.length}}</a><br>
+    <span style="padding-left:15px">Following:</span> <a ui-sref="Following({id: vm.profile._id})">{{vm.profile.following.length}}</a>
 
   </div>
 
@@ -45,7 +45,7 @@
         <h6> Posted On: {{p.date}}</h6>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
-        <hr style="width:400px">
+        <hr style="width:900px">
       <form ng-show = 'showEdit' style="padding:30px;" ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
                 <md-input-container>
                   <label> Title </label>

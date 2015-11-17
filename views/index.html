@@ -48,12 +48,9 @@
 
 
 		<section layout layout-align="end end" >
-<<<<<<< HEAD
+
 			<md-button ui-sref="Profile({id: nav.status._id})"> Test Profile button </md-button>
 			<md-button ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.userName}} </md-button>
-=======
-			<md-button ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.name}} </md-button>
->>>>>>> e76125081d5a0b0d589f7e022bcacf958a099c05
 			<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.email;'> Logout </md-button>
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
 		</section>
