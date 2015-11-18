@@ -7,6 +7,8 @@
     var o = {};
     o.status = {};
     var token = '';
+    o.setToken = setToken;
+    o.setUser = setUser;
 
     function getToken() {
       return localStorage.getItem('token');

@@ -43,17 +43,6 @@ passport.use(new LocalStrategy({
     });
   }));
 
-	// GithubStrategy
-	// passport.use(new GithubStrategy({
-	//   clientID: '687f365bddcf9b455b65',
-	//   clientSecret: 'your app client secret',
-	//   callbackURL: 'http://localhost:3000/auth/callback'
-	// }, function(accessToken, refreshToken, profile, done){
-	//   done(null, {
-	//     accessToken: accessToken,
-	//     profile: profile
-	//   });
-	// }));
 
 passport.use(new LinkedInStrategy({
     consumerKey: '75njqmr45tlthj',
@@ -168,6 +157,9 @@ passport.use(new FacebookStrategy({
 						newUser.facebook.email = profile.emails ? profile.emails[0].value : profile.username + "@facebook.com";
 
 						newUser.email = newUser.facebook.email ;
+
+						newUser.name = newUser.facebook.name;
+						newUser.lastName = newUser.facebook.lastName;
 
 						newUser.facebook.photo = profile.photos[0].value ;
 
