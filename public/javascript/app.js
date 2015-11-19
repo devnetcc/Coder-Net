@@ -60,18 +60,15 @@
 				.state('Forgot', {
 					url: '/forgot',
 					templateUrl: 'views/forgot.html'
-				})
-				.state('Inbox', {
-					url: '/inbox/:id',
-				  templateUrl: 'views/inbox.html',
-					controller: 'InboxController',
-					controllerAs: 'vm'
 				}).state('Followers', {
 					url: '/profile/followers/:id',
 					templateUrl: 'views/followers.html'
 				}).state('Following', {
 					url: '/profile/following/:id',
 					templateUrl: 'views/following.html'
+				}).state('Token', {
+					url: '/token/:token',
+					templateUrl: 'views/token.html'
 				});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');

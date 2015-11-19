@@ -17,8 +17,7 @@ router.get('/linkedin/callback',
 passport.authenticate('linkedin', { failureRedirect: '/' }),
   	function(req, res) {
   		if(req.user) {
-        req.user.generateJWT();
-  			res.redirect("/#/profile/"+ req.user._id) ;
+  			res.redirect("/#/token/"+ req.user.generateJWT()) ;
   		} else {
   			res.send("You are not authenticated") ;
   		}
@@ -34,8 +33,7 @@ router.get('/facebook/callback',
 passport.authenticate('facebook', {failureRedirect: '/'}),
 function(req, res) {
   if(req.user) {
-    req.user.generateJWT();
-    res.redirect("/#/profile" + req.user._id);
+    res.redirect("/#/token/" + req.user.generateJWT());
   } else {
     res.send("You are not authenticated");
   }
@@ -50,8 +48,7 @@ router.get('/twitter/callback',
 passport.authenticate('twitter', {failureRedirect: '/'}),
 function(req, res) {
   if(req.user) {
-    req.user.generateJWT();
-    res.redirect("/#/profile" + req.user._id);
+    res.redirect("/#/token/" + req.user.generateJWT());
   } else {
     res.send("You are not authenticated");
   }
