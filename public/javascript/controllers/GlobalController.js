@@ -62,16 +62,35 @@
       $mdSidenav("left").toggle();
     };
 
-
-
+// conditional statement
     vm.followOnProfile = function(){
+      console.log($stateParams);
+      if($stateParams === vm.status) {
+      return null;
+    }
       UserFactory.followOnProfile($stateParams.id,vm.status)
         .then(function(res){
+      console.log(vm.status);
           console.log("got a new follower");
           //change follow button to unfollow button
       });
     };
 
+    if (localStorage) {
+  // LocalStorage is supported!
+  // vm.profile.followers = vm.status;
+  console.log(vm.status);
+    } else {
+      console.log('awww!');
+      // No support. Use a fallback such as browser cookies or store on the server.
+    }
+    vm.unFollowProfile = function() {
+      UserFactory.unFollowProfile($stateParams.id, vm.profile)
+      .then(function(res) {
+        console.log(res);
+        vm.following.splice(vm.following.indexOf(followers),1);
+      });
+    };
 
 vm.closeAndGo = function(page, id){
   $mdSidenav("left").toggle();
