@@ -41,8 +41,21 @@ o.editPost = function(id, post){
   return q.promise;
 };
 
+o.upvote = function(postID, voter) {
+  var q= $q.defer();
+  $http.put('/api/posts/upvote/'+ postID, {upvotes: voter}).then(function(res) {
+    q.resolve(res.data);
+  });
+  return q.promise;
+};
 
-
+o.downvote = function(postID, voter) {
+  var q= $q.defer();
+  $http.put('/api/posts/downvote/'+ postID, {downvotes: voter}).then(function(res) {
+    q.resolve(res.data);
+  });
+  return q.promise;
+};
 
     return o;
   }

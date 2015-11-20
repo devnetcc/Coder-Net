@@ -49,8 +49,7 @@
 
 		<section layout layout-align="end end" >
 
-			<md-button ui-sref="Profile({id: nav.status._id})"> Test Profile button </md-button>
-			<md-button ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.userName}} </md-button>
+			<md-button ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.name}} </md-button>
 			<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.email;'> Logout </md-button>
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
 		</section>
@@ -118,7 +117,6 @@
 	<script src="/javascript/controllers/GlobalController.js"></script>
 	<script src="/javascript/controllers/ForumController.js"></script>
 	<script src="/javascript/controllers/ProfileController.js"></script>
-	<script src="/javascript/controllers/TestController.js"></script>
 	<script src="/javascript/filters/firstletterfilter.js"></script>
 	<script src="/javascript/filters/datefilter.js"></script>
 

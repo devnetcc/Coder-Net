@@ -6,8 +6,8 @@ var ProfilePostSchema = new mongoose.Schema({
  createdBy: {name: String, lastName: String},
  creatorId: String,
  date: Date,
- //tags: [],
- //votes: Number
+ upvotes: [String],
+ downvotes: [String]
 });
 
 mongoose.model('ProfilePost', ProfilePostSchema);

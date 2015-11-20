@@ -31,6 +31,8 @@
         <h2>  {{p.title}} </h2>
         <h4> {{p.body}} </h4>
         <div layout>
+          <md-button class="zmdi zmdi-thumb-down zmdi-hc-2x" ng-click="vm.downvote(p)"> </md-button>
+          <md-button class="zmdi zmdi-thumb-up zmdi-hc-2x" ng-click="vm.upvote(p)"> </md-button>
           <md-button class="zmdi zmdi-plus-circle zmdi-hc-2x" ng-click="vm.followOnPost(p);"></md-button>
         <h5> By: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
       </div>

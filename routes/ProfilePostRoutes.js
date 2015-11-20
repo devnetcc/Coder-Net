@@ -66,5 +66,20 @@ router.put('/:id', function(req,res, next){
     });
   });
 
+  router.put('/upvote/:id', auth, function(req,res, next){
+    ProfilePost.update({_id: req.params.id}, {$push: {upvotes: req.payload._id}, $pull: {downvotes: req.payload._id}}, function(err, result){
+      if (err) return next(err);
+      if (!result) return next ({err: "That post wasnt found for updating"});
+      res.send(result);
+      });
+    });
+    router.put('/downvote/:id', auth, function(req,res, next){
+      ProfilePost.update({_id: req.params.id}, {$push: {downvotes: req.payload._id}, $pull: {upvotes: req.payload._id}}, function(err, result){
+        if (err) return next(err);
+        if (!result) return next ({err: "That post wasnt found for updating"});
+        res.send(result);
+        });
+      });
+
 
 module.exports = router;

@@ -143,7 +143,15 @@ vm.uploadPic = function(){
   		});
   };
 
-
+  // vm.upvote = function(post){
+  // HomeFactory.upvote(post.id, vm.status)
+  // //post.upvotes += 1;
+  // }
+  //
+  // vm.downvote = function(post) {
+  // HomeFactory.downvote(post.id, vm.status)
+  // // post.upvotes -= 1;
+  // }
 
 
 
