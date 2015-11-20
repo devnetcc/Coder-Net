@@ -17,6 +17,7 @@ router.post('/',auth, function(req, res, next) {
 console.log(req.payload , "payload is");
   var post = new ProfilePost(req.body);
   post.createdBy.name = req.payload.name;
+  post.avi = req.payload.pic;
   post.createdBy.lastName = req.payload.lastName;
   post.creatorId = req.payload._id;
   post.date = new Date();
@@ -31,6 +32,42 @@ console.log(req.payload , "payload is");
     res.send();
     });
   });
+});
+
+router.post('/reblog/:id', auth,function(req,res,next){
+  console.log(req.body, " req.body");
+  var comment = req.body;
+  var post = new ProfilePost({});
+  comment.avi = req.payload.pic;
+  comment.creatorName = req.payload.name;
+
+  ProfilePost.findOne({_id: req.params.id}, function(err, result){
+    result.title = post.title;
+    result.body = post.body;
+  });
+  ProfilePost.update({_id: req.params.id},{$push: {comments: comment}}, function(err,result){
+    if(err) return next (err);
+    if(!result) return next({err: "Couldnt find that post!"});
+
+    post.comments.push(comment);
+    console.log(post.comments , " post.comments");
+
+  post.save(function(err, result) {
+    if(err) return next(err);
+    if(!result) return next("Could not Create Post");
+    User.findOne({email: req.payload.email}, function(err, user){
+      if(!user) return res.status(404).send({err: "Could not find that user."});
+    user.profilePosts.push(result);
+    user.save(function(err, user) {
+    });
+
+  		if(err) return next(err);
+  		if(!result) return next ({err: "That user wasnt found for updating!"});
+  	// });
+    res.send();
+  });
+  });
+});
 });
 
 // router.get('/:id', function(req, res, next){

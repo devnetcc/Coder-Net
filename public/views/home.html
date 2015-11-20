@@ -10,10 +10,8 @@
           <label> Post Title</label>
           <input required ng-model="vm.post.title" />
         </md-input-container>
-        <md-input-container layout-padding>
-          <label> Post Content </label>
-          <textarea required ng-model="vm.post.body" columns="2"></textarea>
-        </md-input-container>
+
+        <textarea ui-tinymce ng-model="vm.post.body"></textarea>
         <br>
         <br>
         <md-button type="submit" class="md-raised" > Post </md-button>
@@ -26,16 +24,34 @@
 
 <md-content>
   <md-list style="padding-left: 70px">
-    <md-list-item ng-repeat='p in vm.allPosts'>
-      <div class='md-list-item-text' style='padding:10px; padding-left:30px'>
-        <h2>  {{p.title}} </h2>
-        <h4> {{p.body}} </h4>
+
+    <md-list-item ng-repeat='p in vm.allPosts' >
+      <div class='md-list-item-text' style='padding:10px; padding-left:30px' >
+        <h2 >  {{p.title}} </h2>
+        <h4 ng-bind-html="p.body"></h4>
         <div layout>
           <md-button class="zmdi zmdi-thumb-down zmdi-hc-2x" ng-click="vm.downvote(p)"> </md-button>
           <md-button class="zmdi zmdi-thumb-up zmdi-hc-2x" ng-click="vm.upvote(p)"> </md-button>
           <md-button class="zmdi zmdi-plus-circle zmdi-hc-2x" ng-click="vm.followOnPost(p);"></md-button>
         <h5> By: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
       </div>
+      <md-button class="md-raised" ng-click="p.reblog = !p.reblog">Reblog</md-button>
+        <div uib-collapse="!p.reblog">
+          <div class="well well-lg">
+            <form ng-submit="vm.reblog(p);">
+              <md-input-container layout-padding>
+                <label> Post Title</label>
+                <input ng-model="vm.repost.title" />
+              </md-input-container>
+
+              <textarea ui-tinymce ng-model="vm.repost.content"></textarea>
+              <br>
+              <br>
+              <md-button type="submit" class="md-raised" > Post </md-button>
+              <md-button  class="md-raised" ng-click="p.reblog = !p.reblog"> Cancel </md-button>
+      </form>
+          </div>
+        </div>
         <div class="share">
           <a href="#" id="linkedin" class="social-btn"
             socialshare

@@ -9,6 +9,8 @@
 	<link href='https://fonts.googleapis.com/css?family=Quicksand:700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
   <link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=entypo">
+	<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css'>
+	<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css'>
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 
@@ -50,6 +52,7 @@
 		<section layout layout-align="end end" >
 
 			<md-button ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.name}} </md-button>
+
 			<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.email;'> Logout </md-button>
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
 		</section>
@@ -92,10 +95,14 @@
 	<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
 
 	<!-- Ext Libs -->
+	<script type="text/javascript" src="/tinymce-dist/tinymce.js"></script>
 	<script src="angular/angular.min.js"></script>
+	<script type="text/javascript" src="/angular-ui-tinymce/src/tinymce.js"></script>
 	<script src="//js.pusher.com/3.0/pusher.min.js"></script>
 	<script src="angular-socialshare/src/js/angular-socialshare.js"></script>
 	<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-sanitize.js"></script>
+
 
 	<!-- Material -->
 	<script src="/angular-material/angular-material.min.js"></script>

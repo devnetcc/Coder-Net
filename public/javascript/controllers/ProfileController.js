@@ -11,8 +11,76 @@
      vm.status = UserFactory.status;
      vm.user = {};
      vm.post = {};
-     vm.colors = ['#baab75','#a5b5d5','#b946ca','#af80ab','#ffd751', '#84fddf', '#86b8ff', '#448bbf' ,'#cab8ff', '#124eff', '#f99a20','#91ba00', '#d1a3a3','#8e7979'];
-    //  vm.profilePosts = {};
+    //  vm.colors = ['#baab75','#a5b5d5','#b946ca','#af80ab','#ffd751', '#84fddf', '#86b8ff', '#448bbf' ,'#cab8ff', '#124eff', '#f99a20','#91ba00', '#d1a3a3','#8e7979'];
+    vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80'];
+
+// if(vm.profile.profileFBlink){
+//   vm.profile.profileFBlink = true;
+// }
+// if(vm.profile.profileLKlink){
+//   vm.profile.profileLKlink = true;
+// }
+
+
+//
+//     // fb links
+//     vm.nofaceLink; // false = hides remove button / true = shows remove button
+//     vm.yesfaceLink; // false = hides link from page / true = shows link on page
+//     vm.fbbtn; // true = hides add button / false = shows add button
+//
+//     // linkedin links
+//     vm.nolinLink = true;
+//     vm.yesLinLink = true;
+//     vm.lkbtn = true;
+//
+//     // twitter links
+//     vm.notwitLink = true;
+//     vm.yesTwitLink = true;
+//     vm.twbtn = true;
+//
+//     // Git links
+//     vm.yesGitLink = true;
+//     vm.nogitLink = true;
+//     vm.gtbtn = true;
+//     //  vm.profilePosts = {};
+//
+//
+// vm.showfblink = function() {
+//   console.log('show up');
+//   vm.nofaceLink = true; // false = hides remove button / true = shows remove button
+//   vm.yesfaceLink = true; // false = hides link from page / true = shows link on page
+//   vm.fbbtn = true; // true = hides add button / false = shows add button
+// }
+//
+// vm.NOfblink = function() {
+//   vm.nofaceLink = false;
+//   vm.yesfaceLink = false;
+//   vm.fbbtn = false;
+// }
+// // -------------------------
+// vm.showlklink = function() {
+//
+// }
+// vm.NOlklink = function() {
+//
+// }
+// // -------------------------
+// vm.showtwlink = function() {
+//
+// }
+// vm.NOtwlink = function() {
+//
+// }
+// // -------------------------
+// vm.showghlink = function() {
+//
+// }
+// vm.NOghlink = function() {
+//
+// }
+// // -------------------------
+
+
 
 
 

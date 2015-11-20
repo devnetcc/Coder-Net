@@ -1,6 +1,6 @@
 (function() {
 	'use strict';
-	angular.module('app', ['ui.router', 'ngMaterial','ui.bootstrap','720kb.socialshare'])
+	angular.module('app', ['ui.router', 'ngMaterial','ui.bootstrap','720kb.socialshare','ui.tinymce','ngSanitize'])
 	.config(Config);
 
 	function Config($stateProvider, $urlRouterProvider, $httpProvider) {

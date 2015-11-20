@@ -33,7 +33,7 @@
         });
       return q.promise;
     };
-    //
+
     // o.getAllPost = function() {
     //   var q = $q.defer();
     //   $http.get('/api/forum').then(function(res) {
@@ -51,6 +51,7 @@
     };
 
     o.getPostById = function(id) {
+      console.log(id); // post id
       var q = $q.defer();
       $http.get('/api/forum/forumPost/' + id).then(function(res) {
         q.resolve(res.data);

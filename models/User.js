@@ -10,6 +10,7 @@ email: { unique: true, type:String, lowercase: true, trim: true},
 isValidated: Boolean, // Checks if the user has been validated via email
 rand: Number,
 color: String,
+tagLine: String,
 create: Date,
 pic: String,
 location: String, //should there be separate props for city, state, country?
@@ -20,6 +21,30 @@ userAt: String,
 userGoing: String,
 github: String,
 linkedinUrl: String,
+
+profilePosts:
+// [{type: mongoose.Schema.Types.ObjectId, ref: 'ProfilePost'}],
+[{
+  title: String,
+  body: {required: true, type: String},
+  createdBy: {name: String, lastName: String},
+  creatorId: String,
+  date: Date,
+  avi: String,
+  comments: [{
+    creatorId: String,
+    creatorName: String,
+    title: String,
+    content: String,
+    photo: String,
+    video: String,
+    avi: String,
+  }],
+}],
+profileFBlink: String,
+profileTWlink: String,
+profileGHlink: String,
+profileLKlink: String,
 profilePosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ProfilePost'}],
 forumPosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ForumPost'}],
 comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
@@ -82,7 +107,9 @@ UserSchema.methods.generateJWT = function() {
    lastName: this.lastName,
    email: this.email,
    pic: this.pic,
-   userName: this.userName
+   userName: this.userName,
+   followerID: this.followerID,
+   followerName: this.followerName
 
  },  "CoderCamps"); //Add Passcode here
 };

@@ -15,11 +15,11 @@
 // ForumFactory.getAllPost().then(function(res){
 // 							vm.forumPosts = res;
 // });
-
 if ($stateParams.id){
+console.log('forumcontroller');
   // vm.apost = {};
 ForumFactory.getPostById($stateParams.id).then(function(res){
-  // console.log(vm.apost);
+  console.log(res);
 	vm.apost = res;
 });
 }

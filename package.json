@@ -26,6 +26,7 @@
     "nodemailer": "^0.7.1",
     "nodemailer-smtp-transport": "^1.0.4",
     "nodemailer-wellknown": "^0.1.7",
+    "nodemon": "^1.8.1",
     "passport": "^0.3.0",
     "passport-facebook": "^2.0.0",
     "passport-github": "^1.0.0",
@@ -37,6 +38,7 @@
     "passport-twitter": "^1.0.3",
     "pusher": "^1.0.6",
     "socket.io": "^1.3.7",
+    "textangular": "^1.4.6",
     "uuid": "^2.0.1",
     "xoauth2": "^1.1.0"
   }
