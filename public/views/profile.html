@@ -65,24 +65,24 @@
 <md-content style="background-color:{{vm.profile.color}};">
   <md-list>
     <md-list-item ng-repeat='p in vm.profile.profilePosts | orderBy:"-date"'>
-      <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:150px; margin-right: 150px; margin-top:30px;background-color:white;height:185px;width:500px;'>
+      <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:225px; margin-top:30px;background-color:white;height:185px;width:500px;'>
         <h3> Title: {{p.title}}</h3>
         <h5> Content: {{p.body}}</h5>
         <h6> Posted On: {{p.date}}</h6>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
-        <hr style="width:900px">
-      <form ng-show = 'showEdit' style="padding:30px;" ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
-                <md-input-container>
-                  <label> Title </label>
-                  <input type='text' ng-model='vm.editingPost.title'>
-                </md-input-container>
-                <md-input-container>
-                  <label> Content </label>
-                  <input type='text' ng-model='vm.editingPost.body'>
-                </md-input-container>
-                <md-button type='submit' class='md-raised' > Edit </md-button>
-                <md-button type='button' class='md-raised' ng-click = "showEdit = false;"> Cancel </md-button>
+        <hr style="width:500px;">
+      <form ng-show = 'showEdit' style="margin-top:70px;margin-bottom:100px;padding:30px;background-color:white;" ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
+          <md-input-container>
+            <label> Title </label>
+            <input type='text' ng-model='vm.editingPost.title'>
+          </md-input-container>
+          <md-input-container>
+            <label> Content </label>
+            <input type='text' ng-model='vm.editingPost.body'>
+          </md-input-container>
+          <md-button type='submit' class='md-raised' > Edit </md-button>
+          <md-button type='button' class='md-raised' ng-click = "showEdit = false;"> Cancel </md-button>
       </form>
         </div>
     </md-list-item>

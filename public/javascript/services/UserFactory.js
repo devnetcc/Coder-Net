@@ -116,7 +116,7 @@
       console.log(celebrityId); //profile you follow
       console.log(followerID); //the follower
       var q = $q.defer();
-      $http.delete('/api/users/unfollowProfile/' + celebrityId, followerID).then(function(res) {
+      $http.put('/api/users/unfollowProfile/' + celebrityId, followerID).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;

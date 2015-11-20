@@ -84,11 +84,11 @@
       console.log('awww!');
       // No support. Use a fallback such as browser cookies or store on the server.
     }
-    vm.unFollowProfile = function() {
-      UserFactory.unFollowProfile($stateParams.id, vm.profile)
+    vm.unFollowProfile = function(id) {
+      UserFactory.unFollowProfile($stateParams.id, vm.status)
       .then(function(res) {
         console.log(res);
-        vm.following.splice(vm.following.indexOf(followers),1);
+        vm.profile.followers.splice(vm.user.followers.indexOf(following),1);
       });
     };
 
