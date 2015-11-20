@@ -17,9 +17,9 @@ require('./models/User');
 // require('./models/inbox');
 require('./config/passport');
 
-mongoose.connect("mongodb://localhost/DevNet", function (err) {
-	if(err) return console.log("Error database");
-	console.log("Database Connected");
+mongoose.connect("mongodb://localhost/DevNet", function(err) {
+  if (err) return console.log("Error database");
+  console.log("Database Connected");
 });
 
 
@@ -33,14 +33,21 @@ app.use(express.static(__dirname + '/bower_components'));
 //we want to render html files
 app.set('view engine', 'html');
 app.set('view options', {
-	layout: false
+  layout: false
 });
 
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
 // app.use(session({ secret: 'mysecret' })); //add for GithubStrategy
-app.use(session({ secret: 'session secret key',cookie: { secure: false } }));
+app.use(session({
+  secret: 'session secret key',
+  cookie: {
+    secure: false
+  }
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -56,7 +63,7 @@ var authRoutes = require('./routes/authRoutes');
 
 //on homepage load, render the index page
 app.get('/', function(req, res) {
-	res.render('index');
+  res.render('index');
 });
 
 //API
@@ -70,6 +77,6 @@ app.use('/api/auth', authRoutes);
 
 
 var server = app.listen(port, function() {
-	var host = server.address().address;
-	console.log('Example app listening at http://localhost:' + port);
+  var host = server.address().address;
+  console.log('Example app listening at http://localhost:' + port);
 });

@@ -70,13 +70,6 @@ router.post('/reblog/:id', auth,function(req,res,next){
 });
 });
 
-// router.get('/:id', function(req, res, next){
-//   ProfilePost.find({createdBy: req.params.id}, function(err, result){
-//     if(err) {return next(err);}
-//     if(!result) {return next({err: "Error finding post by that user ID"});}
-//     res.send(result);
-//   });
-// });
 
 //get call for all the posts - home page.
 router.get('/', function(req, res, next){

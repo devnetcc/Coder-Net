@@ -11,7 +11,6 @@
      vm.status = UserFactory.status;
      vm.user = {};
      vm.post = {};
-    //  vm.colors = ['#baab75','#a5b5d5','#b946ca','#af80ab','#ffd751', '#84fddf', '#86b8ff', '#448bbf' ,'#cab8ff', '#124eff', '#f99a20','#91ba00', '#d1a3a3','#8e7979'];
     vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80'];
 
 // if(vm.profile.profileFBlink){
@@ -210,18 +209,6 @@ vm.uploadPic = function(){
   		vm.profilePosts.splice(vm.profilePosts.indexOf(postID), 1);
   		});
   };
-
-  // vm.upvote = function(post){
-  // HomeFactory.upvote(post.id, vm.status)
-  // //post.upvotes += 1;
-  // }
-  //
-  // vm.downvote = function(post) {
-  // HomeFactory.downvote(post.id, vm.status)
-  // // post.upvotes -= 1;
-  // }
-
-
 
 	}
 })();

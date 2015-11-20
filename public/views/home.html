@@ -30,9 +30,9 @@
         <h2 >  {{p.title}} </h2>
         <h4 ng-bind-html="p.body"></h4>
         <div layout>
-          <md-button class="zmdi zmdi-thumb-down zmdi-hc-2x" ng-click="vm.downvote(p)"> </md-button>
-          <md-button class="zmdi zmdi-thumb-up zmdi-hc-2x" ng-click="vm.upvote(p)"> </md-button>
-          <md-button class="zmdi zmdi-plus-circle zmdi-hc-2x" ng-click="vm.followOnPost(p);"></md-button>
+          <md-button class="zmdi zmdi-thumb-down zmdi-hc-2x" ng-click="vm.downvote(p)" aria-label="down"> </md-button>
+          <md-button class="zmdi zmdi-thumb-up zmdi-hc-2x" ng-click="vm.upvote(p)" aria-label="up"> </md-button>
+          <md-button class="zmdi zmdi-plus-circle zmdi-hc-2x" ng-click="vm.followOnPost(p);" aria-label="follow"></md-button>
         <h5> By: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
       </div>
       <md-button class="md-raised" ng-click="p.reblog = !p.reblog">Reblog</md-button>

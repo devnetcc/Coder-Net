@@ -7,8 +7,6 @@ var ForumPostSchema = new mongoose.Schema({
  date: Date,
  createdBy: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
  comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}]
- //tags: [],
- //votes: Number
 });
 
 mongoose.model('ForumPost', ForumPostSchema);

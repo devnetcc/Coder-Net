@@ -46,32 +46,4 @@ router.get('/:id', function(req, res, next) {
 });
 
 
-
-
-
-// router.post('/', auth, function(req, res, next) {
-//   console.log(comment);
-//   var comment = new Comment(req.body);
-//   console.log(comment);
-//   comment.createdBy = req.payload._id;
-//   comment.date = new Date();
-//   comment.save(function(err,result){
-//     if(err) return next(err);
-//   if(!result) return next({err: "Couldn't find a comment with that id"});
-//   });
-// res.send();
-// });
-
-
-// router.get('/', function(req, res, next) {
-//   console.log(req);
-//   Comment.find({}, function(err , result) {
-//     if(err) return next (err);
-//     if(!result) return next(err);
-//   });
-//   res.send();
-// });
-
-
-
 module.exports = router;
