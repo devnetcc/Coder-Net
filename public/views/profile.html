@@ -3,6 +3,10 @@
 <!-- <div ng-controller="ProfileController as vm" class="bodyColor" style= "margin-left:150px; margin-right: 150px;"> -->
 
   <h5 style="text-align: center"> Profile</h5>
+  <div style='float:right;margin-right:75px;margin-top:10px;'>
+    <h3 style="margin-left:25px">Ranking</h3>
+    <img src=' {{vm.profile.badge}}'>
+  </div>
 
   <div>
         <!-- Profile Tagline -->
@@ -63,6 +67,7 @@
 </div>
 
 
+
             <!-- Post Display and edit -->
 <md-content style="background-color:{{vm.profile.color}};">
   <md-list>
@@ -76,6 +81,8 @@
         <md-button class="zmdi zmdi-edit" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
         <md-button class="zmdi zmdi-delete" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
         <hr style="width:500px;">
+
+            <!-- Editting Form -->
       <form ng-show = 'showEdit' style="margin-top:70px;margin-bottom:100px;padding:30px;background-color:white;" ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
           <md-input-container>
             <label> Title </label>

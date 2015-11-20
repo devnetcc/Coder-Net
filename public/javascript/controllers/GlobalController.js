@@ -35,6 +35,7 @@
     vm.register = function() {
       UserFactory.register(vm.user).then(function() {
         $state.go('Home');
+        // alert('Please check your email to verify before logging in!');
       });
     };
 
@@ -81,6 +82,7 @@
           console.log(res);
           vm.profile.followers.splice(vm.user.followers.indexOf(following), 1);
         });
+
     };
 
     vm.closeAndGo = function(page, id) {

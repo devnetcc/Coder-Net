@@ -49,7 +49,9 @@ router.get('/', function(req,res,next){
 
 //show a particular forum post on a single page
 router.get('/forumPost/:id', function(req,res,next){
-  ForumPost.findOne({_id: req.params.id}, function(err, result) {
+  ForumPost.findOne({_id: req.params.id})
+  .populate('createdBy')
+    .exec(function(err, result) {
     if(err) return next(err);
     if(!result) return next("Could not find that post");
     res.send(result);
@@ -58,7 +60,9 @@ router.get('/forumPost/:id', function(req,res,next){
 
 //get forum posts by topic
 router.get('/getOne/:topic', function(req,res,next){
-  ForumPost.find({channel: req.params.topic}, function(err,result){
+  ForumPost.find({channel: req.params.topic})
+  .populate('createdBy')
+    .exec(function(err,result){
     if(err) return next(err);
     res.send(result);
   });

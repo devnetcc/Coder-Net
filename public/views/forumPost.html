@@ -18,7 +18,7 @@
   <label>Add a comment...</label>
 <input  ng-model="vm.newComment.body"></input>
 </md-input-container>
-<md-button ng-click='vm.postComments()' style="padding-bottom: 50px"> Post Comment </md-button>
+<md-button ng-click='vm.postComments({id: vm.apost._id})' style="padding-bottom: 50px"> Post Comment </md-button>
 </div>
 <div ng-repeat="c in vm.comments">
   <h5>{{c.createdBy.name | firstLetterFilter}} {{c.createdBy.lastName | firstLetterFilter}}: </h5><h4>{{c.body | firstLetterFilter}}</h4>

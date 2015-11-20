@@ -10,20 +10,22 @@
     vm.fpost = {};
 
 
-    if ($stateParams.id) {
-      ForumFactory.getPostById($stateParams.id).then(function(res) {
-        vm.apost = res;
-      });
-    }
+// ForumFactory.getAllPost().then(function(res){
+// 							vm.forumPosts = res;
+// });
+if ($stateParams.id){
+ForumFactory.getPostById($stateParams.id).then(function(res){
+	vm.apost = res;
+});
+}
 
-    vm.cancelEdit = function() {
-      ForumFactory.getPostById($stateParams.id).then(function(res) {
-        vm.apost = res;
-        $state.go("ForumPost", {
-          id: $stateParams.id
-        });
-      });
-    };
+vm.cancelEdit = function(){
+  ForumFactory.getPostById($stateParams.id).then(function(res){
+    console.log(res);
+  	vm.apost = res;
+    $state.go("ForumPost", {id: $stateParams.id});
+  });
+};
 
     ForumFactory.startFPost($stateParams.id).then(function(res) {
       vm.epost = res;
@@ -57,23 +59,26 @@
     };
     // ---------------------
 
-    vm.postComments = function() {
-      ForumFactory.postComments(vm.newComment, $stateParams.id).then(function(res) {
-        vm.comments.push(vm.newComment);
-        vm.newComment = {};
-        $state.go('ForumPost', {
-          id: $stateParams.id
-        });
-      });
-    };
 
-    vm.showComments = function() {
-      ForumFactory.showComments($stateParams.id).then(function(res) {
-        vm.comments = res;
-        // $state.go('ForumPost', {id: $stateParams.id});
-      });
-    };
-    vm.showComments();
+vm.postComments = function(){
+  ForumFactory.postComments(vm.newComment, $stateParams.id).then(function(res){
+    console.log($stateParams); //postID
+    console.log(vm.newComment); //comment body
+    vm.comments.push(vm.newComment);
+    vm.newComment = {};
+    $state.go('ForumPost', {id: $stateParams.id});
+  });
+};
+
+vm.showComments = function(){
+  ForumFactory.showComments($stateParams.id).then(function(res){
+    console.log($stateParams); //postID
+    console.log(res); //arr of all comments
+    vm.comments = res;
+  // $state.go('ForumPost', {id: $stateParams.id});
+  });
+};
+vm.showComments();
 
   }
 

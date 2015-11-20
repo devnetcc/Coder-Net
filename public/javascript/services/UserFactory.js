@@ -111,11 +111,11 @@
         });
       return q.promise;
     };
-    o.unFollowProfile = function(celebrityId, followerID) {
-      console.log(celebrityId); //profile you follow
+    o.unFollowProfile = function(profileId, followerID) {
+      console.log(profileId); //profile you follow
       console.log(followerID); //the follower
       var q = $q.defer();
-      $http.put('/api/users/unfollowProfile/' + celebrityId, followerID).then(function(res) {
+      $http.put('/api/users/unfollowProfile/' + profileId , followerID).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;
