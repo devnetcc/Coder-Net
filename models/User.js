@@ -46,7 +46,6 @@ profileTWlink: String,
 profileGHlink: String,
 profileLKlink: String,
 profilePosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ProfilePost'}],
->>>>>>> 3264b19cb6db450be6463bc77ddab4d284f780a7
 forumPosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ForumPost'}],
 comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
 followers: [{
