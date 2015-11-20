@@ -11,10 +11,7 @@
 
 
     if ($stateParams.id) {
-      console.log('forumcontroller');
-      // vm.apost = {};
       ForumFactory.getPostById($stateParams.id).then(function(res) {
-        console.log(res);
         vm.apost = res;
       });
     }
@@ -54,13 +51,9 @@
     };
 
     vm.deleteFPost = function(fpost) {
-      ForumFactory.deleteFPost(fpost._id)
-        .then(function() {
-          // console.log("Made it back to controller. about to splice!");
-          vm.forumPosts.splice(vm.forumPosts.indexOf(fpost), 1);
-          $state.go('Forums');
-
-        });
+      vm.forumPosts.splice(vm.forumPosts.indexOf(fpost), 1);
+      ForumFactory.deleteFPost(fpost._id);
+      $state.go('Forums');
     };
     // ---------------------
 

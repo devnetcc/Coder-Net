@@ -13,76 +13,6 @@
      vm.post = {};
     vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80'];
 
-// if(vm.profile.profileFBlink){
-//   vm.profile.profileFBlink = true;
-// }
-// if(vm.profile.profileLKlink){
-//   vm.profile.profileLKlink = true;
-// }
-
-
-//
-//     // fb links
-//     vm.nofaceLink; // false = hides remove button / true = shows remove button
-//     vm.yesfaceLink; // false = hides link from page / true = shows link on page
-//     vm.fbbtn; // true = hides add button / false = shows add button
-//
-//     // linkedin links
-//     vm.nolinLink = true;
-//     vm.yesLinLink = true;
-//     vm.lkbtn = true;
-//
-//     // twitter links
-//     vm.notwitLink = true;
-//     vm.yesTwitLink = true;
-//     vm.twbtn = true;
-//
-//     // Git links
-//     vm.yesGitLink = true;
-//     vm.nogitLink = true;
-//     vm.gtbtn = true;
-//     //  vm.profilePosts = {};
-//
-//
-// vm.showfblink = function() {
-//   console.log('show up');
-//   vm.nofaceLink = true; // false = hides remove button / true = shows remove button
-//   vm.yesfaceLink = true; // false = hides link from page / true = shows link on page
-//   vm.fbbtn = true; // true = hides add button / false = shows add button
-// }
-//
-// vm.NOfblink = function() {
-//   vm.nofaceLink = false;
-//   vm.yesfaceLink = false;
-//   vm.fbbtn = false;
-// }
-// // -------------------------
-// vm.showlklink = function() {
-//
-// }
-// vm.NOlklink = function() {
-//
-// }
-// // -------------------------
-// vm.showtwlink = function() {
-//
-// }
-// vm.NOtwlink = function() {
-//
-// }
-// // -------------------------
-// vm.showghlink = function() {
-//
-// }
-// vm.NOghlink = function() {
-//
-// }
-// // -------------------------
-
-
-
-
-
 ProfileFactory.getProfile($stateParams.id).then(function(res){
 	vm.profile = res;
   console.log(vm.profile.email + "1");
@@ -209,6 +139,48 @@ vm.uploadPic = function(){
   		vm.profilePosts.splice(vm.profilePosts.indexOf(postID), 1);
   		});
   };
+
+
+      vm.upvote = function(post) {
+        if (post.creatorId == vm.status._id) {
+          alert("You cannot vote for your own posts!");
+          return;
+        } else {
+          if (post.upvotes.indexOf(vm.status._id) != -1) {
+            alert("You have voted for this post before!");
+            return;
+          } else {
+            var index = post.downvotes.indexOf(vm.status._id);
+            if (index != -1) {
+              post.downvotes.splice(index, 1);
+            }
+            HomeFactory.upvote(post._id, vm.status._id);
+          }
+        }
+      };
+
+
+      vm.downvote = function(post) {
+        if (post.creatorId == vm.status._id) {
+          alert("You cannot vote for your own posts!");
+          return;
+        } else {
+          if (post.downvotes.indexOf(vm.status._id) != -1) {
+            alert("You have voted for this post before!");
+            return;
+          } else {
+            var index = post.upvotes.indexOf(vm.status._id);
+            if (index != -1) {
+              post.upvotes.splice(index, 1);
+            }
+            HomeFactory.downvote(post._id, vm.status._id);
+          }
+        }
+      };
+
+
+
+
 
 	}
 })();

@@ -56,8 +56,6 @@
           return;
         } else {
           var index = post.downvotes.indexOf(vm.status._id);
-          console.log(index);
-          console.log(vm.status._id);
           if (index != -1) {
             post.downvotes.splice(index, 1);
           }
