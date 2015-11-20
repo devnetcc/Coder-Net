@@ -96,6 +96,7 @@ router.put('/unfollowProfile/:id',function(req, res, next) {
 	console.log(req.params); //user Id Obj
 	User.update({_id: req.body._id},{$pull: {following: {celebrityId: req.params.id}}}, function(err, result) {
 	console.log(result); //null
+	console.log(req.body._id);
 		if(err) return next(err);
 		if(!result) return next(err);
  // 	result.remove({_id: req.params.id}, function(err, result) {

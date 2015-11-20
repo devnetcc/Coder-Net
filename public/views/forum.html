@@ -1,6 +1,7 @@
 <div ng-controller="ForumController as vm" class="bodyColor">
 
 <h1 style="text-align:center"> Forum Channels </h1>
+<div><img style='min-width:100%;margin-top:-140px;margin-bottom:25px;' src="http://www.cpd-india.com/images/slider-image/php-banner.jpg"></div>
 <div style="text-align:center">
 <md-container><md-button class="md-primary"ui-sref="CreateForumPost">Create a Forum Post</md-button></md-container>
 </div>
@@ -15,7 +16,7 @@
       <md-tab-body>
         <div layout="column" ng-repeat="p in vm.topicPosts" >
               <div style="padding-left:60px"class="md-list-item-text" style="padding:10px;">
-                <h4 ui-sref="ForumPost({id: p._id})" >{{p.title | firstLetterFilter}}</h4> <h5>Posted by: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
+                <h4 ui-sref="ForumPost({id: p._id})" >{{p.title | firstLetterFilter}}</h4> <h5>Posted by: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{vm.topicPosts.date | dateFilter}}</h5>
               </div>
               <md-divider ng-if="!$last" style="padding: 5px"></md-divider>
         </div>

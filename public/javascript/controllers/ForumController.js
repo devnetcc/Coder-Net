@@ -19,13 +19,14 @@ if ($stateParams.id){
 console.log('forumcontroller');
   // vm.apost = {};
 ForumFactory.getPostById($stateParams.id).then(function(res){
-  console.log(res);
+  console.log(res.createdBy);
 	vm.apost = res;
 });
 }
 
 vm.cancelEdit = function(){
   ForumFactory.getPostById($stateParams.id).then(function(res){
+    console.log(res);
   	vm.apost = res;
     $state.go("ForumPost", {id: $stateParams.id});
   });
@@ -67,6 +68,8 @@ vm.deleteFPost = function(fpost){
 
 vm.postComments = function(){
   ForumFactory.postComments(vm.newComment, $stateParams.id).then(function(res){
+    console.log($stateParams); //postID
+    console.log(vm.newComment); //comment body
     vm.comments.push(vm.newComment);
     vm.newComment = {};
     $state.go('ForumPost', {id: $stateParams.id});
@@ -75,6 +78,8 @@ vm.postComments = function(){
 
 vm.showComments = function(){
   ForumFactory.showComments($stateParams.id).then(function(res){
+    console.log($stateParams); //postID
+    console.log(res); //arr of all comments
     vm.comments = res;
   // $state.go('ForumPost', {id: $stateParams.id});
   });
