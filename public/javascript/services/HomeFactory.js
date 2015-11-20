@@ -14,6 +14,18 @@ o.postPost = function(post,creator) {
  return q.promise;
 };
 
+o.reblog = function( post, postcontent){
+  console.log("made it to the factory");
+  console.log(post + " post");
+  console.log(postcontent + " post content");
+  var q = $q.defer();
+  $http.post('/api/posts/reblog/'+post, postcontent)
+  .then(function(res){
+    console.log("made it back from routes");
+    q.resolve(res.data);
+  });
+  return q.promise;
+}
 
 o.deletePost = function(id) {
       var q = $q.defer();
