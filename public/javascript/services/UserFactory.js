@@ -30,35 +30,34 @@
 
     function urlBase64Decode(token) {
       // token = getToken();
-      if(token ===  undefined){
+      if (token === undefined) {
         // return false;
         return;
-      }
-      else {
-      var output = token.replace(/-/g, '+').replace(/_/g, '/');
-      switch (output.length % 4) {
-        case 0:
-          {
-            break;
-          }
-        case 2:
-          {
-            output += '==';
-            break;
-          }
-        case 3:
-          {
-            output += '=';
-            break;
-          }
-        default:
-          {
-            throw 'Illegal base64url string!';
-          }
-      }
+      } else {
+        var output = token.replace(/-/g, '+').replace(/_/g, '/');
+        switch (output.length % 4) {
+          case 0:
+            {
+              break;
+            }
+          case 2:
+            {
+              output += '==';
+              break;
+            }
+          case 3:
+            {
+              output += '=';
+              break;
+            }
+          default:
+            {
+              throw 'Illegal base64url string!';
+            }
+        }
 
-      return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
-    }
+        return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
+      }
     }
 
     o.register = function(user) {
@@ -70,22 +69,22 @@
     };
 
     o.forgot = function(user) {
-			var q = $q.defer() ;
-			$http.post('/api/reset/forgot', user).success(function(res) {
-				q.resolve() ;
-			}) ;
+      var q = $q.defer();
+      $http.post('/api/reset/forgot', user).success(function(res) {
+        q.resolve();
+      });
 
-			return q.promise ;
-		} ;
+      return q.promise;
+    };
 
     o.resetPassword = function(editedUser) {
-    var q = $q.defer() ;
-    $http.put('/api/reset/resetPassword/' , editedUser).success(
-      function(res) {
-        q.resolve(res) ;
-      }) ;
-    return q.promise ;
-  };
+      var q = $q.defer();
+      $http.put('/api/reset/resetPassword/', editedUser).success(
+        function(res) {
+          q.resolve(res);
+        });
+      return q.promise;
+    };
 
     o.login = function(user) {
       var q = $q.defer();
@@ -103,13 +102,13 @@
       removeUser();
     };
 
-    o.followOnProfile = function(celebrityId, followerObj){
+    o.followOnProfile = function(celebrityId, followerObj) {
       var q = $q.defer();
-      $http.put('/api/users/followOnProfile/' +celebrityId, followerObj)
-      .then(function(res){
-        console.log("came back from routes");
-        q.resolve(res.data);
-      });
+      $http.put('/api/users/followOnProfile/' + celebrityId, followerObj)
+        .then(function(res) {
+          console.log("came back from routes");
+          q.resolve(res.data);
+        });
       return q.promise;
     };
     o.unFollowProfile = function(profileId, followerID) {
@@ -120,21 +119,20 @@
         q.resolve(res.data);
       });
       return q.promise;
-    }
+    };
 
-    o.followOnPost = function(celerityId, followerObj){
+    o.followOnPost = function(celerityId, followerObj) {
       var q = $q.defer();
-      $http.put('/api/users/followOnPost/' +celerityId, followerObj)
-      .then(function(res){
-        q.resolve(res.data);
-      });
+      $http.put('/api/users/followOnPost/' + celerityId, followerObj)
+        .then(function(res) {
+          q.resolve(res.data);
+        });
       return q.promise;
     };
 
     function setUser() {
 
       var user = JSON.parse(urlBase64Decode(getToken().split('.')[1]));
-      console.log(user);
       o.status.name = user.name;
       o.status.userName = user.userName;
       o.status.lastName = user.lastName;
@@ -154,14 +152,14 @@
 
 
     function getAuth() {
-    var auth = {
-      headers: {
-        Authorization: "Bearer " +
-        localStorage.getItem("token")
-      }
-    };
-    return auth ;
-  }
+      var auth = {
+        headers: {
+          Authorization: "Bearer " +
+            localStorage.getItem("token")
+        }
+      };
+      return auth;
+    }
 
     if (getToken()) setUser();
 

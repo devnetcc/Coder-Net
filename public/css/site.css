@@ -1,6 +1,7 @@
 .bodyColor {
-	background: #fffdf0;
+	background: #dddfd4;
 }
+
 .logo {
   font-family: 'Quicksand', sans-serif;
   color: #ffffff;
@@ -245,4 +246,8 @@ md-sidenav {
 	width: 335px;
 min-width: 335px;
 max-width: 335px;
+}
+
+md-tabs.md-default-theme.md-primary, md-tabs.md-primary > md-tabs-wrapper {
+	background-color: #0d6666;
 }

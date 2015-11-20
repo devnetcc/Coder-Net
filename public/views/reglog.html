@@ -5,47 +5,45 @@
   <div ng-show="nav.isLogin" style="padding:100px">
     <form>
       <md-input-container>
-        <label>User Name</label>
-        <input type="text"  ng-model="nav.user.userName">
-      </md-input-container>
-      <md-input-container>
         <label>Email</label>
-        <input type="email"  ng-model="nav.user.email">
+        <input type="email" ng-model="nav.user.email">
       </md-input-container>
       <md-input-container>
         <label>Password</label>
-        <input type="password"  ng-model="nav.user.password">
+        <input type="password" ng-model="nav.user.password">
       </md-input-container>
     </form>
 
-<br>
-<br>
-<br>
-<br>
+    <br>
+    <br>
+    <br>
+    <br>
 
-<content>
-  <center>
-          <div class="container">
-            <ul class="social">
-              <li class="facebook"><a href="/api/auth/facebook" class="entypo-facebook"></a></li>
-              <li class="twitter"><a href="/api/auth/twitter" class="entypo-twitter"></a></li>
-              <li class="login"><a ng-click= "nav.login()" class=""> Login </a></li>
-              <li class="register"><a ng-click="nav.isLogin = false;" class=""> Register</a></li>
-              <li class="linked-in"><a href="api/auth/linkedin" class="entypo-linkedin"></a></li>
-            </ul>
-          </div>
-        </center>
+    <content>
+      <center>
+        <div class="container">
+          <ul class="social">
+            <li class="facebook">
+              <a href="/api/auth/facebook" class="entypo-facebook"></a>
+            </li>
+            <li class="twitter">
+              <a href="/api/auth/twitter" class="entypo-twitter"></a>
+            </li>
+            <li class="login"><a ng-click="nav.login()" class=""> Login </a></li>
+            <li class="register"><a ng-click="nav.isLogin = false;" class=""> Register</a></li>
+            <li class="linked-in">
+              <a href="api/auth/linkedin" class="entypo-linkedin"></a>
+            </li>
+          </ul>
+        </div>
+      </center>
     </content>
-</div>
+  </div>
 
 
   <!-- Show the Register Form -->
-  <div ng-show="!nav.isLogin"  style="padding:100px">
+  <div ng-show="!nav.isLogin" style="padding:100px">
     <form>
-      <md-input-container>
-        <label>User Name</label>
-        <input ng-model="nav.user.userName">
-      </md-input-container>
       <md-input-container>
         <label>Name</label>
         <input ng-model="nav.user.name">
@@ -55,31 +53,41 @@
         <input ng-model="nav.user.lastName">
       </md-input-container>
       <md-input-container>
+        <label>User Name</label>
+        <input ng-model="nav.user.userName">
+      </md-input-container>
+      <md-input-container>
         <label>Email</label>
-        <input type="email"  ng-model="nav.user.email">
+        <input type="email" ng-model="nav.user.email">
       </md-input-container>
       <md-input-container>
         <label>Password</label>
         <input type="password" ng-model="nav.user.password">
       </md-input-container>
     </form>
-  <br>
-  <br>
-  <br>
-  <br>
-  <content>
-    <center>
-            <div class="container">
-              <ul class="social">
-                <li class="facebook"><a href="/api/auth/facebook" class="entypo-facebook"></a></li>
-                <li class="twitter"><a href="/api/auth/twitter" class="entypo-twitter"></a></li>
-                <li class="login"><a ng-click="nav.isLogin = true;" class=""> Cancel </a></li>
-                <li class="register"><a ng-click="nav.register();"class=""> Register</a></li>
-                <li class="linked-in"><a href="api/auth/linkedin" class="entypo-linkedin"></a></li>
-              </ul>
-            </div>
-          </center>
-      </content>
+    <br>
+    <br>
+    <br>
+    <br>
+    <content>
+      <center>
+        <div class="container">
+          <ul class="social">
+            <li class="facebook">
+              <a href="/api/auth/facebook" class="entypo-facebook"></a>
+            </li>
+            <li class="twitter">
+              <a href="/api/auth/twitter" class="entypo-twitter"></a>
+            </li>
+            <li class="login"><a ng-click="nav.isLogin = true;" class=""> Cancel </a></li>
+            <li class="register"><a ng-click="nav.register();" class=""> Register</a></li>
+            <li class="linked-in">
+              <a href="api/auth/linkedin" class="entypo-linkedin"></a>
+            </li>
+          </ul>
+        </div>
+      </center>
+    </content>
   </div>
 
 </div>

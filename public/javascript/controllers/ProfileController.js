@@ -11,10 +11,7 @@
      vm.status = UserFactory.status;
      vm.user = {};
      vm.post = {};
-
     vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80', '#999'];
-
-
 
 
 
@@ -144,10 +141,6 @@ vm.uploadPic = function(){
   		vm.profilePosts.splice(vm.profilePosts.indexOf(postID), 1);
   		});
   };
-
-
-
-
 
 	}
 })();

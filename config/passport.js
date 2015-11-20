@@ -87,10 +87,8 @@ passport.use(new LinkedInStrategy({
 					newUser.linkedin.email = profile.emails[0].value;
 					newUser.email = newUser.linkedin.email ;
 
-					// newUser.linkedin.photo = profile.pictureUrls.values[0] ;
-					// newUser.pic = newUser.linkedin.photo;
-					console.log(profile);
-
+					newUser.linkedin.photo = profile.pictureUrls.values[0] ;
+					newUser.pic = newUser.linkedin.photo;
 
 					newUser.linkedin.profileUrl = profile.publicProfileUrl;
 					newUser.linkedinUrl = newUser.linkedin.profileUrl;
