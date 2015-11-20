@@ -1,6 +1,6 @@
 <div ng-controller="ForumController as vm" class="bodyColor">
   <form ng-submit="vm.createforumpost()" style="padding: 90px">
-
+    <h2 style="text-align:center">Create Forum Post</h2>
        <md-input-container >
           <label> Post Title</label>
           <input required ng-model="vm.fpost.title"></input>
@@ -15,14 +15,14 @@
               <md-option value="General">General</md-option>
               <md-option value="Job Board"> Job Board </md-option>
               <md-option value="Interview Prep"> Interview Prep </md-option>
-              <md-option value="Projects"> Code Questions</md-option>
-              <md-option value="Projects"> Meetups </md-option>
+              <md-option value="Code Questions"> Code Questions</md-option>
+              <md-option value="Meetups"> Meetups </md-option>
               <md-option value="Bootcamp Reviews"> Bootcamp Reviews </md-option>
             </md-select>
           </md-input-container>
             <div layout style="padding-top:50px">
             <md-button type="submit" class="md-raised">Create</md-button>
-            <md-button type="button" class="md-raised" ui-sref="Home">Cancel</md-button>
+            <md-button type="button" class="md-raised" ui-sref="Forums">Cancel</md-button>
           </div>
     </form>
 

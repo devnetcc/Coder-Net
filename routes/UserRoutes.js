@@ -89,6 +89,23 @@ router.put('/followOnProfile/:id', function(req,res,next){
 	});
 });
 
+
+console.log('before unfollow route');
+router.put('/unfollowProfile/:id',function(req, res, next) {
+	console.log(req.params.id); //user id
+	console.log(req.params); //user Id Obj
+	User.update({_id: req.body._id},{$pull: {following: {celebrityId: req.params.id}}}, function(err, result) {
+	console.log(result); //null
+		if(err) return next(err);
+		if(!result) return next(err);
+ // 	result.remove({_id: req.params.id}, function(err, result) {
+	// 	if(err) return next(err);
+	// 	if(!result) return next(err);
+	// })
+		res.send()
+	});
+});
+
 router.put('/followOnPost/:id', function(req,res,next){
 	//updates the folling array of the signed in user (the person who clicked the 'follow' button)
 	User.findOne({_id: req.body._id}, function(err,result){
