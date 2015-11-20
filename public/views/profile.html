@@ -79,6 +79,8 @@
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
         <md-button type="button" class="md-raised" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
         <hr style="width:500px;">
+
+            <!-- Editting Form -->
       <form ng-show = 'showEdit' style="margin-top:70px;margin-bottom:100px;padding:30px;background-color:white;" ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
           <md-input-container>
             <label> Title </label>
