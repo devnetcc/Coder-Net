@@ -80,9 +80,9 @@
 
             <!-- Post Display and edit -->
 <md-container >
-  <md-list style="background-color:{{vm.profile.color}};">
-    <md-list-item ng-repeat='p in vm.profile.profilePosts | orderBy:"-date"'>
-      <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:225px; margin-top:30px;background-color:white;height:185px;width:500px;'>
+  <md-list>
+    <md-list-item ng-repeat='p in vm.profilePosts | orderBy:"-date"'>
+      <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:225px; margin-top:30px;'>
         <h3> Title: {{p.title}}</h3>
         <h5> Content: {{p.body}}</h5>
         <h6> Posted On: {{p.date}}</h6>
@@ -90,7 +90,6 @@
         <md-button class="zmdi zmdi-thumb-up" ng-hide='showEdit' ng-click="vm.upvote(p)" aria-label="up"> </md-button>
         <md-button class="zmdi zmdi-edit" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
         <md-button class="zmdi zmdi-delete" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
-        <hr style="width:500px;">
 
             <!-- Editting Form -->
       <form ng-show = 'showEdit' style="margin-top:70px;margin-bottom:100px;padding:30px;background-color:white;" ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
@@ -109,5 +108,4 @@
     </md-list-item>
   </md-list>
 </md-container>
-</div>
 </div>
