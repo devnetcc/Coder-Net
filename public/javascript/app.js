@@ -1,9 +1,18 @@
 (function() {
 	'use strict';
-	angular.module('app', ['ui.router', 'ngMaterial','ui.bootstrap','720kb.socialshare','ui.tinymce','ngSanitize'])
+	angular.module('app', ['ui.router', 'ngMaterial','ui.bootstrap','720kb.socialshare','ui.tinymce','ngSanitize','ui-notification'])
 	.config(Config);
 
-	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
+	function Config($stateProvider, $urlRouterProvider, $httpProvider,NotificationProvider) {
+		NotificationProvider.setOptions({
+            delay: 10000,
+            startTop: 20,
+            startRight: 10,
+            verticalSpacing: 20,
+            horizontalSpacing: 20,
+            positionX: 'left',
+            positionY: 'bottom'
+						});
 		$stateProvider
 		.state('Home',{
 			url: '/home/:id',

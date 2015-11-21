@@ -3,7 +3,7 @@
   angular.module('app')
     .controller('ProfileController', ProfileController);
 
-	function ProfileController(ProfileFactory, HomeFactory, UserFactory, $state, $stateParams) {
+	function ProfileController(ProfileFactory, HomeFactory, UserFactory, $state, $stateParams, Notification) {
 
 		var vm = this;
 		 vm.profile = {};
@@ -15,12 +15,21 @@
      vm.post = {};
     vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80'];
     vm.profilePosts = [];
-    vm.defPic = true;
 
-if(!vm.profile.pic)
-  {
-    vm.defPic = false;
-  }
+
+// Notification.primary('Primary notification');
+vm.primary = function() {
+                 Notification('Message Sent!');
+             };
+// var msgcount = vm.profile.inmessage.length;
+// if(vm.profile.inmessage.length > msgcount){
+//   Notification('Message Sent!');
+//
+// }
+
+
+
+
 
 
 ProfileFactory.getProfile($stateParams.id).then(function(res){
@@ -153,6 +162,7 @@ vm.uploadPic = function(){
 vm.sendMsg = function(){
   UserFactory.sendMsg($stateParams.id, vm.person.inbox.message)
   .then(function(res){
+    vm.profile.msgcount++;
     // vm.mymessages = res;
     // $state.go("Profile({id: $stateParams.id})");
   })

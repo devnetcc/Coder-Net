@@ -96,7 +96,7 @@ router.get('/verify', function(req, res) {
     if (email === user.email) {
       // Now need to set isValidated to true.
       user.isValidated = true;
-
+      user.msgcount = 0;
       // Getting host from req.
       var host = req.get('host');
 

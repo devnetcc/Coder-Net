@@ -9,6 +9,7 @@ lastName: { type: String, lowercase: true, trim: true},
 email: { unique: true, type:String, lowercase: true, trim: true},
 isValidated: Boolean, // Checks if the user has been validated via email
 rand: Number,
+msgcount: Number,
 color: String,
 tagLine: String,
 create: Date,
