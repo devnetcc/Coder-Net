@@ -4,6 +4,7 @@
       <label>Message</label>
       <textarea ng-model="vm.person.inbox.message.body"></textarea>
     </md-input-container>
-    <md-button type="submit">Send</md-button>
+    <md-button type="submit" ng-click="vm.primary()">Send</md-button>
+    <!-- <button class="btn btn-primary" >Send</button> -->
   </form>
 </div>
