@@ -19,8 +19,8 @@ router.post('/register', function(req, res) {
   var smtpTransport = nodemailer.createTransport("SMTP", {
     service: "Gmail",
     auth: {
-      user: "pearlmcphee@gmail.com",
-      pass: "byqtpoc101"
+      user: "teamcodernet@gmail.com",
+      pass: "codernet1"
     }
   });
   var rand, mailOptions, host, link;

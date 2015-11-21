@@ -14,6 +14,8 @@
      vm.mymessages = {};
      vm.post = {};
     vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80'];
+    vm.profilePosts = [];
+    
 // Notification.primary('Primary notification');
 vm.primary = function() {
                  Notification('Message Sent!');
@@ -23,6 +25,9 @@ vm.primary = function() {
 //   Notification('Message Sent!');
 //
 // }
+
+
+
 
 
 ProfileFactory.getProfile($stateParams.id).then(function(res){
@@ -148,7 +153,7 @@ vm.uploadPic = function(){
 
   vm.deletePost = function(postID) {
   HomeFactory.deletePost(postID).then(function() {
-  		vm.profilePosts.splice(vm.profilePosts.indexOf(postID), 1);
+  		vm.profile.profilePosts.splice(vm.profile.profilePosts.indexOf(postID), 1);
   		});
   };
 

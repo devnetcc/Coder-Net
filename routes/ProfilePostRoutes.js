@@ -80,6 +80,7 @@ router.get('/', function(req, res, next){
 
 
 router.delete('/:id', function(req, res, next) {
+  console.log(req.params.id);
   ProfilePost.remove({_id: req.params.id}, function(err, result) {
       if(err) return next(err);
       res.send();
