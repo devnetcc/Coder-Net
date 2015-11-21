@@ -19,7 +19,8 @@
     o.deleteFPost = function(fpostID) {
       var q = $q.defer();
       $http.delete('/api/forum/' + fpostID)
-        .then(function() {
+        .then(function(res) {
+      console.log(res);
           q.resolve();
         });
       return q.promise;

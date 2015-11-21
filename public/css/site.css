@@ -46,25 +46,31 @@
 .footer-distributed .footer-right{
 	float: right;
 	margin-top: 6px;
+	margin-bottom: 60px;
 	max-width: 180px;
 	color: #ffffff;
 	font-weight: bold;
 	font-size: 14px;
+	width:30px;
+	padding-right:50px;
 }
 
-.footer-distributed .footer-right a{
+/*.footer-distributed .footer-right a{*/
 	display: inline-block;
 	width: 35px;
 	height: 35px;
 	background-color:  #33383b;
 	border-radius: 2px;
 
+
 	font-size: 23px;
 	color: #ffffff;
 	text-align: center;
 	line-height: 35px;
 
-	margin-left: 3px;
+
+
+	margin-left:3px;
 }
 
 

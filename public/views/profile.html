@@ -22,23 +22,24 @@
 
 
     <div layout row  style="margin-left:60px;margin-top:20px;margin-bottom:-40px;">
-    <div ng-show='vm.profile.profileFBlink'>
-      <a target='_blank'class="list-group-item" href="{{vm.profile.profileFBlink}}" target="_blank"><i class="zmdi zmdi-facebook" style="height:50px;width:50px;"></i></a></div>
+    <div style='margin: 5px;' ng-show='vm.profile.profileFBlink'>
+      <a target='_blank'class="list-group-item" href="{{vm.profile.profileFBlink}}" target="_blank"><i class="zmdi zmdi-facebook"  ></i></a></div>
 
-    <div ng-show='vm.profile.profileLKlink'>
-       <a target='_blank'class="list-group-item" href="{{vm.profile.profileLKlink}}" target="_blank"><i class="zmdi zmdi-linkedin-box" style="height:50px;width:50px;"></i></a></div>
+    <div style='margin: 5px;'ng-show='vm.profile.profileLKlink'>
+       <a target='_blank'class="list-group-item" href="{{vm.profile.profileLKlink}}" target="_blank"><i class="zmdi zmdi-linkedin-box" ></i></a></div>
 
-    <div ng-show='vm.profile.profileTWlink'>
-      <a target='_blank'class="list-group-item" href="{{vm.profile.profileTWlink}}" target="_blank"><i class="zmdi zmdi-twitter" style="height:50px;width:50px;"></i></a></div>
+    <div style='margin: 5px;'ng-show='vm.profile.profileTWlink'>
+      <a target='_blank'class="list-group-item" href="{{vm.profile.profileTWlink}}" target="_blank"><i class="zmdi zmdi-twitter" ></i></a></div>
 
-    <div ng-show='vm.profile.profileGHlink'>
-      <a target='_blank'class="list-group-item" href="{{vm.profile.profileGHlink}}" target="_blank"><i class="zmdi zmdi-github" style="height:50px;width:50px;"></i></a></div>
+    <div style='margin: 5px;'ng-show='vm.profile.profileGHlink'>
+      <a target='_blank'class="list-group-item" href="{{vm.profile.profileGHlink}}" target="_blank"><i class="zmdi zmdi-github" ></i></a></div>
     </div>
   </div>
 
 
             <!-- Update profile -->
     <md-button class="zmdi zmdi-edit" style='margin-left:50px;margin-top:35px;' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Edit Profile </md-button>
+
 
                     <!-- Follow -->
     <md-button class="zmdi zmdi-plus-circle-o" ng-click="vm.followOnProfile(p);" aria-label="follow"> Follow</md-button>
