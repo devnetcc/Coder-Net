@@ -21,7 +21,24 @@ userAt: String,
 userGoing: String,
 github: String,
 linkedinUrl: String,
-
+// inbox: [{
+  inmessage: [{
+    to: String,
+    from: String,
+    body: String,
+    sent: Date,
+    senderId: String,
+  }],
+// }],
+// outbox:[{
+  outmessage: [{
+    to: String,
+    from: String,
+    body: String,
+    recieved: Date,
+    recieverId: String,
+  // }]
+}],
 profilePosts:
 // [{type: mongoose.Schema.Types.ObjectId, ref: 'ProfilePost'}],
 [{
@@ -45,7 +62,7 @@ profileFBlink: String,
 profileTWlink: String,
 profileGHlink: String,
 profileLKlink: String,
-profilePosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ProfilePost'}],
+// profilePosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ProfilePost'}],
 forumPosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ForumPost'}],
 comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
 followers: [{
@@ -114,77 +131,7 @@ UserSchema.methods.generateJWT = function() {
  },  "CoderCamps"); //Add Passcode here
 };
 
-// UserSchema.methods.getTokens = function() {
-//   return localStorage.getItem('token');
-// };
-//
-// UserSchema.methods.urlBase64Decodes = function(str) {
-//   var output = str.replace(/-/g, '+').replace(/_/g, '/');
-//   switch (output.length % 4) {
-//     case 0: { break; }
-//     case 2: { output += '=='; break; }
-//     case 3: { output += '='; break; }
-//     default: {
-//       throw 'Illegal base64url string!';
-//     }
-//   }
-//   return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
-// };
-//
-// function getToken() {
-//   return localStorage.getItem('token');
-// }
-//
-// function setToken(token) {
-//   return localStorage.setItem('token', token);
-// }
-//
-// function removeToken() {
-//   return localStorage.removeItem('token');
-// }
-//
-// function urlBase64Decode(token) {
-//   // token = getToken();
-//   if(token ===  undefined){
-//     // return false;
-//     return;
-//   }
-//   else {
-//   var output = token.replace(/-/g, '+').replace(/_/g, '/');
-//   switch (output.length % 4) {
-//     case 0:
-//       {
-//         break;
-//       }
-//     case 2:
-//       {
-//         output += '==';
-//         break;
-//       }
-//     case 3:
-//       {
-//         output += '=';
-//         break;
-//       }
-//     default:
-//       {
-//         throw 'Illegal base64url string!';
-//       }
-//   }
-//
-//   return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
-// }
-// }
-//
-// // UserSchema.methods.setUsers = function(){
-// //   var user = JSON.parse(urlBase64Decode(getToken().split('.')[1]));
-// //   return {
-// //   name = this.name;
-// //   lastName = user.lastName;
-// //   pic = user.pic;
-// //   email = user.email;
-// //   _id = user._id;
-// // }
+
 
 
 mongoose.model('User', UserSchema);

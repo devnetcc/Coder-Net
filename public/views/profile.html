@@ -13,7 +13,6 @@
 
     <!-- Personal Links -->
   <div style="text-align:center;">
-  <!-- ----------------------------------------------------------------------------------------------- -->
 
     <div layout row  style="margin-left:60px;margin-top:20px;margin-bottom:-40px;">
     <div ng-show='vm.profile.profileFBlink'>
@@ -33,7 +32,9 @@
 
             <!-- Update profile -->
     <md-button class="md-raised" style='margin-left:50px;margin-top:35px;' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button>
-
+  <!-- send message -->
+  <md-button class="md-raised" ui-sref="Message({id: vm.profile._id})">Message</md-button>
+  <md-button class="md-raised" ui-sref="MessageCenter({id: vm.profile._id})">My Messages</md-button>
                     <!-- Follow -->
     <md-button class="md-raised" ng-click="nav.followOnProfile();">Follow</md-button><br>
     <md-button class="md-raised" ng-click="nav.unFollowProfile();">Un-Follow</md-button><br>

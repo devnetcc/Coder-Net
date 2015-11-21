@@ -1,7 +1,59 @@
 <div ng-controller="HomeController as vm" class="bodyColor">
 
   <h5 style="text-align: center"> Home Page </h5>
-
+  <h1 class="center" id="headline">
+  <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
+    Web Speech API</a> Demonstration</h1>
+<div id="info">
+  <p id="info_start">Click on the microphone icon and begin speaking.</p>
+  <p id="info_speak_now">Speak now.</p>
+  <p id="info_no_speech">No speech was detected. You may need to adjust your
+    <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+      microphone settings</a>.</p>
+  <p id="info_no_microphone" style="display:none">
+    No microphone was found. Ensure that a microphone is installed and that
+    <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+    microphone settings</a> are configured correctly.</p>
+  <p id="info_allow">Click the "Allow" button above to enable your microphone.</p>
+  <p id="info_denied">Permission to use microphone was denied.</p>
+  <p id="info_blocked">Permission to use microphone is blocked. To change,
+    go to chrome://settings/contentExceptions#media-stream</p>
+  <p id="info_upgrade">Web Speech API is not supported by this browser.
+     Upgrade to <a href="//www.google.com/chrome">Chrome</a>
+     version 25 or later.</p>
+</div>
+<div class="right">
+  <button id="start_button" onclick="startButton(event)">
+    start</button>
+</div>
+<div id="results">
+  <span id="final_span" class="final"></span>
+  <span id="interim_span" class="interim"></span>
+  <p>
+</div>
+<div class="center">
+  <div class="sidebyside" style="text-align:right">
+    <button id="copy_button" class="button" onclick="copyButton()">
+      Copy and Paste</button>
+    <div id="copy_info" class="info">
+      Press Control-C to copy text.<br>(Command-C on Mac.)
+    </div>
+  </div>
+  <div class="sidebyside">
+    <button id="email_button" class="button" onclick="emailButton()">
+      Create Email</button>
+    <div id="email_info" class="info">
+      Text sent to default email application.<br>
+      (See chrome://settings/handlers to change.)
+    </div>
+  </div>
+  <p>
+  <div id="div_language">
+    <select id="select_language" onchange="updateCountry()"></select>
+    &nbsp;&nbsp;
+    <select id="select_dialect"></select>
+  </div>
+</div>
 <!-- <div ng-controller="ProfilePostController as vm"> -->
 <div layout layout-align="center center" ng-show ='nav.status.name;'>
     <div flex="40" style="padding-bottom: 20px;">
@@ -21,7 +73,6 @@
 <md-divider ng-if="!$last" ></md-divider>
 <h5 style="text-align: center"> News Feed </h5>
 
-
 <md-content>
   <md-list style="padding-left: 70px">
 
@@ -33,6 +84,7 @@
           <md-button class="zmdi zmdi-plus-circle zmdi-hc-2x" ng-click="vm.followOnPost(p);"></md-button>
         <h5> By: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
       </div>
+
       <md-button class="md-raised" ng-click="p.reblog = !p.reblog">Reblog</md-button>
         <div uib-collapse="!p.reblog">
           <div class="well well-lg">
@@ -40,9 +92,10 @@
               <md-input-container layout-padding>
                 <label> Post Title</label>
                 <input ng-model="vm.repost.title" />
-              </md-input-container>
 
-              <textarea ui-tinymce ng-model="vm.repost.content"></textarea>
+              <textarea  ui-tinymce ng-model="vm.repost.content"></textarea>
+
+            </div>
               <br>
               <br>
               <md-button type="submit" class="md-raised" > Post </md-button>
@@ -86,5 +139,12 @@
   </md-list>
 </md-content>
 </div>
-
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<g:hangout
+   render="createhangout"
+   topic="cpp11"
+   hangout_type="moderated"
+   invites="[{ id : '103757504279751950811', invite_type : 'PROFILE' },
+       { id : 'pearlmcphee@gmail.com', invite_type : 'EMAIL' }]">
+</g:hangout>
 </div>

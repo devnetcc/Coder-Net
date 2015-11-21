@@ -11,6 +11,27 @@ var auth = jwt({
 	userProperty: 'payload',
 	secret: 'CoderCamps'
 });
+var GitHubApi = require("github");
+
+var github = new GitHubApi({
+    // required
+    version: "3.0.0",
+    // optional
+    debug: true,
+    protocol: "https",
+    host: "api.github.com", // should be api.github.com for GitHub
+     // for some GHEs; none for GitHub
+    timeout: 5000,
+    headers: {
+        "user-agent": "My-Cool-GitHub-Appdsadajfskhasdlhkasdflfdh" // GitHub is happy with a unique user agent
+    }
+});
+
+// github.repos.getAll({
+//     user: "pearl1991"
+// }, function(err, res) {
+//     console.log(JSON.stringify(res));
+// });
 
 router.param('id', function(req, res, next, id) {
   User.findOne({_id: id})
@@ -174,7 +195,43 @@ router.put('/:id', function(req,res, next){
     });
 
 
+router.post('/messages/:id', auth, function(req,res,next){
+	console.log(req.user);
+	// User.findOne({_id: req.params._id}, function(err,result){
+	// 	console.log(result);
+	// 	if(err) return next(err);
+	// 	if(!result) return next({err: "Couldnt find that user for updating!"});
+			var usersname = req.user.name;
+			var userId = req.user._id
+		req.user.update({$push: {inmessage:{
+			body: req.body.body,
+			to: req.user.name,
+			from: req.payload.name,
+			sent:new Date(),
+			senderId: req.payload._id,
+		}}},
+			function(err,result){
+				if(err) return next(err);
+				if(!result) return next ({err: "That user wasnt found for updating!"});
+			});
 
+	User.update({_id: req.payload._id},{$push: {outmessage: {
+		body: req.body.body,
+		from: req.payload.name,
+		to: usersname,
+		recieved:new Date(),
+		recieverId: userId,
+	}}},
+		 function(err, result){
+		if(err) return next(err);
+		if(!result) return next ({err: "That user wasnt found for updating!"});
+		res.send(result);
+
+	});
+
+
+	// });
+})
 
 /*-----------THIRD PARTY LOGINS----------------------------
 ---------------------------------------------------------*/

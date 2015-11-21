@@ -131,6 +131,16 @@
       return q.promise;
     };
 
+    o.sendMsg = function(celebrityId, message){
+      var q = $q.defer();
+      console.log(celebrityId);
+      $http.post('/api/users/messages/' +celebrityId, message)
+      .then(function(res){
+        q.resolve(res.data);
+      });
+      return q.promise;
+    };
+
     function setUser() {
 
       var user = JSON.parse(urlBase64Decode(getToken().split('.')[1]));
