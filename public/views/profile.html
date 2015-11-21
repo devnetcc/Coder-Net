@@ -69,8 +69,8 @@
 
 
             <!-- Post Display and edit -->
-<md-content style="background-color:{{vm.profile.color}};">
-  <md-list>
+<md-container >
+  <md-list style="background-color:{{vm.profile.color}};">
     <md-list-item ng-repeat='p in vm.profile.profilePosts | orderBy:"-date"'>
       <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:225px; margin-top:30px;background-color:white;height:185px;width:500px;'>
         <h3> Title: {{p.title}}</h3>
@@ -98,6 +98,6 @@
         </div>
     </md-list-item>
   </md-list>
-</md-content>
+</md-container>
 </div>
 </div>

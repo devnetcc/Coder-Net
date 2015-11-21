@@ -10,6 +10,8 @@
     vm.user = {};
     vm.luser = {};
     vm.status = UserFactory.status;
+    vm.followers = [];
+    vm.following = {};
 
 
     vm.forgot = function() {
@@ -79,8 +81,8 @@
     vm.unFollowProfile = function(id) {
       UserFactory.unFollowProfile($stateParams.id, vm.status)
         .then(function(res) {
-          console.log(res);
-          vm.profile.followers.splice(vm.user.followers.indexOf(following), 1);
+          console.log(vm.followers);
+          vm.followers.splice(vm.followers.indexOf(), 1);
         });
 
     };
