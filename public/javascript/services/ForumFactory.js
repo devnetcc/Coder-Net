@@ -19,7 +19,8 @@
     o.deleteFPost = function(fpostID) {
       var q = $q.defer();
       $http.delete('/api/forum/' + fpostID)
-        .then(function() {
+        .then(function(res) {
+      console.log(res);
           q.resolve();
         });
       return q.promise;
@@ -42,9 +43,9 @@
     //   return q.promise;
     // };
 
-    o.getPostsByTopic = function(topic){
+    o.getPostsByTopic = function(topic) {
       var q = $q.defer();
-      $http.get('/api/forum/getOne/'+ topic).then(function(res) {
+      $http.get('/api/forum/getOne/' + topic).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;
@@ -70,15 +71,31 @@
 
     o.postComments = function(comment, postId) {
       var q = $q.defer();
-      $http.post('/api/comments/' + postId , comment).then(function(res){
-      q.resolve(res.data);
-    });
-    return q.promise;
-  };
+      $http.post('/api/comments/' + postId, comment).then(function(res) {
+        q.resolve(res.data);
+      });
+      return q.promise;
+    };
 
     o.showComments = function(postId) {
       var q = $q.defer();
       $http.get('/api/comments/' + postId).then(function(res) {
+        q.resolve(res.data);
+      });
+      return q.promise;
+    };
+
+    o.upvote = function(postID) {
+      var q = $q.defer();
+      $http.put('/api/forum/upvote/' + postID).then(function(res) {
+        q.resolve(res.data);
+      });
+      return q.promise;
+    };
+
+    o.downvote = function(postID) {
+      var q = $q.defer();
+      $http.put('/api/forum/downvote/' + postID).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;

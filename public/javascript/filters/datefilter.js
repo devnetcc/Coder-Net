@@ -11,9 +11,3 @@ function dateFilter (){
 };
 }
 })();
-
-
-// vm.allPosts = vm.allPosts.map(function(item){
-// 	item.formattedDate =  new Date(item.date);
-// 	item.formattedDate = item.formattedDate.toLocaleString();
-// 	return item;

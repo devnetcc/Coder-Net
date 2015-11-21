@@ -5,10 +5,11 @@ var ForumPostSchema = new mongoose.Schema({
  channel: String,
  body: {required: true, type: String},
  date: Date,
+ creatorId: String,
  createdBy: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
- comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}]
- //tags: [],
- //votes: Number
+ comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
+ upvotes: [String],
+ downvotes: [String]
 });
 
 mongoose.model('ForumPost', ForumPostSchema);

@@ -6,7 +6,6 @@ var CommentSchema = new mongoose.Schema({
  date: Date,
  // forumPost: [{type: mongoose.Schema.Types.String, ref:'ForumPost'}],
  forumPost: String
- //votes: Number
 });
 
 mongoose.model('Comment', CommentSchema);

@@ -23,6 +23,7 @@ router.param('id', function(req, res, next, id){
 router.post('/',auth, function(req,res,next){
   var post = new ForumPost(req.body);
   post.createdBy = req.payload;
+  post.creatorId = req.payload._id;
   User.findOne({email: req.payload.email}, function(err,result){
           if(err) return next(err);
       if(!result) return next({err: "Couldnt find a user with that id"});
@@ -49,7 +50,9 @@ router.get('/', function(req,res,next){
 
 //show a particular forum post on a single page
 router.get('/forumPost/:id', function(req,res,next){
-  ForumPost.findOne({_id: req.params.id}, function(err, result) {
+  ForumPost.findOne({_id: req.params.id})
+  .populate('createdBy')
+    .exec(function(err, result) {
     if(err) return next(err);
     if(!result) return next("Could not find that post");
     res.send(result);
@@ -58,7 +61,9 @@ router.get('/forumPost/:id', function(req,res,next){
 
 //get forum posts by topic
 router.get('/getOne/:topic', function(req,res,next){
-  ForumPost.find({channel: req.params.topic}, function(err,result){
+  ForumPost.find({channel: req.params.topic})
+  .populate('createdBy')
+    .exec(function(err,result){
     if(err) return next(err);
     res.send(result);
   });
@@ -89,9 +94,26 @@ router.delete('/:id', function(req,res,next){
   // console.log("I made it to the route file");
   ForumPost.remove({_id: req.params.id}, function(err,result){
     if(err) return next(err);
+    if(!result) return next(err);
   res.send();
 });
 });
+
+router.put('/upvote/:id', auth, function(req,res, next){
+  ForumPost.update({_id: req.params.id}, {$push: {upvotes: req.payload._id}, $pull: {downvotes: req.payload._id}}, function(err, result){
+    if (err) return next(err);
+    if (!result) return next ({err: "That post wasnt found for updating"});
+    res.send(result);
+    });
+  });
+
+  router.put('/downvote/:id', auth, function(req,res, next){
+    ForumPost.update({_id: req.params.id}, {$push: {downvotes: req.payload._id}, $pull: {upvotes: req.payload._id}}, function(err, result){
+      if (err) return next(err);
+      if (!result) return next ({err: "That post wasnt found for updating"});
+      res.send(result);
+      });
+    });
 
 
 

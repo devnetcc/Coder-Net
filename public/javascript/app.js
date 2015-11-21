@@ -63,13 +63,16 @@
 				.state('Forgot', {
 					url: '/forgot',
 					templateUrl: 'views/forgot.html'
-				}).state('Followers', {
+				})
+				.state('Followers', {
 					url: '/profile/followers/:id',
 					templateUrl: 'views/followers.html'
-				}).state('Following', {
+				})
+				.state('Following', {
 					url: '/profile/following/:id',
 					templateUrl: 'views/following.html'
-				}).state('Token', {
+				})
+				.state('Token', {
 					url: '/token/:token',
 					templateUrl: 'views/token.html'
 				});

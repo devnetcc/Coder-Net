@@ -16,8 +16,8 @@ var ProfilePostSchema = new mongoose.Schema({
    video: String,
    avi: String,
  }],
- //tags: [],
- //votes: Number
+ upvotes: [String],
+ downvotes: [String]
 });
 
 mongoose.model('ProfilePost', ProfilePostSchema);

@@ -1,6 +1,8 @@
 <div ng-controller="ForumController as vm" class="bodyColor">
 
+
 <h1 style="text-align:center"> Forum Channels </h1>
+<div><img style='min-width:100%;margin-top:-140px;margin-bottom:25px;' src="http://www.cpd-india.com/images/slider-image/php-banner.jpg"></div>
 <div style="text-align:center">
 <md-container><md-button class="md-primary"ui-sref="CreateForumPost">Create a Forum Post</md-button></md-container>
 </div>
@@ -9,15 +11,22 @@
 <div flex style="text-align:center;"><h2>Topics</h2></div>
 </div> -->
 
+
   <md-tabs class="md-primary">
-    <md-tab style="text-align:center; color:#32B2B2 margin:auto" ng-repeat="t in vm.topics" ng-click="vm.getPostsByTopic(t)" >
+    <md-tab style="text-align:center; color:#32B2B2 margin:auto" ng-repeat="t in vm.topics" ng-click="vm.getPostsByTopic(t)">
       <md-tab-label class="tabs"> {{t}} </md-tab-label>
       <md-tab-body>
-        <div layout="column" ng-repeat="p in vm.topicPosts" >
-              <div style="padding-left:60px"class="md-list-item-text" style="padding:10px;">
-                <h4 ui-sref="ForumPost({id: p._id})" >{{p.title | firstLetterFilter}}</h4> <h5>Posted by: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
-              </div>
-              <md-divider ng-if="!$last" style="padding: 5px"></md-divider>
+
+        <div layout="column" ng-repeat="p in vm.topicPosts">
+          <div style="padding-left:60px" class="md-list-item-text" style="padding:10px;">
+            <h4 ui-sref="ForumPost({id: p._id})">{{p.title | firstLetterFilter}}</h4>
+            <h5>Posted by: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
+            <!-- <div layout>
+              <md-button class="zmdi zmdi-edit" ui-sref="EditFPost({id: p._id})"> Edit</md-button>
+              <md-button class="zmdi zmdi-delete" ng-click="vm.deleteFPost(p._id)"> Delete</md-button>
+            </div> -->
+          </div>
+          <md-divider ng-if="!$last" style="padding: 5px"></md-divider>
         </div>
       </md-tab-body>
     </md-tab>

@@ -1,60 +1,11 @@
 <div ng-controller="HomeController as vm" class="bodyColor">
 
   <h5 style="text-align: center"> Home Page </h5>
-  <h1 class="center" id="headline">
-  <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
-    Web Speech API</a> Demonstration</h1>
-<div id="info">
-  <p id="info_start">Click on the microphone icon and begin speaking.</p>
-  <p id="info_speak_now">Speak now.</p>
-  <p id="info_no_speech">No speech was detected. You may need to adjust your
-    <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
-      microphone settings</a>.</p>
-  <p id="info_no_microphone" style="display:none">
-    No microphone was found. Ensure that a microphone is installed and that
-    <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
-    microphone settings</a> are configured correctly.</p>
-  <p id="info_allow">Click the "Allow" button above to enable your microphone.</p>
-  <p id="info_denied">Permission to use microphone was denied.</p>
-  <p id="info_blocked">Permission to use microphone is blocked. To change,
-    go to chrome://settings/contentExceptions#media-stream</p>
-  <p id="info_upgrade">Web Speech API is not supported by this browser.
-     Upgrade to <a href="//www.google.com/chrome">Chrome</a>
-     version 25 or later.</p>
-</div>
-<div class="right">
-  <button id="start_button" onclick="startButton(event)">
-    start</button>
-</div>
-<div id="results">
-  <span id="final_span" class="final"></span>
-  <span id="interim_span" class="interim"></span>
-  <p>
-</div>
-<div class="center">
-  <div class="sidebyside" style="text-align:right">
-    <button id="copy_button" class="button" onclick="copyButton()">
-      Copy and Paste</button>
-    <div id="copy_info" class="info">
-      Press Control-C to copy text.<br>(Command-C on Mac.)
-    </div>
-  </div>
-  <div class="sidebyside">
-    <button id="email_button" class="button" onclick="emailButton()">
-      Create Email</button>
-    <div id="email_info" class="info">
-      Text sent to default email application.<br>
-      (See chrome://settings/handlers to change.)
-    </div>
-  </div>
-  <p>
-  <div id="div_language">
-    <select id="select_language" onchange="updateCountry()"></select>
-    &nbsp;&nbsp;
-    <select id="select_dialect"></select>
-  </div>
-</div>
+
+
 <!-- <div ng-controller="ProfilePostController as vm"> -->
+
+<div><img style='max-width:100%;height:400px;margin-top:-140px;margin-bottom:25px;' src="http://www.tisd.net/wp-content/themes/skeletonplus/Images/network-banner.jpg"></div>
 <div layout layout-align="center center" ng-show ='nav.status.name;'>
     <div flex="40" style="padding-bottom: 20px;">
       <form ng-submit="vm.createPost();">
@@ -66,7 +17,7 @@
         <textarea ui-tinymce ng-model="vm.post.body"></textarea>
         <br>
         <br>
-        <md-button type="submit" class="md-raised" > Post </md-button>
+        <md-button type="submit" class="zmdi zmdi-mail-send" > Post </md-button>
 </form>
 </div>
 </div>
@@ -80,12 +31,15 @@
       <div class='md-list-item-text' style='padding:10px; padding-left:30px' >
         <h2 >  {{p.title}} </h2>
         <h4 ng-bind-html="p.body"></h4>
-        <div layout>
-          <md-button class="zmdi zmdi-plus-circle zmdi-hc-2x" ng-click="vm.followOnPost(p);"></md-button>
         <h5> By: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
+        <div layout>
+          <md-button class="zmdi zmdi-thumb-down" ng-click="vm.downvote(p)" aria-label="down"> </md-button>
+          <md-button class="zmdi zmdi-thumb-up" ng-click="vm.upvote(p)" aria-label="up"> </md-button>
       </div>
 
-      <md-button class="md-raised" ng-click="p.reblog = !p.reblog">Reblog</md-button>
+      <md-button class="zmdi zmdi-plus-circle-o" ng-click="vm.followOnPost(p);" aria-label="follow"> Follow</md-button>
+      <md-button class="zmdi zmdi-minus-circle-outline" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> Unfollow</md-button>
+      <md-button class="zmdi zmdi-redo" ng-click="p.reblog = !p.reblog">  Reblog</md-button>
         <div uib-collapse="!p.reblog">
           <div class="well well-lg">
             <form ng-submit="vm.reblog(p);">

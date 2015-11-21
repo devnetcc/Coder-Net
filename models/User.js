@@ -62,7 +62,9 @@ profileFBlink: String,
 profileTWlink: String,
 profileGHlink: String,
 profileLKlink: String,
+
 // profilePosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ProfilePost'}],
+//changed profilePost schema -see above
 forumPosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ForumPost'}],
 comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
 followers: [{
@@ -130,7 +132,6 @@ UserSchema.methods.generateJWT = function() {
 
  },  "CoderCamps"); //Add Passcode here
 };
-
 
 
 

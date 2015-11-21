@@ -13,8 +13,6 @@ var auth = jwt({
 
 
 router.post('/',auth, function(req, res, next) {
-
-console.log(req.payload , "payload is");
   var post = new ProfilePost(req.body);
   post.createdBy.name = req.payload.name;
   post.avi = req.payload.pic;
@@ -70,13 +68,6 @@ router.post('/reblog/:id', auth,function(req,res,next){
 });
 });
 
-// router.get('/:id', function(req, res, next){
-//   ProfilePost.find({createdBy: req.params.id}, function(err, result){
-//     if(err) {return next(err);}
-//     if(!result) {return next({err: "Error finding post by that user ID"});}
-//     res.send(result);
-//   });
-// });
 
 //get call for all the posts - home page.
 router.get('/', function(req, res, next){
@@ -102,6 +93,21 @@ router.put('/:id', function(req,res, next){
     res.send(result);
     });
   });
+
+  router.put('/upvote/:id', auth, function(req,res, next){
+    ProfilePost.update({_id: req.params.id}, {$push: {upvotes: req.payload._id}, $pull: {downvotes: req.payload._id}}, function(err, result){
+      if (err) return next(err);
+      if (!result) return next ({err: "That post wasnt found for updating"});
+      res.send(result);
+      });
+    });
+    router.put('/downvote/:id', auth, function(req,res, next){
+      ProfilePost.update({_id: req.params.id}, {$push: {downvotes: req.payload._id}, $pull: {upvotes: req.payload._id}}, function(err, result){
+        if (err) return next(err);
+        if (!result) return next ({err: "That post wasnt found for updating"});
+        res.send(result);
+        });
+      });
 
 
 module.exports = router;

@@ -1,6 +1,7 @@
 .bodyColor {
-	background: #fffdf0;
+	background: #dddfd4;
 }
+
 .logo {
   font-family: 'Quicksand', sans-serif;
   color: #ffffff;
@@ -45,25 +46,31 @@
 .footer-distributed .footer-right{
 	float: right;
 	margin-top: 6px;
+	margin-bottom: 60px;
 	max-width: 180px;
 	color: #ffffff;
 	font-weight: bold;
 	font-size: 14px;
+	width:30px;
+	padding-right:50px;
 }
 
-.footer-distributed .footer-right a{
+/*.footer-distributed .footer-right a{*/
 	display: inline-block;
 	width: 35px;
 	height: 35px;
 	background-color:  #33383b;
 	border-radius: 2px;
 
+
 	font-size: 23px;
 	color: #ffffff;
 	text-align: center;
 	line-height: 35px;
 
-	margin-left: 3px;
+
+
+	margin-left:3px;
 }
 
 
@@ -247,6 +254,7 @@ min-width: 335px;
 max-width: 335px;
 }
 
+<<<<<<< HEAD
 .si-wrapper input {
 	font-size: 2em;
 	padding: .1em;
@@ -317,6 +325,7 @@ max-width: 335px;
     padding: 0;
   }
 
-	.md-tab-label{
-		color: black;
-	}
+
+md-tabs.md-default-theme.md-primary, md-tabs.md-primary > md-tabs-wrapper {
+	background-color: #0d6666;
+}
