@@ -34,7 +34,8 @@
           <md-button class="zmdi zmdi-thumb-down" ng-click="vm.downvote(p)" aria-label="down"> </md-button>
           <md-button class="zmdi zmdi-thumb-up" ng-click="vm.upvote(p)" aria-label="up"> </md-button>
       </div>
-      <md-button class="zmdi zmdi-plus-circle" ng-click="vm.followOnPost(p);" aria-label="follow"> Follow</md-button>
+      <md-button class="zmdi zmdi-plus-circle-o" ng-click="vm.followOnPost(p);" aria-label="follow"> Follow</md-button>
+      <md-button class="zmdi zmdi-minus-circle-outline" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> Unfollow</md-button>
       <md-button class="zmdi zmdi-redo" ng-click="p.reblog = !p.reblog">  Reblog</md-button>
         <div uib-collapse="!p.reblog">
           <div class="well well-lg">

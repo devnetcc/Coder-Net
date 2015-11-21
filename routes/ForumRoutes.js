@@ -23,6 +23,7 @@ router.param('id', function(req, res, next, id){
 router.post('/',auth, function(req,res,next){
   var post = new ForumPost(req.body);
   post.createdBy = req.payload;
+  post.creatorId = req.payload._id;
   User.findOne({email: req.payload.email}, function(err,result){
           if(err) return next(err);
       if(!result) return next({err: "Couldnt find a user with that id"});
@@ -96,6 +97,22 @@ router.delete('/:id', function(req,res,next){
   res.send();
 });
 });
+
+router.put('/upvote/:id', auth, function(req,res, next){
+  ForumPost.update({_id: req.params.id}, {$push: {upvotes: req.payload._id}, $pull: {downvotes: req.payload._id}}, function(err, result){
+    if (err) return next(err);
+    if (!result) return next ({err: "That post wasnt found for updating"});
+    res.send(result);
+    });
+  });
+
+  router.put('/downvote/:id', auth, function(req,res, next){
+    ForumPost.update({_id: req.params.id}, {$push: {downvotes: req.payload._id}, $pull: {upvotes: req.payload._id}}, function(err, result){
+      if (err) return next(err);
+      if (!result) return next ({err: "That post wasnt found for updating"});
+      res.send(result);
+      });
+    });
 
 
 
