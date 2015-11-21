@@ -21,7 +21,24 @@ userAt: String,
 userGoing: String,
 github: String,
 linkedinUrl: String,
-
+// inbox: [{
+  inmessage: [{
+    to: String,
+    from: String,
+    body: String,
+    sent: Date,
+    senderId: String,
+  }],
+// }],
+// outbox:[{
+  outmessage: [{
+    to: String,
+    from: String,
+    body: String,
+    recieved: Date,
+    recieverId: String,
+  // }]
+}],
 profilePosts:
 // [{type: mongoose.Schema.Types.ObjectId, ref: 'ProfilePost'}],
 [{
@@ -45,6 +62,9 @@ profileFBlink: String,
 profileTWlink: String,
 profileGHlink: String,
 profileLKlink: String,
+
+// profilePosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ProfilePost'}],
+//changed profilePost schema -see above
 forumPosts: [{type: mongoose.Schema.Types.ObjectId, ref: 'ForumPost'}],
 comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
 followers: [{

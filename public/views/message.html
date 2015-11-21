@@ -1,0 +1,9 @@
+<div ng-controller="ProfileController as vm">
+  <form ng-submit="vm.sendMsg();">
+    <md-input-container>
+      <label>Message</label>
+      <textarea ng-model="vm.person.inbox.message.body"></textarea>
+    </md-input-container>
+    <md-button type="submit">Send</md-button>
+  </form>
+</div>

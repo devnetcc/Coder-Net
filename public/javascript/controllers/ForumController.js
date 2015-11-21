@@ -85,6 +85,43 @@ vm.showComments = function(){
 };
 vm.showComments();
 
+vm.upvote = function(post) {
+  if (post.creatorId == vm.status._id) {
+    alert("You cannot vote for your own posts!");
+    return;
+  } else {
+    if (post.upvotes.indexOf(vm.status._id) != -1) {
+      alert("You have voted for this post before!");
+      return;
+    } else {
+      var index = post.downvotes.indexOf(vm.status._id);
+      if (index != -1) {
+        post.downvotes.splice(index, 1);
+      }
+      ForumFactory.upvote(post._id);
+    }
   }
+};
 
+
+vm.downvote = function(post) {
+  if (post.creatorId == vm.status._id) {
+    alert("You cannot vote for your own posts!");
+    return;
+  } else {
+    if (post.downvotes.indexOf(vm.status._id) != -1) {
+      alert("You have voted for this post before!");
+      return;
+    } else {
+      var index = post.upvotes.indexOf(vm.status._id);
+      if (index != -1) {
+        post.upvotes.splice(index, 1);
+      }
+      ForumFactory.downvote(post._id);
+    }
+  }
+};
+
+
+  }
 })();

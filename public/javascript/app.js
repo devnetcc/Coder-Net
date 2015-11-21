@@ -13,9 +13,12 @@
         	url: '/about',
         	templateUrl: '/views/about.html'
 				})
-				.state('Test', {
-	       	url: '/test',
-	       	templateUrl: '/views/test.html'
+				.state('Message', {
+	       	url: '/message/:id',
+	       	templateUrl: '/views/message.html'
+        }).state('MessageCenter', {
+	       	url: '/messagecenter/:id',
+	       	templateUrl: '/views/messagecenter.html'
         })
         .state('Contact', {
         	url: '/contact',

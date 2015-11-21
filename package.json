@@ -21,6 +21,7 @@
     "express-jwt": "^3.1.0",
     "express-session": "^1.12.1",
     "filepicker-js": "^2.2.1",
+    "github": "^0.2.4",
     "jsonwebtoken": "^5.4.1",
     "mongoose": "^4.2.4",
     "nodemailer": "^0.7.1",

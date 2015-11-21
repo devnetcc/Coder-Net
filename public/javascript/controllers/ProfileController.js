@@ -10,6 +10,8 @@
 		//  vm.profile.languages = [];
      vm.status = UserFactory.status;
      vm.user = {};
+     vm.person = {};
+     vm.mymessages = {};
      vm.post = {};
     vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80'];
     vm.profilePosts = [];
@@ -143,6 +145,13 @@ vm.uploadPic = function(){
   		});
   };
 
+vm.sendMsg = function(){
+  UserFactory.sendMsg($stateParams.id, vm.person.inbox.message)
+  .then(function(res){
+    // vm.mymessages = res;
+    // $state.go("Profile({id: $stateParams.id})");
+  })
+}
 
       vm.upvote = function(post) {
         if (post.creatorId == vm.status._id) {

@@ -1,0 +1,32 @@
+<div ng-controller="ProfileController as vm">
+  <md-content>
+      <md-tabs md-dynamic-height md-border-bottom >
+        <md-tab class="md-tab-label" label="inbox ({{vm.profile.inmessage.length}})">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Inbox ({{vm.profile.inmessage.length}})</h1>
+            <div ng-repeat="p in vm.profile.inmessage">
+            Recieved: {{p.sent}}<br>
+            From: <a ng-href="http://localhost:8080/#/profile/{{p.senderId}}"> {{p.from}}</a>
+            <br>
+            Message: <p>{{p.body}}</p>
+            <md-button>Reply</md-button>
+            <hr>
+            </div>
+          </md-content>
+        </md-tab>
+        <md-tab label="outbox ({{vm.profile.outmessage.length}})">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Outbox ({{vm.profile.outmessage.length}})</h1>
+            <div ng-repeat="p in vm.profile.outmessage">
+            Sent: {{p.recieved}}<br>
+            To:  <a ng-href="http://localhost:8080/#/profile/{{p.recieverId}}"> {{p.to}}</a>
+            <br>
+            Message: <p>{{p.body}}</p>
+            <hr>
+            </div>
+          </md-content>
+        </md-tab>
+      <!-- </div> -->
+      </md-tabs>
+    </md-content>
+</div>

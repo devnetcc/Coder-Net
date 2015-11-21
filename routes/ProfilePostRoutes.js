@@ -13,8 +13,6 @@ var auth = jwt({
 
 
 router.post('/',auth, function(req, res, next) {
-
-console.log(req.payload , "payload is");
   var post = new ProfilePost(req.body);
   post.createdBy.name = req.payload.name;
   post.avi = req.payload.pic;

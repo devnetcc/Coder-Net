@@ -85,6 +85,22 @@
       return q.promise;
     };
 
+    o.upvote = function(postID) {
+      var q = $q.defer();
+      $http.put('/api/forum/upvote/' + postID).then(function(res) {
+        q.resolve(res.data);
+      });
+      return q.promise;
+    };
+
+    o.downvote = function(postID) {
+      var q = $q.defer();
+      $http.put('/api/forum/downvote/' + postID).then(function(res) {
+        q.resolve(res.data);
+      });
+      return q.promise;
+    };
+
 
 
     return o;

@@ -1,8 +1,11 @@
 <div ng-controller="HomeController as vm" class="bodyColor">
 
   <h5 style="text-align: center"> Home Page </h5>
-<div><img style='max-width:100%;height:400px;margin-top:-140px;margin-bottom:25px;' src="http://www.tisd.net/wp-content/themes/skeletonplus/Images/network-banner.jpg"></div>
+
+
 <!-- <div ng-controller="ProfilePostController as vm"> -->
+
+<div><img style='max-width:100%;height:400px;margin-top:-140px;margin-bottom:25px;' src="http://www.tisd.net/wp-content/themes/skeletonplus/Images/network-banner.jpg"></div>
 <div layout layout-align="center center" ng-show ='nav.status.name;'>
     <div flex="40" style="padding-bottom: 20px;">
       <form ng-submit="vm.createPost();">
@@ -14,13 +17,12 @@
         <textarea ui-tinymce ng-model="vm.post.body"></textarea>
         <br>
         <br>
-        <md-button type="submit" class="md-raised" > Post </md-button>
+        <md-button type="submit" class="zmdi zmdi-mail-send" > Post </md-button>
 </form>
 </div>
 </div>
 <md-divider ng-if="!$last" ></md-divider>
 <h5 style="text-align: center"> News Feed </h5>
-
 
 <md-content>
   <md-list style="padding-left: 70px">
@@ -34,7 +36,9 @@
           <md-button class="zmdi zmdi-thumb-down" ng-click="vm.downvote(p)" aria-label="down"> </md-button>
           <md-button class="zmdi zmdi-thumb-up" ng-click="vm.upvote(p)" aria-label="up"> </md-button>
       </div>
-      <md-button class="zmdi zmdi-plus-circle" ng-click="vm.followOnPost(p);" aria-label="follow"> Follow</md-button>
+
+      <md-button class="zmdi zmdi-plus-circle-o" ng-click="vm.followOnPost(p);" aria-label="follow"> Follow</md-button>
+      <md-button class="zmdi zmdi-minus-circle-outline" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> Unfollow</md-button>
       <md-button class="zmdi zmdi-redo" ng-click="p.reblog = !p.reblog">  Reblog</md-button>
         <div uib-collapse="!p.reblog">
           <div class="well well-lg">
@@ -42,9 +46,10 @@
               <md-input-container layout-padding>
                 <label> Post Title</label>
                 <input ng-model="vm.repost.title" />
-              </md-input-container>
 
-              <textarea ui-tinymce ng-model="vm.repost.content"></textarea>
+              <textarea  ui-tinymce ng-model="vm.repost.content"></textarea>
+
+            </div>
               <br>
               <br>
               <md-button type="submit" class="md-raised" > Post </md-button>
@@ -88,5 +93,12 @@
   </md-list>
 </md-content>
 </div>
-
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<g:hangout
+   render="createhangout"
+   topic="cpp11"
+   hangout_type="moderated"
+   invites="[{ id : '103757504279751950811', invite_type : 'PROFILE' },
+       { id : 'pearlmcphee@gmail.com', invite_type : 'EMAIL' }]">
+</g:hangout>
 </div>
