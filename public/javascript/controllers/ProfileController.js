@@ -11,8 +11,7 @@
      vm.status = UserFactory.status;
      vm.user = {};
      vm.post = {};
-    vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80', '#999'];
-
+    vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80'];
 
 
 ProfileFactory.getProfile($stateParams.id).then(function(res){
@@ -141,6 +140,48 @@ vm.uploadPic = function(){
   		vm.profilePosts.splice(vm.profilePosts.indexOf(postID), 1);
   		});
   };
+
+
+      vm.upvote = function(post) {
+        if (post.creatorId == vm.status._id) {
+          alert("You cannot vote for your own posts!");
+          return;
+        } else {
+          if (post.upvotes.indexOf(vm.status._id) != -1) {
+            alert("You have voted for this post before!");
+            return;
+          } else {
+            var index = post.downvotes.indexOf(vm.status._id);
+            if (index != -1) {
+              post.downvotes.splice(index, 1);
+            }
+            HomeFactory.upvote(post._id, vm.status._id);
+          }
+        }
+      };
+
+
+      vm.downvote = function(post) {
+        if (post.creatorId == vm.status._id) {
+          alert("You cannot vote for your own posts!");
+          return;
+        } else {
+          if (post.downvotes.indexOf(vm.status._id) != -1) {
+            alert("You have voted for this post before!");
+            return;
+          } else {
+            var index = post.upvotes.indexOf(vm.status._id);
+            if (index != -1) {
+              post.upvotes.splice(index, 1);
+            }
+            HomeFactory.downvote(post._id, vm.status._id);
+          }
+        }
+      };
+
+
+
+
 
 	}
 })();
