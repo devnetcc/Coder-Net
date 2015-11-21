@@ -3,7 +3,7 @@
 
 <head>
 	<title> Coder Nets </title>
-	
+
 	<!--  -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -41,7 +41,7 @@
 		</md-content>
 	</md-sidenav>
 
-	<md-toolbar style=" background-color:#32B2B2;" layout>
+	<md-toolbar style=" background-color:#32B2B2; height:125px" layout>
 		<section layout flex layout-align="left">
 			<md-button class="zmdi zmdi-menu zmdi-hc-2x" ng-click="nav.toggleSidenav()" style="padding-top: 12px" aria-label="Toggle Menu">
 			</md-button>
@@ -62,15 +62,24 @@
 
 	<ui-view></ui-view>
 
-	<footer class="footer-distributed" style=" background-color:#32B2B2">
+	<footer class="footer-distributed" style=" background-color:#32B2B2;">
 
-		<div class="footer-right">
-			<p> Follow Us </p>
-			<a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-facebook"></i></a>
+		<div style="text-align:right;margin-bottom:-65px;margin-top:25px">
+			<p style="margin-bottom:-5px; margin-right:25px"> Follow Us </p><br>
+			<!-- <a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-facebook"></i></a>
 			<a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-linkedin-box"></i></a>
 			<a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-twitter"></i></a>
-			<a class="list-group-item" href="https://github.com/devnetcc/Coder-Net" target="_blank"><i class="zmdi zmdi-github"></i></a>
-		</div>
+			<a class="list-group-item" href="https://github.com/devnetcc/Coder-Net" target="_blank"><i class="zmdi zmdi-github"></i></a> -->
+
+		<!--  -->
+		<div  style="text-align:right;pading:6px;">
+		<a href="#" target="_blank"><img height='25' width='25' src='http://i.stack.imgur.com/kNPKJ.gif'></a>
+		<a href="#" target="_blank"><img height='25' width='25' src='http://freeiconbox.com/icon/256/2766.png'></a>
+		<a  href="#" target="_blank"><img height='25' width='25' src="http://static1.squarespace.com/static/51685161e4b0e454d76e8167/55f0ab3ee4b029a70084f3dd/55f0ab48e4b015224f3a9637/1441836711570/twitter1.gif"></i></a>
+		<a  href="https://github.com/devnetcc/Coder-Net" target="_blank"><img height='25' width='25' src='http://cdn.mysitemyway.com/icons-watermarks/simple-black/social-media/social-media_github/social-media_github_simple-black_512x512.png'></a>
+	</div>
+	</div>
+		<!--  -->
 
 		<div class="footer-left">
 			<h3 class="logo"> &#060;&nbsp;Coder Net&nbsp;&#062; </h3>

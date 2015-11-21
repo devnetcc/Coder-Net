@@ -8,6 +8,7 @@
     vm.status = vm.UserFactory;
     vm.topics = ["General", "Job Board", "Interview Prep", "Code Questions", "Meetups", "Bootcamp Reviews"];
     vm.fpost = {};
+    vm.forumPosts = [];
 
 
 
@@ -57,9 +58,9 @@ vm.cancelEdit = function(){
     };
 
     vm.deleteFPost = function(fpost) {
-      ForumFactory.deleteFPost(fpost._id)
-        .then(function() {
-          // console.log("Made it back to controller. about to splice!");
+      console.log('delete f post controller');
+      ForumFactory.deleteFPost(fpost._id).then(function() {
+          console.log("Made it back to controller. about to splice!");
           vm.forumPosts.splice(vm.forumPosts.indexOf(fpost), 1);
           $state.go('Forums');
 
