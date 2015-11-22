@@ -27,7 +27,7 @@
 <md-content>
   <md-list style="padding-left: 70px">
 
-    <md-list-item ng-repeat='p in vm.allPosts' >
+    <md-list-item ng-repeat='p in vm.allPosts | orderBy: "-date"' >
       <div class='md-list-item-text' style='padding:10px; padding-left:30px' >
         <h2 >  {{p.title}} </h2>
         <h4 ng-bind-html="p.body"></h4>

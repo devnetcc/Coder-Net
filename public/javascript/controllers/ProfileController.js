@@ -112,7 +112,9 @@ vm.deleteProfile = function(profile) {
 vm.uploadPic = function(){
       filepicker.setKey("ANDYMo7mqQjawgErCA0F0z");
       filepicker.pick({
-          mimetype: 'image/*', /* Images only */
+          extension: ['.pdf','.jpg', 'jpeg','.png', '.gif'],
+          asText: true,
+          // mimetype: 'image/*', /* Images only */
           maxSize: 1024 * 1024 * 5, /* 5mb */
           imageMax: [1500, 1500], /* 1500x1500px */
           cropRatio: 1/1, /* Perfect squares */
@@ -123,7 +125,7 @@ vm.uploadPic = function(){
           var url = blob.url;
           var id = blob.id;
           var isWriteable = blob.isWriteable;
-          var mimetype = blob.mimetype;
+          // var mimetype = blob.mimetype;
           var size = blob.size;
         ProfileFactory.uploadPic(blob,vm.status._id).then(function(res){
           vm.profile.pic = res;
