@@ -24,6 +24,7 @@ router.post('/',auth, function(req,res,next){
   var post = new ForumPost(req.body);
   post.createdBy = req.payload;
   post.creatorId = req.payload._id;
+  post.date = new Date();
   User.findOne({email: req.payload.email}, function(err,result){
           if(err) return next(err);
       if(!result) return next({err: "Couldnt find a user with that id"});
@@ -90,7 +91,7 @@ ForumPost.update({_id: req.params.id},req.body,
 });
 
 //Delete a forum post by it's id
-router.delete('/:id', function(req,res,next){
+router.delete('/:id', auth, function(req,res,next){
   // console.log("I made it to the route file");
   ForumPost.remove({_id: req.params.id}, function(err,result){
     if(err) return next(err);

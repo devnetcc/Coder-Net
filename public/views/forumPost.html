@@ -6,12 +6,12 @@
 
 <h5>Author: {{vm.apost.createdBy.name | firstLetterFilter}} {{vm.apost.createdBy.lastName | firstLetterFilter }}</h5>
 
-<div layout="row">
+<!-- <div layout> -->
 <md-button class="zmdi zmdi-thumb-down" ng-click="vm.downvote(vm.apost)" aria-label="down"> </md-button>
 <md-button class="zmdi zmdi-thumb-up" ng-click="vm.upvote(vm.apost)" aria-label="up"> </md-button>
 <md-button class="zmdi zmdi-edit" ui-sref="EditFPost({id: vm.apost._id})"> Edit</md-button>
 <md-button class="zmdi zmdi-delete" ng-click="vm.deleteFPost(vm.apost)"> Delete</md-button>
-</div>
+<!-- </div> -->
 
 <div layout="column" layout-align="center">
 <md-input-container>

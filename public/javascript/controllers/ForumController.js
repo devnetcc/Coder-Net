@@ -6,9 +6,11 @@
   function ForumController(ForumFactory, UserFactory, $state, $stateParams) {
     var vm = this;
     vm.status = vm.UserFactory;
-    vm.topics = ["General", "Job Board", "Interview Prep", "Code Questions", "Meetups", "Bootcamp Reviews"];
+    vm.topics = ["General", "Job Board", "Interview Prep", "Code Questions", "Meetups", "Bootcamp Reviews", "Tech News", "Developer Tips", "Useful Resouces"];
     vm.fpost = {};
     vm.forumPosts = [];
+
+
 
 
 // ForumFactory.getAllPost().then(function(res){

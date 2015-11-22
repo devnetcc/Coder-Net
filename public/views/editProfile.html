@@ -3,16 +3,14 @@
     <div>
 
       <!-- Pic Upload -->
-      <md-input-container>
         <md-button required class="md-primary"ng-click="vm.uploadPic()">Upload a Photo</md-button>
-      </md-input-container>
 
       <!-- Change background color -->
      <md-input-container flex="30" layout-padding>
        <label>Profile Background Color</label>
        <md-select ng-model="vm.profile.color" placeholder="Bkgrd Colors">
        <md-option style="background-color: {{color}}" ng-value='color' ng-repeat="color in vm.colors">{{color}}</md-option>
-     </md-select>
+      </md-select>
    </md-input-container>
 
    <md-input-container>
@@ -52,7 +50,6 @@
             <md-option value="Recent Graduate"> Recent Graduate </md-option>
             <md-option value="Recruiter"> Recruiter </md-option>
             <md-option value="Mentor"> Mentor </md-option>
-
           </md-select>
         </md-input-container>
        <md-input-container >

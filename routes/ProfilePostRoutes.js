@@ -109,10 +109,6 @@ router.post('/reblog/:id', auth, function(req, res, next) {
       });
     });
 
-
-
-
-
       //get call for all the posts - home page.
       router.get('/', function(req, res, next) {
         ProfilePost.find({}, function(err, result) {
@@ -166,7 +162,7 @@ router.post('/reblog/:id', auth, function(req, res, next) {
 
 
 
-      router.delete('/:id', function(req, res, next) {
+      router.delete('/:id', auth, function(req, res, next) {
         ProfilePost.remove({
           _id: req.params.id
         }, function(err, result) {
@@ -175,7 +171,7 @@ router.post('/reblog/:id', auth, function(req, res, next) {
         });
       });
 
-      router.put('/:id', function(req, res, next) {
+      router.put('/:id', auth, function(req, res, next) {
         ProfilePost.update({
           _id: req.params.id
         }, req.body, function(err, result) {
