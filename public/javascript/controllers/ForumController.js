@@ -22,7 +22,6 @@ ForumFactory.getPostById($stateParams.id).then(function(res){
 
 vm.cancelEdit = function(){
   ForumFactory.getPostById($stateParams.id).then(function(res){
-    console.log(res);
   	vm.apost = res;
     $state.go("ForumPost", {id: $stateParams.id});
   });
@@ -35,6 +34,12 @@ vm.cancelEdit = function(){
     vm.getPostsByTopic = function(topic) {
       ForumFactory.getPostsByTopic(topic).then(function(res) {
         vm.topicPosts = res;
+
+        for (var i=0; i<vm.topicPosts.length; i++) {
+          vm.topicPosts[i].score = vm.topicPosts[i].upvotes.length - vm.topicPosts[i].downvotes.length;
+
+          console.log(vm.topicPosts[i].score);
+        }
       });
     };
 
@@ -77,8 +82,8 @@ vm.postComments = function(){
 
 vm.showComments = function(){
   ForumFactory.showComments($stateParams.id).then(function(res){
-    console.log($stateParams); //postID
-    console.log(res); //arr of all comments
+    //console.log($stateParams); //postID
+    //console.log(res); //arr of all comments
     vm.comments = res;
   // $state.go('ForumPost', {id: $stateParams.id});
   });
@@ -98,7 +103,7 @@ vm.upvote = function(post) {
       if (index != -1) {
         post.downvotes.splice(index, 1);
       }
-      ForumFactory.upvote(post._id);
+      ForumFactory.upvote(post);
     }
   }
 };
@@ -117,7 +122,7 @@ vm.downvote = function(post) {
       if (index != -1) {
         post.upvotes.splice(index, 1);
       }
-      ForumFactory.downvote(post._id);
+      ForumFactory.downvote(post);
     }
   }
 };

@@ -21,7 +21,7 @@
    </md-input-container>
 
       <md-input-container>
-        <label>User Name</label>
+        <label>Username</label>
         <input required ng-model="vm.profile.userName">
       </md-input-container>
       <md-input-container>
@@ -96,14 +96,14 @@
 
 
         <div style="text-align:center">
-          <md-button type="button" class="md-raised" ng-click="vm.profile.languages.push({});" bng-disabled="!vm.profile.languages.lang || !vm.profile.languages.level">Add Language</md-button>
+          <md-button type="button" class="md-flat" ng-click="vm.profile.languages.push({});" bng-disabled="!vm.profile.languages.lang || !vm.profile.languages.level">Add Programming Language</md-button>
         </div>
 
           <div layout="row" style="padding-top:50px">
-          <md-button  ng-click="vm.editProfile(vm.profile)" class="md-raised"> Update Profile </md-button>
-          <md-button type="button" class="md-raised" ui-sref="Profile({id: nav.status._id})"> Cancel</md-button>
-          <md-button type="button" class="md-raised"> Reset Password </md-button>
-          <md-button type="button" class="md-raised" ng-click="vm.deleteProfile(vm.profile)" > Delete Account </md-button>
+          <md-button  ng-click="vm.editProfile(vm.profile)" class="md-flat"> Update Profile </md-button>
+          <md-button type="button" class="md-flat" ui-sref="Profile({id: nav.status._id})"> Cancel</md-button>
+          <md-button type="button" class="md-flat"> Reset Password </md-button>
+          <md-button type="button" class="md-flat" ng-click="vm.deleteProfile(vm.profile)" > Delete Account </md-button>
 
         </div>
     </div>

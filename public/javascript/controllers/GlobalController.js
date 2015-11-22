@@ -37,7 +37,7 @@
     vm.register = function() {
       UserFactory.register(vm.user).then(function() {
         $state.go('Home');
-        // alert('Please check your email to verify before logging in!');
+        alert('Please check your email for the verification link.');
       });
     };
 

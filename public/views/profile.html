@@ -17,8 +17,12 @@
   <div>
         <!-- Profile Tagline -->
     <h1 style="margin-left:50px;">{{vm.profile.tagLine}}</h3>
-    <div style="height:225px;width:225px;  margin-left:50px;text-align:center;">
+    <div ng-show='vm.profile.pic.length'  style="height:225px;width:225px;  margin-left:50px;text-align:center;">
       <img style='max-width:100%; max-height:100%' src='{{vm.profile.pic}}'>
+    </div>
+       <!-- default photo -->
+    <div ng-show='!vm.profile.pic.length' style="height:225px;width:225px;  margin-left:50px;text-align:center;">
+      <img style='max-width:100%; max-height:100%' src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS_wxp_qEFvoISSQK1duhZLXX-IO4jjyT-_nubJtY3WBryb_wbS'>
     </div>
 
     <!-- Personal Links -->
@@ -42,10 +46,10 @@
 
 
             <!-- Update profile -->
-    <md-button class="md-raised" style='margin-left:50px;margin-top:35px;' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button>
+    <!-- <md-button class="md-raised" style='margin-left:50px;margin-top:35px;' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button> -->
   <!-- send message -->
-  <md-button class="md-raised" ui-sref="Message({id: vm.profile._id})">Message</md-button>
-  <md-button class="md-raised" ui-sref="MessageCenter({id: vm.profile._id})">My Messages</md-button>
+  <md-button class="zmdi zmdi-email" ui-sref="Message({id: vm.profile._id})">Message</md-button>
+  <md-button class="zmdi zmdi-email" ui-sref="MessageCenter({id: vm.profile._id})">My Messages</md-button>
 
     <md-button class="zmdi zmdi-wrench" style='margin-left:50px;margin-top:35px;' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Edit Profile </md-button>
 
@@ -91,9 +95,9 @@
 
             <!-- Post Display and edit -->
 <md-container >
-  <md-list style="background-color:{{vm.profile.color}};">
-    <md-list-item ng-repeat='p in vm.profile.profilePosts | orderBy:"-date"'>
-      <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:225px; margin-top:30px;background-color:white;height:185px;width:500px;'>
+  <md-list>
+    <md-list-item ng-repeat='p in vm.profilePosts | orderBy:"-date"'>
+      <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:225px; margin-top:30px;'>
         <h3> Title: {{p.title}}</h3>
         <h5> Content: {{p.body}}</h5>
         <h6> Posted On: {{p.date}}</h6>
@@ -102,7 +106,6 @@
         <md-button class="zmdi zmdi-thumb-up" ng-hide='showEdit' ng-click="vm.upvote(p)" aria-label="up"> </md-button>
         <md-button class="zmdi zmdi-edit" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
         <md-button class="zmdi zmdi-delete" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
-        <hr style="width:500px;">
 
             <!-- Editting Form -->
       <form ng-show = 'showEdit' style="margin-top:70px;margin-bottom:100px;padding:30px;background-color:white;" ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
@@ -121,5 +124,4 @@
     </md-list-item>
   </md-list>
 </md-container>
-</div>
 </div>

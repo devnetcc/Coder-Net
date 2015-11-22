@@ -7,6 +7,7 @@
   color: #ffffff;
 }
 
+
 .footer-distributed{
 	background-color: #292c2f;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
@@ -43,7 +44,34 @@
 }
 
 /*social media logos*/
+/*.footer-distributed .footer-right .list-group-item {
+padding-top:10px;
+}*/
+
 .footer-distributed .footer-right{
+	float: right;
+	margin-bottom: 10px;
+	max-width: 200px;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.footer-distributed .footer-right a{
+	display: inline-block;
+	width: 33px;
+	height: auto;
+	margin-bottom: 10px;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 23px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 10px;
+}
+
+/*.footer-distributed .footer-right{
 	float: right;
 	margin-top: 6px;
 	margin-bottom: 60px;
@@ -53,10 +81,10 @@
 	font-size: 14px;
 	width:30px;
 	padding-right:50px;
-}
+}*/
 
 /*.footer-distributed .footer-right a{*/
-	display: inline-block;
+	/*display: inline-block;
 	width: 35px;
 	height: 35px;
 	background-color:  #33383b;
@@ -71,10 +99,10 @@
 
 
 	margin-left:3px;
-}
+}*/
 
 
-/*@media (max-width: 600px) {
+@media (max-width: 600px) {
 
 	.footer-distributed .footer-left,
 	.footer-distributed .footer-right{
@@ -89,7 +117,7 @@
 	.footer-distributed .footer-left p.footer-links{
 		line-height: 1.8;
 	}
-}*/
+}
 
 /*Round buttons for sharing content to linkedin, twitter, fb and google+*/
 .social-btn{
@@ -249,12 +277,11 @@ ul {
 }
 
 md-sidenav {
-	width: 335px;
-min-width: 335px;
-max-width: 335px;
+	width: 310px;
+min-width: 310px;
+max-width: 310px;
 }
 
-<<<<<<< HEAD
 .si-wrapper input {
 	font-size: 2em;
 	padding: .1em;

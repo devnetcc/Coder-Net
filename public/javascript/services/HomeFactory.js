@@ -6,9 +6,9 @@
   function HomeFactory($http, $q) {
     var o = {};
 
-    o.postPost = function(post, creator) {
+    o.postPost = function(post) {
       var q = $q.defer();
-      $http.post('api/posts', post, creator).then(function(res) {
+      $http.post('api/posts', post).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;
@@ -44,6 +44,14 @@
       return q.promise;
     };
 
+    o.getProfilePosts = function(id){
+      var q = $q.defer();
+      $http.get('/api/posts/userPosts/'+ id).then(function(res){
+        q.resolve(res.data);
+      });
+      return q.promise;
+    };
+
 
     o.editPost = function(id, post) {
       var q = $q.defer();
@@ -53,21 +61,22 @@
       return q.promise;
     };
 
-    o.upvote = function(postID) {
+    o.upvote = function(post) {
       var q = $q.defer();
-      $http.put('/api/posts/upvote/' + postID).then(function(res) {
+      $http.put('/api/posts/upvote/' + post).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;
     };
 
-    o.downvote = function(postID) {
+    o.downvote = function(post) {
       var q = $q.defer();
-      $http.put('/api/posts/downvote/' + postID).then(function(res) {
+      $http.put('/api/posts/downvote/' + post).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;
     };
+
 
     return o;
   }

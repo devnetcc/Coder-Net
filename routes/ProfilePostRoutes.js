@@ -42,7 +42,6 @@ console.log(post.avi);
   });
 
 router.post('/reblog/:id', auth,function(req,res,next){
-  console.log(req.body, " req.body");
   var comment = req.body;
   var post = new ProfilePost({});
   comment.avi = req.payload.pic;
@@ -99,8 +98,18 @@ router.get('/:tag', function(req,res,next){
     res.send(result);
   })
 })
+//get call for user posts - profile.
+router.get('/userPosts/:id', function(req, res, next){
+  ProfilePost.find({creatorId: req.params.id}, function(err, result){
+    if(err) {return next(err);}
+    if(!result) {return next({err: "Error finding post by that user ID"});}
+    res.send(result);
+  });
+});
+
+
+
 router.delete('/:id', function(req, res, next) {
-  console.log(req.params.id);
   ProfilePost.remove({_id: req.params.id}, function(err, result) {
       if(err) return next(err);
       res.send();
@@ -111,21 +120,41 @@ router.put('/:id', function(req,res, next){
   ProfilePost.update({_id: req.params.id}, req.body, function(err, result){
     if (err) return next(err);
     if (!result) return next ({err: "That post wasnt found for updating"});
+    // console.log(result);
     res.send(result);
     });
   });
 
-  router.put('/upvote/:id', auth, function(req,res, next){
-    ProfilePost.update({_id: req.params.id}, {$push: {upvotes: req.payload._id}, $pull: {downvotes: req.payload._id}}, function(err, result){
+  router.put('/upvote/:post', auth, function(req,res, next){
+    ProfilePost.update({_id: req.params.post._id}, {$push: {upvotes: req.payload._id}, $pull: {downvotes: req.payload._id}}, function(err, result){
       if (err) return next(err);
       if (!result) return next ({err: "That post wasnt found for updating"});
+      User.findOne({_id: req.params.post._id}, function(err,result){
+              if(err) return next(err);
+          if(!result) return next({err: "Couldnt find a user with that id"});
+          result.update({$inc:{score: +1}},
+            function(err,result){
+                   if(err) return next(err);
+                   if(!result) return next({err: "Couldnt find a user with that id"});
+              });
+            });
       res.send(result);
       });
     });
+
     router.put('/downvote/:id', auth, function(req,res, next){
       ProfilePost.update({_id: req.params.id}, {$push: {downvotes: req.payload._id}, $pull: {upvotes: req.payload._id}}, function(err, result){
         if (err) return next(err);
         if (!result) return next ({err: "That post wasnt found for updating"});
+        User.findOne({_id: req.params.post._id}, function(err,result){
+                if(err) return next(err);
+            if(!result) return next({err: "Couldnt find a user with that id"});
+            result.update({$inc:{score: -1}},
+              function(err,result){
+                     if(err) return next(err);
+                     if(!result) return next({err: "Couldnt find a user with that id"});
+                });
+              });
         res.send(result);
         });
       });
