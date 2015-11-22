@@ -12,7 +12,7 @@ var auth = jwt({
 
 
 
-router.post('/',auth, function(req, res, next) {
+router.post('/', auth, function(req, res, next) {
   var post = new ProfilePost(req.body);
   // console.log(post);
   post.createdBy.name = req.payload.name;
@@ -22,157 +22,252 @@ router.post('/',auth, function(req, res, next) {
   post.date = new Date();
   // console.log('payload' , req.payload);
 
-  User.findOne({email: req.payload.email}, function(err, user){
+  User.findOne({
+    email: req.payload.email
+  }, function(err, user) {
     post.avi = user.pic;
-    if(!user) return res.status(404).send({err: "Could not find that user."});
-console.log(post.avi);
-
-  post.save(function(err, result) {
-    if(err) return next(err);
-    if(!result) return next("Could not Create Post");
-    User.findOne({email: req.payload.email}, function(err, user){
-      if(!user) return res.status(404).send({err: "Could not find that user."});
-    user.profilePosts.push(result);
-    user.save(function(err, user) {
+    if (!user) return res.status(404).send({
+      err: "Could not find that user."
     });
-    res.send();
-    });
-  });
-});
-  });
+    console.log(post.avi);
 
-router.post('/reblog/:id', auth,function(req,res,next){
-  var comment = req.body;
-  comment.avi = req.payload.pic;
-  comment.creatorName = req.payload.name;
-
-  ProfilePost.findOne({_id: req.params.id}, function(err, result){
-    console.log('result ', result);
-    var post = new ProfilePost({
-      title: result.title,
-      body: result.body,
-      avi: result.avi,
-      date: result.date,
-      comments: result.comments,
-      creatorId: result.creatorId,
-      upvotes: result.upvotes,
-      downvotes: result.downvotes,
-      tags: result.tags,
-      createdBy: result.createdBy,
-    });
-  ProfilePost.update({_id: req.params.id},{$push: {comments: comment}}, function(err,result){
-    if(err) return next (err);
-    if(!result) return next({err: "Couldnt find that post!"});
-
-    post.comments.push(comment);
-    console.log(post.comments , " post.comments");
-
-
-
-  post.save(function(err, result) {
-    if(err) return next(err);
-    if(!result) return next("Could not Create Post");
-    User.findOne({email: req.payload.email}, function(err, user){
-      if(!user) return res.status(404).send({err: "Could not find that user."});
-    user.profilePosts.push(result);
-    user.save(function(err, user) {
-    });
-
-  		if(err) return next(err);
-  		if(!result) return next ({err: "That user wasnt found for updating!"});
-  	// });
-    res.send();
-});
-});
-});
-});
-});
-
-
-
-//get call for all the posts - home page.
-router.get('/', function(req, res, next){
-  ProfilePost.find({}, function(err, result){
-    if(err) {return next(err);}
-    if(!result) {return next({err: "Error finding post by that user ID"});}
-    res.send(result);
-  });
-});
-
-router.get('/:tag', function(req,res,next){
-  ProfilePost.find({tags: req.params.tag}, function(err,result){
-    console.log("result", result);
-    console.log("Req.params.tag", req.params.tag);
-    if(err) {return next(err);}
-    if(!result) {return next({err: "Error finding post by that user ID"});}
-    res.send(result);
-  })
-})
-//get call for user posts - profile.
-router.get('/userPosts/:id', function(req, res, next){
-  ProfilePost.find({creatorId: req.params.id}, function(err, result){
-    if(err) {return next(err);}
-    if(!result) {return next({err: "Error finding post by that user ID"});}
-    res.send(result);
-  });
-});
-
-
-
-router.delete('/:id', function(req, res, next) {
-  ProfilePost.remove({_id: req.params.id}, function(err, result) {
-      if(err) return next(err);
-      res.send();
-  });
-});
-
-router.put('/:id', function(req,res, next){
-  ProfilePost.update({_id: req.params.id}, req.body, function(err, result){
-    if (err) return next(err);
-    if (!result) return next ({err: "That post wasnt found for updating"});
-    // console.log(result);
-    res.send(result);
-    });
-  });
-
-  router.put('/upvote/:id', auth, function(req,res, next){
-    console.log(req.params.id);
-    console.log(req.body);
-
-    ProfilePost.update({_id: req.params.id}, {$push: {upvotes: req.payload._id}, $pull: {downvotes: req.payload._id}}, function(err, result){
+    post.save(function(err, result) {
       if (err) return next(err);
-      if (!result) return next ({err: "That post wasnt found for updating"});
-      User.findOne({_id: req.body}, function(err,result){
-              if(err) return next(err);
-          if(!result) return next({err: "Couldnt find a user with that id"});
-          result.update({$inc:{score: +1}},
-            function(err,result){
-                   if(err) return next(err);
-                   if(!result) return next({err: "Couldnt find a user with that id"});
+      if (!result) return next("Could not Create Post");
+      User.findOne({
+        email: req.payload.email
+      }, function(err, user) {
+        if (!user) return res.status(404).send({
+          err: "Could not find that user."
+        });
+        user.profilePosts.push(result);
+        user.save(function(err, user) {});
+        res.send();
+      });
+    });
+  });
+});
+
+router.post('/reblog/:id', auth, function(req, res, next) {
+      var comment = req.body;
+      comment.avi = req.payload.pic;
+      comment.creatorName = req.payload.name;
+
+      ProfilePost.findOne({
+        _id: req.params.id
+      }, function(err, result) {
+        console.log('result ', result);
+        var post = new ProfilePost({
+          title: result.title,
+          body: result.body,
+          avi: result.avi,
+          date: result.date,
+          comments: result.comments,
+          creatorId: result.creatorId,
+          upvotes: result.upvotes,
+          downvotes: result.downvotes,
+          tags: result.tags,
+          createdBy: result.createdBy,
+        });
+        ProfilePost.update({
+          _id: req.params.id
+        }, {
+          $push: {
+            comments: comment
+          }
+        }, function(err, result) {
+          if (err) return next(err);
+          if (!result) return next({
+            err: "Couldnt find that post!"
+          });
+
+          post.comments.push(comment);
+          console.log(post.comments, " post.comments");
+
+          post.save(function(err, result) {
+            if (err) return next(err);
+            if (!result) return next("Could not Create Post");
+            User.findOne({
+              email: req.payload.email
+            }, function(err, user) {
+              if (!user) return res.status(404).send({
+                err: "Could not find that user."
               });
+              user.profilePosts.push(result);
+              user.save(function(err, user) {});
+
+              if (err) return next(err);
+              if (!result) return next({
+                err: "That user wasnt found for updating!"
+              });
+              // });
+              res.send();
+
             });
-      res.send(result);
+          });
+        });
       });
     });
 
-    router.put('/downvote/:id', auth, function(req,res, next){
-      console.log(req.params.id);
-      console.log(req.body);
-      ProfilePost.update({_id: req.params.id}, {$push: {downvotes: req.payload._id}, $pull: {upvotes: req.payload._id}}, function(err, result){
-        if (err) return next(err);
-        if (!result) return next ({err: "That post wasnt found for updating"});
-        User.findOne({_id: req.body}, function(err,result){
-                if(err) return next(err);
-            if(!result) return next({err: "Couldnt find a user with that id"});
-            result.update({$inc:{score: -1}},
-              function(err,result){
-                     if(err) return next(err);
-                     if(!result) return next({err: "Couldnt find a user with that id"});
-                });
-              });
-        res.send(result);
+
+
+
+
+      //get call for all the posts - home page.
+      router.get('/', function(req, res, next) {
+        ProfilePost.find({}, function(err, result) {
+          if (err) {
+            return next(err);
+          }
+          if (!result) {
+            return next({
+              err: "Error finding post by that user ID"
+            });
+          }
+          res.send(result);
+        });
+      });
+
+      router.get('/:tag', function(req, res, next) {
+        ProfilePost.find({
+          tags: req.params.tag
+        }, function(err, result) {
+          console.log("result", result);
+          console.log("Req.params.tag", req.params.tag);
+          if (err) {
+            return next(err);
+          }
+          if (!result) {
+            return next({
+              err: "Error finding post by that user ID"
+            });
+          }
+          res.send(result);
         });
       });
 
 
-module.exports = router;
+      //get call for user posts - profile.
+      router.get('/userPosts/:id', function(req, res, next) {
+        ProfilePost.find({
+          creatorId: req.params.id
+        }, function(err, result) {
+          if (err) {
+            return next(err);
+          }
+          if (!result) {
+            return next({
+              err: "Error finding post by that user ID"
+            });
+          }
+          res.send(result);
+        });
+      });
+
+
+
+      router.delete('/:id', function(req, res, next) {
+        ProfilePost.remove({
+          _id: req.params.id
+        }, function(err, result) {
+          if (err) return next(err);
+          res.send();
+        });
+      });
+
+      router.put('/:id', function(req, res, next) {
+        ProfilePost.update({
+          _id: req.params.id
+        }, req.body, function(err, result) {
+          if (err) return next(err);
+          if (!result) return next({
+            err: "That post wasnt found for updating"
+          });
+          // console.log(result);
+          res.send(result);
+        });
+      });
+
+      router.put('/upvote/:id', auth, function(req, res, next) {
+        console.log(req.params.id);
+        console.log(req.body);
+
+        ProfilePost.update({
+          _id: req.params.id
+        }, {
+          $push: {
+            upvotes: req.payload._id
+          },
+          $pull: {
+            downvotes: req.payload._id
+          }
+        }, function(err, result) {
+          if (err) return next(err);
+          if (!result) return next({
+            err: "That post wasnt found for updating"
+          });
+          User.findOne({
+            _id: req.body
+          }, function(err, result) {
+            if (err) return next(err);
+            if (!result) return next({
+              err: "Couldnt find a user with that id"
+            });
+            result.update({
+                $inc: {
+                  score: +1
+                }
+              },
+              function(err, result) {
+                if (err) return next(err);
+                if (!result) return next({
+                  err: "Couldnt find a user with that id"
+                });
+              });
+          });
+          res.send(result);
+        });
+      });
+
+      router.put('/downvote/:id', auth, function(req, res, next) {
+        console.log(req.params.id);
+        console.log(req.body);
+        ProfilePost.update({
+          _id: req.params.id
+        }, {
+          $push: {
+            downvotes: req.payload._id
+          },
+          $pull: {
+            upvotes: req.payload._id
+          }
+        }, function(err, result) {
+          if (err) return next(err);
+          if (!result) return next({
+            err: "That post wasnt found for updating"
+          });
+          User.findOne({
+            _id: req.body
+          }, function(err, result) {
+            if (err) return next(err);
+            if (!result) return next({
+              err: "Couldnt find a user with that id"
+            });
+            result.update({
+                $inc: {
+                  score: -1
+                }
+              },
+              function(err, result) {
+                if (err) return next(err);
+                if (!result) return next({
+                  err: "Couldnt find a user with that id"
+                });
+              });
+          });
+          res.send(result);
+        });
+      });
+
+
+      module.exports = router;
