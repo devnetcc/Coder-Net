@@ -7,7 +7,13 @@
     <h3 style="margin-left:25px">Ranking</h3>
     <img src=' {{vm.profile.badge}}'>
   </div>
-
+  <div class="yeah">Angular<bars data="40" labels="Angular, Javascript"></bars></div>
+  javascript <bars data="4" labels="Angular, Javascript"></bars>
+  JQuery
+   <bars data="55" labels="Angular, Javascript"></bars>
+  <!-- <canvas id="bar" class="chart chart-bar"
+    chart-data="vm.data" chart-labels="vm.labels">
+  </canvas> -->
   <div>
         <!-- Profile Tagline -->
     <h1 style="margin-left:50px;">{{vm.profile.tagLine}}</h3>
@@ -66,7 +72,16 @@
           <label> Content </label>
           <textarea required ng-model="vm.post.body" columns="2"></textarea>
         </md-input-container>
-
+        <md-input-container>
+        <label>Tags</label>
+           <md-chips
+               ng-model="vm.post.tags"
+               readonly="vm.post.readonly"
+               placeholder="Enter a tag"
+               delete-button-label="Remove Tag"
+               delete-hint="Press delete to remove tag"
+               ></md-chips>
+        </md-input-container>
         <md-button type="submit" class="zmdi zmdi-mail-send" > Post </md-button>
 </form>
 </div>
@@ -82,6 +97,7 @@
         <h3> Title: {{p.title}}</h3>
         <h5> Content: {{p.body}}</h5>
         <h6> Posted On: {{p.date}}</h6>
+        <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
         <md-button class="zmdi zmdi-thumb-down" ng-hide='showEdit' ng-click="vm.downvote(p)" aria-label="down"> </md-button>
         <md-button class="zmdi zmdi-thumb-up" ng-hide='showEdit' ng-click="vm.upvote(p)" aria-label="up"> </md-button>
         <md-button class="zmdi zmdi-edit" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>

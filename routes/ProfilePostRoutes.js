@@ -14,11 +14,19 @@ var auth = jwt({
 
 router.post('/',auth, function(req, res, next) {
   var post = new ProfilePost(req.body);
+  // console.log(post);
   post.createdBy.name = req.payload.name;
   post.avi = req.payload.pic;
   post.createdBy.lastName = req.payload.lastName;
   post.creatorId = req.payload._id;
   post.date = new Date();
+  // console.log('payload' , req.payload);
+
+  User.findOne({email: req.payload.email}, function(err, user){
+    post.avi = user.pic;
+    if(!user) return res.status(404).send({err: "Could not find that user."});
+console.log(post.avi);
+
   post.save(function(err, result) {
     if(err) return next(err);
     if(!result) return next("Could not Create Post");
@@ -31,6 +39,7 @@ router.post('/',auth, function(req, res, next) {
     });
   });
 });
+  });
 
 router.post('/reblog/:id', auth,function(req,res,next){
   console.log(req.body, " req.body");
@@ -50,6 +59,8 @@ router.post('/reblog/:id', auth,function(req,res,next){
     post.comments.push(comment);
     console.log(post.comments , " post.comments");
 
+
+
   post.save(function(err, result) {
     if(err) return next(err);
     if(!result) return next("Could not Create Post");
@@ -63,10 +74,11 @@ router.post('/reblog/:id', auth,function(req,res,next){
   		if(!result) return next ({err: "That user wasnt found for updating!"});
   	// });
     res.send();
-  });
-  });
 });
 });
+});
+});
+
 
 
 //get call for all the posts - home page.
@@ -78,7 +90,15 @@ router.get('/', function(req, res, next){
   });
 });
 
-
+router.get('/:tag', function(req,res,next){
+  ProfilePost.find({tags: req.params.tag}, function(err,result){
+    console.log("result", result);
+    console.log("Req.params.tag", req.params.tag);
+    if(err) {return next(err);}
+    if(!result) {return next({err: "Error finding post by that user ID"});}
+    res.send(result);
+  })
+})
 router.delete('/:id', function(req, res, next) {
   console.log(req.params.id);
   ProfilePost.remove({_id: req.params.id}, function(err, result) {

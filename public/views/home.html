@@ -15,6 +15,16 @@
         </md-input-container>
 
         <textarea ui-tinymce ng-model="vm.post.body"></textarea>
+        <md-input-container>
+        <label>Tags</label>
+           <md-chips
+               ng-model="vm.post.tags"
+               readonly="vm.post.readonly"
+               placeholder="Enter a tag"
+               delete-button-label="Remove Tag"
+               delete-hint="Press delete to remove tag"
+               ></md-chips>
+        </md-input-container>
         <br>
         <br>
         <md-button type="submit" class="zmdi zmdi-mail-send" > Post </md-button>
@@ -32,6 +42,8 @@
         <h2 >  {{p.title}} </h2>
         <h4 ng-bind-html="p.body"></h4>
         <h5> By: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
+        <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
+        
         <div layout>
           <md-button class="zmdi zmdi-thumb-down" ng-click="vm.downvote(p)" aria-label="down"> </md-button>
           <md-button class="zmdi zmdi-thumb-up" ng-click="vm.upvote(p)" aria-label="up"> </md-button>

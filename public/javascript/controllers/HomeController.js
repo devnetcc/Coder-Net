@@ -7,6 +7,7 @@
     var vm = this;
     vm.status = UserFactory.status;
     vm.post = {};
+    vm.post.tags =[];
     vm.allPosts = {};
     vm.allPosts.reblog = false;
     vm.repost = {};

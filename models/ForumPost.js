@@ -9,7 +9,8 @@ var ForumPostSchema = new mongoose.Schema({
  createdBy: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
  comments: [{type: mongoose.Schema.Types.ObjectId, ref:'Comment'}],
  upvotes: [String],
- downvotes: [String]
+ downvotes: [String],
+ tags : [],
 });
 
 mongoose.model('ForumPost', ForumPostSchema);
