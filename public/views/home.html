@@ -43,7 +43,6 @@
         <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a> on {{p.date | dateFilter}}</h5>
         <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
         <div ng-repeat="c in p.comments">
-          Comments
           <h3>{{c.title}}</h3>
           <h4>{{c.content}}</h4>
         </div>
