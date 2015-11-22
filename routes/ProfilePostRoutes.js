@@ -43,14 +43,23 @@ console.log(post.avi);
 
 router.post('/reblog/:id', auth,function(req,res,next){
   var comment = req.body;
-  var post = new ProfilePost({});
   comment.avi = req.payload.pic;
   comment.creatorName = req.payload.name;
 
   ProfilePost.findOne({_id: req.params.id}, function(err, result){
-    result.title = post.title;
-    result.body = post.body;
-  });
+    console.log('result ', result);
+    var post = new ProfilePost({
+      title: result.title,
+      body: result.body,
+      avi: result.avi,
+      date: result.date,
+      comments: result.comments,
+      creatorId: result.creatorId,
+      upvotes: result.upvotes,
+      downvotes: result.downvotes,
+      tags: result.tags,
+      createdBy: result.createdBy,
+    });
   ProfilePost.update({_id: req.params.id},{$push: {comments: comment}}, function(err,result){
     if(err) return next (err);
     if(!result) return next({err: "Couldnt find that post!"});
@@ -73,6 +82,7 @@ router.post('/reblog/:id', auth,function(req,res,next){
   		if(!result) return next ({err: "That user wasnt found for updating!"});
   	// });
     res.send();
+});
 });
 });
 });

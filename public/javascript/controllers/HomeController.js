@@ -29,6 +29,8 @@
     };
 
     vm.reblog = function(post) {
+      console.log(post._id + " post._id");
+      console.log(vm.repost + " vm.repost");
       HomeFactory.reblog(post._id, vm.repost)
         .then(function(res) {
           console.log("Will figure this out later");

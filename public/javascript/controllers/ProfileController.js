@@ -98,7 +98,6 @@ HomeFactory.getProfilePosts($stateParams.id).then(function(res){
 });
 };
 vm.getProfilePosts();
->>>>>>> 98002714f375abbf531746e28f7030ad7dd6ce10
 
 
 vm.goToEdit = function(id, obj){
