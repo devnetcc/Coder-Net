@@ -14,30 +14,17 @@
      vm.mymessages = {};
      vm.post = {};
     vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80'];
-    vm.profilePosts = [];
+    vm.profilePosts = {};
 
 
 // Notification.primary('Primary notification');
 vm.primary = function() {
                  Notification('Message Sent!');
              };
-// var msgcount = vm.profile.inmessage.length;
-// if(vm.profile.inmessage.length > msgcount){
-//   Notification('Message Sent!');
-//
-// }
 
-
-
-
-
-
+vm.getProfile = function(){
 ProfileFactory.getProfile($stateParams.id).then(function(res){
 	vm.profile = res;
-  console.log(vm.profile.email + "1");
-// console.log(vm.status.email + " vm.status.email");
-// console.log(vm.profile.token + " vm.profile.token");
-
 //sets user for ppl logging in with linkedin/fb/etc
 if(vm.status.email === undefined && vm.profile.token !== undefined){
   vm.status.email = vm.profile.email;
@@ -45,7 +32,6 @@ if(vm.status.email === undefined && vm.profile.token !== undefined){
   vm.status.lastName = vm.profile.lastName;
   vm.status.pic = vm.profile.pic;
   vm.status._id = vm.profile._id;
-  vm.profilePosts = vm.profile.profilePosts;
 }
 
 switch (vm.profile.role) {
@@ -68,7 +54,16 @@ switch (vm.profile.role) {
     vm.profile.badge = "/imgs/badges/coder.png";
 }
 });
-// console.log(vm.profile.email + "2");
+};
+vm.getProfile();
+
+vm.getProfilePosts = function(){
+HomeFactory.getProfilePosts($stateParams.id).then(function(res){
+  vm.profilePosts=res;
+});
+};
+vm.getProfilePosts();
+
 
 vm.goToEdit = function(id, obj){
 	$state.go('EditProfile', {id:id, obj:obj});
@@ -77,7 +72,6 @@ vm.goToEdit = function(id, obj){
 
 vm.editProfile = function (profile){
 		ProfileFactory.editProfile(profile).then(function(){
-      console.log(vm.profile.role);
       switch (vm.profile.role) {
         case 'Newbie':
         vm.profile.badge = "/imgs/badges/newbie.png";
@@ -134,30 +128,28 @@ vm.uploadPic = function(){
   };
 
 
-
   vm.createPost = function (){
-  HomeFactory.postPost(vm.post, vm.profile).then(function(res){
-    vm.profile.profilePosts.push(vm.post);
+  HomeFactory.postPost(vm.post).then(function(res){
+    vm.profilePosts.push(vm.post);
   	vm.post = {};
+    vm.getProfilePosts();
   });
   };
+
   vm.startEdit = function(post) {
     vm.editingPost = angular.copy(post);
   };
 
   vm.editPost = function (postID, post) {
-  HomeFactory.editPost(postID, post).then(function(res){
-    ProfileFactory.getProfile($stateParams.id).then(function(res){
-    	vm.profile = res;
-      vm.profilePosts = vm.profile.profilePosts;
-    });
+  HomeFactory.editPost(postID, post).then(function(){
     vm.editingPost = {};
-  });
+    getProfilePosts();
+    });
   };
 
   vm.deletePost = function(postID) {
   HomeFactory.deletePost(postID).then(function() {
-  		vm.profile.profilePosts.splice(vm.profile.profilePosts.indexOf(postID), 1);
+  		vm.profilePosts.splice(vm.profilePosts.indexOf(postID), 1);
   		});
   };
 
@@ -167,8 +159,8 @@ vm.sendMsg = function(){
     vm.profile.msgcount++;
     // vm.mymessages = res;
     // $state.go("Profile({id: $stateParams.id})");
-  })
-}
+  });
+};
 
       vm.upvote = function(post) {
         if (post.creatorId == vm.status._id) {
