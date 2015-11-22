@@ -104,11 +104,14 @@ router.put('/:id', function(req,res, next){
     });
   });
 
-  router.put('/upvote/:post', auth, function(req,res, next){
-    ProfilePost.update({_id: req.params.post._id}, {$push: {upvotes: req.payload._id}, $pull: {downvotes: req.payload._id}}, function(err, result){
+  router.put('/upvote/:id', auth, function(req,res, next){
+    console.log(req.params.id);
+    console.log(req.body);
+
+    ProfilePost.update({_id: req.params.id}, {$push: {upvotes: req.payload._id}, $pull: {downvotes: req.payload._id}}, function(err, result){
       if (err) return next(err);
       if (!result) return next ({err: "That post wasnt found for updating"});
-      User.findOne({_id: req.params.post._id}, function(err,result){
+      User.findOne({_id: req.body}, function(err,result){
               if(err) return next(err);
           if(!result) return next({err: "Couldnt find a user with that id"});
           result.update({$inc:{score: +1}},
@@ -122,10 +125,12 @@ router.put('/:id', function(req,res, next){
     });
 
     router.put('/downvote/:id', auth, function(req,res, next){
+      console.log(req.params.id);
+      console.log(req.body);
       ProfilePost.update({_id: req.params.id}, {$push: {downvotes: req.payload._id}, $pull: {upvotes: req.payload._id}}, function(err, result){
         if (err) return next(err);
         if (!result) return next ({err: "That post wasnt found for updating"});
-        User.findOne({_id: req.params.post._id}, function(err,result){
+        User.findOne({_id: req.body}, function(err,result){
                 if(err) return next(err);
             if(!result) return next({err: "Couldnt find a user with that id"});
             result.update({$inc:{score: -1}},

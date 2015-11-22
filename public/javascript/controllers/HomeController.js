@@ -59,7 +59,7 @@
           if (index != -1) {
             post.downvotes.splice(index, 1);
           }
-          HomeFactory.upvote(post._id);
+          HomeFactory.upvote(post._id, post.creatorId);
         }
       }
     };
@@ -78,7 +78,7 @@
           if (index != -1) {
             post.upvotes.splice(index, 1);
           }
-          HomeFactory.downvote(post._id);
+          HomeFactory.downvote(post._id, post.creatorId);
         }
       }
     };

@@ -61,7 +61,7 @@ router.post('/register', function(req, res) {
       to: user.email, // req.query.to,
       subject: "Please confirm your Email account",
       // html : 'Hello, <br> Please Click on the link to verify your email.<br><a href="' + link + '">Click here to verify</a>"'
-      html: 'Hello, <br> Please Click on the link to verify your email.<br><a href="' + link + '">Click here to verify</a>'
+      html: 'Hello, <br> Please click on the link to verify your email.<br><a href="' + link + '">Click here to verify</a>'
     };
     smtpTransport.sendMail(mailOptions, function(error, response) {
       if (error) {

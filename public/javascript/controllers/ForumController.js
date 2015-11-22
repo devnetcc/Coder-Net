@@ -103,7 +103,7 @@ vm.upvote = function(post) {
       if (index != -1) {
         post.downvotes.splice(index, 1);
       }
-      ForumFactory.upvote(post);
+      ForumFactory.upvote(post._id, post.creatorId);
     }
   }
 };
@@ -122,7 +122,7 @@ vm.downvote = function(post) {
       if (index != -1) {
         post.upvotes.splice(index, 1);
       }
-      ForumFactory.downvote(post);
+      ForumFactory.downvote(post._id, post.creatorId);
     }
   }
 };
