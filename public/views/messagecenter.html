@@ -1,7 +1,7 @@
 <div ng-controller="ProfileController as vm">
   <md-content>
-      <md-tabs md-dynamic-height md-border-bottom >
-        <md-tab class="md-tab-label" label="inbox ({{vm.profile.inmessage.length}})">
+      <md-tabs class="md-primary" md-dynamic-height md-border-bottom >
+        <md-tab style="text-align:center; color:#32B2B2 margin:auto" label="inbox ({{vm.profile.inmessage.length}})">
           <md-content class="md-padding">
             <h1 class="md-display-2">Inbox ({{vm.profile.inmessage.length}})</h1>
             <div ng-repeat="p in vm.profile.inmessage">
@@ -26,7 +26,6 @@
             </div>
           </md-content>
         </md-tab>
-      <!-- </div> -->
       </md-tabs>
     </md-content>
 </div>

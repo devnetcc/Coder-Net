@@ -60,6 +60,12 @@ vm.getProfile();
 vm.getProfilePosts = function(){
 HomeFactory.getProfilePosts($stateParams.id).then(function(res){
   vm.profilePosts=res;
+  for (var i=0; i<vm.profilePosts.length; i++) {
+    vm.profilePosts[i].score = vm.profilePosts[i].upvotes.length - vm.profilePosts[i].downvotes.length;
+
+    console.log(vm.topicPosts[i].score);
+  }
+
 });
 };
 vm.getProfilePosts();
@@ -173,7 +179,7 @@ vm.sendMsg = function(){
             if (index != -1) {
               post.downvotes.splice(index, 1);
             }
-            HomeFactory.upvote(post._id, vm.status._id);
+            HomeFactory.upvote(post);
           }
         }
       };
@@ -192,7 +198,8 @@ vm.sendMsg = function(){
             if (index != -1) {
               post.upvotes.splice(index, 1);
             }
-            HomeFactory.downvote(post._id, vm.status._id);
+            HomeFactory.downvote(post);
+
           }
         }
       };

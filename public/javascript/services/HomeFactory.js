@@ -61,21 +61,22 @@
       return q.promise;
     };
 
-    o.upvote = function(postID) {
+    o.upvote = function(post) {
       var q = $q.defer();
-      $http.put('/api/posts/upvote/' + postID).then(function(res) {
+      $http.put('/api/posts/upvote/' + post).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;
     };
 
-    o.downvote = function(postID) {
+    o.downvote = function(post) {
       var q = $q.defer();
-      $http.put('/api/posts/downvote/' + postID).then(function(res) {
+      $http.put('/api/posts/downvote/' + post).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;
     };
+
 
     return o;
   }
