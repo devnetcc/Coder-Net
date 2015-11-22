@@ -132,7 +132,6 @@ passport.use(new FacebookStrategy({
 }, function(accessToken, refreshToken, profile, done) {
 	process.nextTick(function() {
 		User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
-			console.log( profile);
 
 					if(err) {
 						return done(err) ;
@@ -187,7 +186,6 @@ passport.use(new TwitterStrategy({
 }, function(accessToken, refreshToken, profile, done) {
 	process.nextTick(function() {
 		User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
-			console.log(profile);
 
 					if(err) {
 						return done(err) ;
@@ -196,7 +194,6 @@ passport.use(new TwitterStrategy({
 						return done(null, user) ;
 					}
 					else {
-						console.log(profile);
 						var newUser = new User() ;
 						newUser.twitter.id = profile.id ;
 						newUser.twitter.screen_name = profile.screen_name;

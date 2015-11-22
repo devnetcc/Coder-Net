@@ -92,7 +92,6 @@ HomeFactory.getProfilePosts($stateParams.id).then(function(res){
   for (var i=0; i<vm.profilePosts.length; i++) {
     vm.profilePosts[i].score = vm.profilePosts[i].upvotes.length - vm.profilePosts[i].downvotes.length;
 
-    console.log(vm.topicPosts[i].score);
   }
 
 });

@@ -29,7 +29,6 @@ router.post('/', auth, function(req, res, next) {
     if (!user) return res.status(404).send({
       err: "Could not find that user."
     });
-    console.log(post.avi);
 
     post.save(function(err, result) {
       if (err) return next(err);
@@ -179,7 +178,6 @@ router.post('/reblog/:id', auth, function(req, res, next) {
           if (!result) return next({
             err: "That post wasnt found for updating"
           });
-          // console.log(result);
           res.send(result);
         });
       });

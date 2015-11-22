@@ -43,8 +43,7 @@
 
     vm.login = function() {
       UserFactory.login(vm.user).then(function() {
-        console.log(vm.status);
-        console.log(vm.status.userName);
+
         $state.go('Profile', {
           id: vm.status._id
         });
@@ -58,14 +57,11 @@
 
     // conditional statement
     vm.followOnProfile = function() {
-      console.log($stateParams);
       if ($stateParams === vm.status) {
         return null;
       }
       UserFactory.followOnProfile($stateParams.id, vm.status)
         .then(function(res) {
-          console.log(vm.status);
-          console.log("got a new follower");
           //change follow button to unfollow button
         });
     };
@@ -81,7 +77,6 @@
     vm.unFollowProfile = function(id) {
       UserFactory.unFollowProfile($stateParams.id, vm.status)
         .then(function(res) {
-          console.log(vm.followers);
           vm.followers.splice(vm.followers.indexOf(), 1);
         });
 

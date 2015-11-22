@@ -20,7 +20,6 @@
       var q = $q.defer();
       $http.delete('/api/forum/' + fpostID)
         .then(function(res) {
-      console.log(res);
           q.resolve();
         });
       return q.promise;
@@ -52,7 +51,6 @@
     };
 
     o.getPostById = function(id) {
-      console.log(id); // post id
       var q = $q.defer();
       $http.get('/api/forum/forumPost/' + id).then(function(res) {
         q.resolve(res.data);

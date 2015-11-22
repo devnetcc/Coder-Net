@@ -92,7 +92,6 @@ ForumPost.update({_id: req.params.id},req.body,
 
 //Delete a forum post by it's id
 router.delete('/:id', auth, function(req,res,next){
-  // console.log("I made it to the route file");
   ForumPost.remove({_id: req.params.id}, function(err,result){
     if(err) return next(err);
     if(!result) return next(err);
