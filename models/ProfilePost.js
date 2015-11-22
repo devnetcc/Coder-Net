@@ -17,7 +17,8 @@ var ProfilePostSchema = new mongoose.Schema({
    avi: String,
  }],
  upvotes: [String],
- downvotes: [String]
+ downvotes: [String],
+ tags: [],
 });
 
 mongoose.model('ProfilePost', ProfilePostSchema);

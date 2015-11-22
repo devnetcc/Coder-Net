@@ -10,6 +10,7 @@ var port = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
+
 require('./models/Comment');
 require('./models/ForumPost');
 require('./models/ProfilePost');
@@ -59,6 +60,7 @@ var profilePostRoutes = require('./routes/ProfilePostRoutes');
 var resetRoutes = require('./routes/ResetPassRoutes');
 // var inboxRoutes = require('./routes/InboxRoutes');
 var authRoutes = require('./routes/authRoutes');
+var notifRoutes = require('./routes/notifications');
 
 
 //on homepage load, render the index page
@@ -74,6 +76,7 @@ app.use('/api/posts', profilePostRoutes);
 app.use('/api/reset', resetRoutes);
 // app.use('/api/inbox', inboxRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/notification', notifRoutes);
 
 
 var server = app.listen(port, function() {

@@ -50,6 +50,7 @@ profilePosts:
   creatorId: String,
   date: Date,
   avi: String,
+  tags: [],
   comments: [{
     creatorId: String,
     creatorName: String,

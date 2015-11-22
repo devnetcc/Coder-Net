@@ -12,7 +12,17 @@
           <input required ng-model="vm.post.title" />
         </md-input-container>
 
-        <textarea ui-tinymce ng-model="vm.post.body"></textarea>
+        <textarea  ng-model="vm.post.body"></textarea>
+        <md-input-container>
+        <label>Tags</label>
+           <md-chips
+               ng-model="vm.post.tags"
+               readonly="vm.post.readonly"
+               placeholder="Enter a tag"
+               delete-button-label="Remove Tag"
+               delete-hint="Press delete to remove tag"
+               ></md-chips>
+        </md-input-container>
         <br>
         <br>
         <md-button type="submit" class="zmdi zmdi-mail-send" > Post </md-button>
@@ -27,9 +37,16 @@
 
     <md-list-item ng-repeat='p in vm.allPosts' >
       <div class='md-list-item-text' style='padding:10px; padding-left:30px' >
+        <img src="{{p.avi}}" class="avatar" />
         <h2 >  {{p.title}} </h2>
         <h4 ng-bind-html="p.body"></h4>
-        <h5> By: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
+        <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a> on {{p.date | dateFilter}}</h5>
+        <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
+        <div ng-repeat="c in p.comments">
+          <h3>{{c.title}}</h3>
+          <h4>{{c.content}}</h4>
+        </div>
+
         <div layout>
           <md-button class="zmdi zmdi-thumb-down" ng-click="vm.downvote(p)" aria-label="down"> </md-button>
           <md-button class="zmdi zmdi-thumb-up" ng-click="vm.upvote(p)" aria-label="up"> </md-button>
@@ -44,15 +61,16 @@
               <md-input-container layout-padding>
                 <label> Post Title</label>
                 <input ng-model="vm.repost.title" />
-
-              <textarea  ui-tinymce ng-model="vm.repost.content"></textarea>
-
-            </div>
+              </md-input-container>
+              <md-input-container>
+              <textarea ng-model="vm.repost.content"></textarea>
+            </md-input-container>
               <br>
               <br>
               <md-button type="submit" class="md-raised" > Post </md-button>
               <md-button  class="md-raised" ng-click="p.reblog = !p.reblog"> Cancel </md-button>
       </form>
+    </div>
           </div>
         </div>
         <div class="share">
@@ -91,12 +109,12 @@
   </md-list>
 </md-content>
 </div>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
 <g:hangout
    render="createhangout"
    topic="cpp11"
    hangout_type="moderated"
    invites="[{ id : '103757504279751950811', invite_type : 'PROFILE' },
        { id : 'pearlmcphee@gmail.com', invite_type : 'EMAIL' }]">
-</g:hangout>
+</g:hangout> -->
 </div>

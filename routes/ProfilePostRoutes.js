@@ -14,11 +14,19 @@ var auth = jwt({
 
 router.post('/',auth, function(req, res, next) {
   var post = new ProfilePost(req.body);
+  // console.log(post);
   post.createdBy.name = req.payload.name;
   post.avi = req.payload.pic;
   post.createdBy.lastName = req.payload.lastName;
   post.creatorId = req.payload._id;
   post.date = new Date();
+  // console.log('payload' , req.payload);
+
+  User.findOne({email: req.payload.email}, function(err, user){
+    post.avi = user.pic;
+    if(!user) return res.status(404).send({err: "Could not find that user."});
+console.log(post.avi);
+
   post.save(function(err, result) {
     if(err) return next(err);
     if(!result) return next("Could not Create Post");
@@ -31,23 +39,35 @@ router.post('/',auth, function(req, res, next) {
     });
   });
 });
+  });
 
 router.post('/reblog/:id', auth,function(req,res,next){
   var comment = req.body;
-  var post = new ProfilePost({});
   comment.avi = req.payload.pic;
   comment.creatorName = req.payload.name;
 
   ProfilePost.findOne({_id: req.params.id}, function(err, result){
-    result.title = post.title;
-    result.body = post.body;
-  });
+    console.log('result ', result);
+    var post = new ProfilePost({
+      title: result.title,
+      body: result.body,
+      avi: result.avi,
+      date: result.date,
+      comments: result.comments,
+      creatorId: result.creatorId,
+      upvotes: result.upvotes,
+      downvotes: result.downvotes,
+      tags: result.tags,
+      createdBy: result.createdBy,
+    });
   ProfilePost.update({_id: req.params.id},{$push: {comments: comment}}, function(err,result){
     if(err) return next (err);
     if(!result) return next({err: "Couldnt find that post!"});
 
     post.comments.push(comment);
     console.log(post.comments , " post.comments");
+
+
 
   post.save(function(err, result) {
     if(err) return next(err);
@@ -62,10 +82,12 @@ router.post('/reblog/:id', auth,function(req,res,next){
   		if(!result) return next ({err: "That user wasnt found for updating!"});
   	// });
     res.send();
-  });
-  });
 });
 });
+});
+});
+});
+
 
 
 //get call for all the posts - home page.
@@ -77,6 +99,15 @@ router.get('/', function(req, res, next){
   });
 });
 
+router.get('/:tag', function(req,res,next){
+  ProfilePost.find({tags: req.params.tag}, function(err,result){
+    console.log("result", result);
+    console.log("Req.params.tag", req.params.tag);
+    if(err) {return next(err);}
+    if(!result) {return next({err: "Error finding post by that user ID"});}
+    res.send(result);
+  })
+})
 //get call for user posts - profile.
 router.get('/userPosts/:id', function(req, res, next){
   ProfilePost.find({creatorId: req.params.id}, function(err, result){

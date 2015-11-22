@@ -6,6 +6,21 @@
   function ProfileFactory($http, $q) {
     var o = {};
 
+    // o.getRecipientbyId = function(id){
+    //   var q = $q.defer();
+    //   $http.get('/api/users/messages/' + id).then(function(res) {
+    //     q.resolve(res.data);
+    //   });
+    //   return q.promise;
+    // }
+
+    o.getTags = function(tag){
+      var q = $q.defer();
+      $http.get('/api/posts/' + tag).then(function(res) {
+        q.resolve(res.data);
+      });
+      return q.promise;
+    };
 
     o.getProfile = function(id) {
 
