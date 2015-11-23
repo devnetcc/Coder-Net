@@ -61,17 +61,17 @@
       return q.promise;
     };
 
-    o.upvote = function(post) {
+    o.upvote = function(postId, creator) {
       var q = $q.defer();
-      $http.put('/api/posts/upvote/' + post).then(function(res) {
+      $http.put('/api/posts/upvote/' + postId, creator).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;
     };
 
-    o.downvote = function(post) {
+    o.downvote = function(postId, creator) {
       var q = $q.defer();
-      $http.put('/api/posts/downvote/' + post).then(function(res) {
+      $http.put('/api/posts/downvote/' + postId, creator).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;

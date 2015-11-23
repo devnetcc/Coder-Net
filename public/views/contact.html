@@ -1,5 +1,5 @@
-<div ng-controller="HomeController as vm" class="bodyColor">
-
+<div ng-controller="HomeController as vm" >
+<div class="bodyColor">
   <form ng-submit="vm.contact()" style="padding: 90px">
     <p style="padding-bottom: 30px"> Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus,
       iaculis vel, suscipit quis, luctus non, massa. </p>
@@ -19,7 +19,6 @@
       <label> Message </label>
       <textarea required ng-model="vm.msg.msg" md-maxlength="2000"></textarea>
     </md-input-container>
-
     <div style="padding-top:50px" layout>
       <md-button type="submit" class="md-flat"> Send </md-button>
       <!-- have a toast saying 'message sent' -->
@@ -27,5 +26,5 @@
       <!-- by clicking cancel can this go back to previous state? or home  -->
     </div>
   </form>
-
+</divs>
 </div>
