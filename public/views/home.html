@@ -4,7 +4,7 @@
       <div uib-collapse="!p.reblog" layout>
           <div layout="column" layout-align="center center">
             <md-button required class="md-primary"ng-click="vm.uploadPic()">Upload a Photo</md-button>
-              <div flex="40" style="padding-bottom: 20px;">
+              <div flex="40" style="padding-bottom: 10px;">
                 <form ng-submit="vm.createPost();">
                   <md-input-container layout-padding>
                     <label> Post Title</label>
@@ -16,7 +16,7 @@
                   </md-input-container>
                   <textarea ui-tinymce  ng-model="vm.post.body"></textarea>
                   <md-input-container>
-                  <label>Tags</label>
+                  <label> Insert Tags</label>
                      <md-chips
                          ng-model="vm.post.tags"
                          readonly="vm.post.readonly"
@@ -25,10 +25,9 @@
                          ></md-chips>
                   </md-input-container>
                   <br>
-                  <br>
                   <md-button type="submit" class="zmdi zmdi-mail-send" > Post </md-button>
+                </form>
         </div>
-</form>
 </div>
 </div>
 <md-divider ng-if="!$last" ></md-divider>
@@ -38,9 +37,15 @@
 
     <div ng-repeat='p in vm.allPosts' >
       <!-- <div ng-show="vm.allPosts.show=true"> -->
-        <div layout>
+        <!-- <div layout>
           <div  flex="15" id="parent">
         <img ng-src="{{p.avi}}" class="avatar" style="margin-left: 10px"/>
+
+    <div ng-repeat='p in vm.allPosts' > -->
+
+        <div layout>
+          <div style='padding-left:50px;' flex="15" id="parent">
+        <img src="{{p.avi}}" class="avatar" style="margin-left: 10px"/>
         <div id="hover-content" flex="15">
 
           <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter }}</a>

@@ -2,13 +2,13 @@
   <md-content>
       <md-tabs class="md-primary" md-dynamic-height md-border-bottom >
         <md-tab style="text-align:center; color:#32B2B2 margin:auto" label="inbox ({{vm.profile.inmessage.length}})">
-          <md-content class="md-padding">
+          <md-content class="md-padding" >
             <h1 class="md-display-2">Inbox ({{vm.profile.inmessage.length}})</h1>
-            <div ng-repeat="p in vm.profile.inmessage">
-            Recieved: {{p.sent}}<br>
-            From: <a ng-href="http://localhost:8080/#/profile/{{p.senderId}}"> {{p.from}}</a>
+            <div ng-repeat="p in vm.profile.inmessage" style="padding-left: 50px">
+            Recieved: {{p.sent | dateFilter}}<br>
+            From: <a ng-href="http://localhost:8080/#/profile/{{p.senderId}}"> {{p.from | firstLetterFilter}}</a>
             <br>
-            Message: <p>{{p.body}}</p>
+            Message: <p>{{p.body | firstLetterFilter}}</p>
             <md-button>Reply</md-button>
             <hr>
             </div>
@@ -17,11 +17,11 @@
         <md-tab label="outbox ({{vm.profile.outmessage.length}})">
           <md-content class="md-padding">
             <h1 class="md-display-2">Outbox ({{vm.profile.outmessage.length}})</h1>
-            <div ng-repeat="p in vm.profile.outmessage">
-            Sent: {{p.recieved}}<br>
-            To:  <a ng-href="http://localhost:8080/#/profile/{{p.recieverId}}"> {{p.to}}</a>
+            <div ng-repeat="p in vm.profile.outmessage" style="padding-left: 50px">
+            Sent: {{p.recieved | dateFilter}}<br>
+            To:  <a ng-href="http://localhost:8080/#/profile/{{p.recieverId}}"> {{p.to | firstLetterFilter}}</a>
             <br>
-            Message: <p>{{p.body}}</p>
+            Message: <p>{{p.body | firstLetterFilter}}</p>
             <hr>
             </div>
           </md-content>

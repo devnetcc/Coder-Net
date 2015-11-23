@@ -24,6 +24,7 @@
     vm.getPost = function() {
       HomeFactory.getAllPosts().then(function(res) {
 
+
 //         var j = vm.allPosts.length -1;
 //         while (j >= 0) {
 //         for(var i =0; i < vm.person.following.length; i++){
@@ -49,6 +50,12 @@
           }
         }
         console.log(vm.allPosts[0].show);
+        vm.allPosts = res;
+        // for(var i =0; i < vm.person.following.length; i++){
+        //   if(vm.allPosts.creatorId === vm.person.following[0].celebrityId){
+        //     vm.allPosts.show = true;
+        //   }
+        // }
       });
     };
 
