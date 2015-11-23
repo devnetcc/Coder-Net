@@ -51,7 +51,7 @@
 		</section>
 
 
-		<section layout layout-align="end end">
+		<section layout layout-align="end end" style="font-size:16px; padding-right: 20px; color: white;">
 				<md-select ng-model="someVal" placeholder='Welcome {{nav.status.name}}' ng-show='nav.status.email;'>
 					<md-option ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Profile </md-option>
 					<md-option value='My Messages'ui-sref="MessageCenter({id: nav.status._id})"> Messages </md-option>
