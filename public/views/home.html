@@ -33,7 +33,6 @@
 <md-divider ng-if="!$last" ></md-divider>
 <h5 style="text-align: center"> News Feed </h5>
     <div ng-repeat='p in vm.allPosts' >
-      <div ng-show="p.show">
 
         <div layout>
           <div style='padding-left:50px;' flex="15" id="parent">
@@ -94,8 +93,8 @@
             </md-input-container>
               <br>
               <br>
-              <md-button type="submit" class="md-raised" > Post </md-button>
-              <md-button  class="md-raised" ng-click="p.reblog = !p.reblog"> Cancel </md-button>
+              <md-button type="submit" class="md-flat" > Post </md-button>
+              <md-button  class="md-flat" ng-click="p.reblog = !p.reblog"> Cancel </md-button>
       </form>
     </div>
           </div>
@@ -103,14 +102,11 @@
     </div>
       </div>
 
-
-
-
         </div>
         <div layout>
           <div flex>
         <div class="share">
-          <h4>Share:</h4>
+          <h6>Share:</h6>
           <a href="#" id="linkedin" class="social-btn"
             socialshare
             socialshare-provider="linkedin"
