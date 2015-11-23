@@ -1,6 +1,6 @@
 <div ng-controller="ProfileController as vm">
   <form ng-submit="vm.sendMsg();">
-    To: {{vm.profile.name}}
+    To: {{vm.profile.name | firstLetterFilter}}
     <md-input-container>
       <label>Add Additional Recipents</label>
       <input ng-model="vm.person.contact"/>

@@ -9,7 +9,7 @@
    <bars data="55" labels="Angular, Javascript"></bars> -->
 
 <div style="text-align:center;" >
-  <h2>{{vm.profile.tagLine}}</h2>
+  <h2>{{vm.profile.tagLine | firstLetterFilter}}</h2>
 </div>
     <!-- <div ng-show='vm.profile.pic.length'  style="height:225px;width:225px;  margin-left:50px;text-align:center;"> -->
 <div layout>
@@ -97,7 +97,7 @@
                   <div flex="15" id="parent">
                 <img src="{{p.avi}}" class="avatar" />
                 <div id="hover-content" flex="15">
-                  <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a>
+                  <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}}</a>
                   <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-click="vm.followOnPost(p);" aria-label="follow"> </md-button>
                   <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
                   <md-button class="zmdi zmdi-email" ui-sref="Message({id: p.creatorId})"></md-button>
@@ -107,7 +107,7 @@
                 <div layout="column">
                 <h2 >  {{p.title}} </h2>
                 <h4 ng-bind-html="p.body"></h4>
-                <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a> on {{p.date | dateFilter}}</h5>
+                <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter }}</a> on {{p.date | dateFilter}}</h5>
                 <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
                 <div ng-repeat="c in p.comments">
                   <div layout>
@@ -122,9 +122,9 @@
                   </div>
                 </div>
                     <div flex-offset="5">
-                      <h2>{{c.creatorName}} says:</h2>
-                  <h3>{{c.title}}</h3>
-                  <h4>{{c.content}}</h4>
+                      <h2>{{c.creatorName | firstLetterFilter}} says:</h2>
+                  <h3>{{c.title | firstLetterFilter}}</h3>
+                  <h4>{{c.content | firstLetterFilter}}</h4>
                 </div>
                 </div>
                 </div>
