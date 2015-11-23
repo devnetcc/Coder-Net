@@ -7,6 +7,7 @@
     var vm = this;
     vm.status = UserFactory.status;
     vm.post = {};
+    vm.post.tags =[];
     vm.allPosts = {};
     vm.allPosts.reblog = false;
     vm.repost = {};
@@ -30,7 +31,7 @@
     vm.reblog = function(post) {
       HomeFactory.reblog(post._id, vm.repost)
         .then(function(res) {
-          console.log("Will figure this out later");
+          vm.repost ={};
         });
     };
     vm.contact = function() { // this is for the mock contact form we have.
@@ -59,7 +60,7 @@
           if (index != -1) {
             post.downvotes.splice(index, 1);
           }
-          HomeFactory.upvote(post._id);
+          HomeFactory.upvote(post._id, post.creatorId);
         }
       }
     };
@@ -78,7 +79,7 @@
           if (index != -1) {
             post.upvotes.splice(index, 1);
           }
-          HomeFactory.downvote(post._id);
+          HomeFactory.downvote(post._id, post.creatorId);
         }
       }
     };

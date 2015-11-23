@@ -24,6 +24,7 @@ router.post('/',auth, function(req,res,next){
   var post = new ForumPost(req.body);
   post.createdBy = req.payload;
   post.creatorId = req.payload._id;
+  post.date = new Date();
   User.findOne({email: req.payload.email}, function(err,result){
           if(err) return next(err);
       if(!result) return next({err: "Couldnt find a user with that id"});
@@ -90,8 +91,7 @@ ForumPost.update({_id: req.params.id},req.body,
 });
 
 //Delete a forum post by it's id
-router.delete('/:id', function(req,res,next){
-  // console.log("I made it to the route file");
+router.delete('/:id', auth, function(req,res,next){
   ForumPost.remove({_id: req.params.id}, function(err,result){
     if(err) return next(err);
     if(!result) return next(err);
@@ -100,18 +100,41 @@ router.delete('/:id', function(req,res,next){
 });
 
 router.put('/upvote/:id', auth, function(req,res, next){
+  console.log(req.params.id);
+  console.log(req.body);
   ForumPost.update({_id: req.params.id}, {$push: {upvotes: req.payload._id}, $pull: {downvotes: req.payload._id}}, function(err, result){
     if (err) return next(err);
     if (!result) return next ({err: "That post wasnt found for updating"});
-    res.send(result);
+    User.findOne({_id: req.body.creator}, function(err,result){
+            if(err) return next(err);
+        if(!result) return next({err: "Couldnt find a user with that id"});
+        result.update({$inc:{score: +1}},
+          function(err,result){
+                 if(err) return next(err);
+                 if(!result) return next({err: "Couldnt find a user with that id"});
+            });
+          });
+    res.send();
     });
   });
 
   router.put('/downvote/:id', auth, function(req,res, next){
+    console.log(req.params.id);
+    console.log(req.body);
+
     ForumPost.update({_id: req.params.id}, {$push: {downvotes: req.payload._id}, $pull: {upvotes: req.payload._id}}, function(err, result){
       if (err) return next(err);
       if (!result) return next ({err: "That post wasnt found for updating"});
-      res.send(result);
+      User.findOne({_id: req.body.creator}, function(err,result){
+              if(err) return next(err);
+          if(!result) return next({err: "Couldnt find a user with that id"});
+          result.update({$inc:{score: -1}},
+            function(err,result){
+                   if(err) return next(err);
+                   if(!result) return next({err: "Couldnt find a user with that id"});
+              });
+            });
+      res.send();
       });
     });
 

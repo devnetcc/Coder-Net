@@ -1,30 +1,35 @@
-(function() {
-  'use strict';
+// (function() {
+//   'use strict';
   angular.module('app')
-    .controller('ProfileController', ProfileController);
+    .controller('ProfileController',
 
-	function ProfileController(ProfileFactory, HomeFactory, UserFactory, $state, $stateParams, Notification) {
+	function ProfileController($scope,ProfileFactory, HomeFactory, UserFactory, $state, $stateParams, Notification,$timeout, $q) {
 
 		var vm = this;
 		 vm.profile = {};
-		//  vm.profile.languages = [];
      vm.status = UserFactory.status;
      vm.user = {};
      vm.person = {};
      vm.mymessages = {};
      vm.post = {};
+     vm.post.tags = [];
     vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80'];
     vm.profilePosts = {};
 
 
-// Notification.primary('Primary notification');
 vm.primary = function() {
                  Notification('Message Sent!');
              };
 
+ProfileFactory.getTags($stateParams.tag).then(function(res){
+  vm.tags = res;
+});
+
+
 vm.getProfile = function(){
 ProfileFactory.getProfile($stateParams.id).then(function(res){
 	vm.profile = res;
+
 //sets user for ppl logging in with linkedin/fb/etc
 if(vm.status.email === undefined && vm.profile.token !== undefined){
   vm.status.email = vm.profile.email;
@@ -54,20 +59,24 @@ switch (vm.profile.role) {
     vm.profile.badge = "/imgs/badges/coder.png";
 }
 });
+
 };
 vm.getProfile();
 
 vm.getProfilePosts = function(){
 HomeFactory.getProfilePosts($stateParams.id).then(function(res){
   vm.profilePosts=res;
+  for (var i=0; i<vm.profilePosts.length; i++) {
+    vm.profilePosts[i].score = vm.profilePosts[i].upvotes.length - vm.profilePosts[i].downvotes.length;
+
+  }
+
 });
 };
 vm.getProfilePosts();
 
 
-vm.goToEdit = function(id, obj){
-	$state.go('EditProfile', {id:id, obj:obj});
-		};
+
 
 
 vm.editProfile = function (profile){
@@ -175,7 +184,7 @@ vm.sendMsg = function(){
             if (index != -1) {
               post.downvotes.splice(index, 1);
             }
-            HomeFactory.upvote(post._id, vm.status._id);
+            HomeFactory.upvote(post._id, post.creatorId);
           }
         }
       };
@@ -194,14 +203,49 @@ vm.sendMsg = function(){
             if (index != -1) {
               post.upvotes.splice(index, 1);
             }
-            HomeFactory.downvote(post._id, vm.status._id);
+            HomeFactory.downvote(post._id, post.creatorId);
+
           }
         }
       };
 
 
 
+      // var yTextPadding = 20;
+      // svg.selectAll(".bartext")
+      // .data(data)
+      // .enter()
+      // .append("text")
+      // .attr("class", "bartext")
+      // .attr("text-anchor", "middle")
+      // .attr("fill", "white")
+      // .attr("x", function(d,i) {
+      //     return x(i)+x.rangeBand()/2;
+      // })
+      // .attr("y", function(d,i) {
+      //     return height-y(d)+yTextPadding;
+      // })
+      // .text(function(d){
+      //      return d;
+      // });
 
-
-	}
-})();
+	})
+  .directive('bars', function ($parse) {
+     return {
+        restrict: 'E',
+        replace: true,
+        template: '<div id="chart"></div>',
+        link: function (scope, element, attrs) {
+          var data = attrs.data.split(','),
+          chart = d3.select('#chart')
+            .append("div").attr("class", "chart")
+            .selectAll('div')
+            .data(data).enter()
+            .append("div")
+            .transition().ease("elastic")
+            .style("width", function(d) { return d + "%"; })
+            .text(function(d) { return d + "%"; });
+        }
+     };
+  });
+// })();

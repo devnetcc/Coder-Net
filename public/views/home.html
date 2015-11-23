@@ -1,9 +1,5 @@
 <div ng-controller="HomeController as vm" class="bodyColor">
 
-  <h5 style="text-align: center"> Home Page </h5>
-
-
-<div><img style='max-width:100%;height:400px;margin-top:-140px;margin-bottom:25px;' src="http://www.tisd.net/wp-content/themes/skeletonplus/Images/network-banner.jpg"></div>
 <div layout layout-align="center center" ng-show ='nav.status.name;'>
     <div flex="40" style="padding-bottom: 20px;">
       <form ng-submit="vm.createPost();">
@@ -12,7 +8,16 @@
           <input required ng-model="vm.post.title" />
         </md-input-container>
 
-        <textarea ui-tinymce ng-model="vm.post.body"></textarea>
+        <textarea ui-tinymce  ng-model="vm.post.body"></textarea>
+        <md-input-container>
+        <label>Tags</label>
+           <md-chips
+               ng-model="vm.post.tags"
+               readonly="vm.post.readonly"
+               delete-button-label="Remove Tag"
+               delete-hint="Press delete to remove tag"
+               ></md-chips>
+        </md-input-container>
         <br>
         <br>
         <md-button type="submit" class="zmdi zmdi-mail-send" > Post </md-button>
@@ -22,21 +27,53 @@
 <md-divider ng-if="!$last" ></md-divider>
 <h5 style="text-align: center"> News Feed </h5>
 
-<md-content>
-  <md-list style="padding-left: 70px">
 
-    <md-list-item ng-repeat='p in vm.allPosts | orderBy: "-date"' >
-      <div class='md-list-item-text' style='padding:10px; padding-left:30px' >
+
+    <div ng-repeat='p in vm.allPosts | orderBy: "-date"' >
+        <div layout>
+          <div flex="15" id="parent">
+        <img src="{{p.avi}}" class="avatar" />
+        <div id="hover-content" flex="15">
+          <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a>
+          <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-click="vm.followOnPost(p);" aria-label="follow"> </md-button>
+          <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
+          <md-button class="zmdi zmdi-email" ui-sref="Message({id: p.creatorId})"></md-button>
+        </div>
+      </div>
+      <div flex-offset="5">
+        <div layout="column">
         <h2 >  {{p.title}} </h2>
         <h4 ng-bind-html="p.body"></h4>
-        <h5> By: {{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}} on {{p.date | dateFilter}}</h5>
-        <div layout>
-          <md-button class="zmdi zmdi-thumb-down" ng-click="vm.downvote(p)" aria-label="down"> </md-button>
-          <md-button class="zmdi zmdi-thumb-up" ng-click="vm.upvote(p)" aria-label="up"> </md-button>
+        <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a> on {{p.date | dateFilter}}</h5>
+        <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
+        <div ng-repeat="c in p.comments">
+          <div layout>
+            <div flex="15" id="parent">
+          <img src="{{c.avi}}" class="avatar" />
+          <div id="hover-content" flex="15">
+            <div layout="column">
+            <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-click="vm.followOnPost(p);" aria-label="follow"> </md-button>
+            <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
+            <md-button class="zmdi zmdi-email small-btn" ui-sref="Message({id: c.creatorId})"></md-button>
+          </div>
+          </div>
+        </div>
+            <div flex-offset="5">
+              <h2>{{c.creatorName}} says:</h2>
+          <h3>{{c.title}}</h3>
+          <h4>{{c.content}}</h4>
+        </div>
+        </div>
+        </div>
       </div>
-
-      <md-button class="zmdi zmdi-plus-circle-o" ng-click="vm.followOnPost(p);" aria-label="follow"> Follow</md-button>
-      <md-button class="zmdi zmdi-minus-circle-outline" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> Unfollow</md-button>
+      <div layout>
+        <div flex>
+        <md-button class="zmdi zmdi-thumb-down" ng-click="vm.downvote(p)" aria-label="down"> </md-button>
+        <md-button class="zmdi zmdi-thumb-up" ng-click="vm.upvote(p)" aria-label="up"> </md-button>
+      </div>
+    </div>
+    <div layout>
+      <div flex>
       <md-button class="zmdi zmdi-redo" ng-click="p.reblog = !p.reblog">  Reblog</md-button>
         <div uib-collapse="!p.reblog">
           <div class="well well-lg">
@@ -44,18 +81,29 @@
               <md-input-container layout-padding>
                 <label> Post Title</label>
                 <input ng-model="vm.repost.title" />
-
-              <textarea  ui-tinymce ng-model="vm.repost.content"></textarea>
-
-            </div>
+              </md-input-container>
+              <md-input-container>
+              <textarea ng-model="vm.repost.content"></textarea>
+            </md-input-container>
               <br>
               <br>
               <md-button type="submit" class="md-raised" > Post </md-button>
               <md-button  class="md-raised" ng-click="p.reblog = !p.reblog"> Cancel </md-button>
       </form>
+    </div>
           </div>
         </div>
+    </div>
+      </div>
+
+
+
+
+        </div>
+        <div layout>
+          <div flex>
         <div class="share">
+          <h4>Share:</h4>
           <a href="#" id="linkedin" class="social-btn"
             socialshare
             socialshare-provider="linkedin"
@@ -86,17 +134,15 @@
             <i class="fa fa-google-plus"></i>
             </a>
           </div>
+        </div>
+          </div>
         <md-divider ng-if="!$last"></md-divider>
-    </md-list-item>
-  </md-list>
-</md-content>
-</div>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
 <g:hangout
    render="createhangout"
    topic="cpp11"
    hangout_type="moderated"
    invites="[{ id : '103757504279751950811', invite_type : 'PROFILE' },
        { id : 'pearlmcphee@gmail.com', invite_type : 'EMAIL' }]">
-</g:hangout>
+</g:hangout> -->
 </div>

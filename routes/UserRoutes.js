@@ -135,7 +135,6 @@ router.put('/followOnProfile/:id', function(req, res, next) {
 });
 
 
-console.log('before unfollow route');
 
 router.put('/unfollowProfile/:id', function(req, res, next) {
   console.log(req.params.id); //user id
@@ -258,7 +257,9 @@ router.put('/:id/pic', function(req, res, next) {
     });
 });
 
-
+// router.get('/messages/:id', auth, function(req,res,next){
+//   res.send(req.user);
+// })
 router.post('/messages/:id', auth, function(req,res,next){
 	console.log(req.user);
 	// User.findOne({_id: req.params._id}, function(err,result){
@@ -278,7 +279,9 @@ router.post('/messages/:id', auth, function(req,res,next){
 				if(err) return next(err);
 				if(!result) return next ({err: "That user wasnt found for updating!"});
 			});
-
+      pusher.trigger('notifications', 'new_notification', {
+          message: "New Message!"
+      });
 	User.update({_id: req.payload._id},{$push: {outmessage: {
 		body: req.body.body,
 		from: req.payload.name,
@@ -293,22 +296,8 @@ router.post('/messages/:id', auth, function(req,res,next){
 
 	});
 
+});
 
-	// });
-})
-
-/*-----------THIRD PARTY LOGINS----------------------------
----------------------------------------------------------*/
-
-// router.get('/auth/linkedin',
-//   passport.authenticate('linkedin'));
-//
-// router.get('/auth/linkedin/callback',
-//   passport.authenticate('linkedin', { failureRedirect: '/login' }),
-//   function(req, res) {
-//     // Successful authentication, redirect home.
-//     res.redirect('/');
-//   });
 
 
 module.exports = router;

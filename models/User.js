@@ -23,6 +23,7 @@ userAt: String,
 userGoing: String,
 github: String,
 linkedinUrl: String,
+score: { type: Number, default: 0 }, 
 // inbox: [{
   inmessage: [{
     to: String,
@@ -50,6 +51,7 @@ profilePosts:
   creatorId: String,
   date: Date,
   avi: String,
+  tags: [],
   comments: [{
     creatorId: String,
     creatorName: String,

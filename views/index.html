@@ -15,15 +15,15 @@
 	<link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css'>
 	<link rel="stylesheet" type="text/css" href="/css/speech-input.css">
 	<link rel="stylesheet" href="/angular-ui-notification/dist/angular-ui-notification.min.css">
+	<!-- <link rel="stylesheet" href="/angular-chart.js/dist/angular-chart.css"> -->
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 
 <body ng-controller='GlobalController as nav' class="bodyColor">
 
 	<md-sidenav layout="column" class="md-sidenav-left bodyColor" md-component-id="left">
-		<md-toolbar class="md-medium-tall" style=" opacity:0.3; padding: 10px; background-color:#32B2B2;">
+		<md-toolbar style=" opacity:0.3; padding: 10px; background-color:#32B2B2; height:125px">
 			<div class="md-toolbar-tools">
-				<h2 class="logo">&#060;&nbsp;Coder Net&nbsp;&#062;</h2>
 			</div>
 		</md-toolbar>
 		<md-content style="background-color: #dddfd4">
@@ -53,14 +53,18 @@
 
 
 		<section layout layout-align="end end">
+				<md-select ng-model="someVal" placeholder='Welcome {{nav.status.name}}'>
 
-			<md-button ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.name}} </md-button>
+			<md-option><a ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.name}} </a></md-option>
+					<md-option value='My Messages'><a ui-sref="MessageCenter({id: nav.status._id})">My Messages</a></md-option>
+					<md-option value='Edit Profile' ><a ng-show='nav.status.email;'  ng-click = "nav.goToEdit(nav.status._id, vm.person)"> Edit Profile</a> </md-option>
+			</md-select>
 			<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.email;'> Logout </md-button>
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
+
 		</section>
 
 	</md-toolbar>
-
 
 	<ui-view></ui-view>
 
@@ -85,10 +89,10 @@
 
 		<div class="footer-right">
 					<p> Follow Us </p>
-					<a href="#" target="_blank"><i class="zmdi zmdi-facebook-box"></i></a>
-					<a href="#" target="_blank"><i class="zmdi zmdi-linkedin-box"></i></a>
-					<a href="#" target="_blank"><i class="zmdi zmdi-twitter-box"></i></a>
-					<a href="#" target="_blank"><i class="zmdi zmdi-github-box"></i></a>
+					<a href="https://www.facebook.com/search/top/?q=%23webdevelopers" target="_blank"><i class="zmdi zmdi-facebook-box"></i></a>
+					<a href="https://www.linkedin.com/company/coder-camps?trk=company_logo" target="_blank"><i class="zmdi zmdi-linkedin-box"></i></a>
+					<a href="https://twitter.com/WebDeveloperr?lang=en" target="_blank"><i class="zmdi zmdi-twitter-box"></i></a>
+					<a href="https://github.com/devnetcc/Coder-Net" target="_blank"><i class="zmdi zmdi-github-box"></i></a>
 				</div>
 
 
@@ -96,8 +100,9 @@
 			<h3 class="logo"> &#060;&nbsp;Coder Net&nbsp;&#062; </h3>
 
 			<p class="footer-links">
-				<a ui-sref="Home">Home</a>
-				<a ui-sref="Forum">Forum</a> |
+
+				<a ui-sref="Home">Home</a> |
+				<a ui-sref="Forums">Forum</a> |
 				<a ui-sref="About">About</a> |
 				<a ui-sref="Contact">Contact</a> |
 				<a ui-sref="Terms">Terms of Service</a>
@@ -111,11 +116,14 @@
 	<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
 	<!-- Ext Libs -->
 	<script type="text/javascript" src="/tinymce-dist/tinymce.js"></script>
+	<script src="//js.pusher.com/3.0/pusher.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 	<script src="angular/angular.min.js"></script>
+	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.js" charset="utf-8"></script>
+	<!-- <script src="/angular-chart.js/dist/angular-chart.js"></script> -->
 	<script src="/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
 	<script type="text/javascript" src="/angular-ui-tinymce/src/tinymce.js"></script>
-	<script src="//js.pusher.com/3.0/pusher.min.js"></script>
 	<script src="angular-socialshare/src/js/angular-socialshare.js"></script>
 	<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-sanitize.js"></script>
@@ -144,6 +152,7 @@
 	<script src="/javascript/controllers/ProfileController.js"></script>
 	<script src="/javascript/filters/firstletterfilter.js"></script>
 	<script src="/javascript/filters/datefilter.js"></script>
+	<!-- <script src="/javascript/controllers/chartDirective.js"></script> -->
 
 
 </body>

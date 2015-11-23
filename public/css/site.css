@@ -7,6 +7,12 @@
   color: #ffffff;
 }
 
+#nav {
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+
 
 .footer-distributed{
 	background-color: #292c2f;
@@ -15,9 +21,7 @@
 	width: 100%;
 	text-align: left;
 	font: normal 16px sans-serif;
-
 	padding: 45px 50px;
-	margin-top: 80px;
 }
 
 .footer-distributed .footer-left p{
@@ -355,4 +359,58 @@ max-width: 310px;
 
 md-tabs.md-default-theme.md-primary, md-tabs.md-primary > md-tabs-wrapper {
 	background-color: #0d6666;
+}
+
+.chart {
+    background: #eee;
+    padding: 3px;
+
+}
+
+.chart div {
+  width: 0;
+  transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 5px;
+  color: white;
+  box-shadow: 2px 2px 2px #666;
+}
+
+.yeah {
+	display: inline;
+}
+
+.avatar {
+	width:50px;
+	height:50px;
+	border-radius: 5px;
+}
+
+#hover-content {
+	opacity:0;
+-webkit-transition:.5s;
+-moz-transition:.5s;
+-o-transition:.5s;
+-ms-transition:.5s;
+transition:.5s;
+}
+#parent:hover #hover-content {
+    opacity:1;
+}
+
+md-button.small-btn{
+	max-height: 10px;
+	max-width: 15px;
+}
+
+.small-btn{
+	max-width:10px;
 }

@@ -84,6 +84,14 @@
 				.state('Token', {
 					url: '/token/:token',
 					templateUrl: 'views/token.html'
+				})
+				.state('Tag', {
+					url: '/tagged/:tag',
+					templateUrl: 'views/tag.html'
+				})
+					.state('Terms', {
+						url: '/terms',
+						templateUrl: 'views/terms.html'
 				});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');

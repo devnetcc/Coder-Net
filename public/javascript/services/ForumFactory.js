@@ -20,7 +20,6 @@
       var q = $q.defer();
       $http.delete('/api/forum/' + fpostID)
         .then(function(res) {
-      console.log(res);
           q.resolve();
         });
       return q.promise;
@@ -52,7 +51,6 @@
     };
 
     o.getPostById = function(id) {
-      console.log(id); // post id
       var q = $q.defer();
       $http.get('/api/forum/forumPost/' + id).then(function(res) {
         q.resolve(res.data);
@@ -85,17 +83,17 @@
       return q.promise;
     };
 
-    o.upvote = function(postID) {
+    o.upvote = function(postId, creator) {
       var q = $q.defer();
-      $http.put('/api/forum/upvote/' + postID).then(function(res) {
+      $http.put('/api/forum/upvote/' + postId,{creator: creator}).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;
     };
 
-    o.downvote = function(postID) {
+    o.downvote = function(postId, creator) {
       var q = $q.defer();
-      $http.put('/api/forum/downvote/' + postID).then(function(res) {
+      $http.put('/api/forum/downvote/' + postId, {creator: creator}).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;

@@ -4,7 +4,7 @@
     .controller('GlobalController', GlobalController);
 
 
-  function GlobalController(UserFactory, $state, $stateParams, $mdSidenav) {
+  function GlobalController(UserFactory, $state, $stateParams, $mdSidenav, ProfileFactory) {
     var vm = this;
     vm.isLogin = true;
     vm.user = {};
@@ -12,7 +12,16 @@
     vm.status = UserFactory.status;
     vm.followers = [];
     vm.following = {};
+    vm.person = {};
 
+    vm.getProfile = function(){
+    ProfileFactory.getProfile(vm.status._id).then(function(res){
+    	vm.person = res;
+    });
+  }
+    vm.goToEdit = function(id, obj){
+    	$state.go('EditProfile', {id:id, obj:obj});
+    		};
 
     vm.forgot = function() {
       UserFactory.forgot(vm.user).then(function() {
@@ -37,14 +46,13 @@
     vm.register = function() {
       UserFactory.register(vm.user).then(function() {
         $state.go('Home');
-        alert('Please check your email for the verification link');
+        alert('Please check your email for the verification link.');
       });
     };
 
     vm.login = function() {
       UserFactory.login(vm.user).then(function() {
-        console.log(vm.status);
-        console.log(vm.status.userName);
+
         $state.go('Profile', {
           id: vm.status._id
         });
@@ -58,14 +66,11 @@
 
     // conditional statement
     vm.followOnProfile = function() {
-      console.log($stateParams);
       if ($stateParams === vm.status) {
         return null;
       }
       UserFactory.followOnProfile($stateParams.id, vm.status)
         .then(function(res) {
-          console.log(vm.status);
-          console.log("got a new follower");
           //change follow button to unfollow button
         });
     };
@@ -81,7 +86,6 @@
     vm.unFollowProfile = function(id) {
       UserFactory.unFollowProfile($stateParams.id, vm.status)
         .then(function(res) {
-          console.log(vm.followers);
           vm.followers.splice(vm.followers.indexOf(), 1);
         });
 

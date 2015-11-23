@@ -1,60 +1,64 @@
 <div style="border:{{vm.profile.color}} 50px solid;padding-top:1px;margin-bottom:-80px;" ng-controller="ProfileController as vm" class="bodyColor">
   <div style="background-color:white;padding-top:1px;">
-<!-- <div ng-controller="ProfileController as vm" class="bodyColor" style= "margin-left:150px; margin-right: 150px;"> -->
 
-  <h5 style="text-align: center"> Profile</h5>
-  <div style='float:right;margin-right:75px;margin-top:10px;'>
-    <h3 style="margin-left:25px">Ranking</h3>
+
     <img src=' {{vm.profile.badge}}'>
-  </div>
+  <!-- <div class="yeah">Angular<bars data="40" labels="Angular, Javascript"></bars></div>
+  javascript <bars data="4" labels="Angular, Javascript"></bars>
+  JQuery
+   <bars data="55" labels="Angular, Javascript"></bars> -->
 
-  <div>
-        <!-- Profile Tagline -->
-    <h1 style="margin-left:50px;">{{vm.profile.tagLine}}</h3>
-    <div ng-show='vm.profile.pic.length'  style="height:225px;width:225px;  margin-left:50px;text-align:center;">
-      <img style='max-width:100%; max-height:100%' src='{{vm.profile.pic}}'>
-    </div>
-       <!-- default photo -->
-    <div ng-show='!vm.profile.pic.length' style="height:225px;width:225px;  margin-left:50px;text-align:center;">
-      <img style='max-width:100%; max-height:100%' src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS_wxp_qEFvoISSQK1duhZLXX-IO4jjyT-_nubJtY3WBryb_wbS'>
-    </div>
+<div style="text-align:center;">
+  <h2>{{vm.profile.tagLine}}</h2>
+</div>
+    <!-- <div ng-show='vm.profile.pic.length'  style="height:225px;width:225px;  margin-left:50px;text-align:center;"> -->
+<div layout>
+      <div layout="column">
+        <div flex-offset="5" flex="20">
+          <h4>{{vm.profile.name}} {{vm.profile.lastName}}</h4>
+          <img ng-show='vm.profile.pic.length'  style='max-width:150px; max-height:150px; border-radius:4px;' src='{{vm.profile.pic}}'>
+          <img ng-show='!vm.profile.pic.length' style='max-width:150px; max-height:150px; border-radius:4px;' src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS_wxp_qEFvoISSQK1duhZLXX-IO4jjyT-_nubJtY3WBryb_wbS'>
+              <h4>{{vm.profile.location}}</h4>
+              <span style="padding-left:15px">Followers:</span> <a ui-sref="Followers({id: vm.profile._id})">{{vm.profile.followers.length}}</a><br>
+              <span style="padding-left:15px">Following:</span> <a ui-sref="Following({id: vm.profile._id})">{{vm.profile.following.length}}</a><br>
+              <md-button class="zmdi zmdi-plus-circle-o" ng-click="vm.followOnProfile(p);" aria-label="follow"> Follow</md-button>
+              <md-button class="zmdi zmdi-minus-circle-outline" ng-click="vm.unfollowOnProfile(p);" aria-label="unfollow"> Unfollow</md-button>
+              <h4>Contact</h4>
+              <!-- Personal Links -->
+            <div style="text-align:center;">
+              <div layout>
+                <div style='margin: 5px;'>
+                  <a target='_blank'class="list-group-item" ui-sref="Message({id: vm.profile._id})" target="_blank"><i class="zmdi zmdi-email" ></i></a></div>
 
-    <!-- Personal Links -->
-  <div style="text-align:center;">
+                <div style='margin: 5px;' ng-show='vm.profile.profileFBlink'>
+                  <a target='_blank'class="list-group-item" href="{{vm.profile.profileFBlink}}" target="_blank"><i class="zmdi zmdi-facebook"  ></i></a></div>
 
+                <div style='margin: 5px;'ng-show='vm.profile.profileLKlink'>
+                  <a target='_blank'class="list-group-item" href="{{vm.profile.profileLKlink}}" target="_blank"><i class="zmdi zmdi-linkedin-box" ></i></a></div>
 
-    <div layout row  style="margin-left:55px;margin-top:20px;">
-    <div style='margin: 5px;' ng-show='vm.profile.profileFBlink'>
-      <a target='_blank'class="list-group-item" href="{{vm.profile.profileFBlink}}" target="_blank"><i class="zmdi zmdi-facebook"  ></i></a></div>
+                <div style='margin: 5px;'ng-show='vm.profile.profileTWlink'>
+                  <a target='_blank'class="list-group-item" href="{{vm.profile.profileTWlink}}" target="_blank"><i class="zmdi zmdi-twitter" ></i></a></div>
 
-    <div style='margin: 5px;'ng-show='vm.profile.profileLKlink'>
-       <a target='_blank'class="list-group-item" href="{{vm.profile.profileLKlink}}" target="_blank"><i class="zmdi zmdi-linkedin-box" ></i></a></div>
+                <div style='margin: 5px;'ng-show='vm.profile.profileGHlink'>
+                  <a target='_blank'class="list-group-item" href="{{vm.profile.profileGHlink}}" target="_blank"><i class="zmdi zmdi-github" ></i></a></div>
+             </div>
+            </div>
+            </div>
 
-    <div style='margin: 5px;'ng-show='vm.profile.profileTWlink'>
-      <a target='_blank'class="list-group-item" href="{{vm.profile.profileTWlink}}" target="_blank"><i class="zmdi zmdi-twitter" ></i></a></div>
+        </div>
+        <div layout="column">
+          <div layout></div>
+          <h4 ng-show="vm.profile.userBeen">Has Been</h4>
+          <p>{{vm.profile.userBeen}}</p>
 
-    <div style='margin: 5px;'ng-show='vm.profile.profileGHlink'>
-      <a target='_blank'class="list-group-item" href="{{vm.profile.profileGHlink}}" target="_blank"><i class="zmdi zmdi-github" ></i></a></div>
-    </div>
-  </div>
+          <h4 ng-show="vm.profile.userAt">Present</h4>
+          <p>{{vm.profile.userAt}}</p>
 
+          <h4 ng-show="vm.profile.userGoing">Future</h4>
+          <p>{{vm.profile.userGoing}}</p>
+        </div>
+</div>
 
-            <!-- Update profile -->
-    <!-- <md-button class="md-raised" style='margin-left:50px;margin-top:35px;' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Update Profile </md-button> -->
-  <!-- send message -->
-  <md-button style="margin-left:50px"class="md-raised" ui-sref="Message({id: vm.profile._id})">Message</md-button>
-  <md-button class="md-raised" ui-sref="MessageCenter({id: vm.profile._id})">My Messages</md-button>
-
-    <md-button class="zmdi zmdi-wrench" style='margin-left:50px;margin-top:35px;' ng-click = "vm.goToEdit(vm.profile._id, vm.profile)"> Edit Profile </md-button>
-
-
-                    <!-- Follow -->
-    <md-button class="zmdi zmdi-plus-circle-o" ng-click="vm.followOnProfile(p);" aria-label="follow"> Follow</md-button>
-    <md-button class="zmdi zmdi-minus-circle-outline" ng-click="vm.unfollowOnProfile(p);" aria-label="unfollow"> Unfollow</md-button><br>
-    <!-- <md-button class="md-raised" ng-click="nav.followOnProfile();">Follow</md-button><br>
-    <md-button class="md-raised" ng-click="nav.unFollowProfile();">Un-Follow</md-button><br> -->
-    <span style="padding-left:15px">Followers:</span> <a ui-sref="Followers({id: vm.profile._id})">{{vm.profile.followers.length}}</a><br>
-    <span style="padding-left:15px">Following:</span> <a ui-sref="Following({id: vm.profile._id})">{{vm.profile.following.length}}</a>
 
   </div> <!-- End of Profile display field -->
 
@@ -70,7 +74,16 @@
           <label> Content </label>
           <textarea required ng-model="vm.post.body" columns="2"></textarea>
         </md-input-container>
-
+        <md-input-container>
+        <label>Tags</label>
+           <md-chips
+               ng-model="vm.post.tags"
+               readonly="vm.post.readonly"
+               placeholder="Enter a tag"
+               delete-button-label="Remove Tag"
+               delete-hint="Press delete to remove tag"
+               ></md-chips>
+        </md-input-container>
         <md-button type="submit" class="zmdi zmdi-mail-send" > Post </md-button>
 </form>
 </div>
@@ -79,17 +92,65 @@
 
 
             <!-- Post Display and edit -->
-<md-container >
+            <div ng-repeat='p in vm.profilePosts' >
+                <div layout>
+                  <div flex="15" id="parent">
+                <img src="{{p.avi}}" class="avatar" />
+                <div id="hover-content" flex="15">
+                  <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a>
+                  <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-click="vm.followOnPost(p);" aria-label="follow"> </md-button>
+                  <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
+                  <md-button class="zmdi zmdi-email" ui-sref="Message({id: p.creatorId})"></md-button>
+                </div>
+              </div>
+              <div flex-offset="5">
+                <div layout="column">
+                <h2 >  {{p.title}} </h2>
+                <h4 ng-bind-html="p.body"></h4>
+                <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a> on {{p.date | dateFilter}}</h5>
+                <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
+                <div ng-repeat="c in p.comments">
+                  <div layout>
+                    <div flex="15" id="parent">
+                  <img src="{{c.avi}}" class="avatar" />
+                  <div id="hover-content" flex="15">
+                    <div layout="column">
+                    <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-click="vm.followOnPost(p);" aria-label="follow"> </md-button>
+                    <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
+                    <md-button class="zmdi zmdi-email small-btn" ui-sref="Message({id: c.creatorId})"></md-button>
+                  </div>
+                  </div>
+                </div>
+                    <div flex-offset="5">
+                      <h2>{{c.creatorName}} says:</h2>
+                  <h3>{{c.title}}</h3>
+                  <h4>{{c.content}}</h4>
+                </div>
+                </div>
+                </div>
+              </div>
+              <div layout>
+                <div flex>
+                <md-button class="zmdi zmdi-thumb-down" ng-click="vm.downvote(p)" aria-label="down"> </md-button>
+                <md-button class="zmdi zmdi-thumb-up" ng-click="vm.upvote(p)" aria-label="up"> </md-button>
+                <md-button class="zmdi zmdi-edit" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
+                <md-button class="zmdi zmdi-delete" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
+              </div>
+            </div>
+          </div>
+          </div>
+<!-- <md-container >
   <md-list>
     <md-list-item ng-repeat='p in vm.profilePosts | orderBy:"-date"'>
       <div class='md-list-item-text' style='padding:10px; padding-left:30px;margin-left:225px; margin-top:30px;'>
         <h3> Title: {{p.title}}</h3>
         <h5> Content: {{p.body}}</h5>
         <h6> Posted On: {{p.date}}</h6>
+        <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
         <md-button class="zmdi zmdi-thumb-down" ng-hide='showEdit' ng-click="vm.downvote(p)" aria-label="down"> </md-button>
         <md-button class="zmdi zmdi-thumb-up" ng-hide='showEdit' ng-click="vm.upvote(p)" aria-label="up"> </md-button>
         <md-button class="zmdi zmdi-edit" ng-hide='showEdit' ng-click='showEdit = true; vm.startEdit(p);'> Edit </md-button>
-        <md-button class="zmdi zmdi-delete" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button>
+        <md-button class="zmdi zmdi-delete" ng-hide='showEdit' ng-click="vm.deletePost(p._id)"> Delete </md-button> -->
 
             <!-- Editting Form -->
       <form ng-show = 'showEdit' style="margin-top:70px;margin-bottom:100px;padding:30px;background-color:white;" ng-submit='vm.editPost(p._id, vm.editingPost); showEdit = false;'>
@@ -104,8 +165,8 @@
           <md-button type='submit' class='md-raised' > Edit </md-button>
           <md-button type='button' class='md-raised' ng-click = "showEdit = false;"> Cancel </md-button>
       </form>
-        </div>
+        <!-- </div>
     </md-list-item>
   </md-list>
-</md-container>
+</md-container> -->
 </div>
