@@ -59,7 +59,7 @@
 					<md-option value='My Messages'><a ui-sref="MessageCenter({id: nav.status._id})">My Messages</a></md-option>
 					<md-option value='Edit Profile' ><a ng-show='nav.status.email;'  ng-click = "nav.goToEdit(nav.status._id, vm.person)"> Edit Profile</a> </md-option>
 			</md-select>
-			<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.email;'> Logout </md-button>
+			<md-button style="margin-bottom:17px;"type='button' ng-click='nav.logout()' ng-show='nav.status.email;'> Logout </md-button>
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
 
 		</section>
