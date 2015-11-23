@@ -11,7 +11,7 @@
     vm.allPosts = {};
     vm.allPosts.reblog = false;
     vm.repost = {};
-    vm.showPost = false;
+    vm.allPosts.show = false;
     vm.followed = false;
     vm.comfollowed = false;
 
@@ -25,7 +25,7 @@
         vm.allPosts = res;
         // for(var i =0; i < vm.person.following.length; i++){
         //   if(vm.allPosts.creatorId === vm.person.following[0].celebrityId){
-        //     vm.showPost = true;
+        //     vm.allPosts.show = true;
         //   }
         // }
       });
@@ -108,15 +108,15 @@
           }, function(blob){
               // Returned Stuff
               var filename = blob.filename;
-              var url = blob.url;
+              vm.post.pic = blob.url;
               var id = blob.id;
               var isWriteable = blob.isWriteable;
               var mimetype = blob.mimetype;
               var size = blob.size;
-            ProfileFactory.uploadPic(blob).then(function(res){
-              vm.allPosts.pic = res;
-            });
-        });
+            // ProfileFactory.uploadPic(blob).then(function(res){
+            //   vm.allPosts.pic = res;
+            // });
+        });vm.getPost();
       };
 
   }

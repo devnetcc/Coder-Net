@@ -10,7 +10,10 @@
                     <label> Post Title</label>
                     <input required ng-model="vm.post.title" />
                   </md-input-container>
-
+                  <md-input-container style="display:hidden;"layout-padding>
+                    <label> Post Url</label>
+                    <input ng-model="vm.post.pic" />
+                  </md-input-container>
                   <textarea ui-tinymce  ng-model="vm.post.body"></textarea>
                   <md-input-container>
                   <label>Tags</label>
@@ -34,8 +37,9 @@
 
 
     <div ng-repeat='p in vm.allPosts | orderBy: "-date"' >
+      <div >
         <div layout>
-          <div flex="15" id="parent">
+          <div style='padding-left:50px;' flex="15" id="parent">
         <img src="{{p.avi}}" class="avatar" style="margin-left: 10px"/>
         <div id="hover-content" flex="15">
 
@@ -48,6 +52,7 @@
       <div flex-offset="5">
         <div layout="column">
         <h2 >  {{p.title}} </h2>
+        <div><img src="{{p.pic}}" class="post-pic"/></div>
         <h4 ng-bind-html="p.body"></h4>
         <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}}</a> on {{p.date | dateFilter}}</h5>
         <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
@@ -139,6 +144,7 @@
             <i class="fa fa-google-plus"></i>
             </a>
           </div>
+        </div>
         </div>
           </div>
         <md-divider ng-if="!$last"></md-divider>
