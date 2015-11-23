@@ -17,45 +17,28 @@
 
     ProfileFactory.getProfile(vm.status._id).then(function(res){
     	vm.person = res;
-      vm.getAllPost();
+      vm.getPost();
     });
 
 
     vm.getPost = function() {
       HomeFactory.getAllPosts().then(function(res) {
-
-
-//         var j = vm.allPosts.length -1;
-//         while (j >= 0) {
-//         for(var i =0; i < vm.person.following.length; i++){
-//           if(vm.allPosts[j].creatorId === vm.person.following[i].celebrityId){
-//             console.log("found something");
-//             vm.allPosts.show = true;
-//           }
-//           j--;
-//         }
-// }\
-        for(var i=0; i < vm.allPosts.length; i++){
-          vm.allPosts = res;
-          // vm.allPosts[i].show = false;
-          for(var j = 0; j < vm.person.following.length; j++){
-            if(vm.allPosts[i].creatorId !== vm.person.following[j].celebrityId) {
-               vm.allPosts[i].show = false;
-              //  break;
-            }
-            else{
-              vm.allPosts[i].show = true;
-
-            }
-          }
-        }
-        console.log(vm.allPosts[0].show);
         vm.allPosts = res;
-        // for(var i =0; i < vm.person.following.length; i++){
-        //   if(vm.allPosts.creatorId === vm.person.following[0].celebrityId){
-        //     vm.allPosts.show = true;
+        //
+        // for(var i=0; i < vm.allPosts.length; i++){
+        //   // vm.allPosts[i].show = false;
+        //   for(var j = 0; j < vm.person.following.length; j++){
+        //     if(vm.allPosts[i].creatorId === vm.person.following[j].celebrityId) {
+        //        vm.allPosts[i].show = true;
+        //       //  break;
+        //     }
+        //     else{
+        //       vm.allPosts[i].show = false;
+        //
+        //     }
         //   }
         // }
+
       });
     };
 
