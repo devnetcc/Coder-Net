@@ -1,6 +1,6 @@
-// if(!process.env.NODE_ENV){
-// 	require('dotenv').load();
-// }
+if(!process.env.NODE_ENV){
+	require('dotenv').load();
+}
 
 var express = require('express');
 var path = require('path');
@@ -18,8 +18,11 @@ require('./models/User');
 // require('./models/inbox');
 require('./config/passport');
 
-mongoose.connect("mongodb://localhost/DevNet", function(err) {
-  if (err) return console.log("Error database");
+mongoose.connect(process.env.MONGOLAB_URI, function(err) {
+  if (err) {
+    console.log(process.env.MONGOLAB_URI);
+    return console.log("Error database");
+  }
   console.log("Database Connected");
 });
 

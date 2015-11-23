@@ -36,12 +36,14 @@
 <!-- <md-button type="button" ng-click="vm.getAllPost();">Show Post from Everyone</md-button> -->
 
     <div ng-repeat='p in vm.allPosts' >
+
       <!-- <div ng-show="vm.allPosts.show=true"> -->
         <!-- <div layout>
           <div  flex="15" id="parent">
         <img ng-src="{{p.avi}}" class="avatar" style="margin-left: 10px"/>
 
     <div ng-repeat='p in vm.allPosts' > -->
+
 
         <div layout>
           <div style='padding-left:50px;' flex="15" id="parent">
@@ -102,8 +104,8 @@
             </md-input-container>
               <br>
               <br>
-              <md-button type="submit" class="md-raised" > Post </md-button>
-              <md-button  class="md-raised" ng-click="p.reblog = !p.reblog"> Cancel </md-button>
+              <md-button type="submit" class="md-flat" > Post </md-button>
+              <md-button  class="md-flat" ng-click="p.reblog = !p.reblog"> Cancel </md-button>
       </form>
     </div>
           </div>
@@ -111,14 +113,12 @@
     </div>
       </div>
 
-
-
-
         </div>
         <div layout>
           <div flex>
+
         <div class="share" ng-show="p.show=true">
-          <h4>Share:</h4>
+          <h6>Share:</h6>
           <a href="#" id="linkedin" class="social-btn"
             socialshare
             socialshare-provider="linkedin"
