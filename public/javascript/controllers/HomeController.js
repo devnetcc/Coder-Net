@@ -12,11 +12,13 @@
     vm.allPosts.reblog = false;
     vm.repost = {};
     vm.showPost = false;
-
+    vm.followed = false;
+    vm.comfollowed = false;
 
     ProfileFactory.getProfile(vm.status._id).then(function(res){
     	vm.person = res;
     });
+
 
     vm.getPost = function() {
       HomeFactory.getAllPosts().then(function(res) {

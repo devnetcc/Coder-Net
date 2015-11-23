@@ -35,19 +35,20 @@
     <div ng-repeat='p in vm.allPosts' >
         <div layout>
           <div flex="15" id="parent">
-        <img src="{{p.avi}}" class="avatar" />
+        <img src="{{p.avi}}" class="avatar" style="margin-left: 10px"/>
         <div id="hover-content" flex="15">
-          <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a>
-          <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-click="vm.followOnPost(p);" aria-label="follow"> </md-button>
-          <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
-          <md-button class="zmdi zmdi-email" ng-click="vm.pop();" ui-sref="Message({id: p.creatorId})"></md-button>
+
+          <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter }}</a>
+          <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-show="!vm.followed" ng-click="vm.followOnPost(p); vm.followed = true;" aria-label="follow"> </md-button>
+          <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-show="vm.followed" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
+          <md-button class="zmdi zmdi-email" ui-sref="Message({id: p.creatorId})"></md-button>
         </div>
       </div>
       <div flex-offset="5">
         <div layout="column">
         <h2 >  {{p.title}} </h2>
         <h4 ng-bind-html="p.body"></h4>
-        <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a> on {{p.date | dateFilter}}</h5>
+        <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}}</a> on {{p.date | dateFilter}}</h5>
         <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
         <div ng-repeat="c in p.comments">
           <div layout>
@@ -55,16 +56,16 @@
           <img src="{{c.avi}}" class="avatar" />
           <div id="hover-content" flex="15">
             <div layout="column">
-            <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-click="vm.followOnPost(p);" aria-label="follow"> </md-button>
-            <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
+            <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-show="!vm.comfollowed" ng-click="vm.followOnPost(c); vm.comfollowed = true;" aria-label="follow"> </md-button>
+            <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-show="vm.comfollowed" ng-click="vm.unfollowOnPost(c);" aria-label="unfollow"> </md-button>
             <md-button class="zmdi zmdi-email small-btn" ui-sref="Message({id: c.creatorId})"></md-button>
           </div>
           </div>
         </div>
             <div flex-offset="5">
-              <h2>{{c.creatorName}} says:</h2>
-          <h3>{{c.title}}</h3>
-          <h4>{{c.content}}</h4>
+              <h2>{{c.creatorName | firstLetterFilter}} says:</h2>
+          <h3>{{c.title | firstLetterFilter}}</h3>
+          <h4>{{c.content | firstLetterFilter}}</h4>
         </div>
         </div>
         </div>

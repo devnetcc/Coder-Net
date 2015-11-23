@@ -1,6 +1,6 @@
 <div ng-controller="ProfileController as vm">
-  <h3>{{vm.profile.name}}'s Followers</h3>
+  <h3>{{vm.profile.name | firstLetterFilter}}'s Followers</h3>
   <div ng-repeat="p in vm.profile.followers">
-    <md-button class="md-raised">{{p.followerName}}</md-button>
+    <md-button class="md-raised">{{p.followerName | firstLetterFilter}}</md-button>
   </div>
 </div>
