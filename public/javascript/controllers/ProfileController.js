@@ -207,7 +207,7 @@ vm.sendMsg = function(){
             if (index != -1) {
               post.downvotes.splice(index, 1);
             }
-            HomeFactory.upvote(post);
+            HomeFactory.upvote(post._id, post.creatorId);
           }
         }
       };
@@ -226,7 +226,7 @@ vm.sendMsg = function(){
             if (index != -1) {
               post.upvotes.splice(index, 1);
             }
-            HomeFactory.downvote(post);
+            HomeFactory.downvote(post._id, post.creatorId);
 
           }
         }
