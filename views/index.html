@@ -58,6 +58,7 @@
 					<md-option value='Edit Profile' ng-show='nav.status.email;'  ng-click = "nav.goToEdit(nav.status._id, vm.person)"> Edit Profile </md-option>
 					<md-option type='button' ng-click='nav.logout()'> Logout </md-option>
 			</md-select>
+
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
 		</section>
 
