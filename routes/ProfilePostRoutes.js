@@ -48,7 +48,7 @@ router.post('/', auth, function(req, res, next) {
 });
 
 router.post('/pic', function(req,res,next){
-  
+
 });
 router.post('/reblog/:id', auth, function(req, res, next) {
       var comment = req.body;
@@ -69,17 +69,17 @@ router.post('/reblog/:id', auth, function(req, res, next) {
           tags: result.tags,
           createdBy: result.createdBy,
         });
-        ProfilePost.update({
-          _id: req.params.id
-        }, {
-          $push: {
-            comments: comment
-          }
-        }, function(err, result) {
-          if (err) return next(err);
-          if (!result) return next({
-            err: "Couldnt find that post!"
-          });
+        // ProfilePost.update({
+        //   _id: req.params.id
+        // }, {
+        //   $push: {
+        //     comments: comment
+        //   }
+        // }, function(err, result) {
+        //   if (err) return next(err);
+        //   if (!result) return next({
+        //     err: "Couldnt find that post!"
+        //   });
 
           post.comments.push(comment);
           console.log(post.comments, " post.comments");
@@ -113,7 +113,7 @@ router.post('/reblog/:id', auth, function(req, res, next) {
     res.send();
 });
 });
-});
+// });
 });
 });
 });
