@@ -111,6 +111,7 @@
         });
       return q.promise;
     };
+    
     o.unFollowProfile = function(profileId, followerID) {
       console.log(profileId); //profile you follow
       console.log(followerID); //the follower

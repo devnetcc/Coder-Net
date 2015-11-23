@@ -64,25 +64,7 @@
       $mdSidenav("left").toggle();
     };
 
-    // conditional statement
-    vm.followOnProfile = function() {
-      if ($stateParams === vm.status) {
-        return null;
-      }
-      UserFactory.followOnProfile($stateParams.id, vm.status)
-        .then(function(res) {
-          //change follow button to unfollow button
-        });
-    };
 
-    if (localStorage) {
-      // LocalStorage is supported!
-      // vm.profile.followers = vm.status;
-      console.log(vm.status);
-    } else {
-      console.log('awww!');
-      // No support. Use a fallback such as browser cookies or store on the server.
-    }
     vm.unFollowProfile = function(id) {
       UserFactory.unFollowProfile($stateParams.id, vm.status)
         .then(function(res) {

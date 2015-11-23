@@ -63,6 +63,14 @@ switch (vm.profile.role) {
 };
 vm.getProfile();
 
+vm.followOnProfile = function() {
+  console.log("made it inside global controller on way to factory");
+  UserFactory.followOnProfile($stateParams.id,vm.status)
+    .then(function(res){
+      console.log("got a new follower");
+  });
+}
+
 vm.getProfilePosts = function(){
 HomeFactory.getProfilePosts($stateParams.id).then(function(res){
   vm.profilePosts=res;

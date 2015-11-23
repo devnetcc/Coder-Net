@@ -89,50 +89,33 @@ router.post('/register', function(req, res, next) {
   });
 });
 
-router.put('/followOnProfile/:id', function(req, res, next) {
-  User.findOne({
-    _id: req.body._id
-  }, function(err, result) {
-    if (err) return next(err);
-    if (!result) return next({
-      err: "Couldnt find that user for updating!"
-    });
+router.put('/followOnProfile/:id', function(req,res,next){
+	User.findOne({_id: req.body._id}, function(err,result){
+		if(err) return next(err);
+		if(!result) return next({err: "Couldnt find that user for updating!"});
 
-    result.update({
-        $push: {
-          following: {
-            celebrityId: req.params.id,
-          }
-        }
-      },
-      function(err, result) {
-        if (err) return next(err);
-        if (!result) return next({
-          err: "That user wasnt found for updating!"
-        });
-      });
+		result.update({$push: {following:{
+			celebrityId: req.params.id,
+		}}},
+			function(err,result){
+				if(err) return next(err);
+				if(!result) return next ({err: "That user wasnt found for updating!"});
+			});
 
-    User.update({
-        _id: req.params.id
-      }, {
-        $push: {
-          followers: {
-            followerID: req.body._id,
-            followerName: req.body.name,
-          }
-        }
-      },
-      function(err, result) {
-        if (err) return next(err);
-        if (!result) return next({
-          err: "That user wasnt found for updating!"
-        });
-      });
+	User.update({_id: req.params.id},{$push: {followers: {
+		followerID: req.body._id,
+		followerName: req.body.name,
+	}}},
+		 function(err, result){
+		if(err) return next(err);
+		if(!result) return next ({err: "That user wasnt found for updating!"});
+	});
 
-    res.send(result);
+		res.send(result);
 
-  });
+	});
 });
+
 
 
 
