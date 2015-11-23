@@ -18,10 +18,12 @@
     vm.followed = false;
     vm.isPerson;
 
+console.log($stateParams.id + " state params");
+console.log(vm.status._id + " vm.status._id");
 if($stateParams.id !== vm.status._id){
   vm.isPerson = false;
 }
-if($stateParams.id === vm.status._id){
+else if($stateParams.id === vm.status._id){
   vm.isPerson = true;
 }
 

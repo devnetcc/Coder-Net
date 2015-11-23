@@ -40,6 +40,14 @@
 
                 <div style='margin: 5px;'ng-show='vm.profile.profileGHlink'>
                   <a target='_blank'class="list-group-item" href="{{vm.profile.profileGHlink}}" target="_blank"><i class="zmdi zmdi-github" ></i></a></div>
+                  <script src="https://apis.google.com/js/platform.js" async defer></script>
+                  <g:hangout
+                     render="createhangout"
+                     topic="cpp11"
+                     hangout_type="moderated"
+                     invites="[{ id : '103757504279751950811', invite_type : 'PROFILE' },
+                         { id : 'pearlmcphee@gmail.com', invite_type : 'EMAIL' }]">
+                  </g:hangout>
              </div>
             </div>
             </div>
@@ -64,7 +72,7 @@
         <!-- To Create a post -->
   <div layout layout-align="center" ng-show ='nav.status.name;' style="padding-bottom:30px;">
     <div flex="50">
-      <form  ng-show="vm.isPerson=true" style="margin-top:50px;"ng-submit="vm.createPost();">
+      <form  ng-hide="vm.isPerson=false" style="margin-top:50px;"ng-submit="vm.createPost();">
         <md-input-container>
           <label>Title</label>
           <input required ng-model="vm.post.title"/>
