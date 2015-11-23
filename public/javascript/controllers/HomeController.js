@@ -11,6 +11,7 @@
     vm.allPosts = {};
     vm.allPosts.reblog = false;
     vm.repost = {};
+    vm.followed = false;
 
     vm.getPost = function() {
       HomeFactory.getAllPosts().then(function(res) {

@@ -22,6 +22,7 @@ router.post('/:id', auth , function(req, res, next) {
   var comment = new Comment(req.body);
   comment.forumPost = req.params.id;
   comment.createdBy = req.payload;
+  comment.creatorId = req.payload._id
   comment.date = new Date();
   comment.save(function(err,result){
     if(err) return next(err);

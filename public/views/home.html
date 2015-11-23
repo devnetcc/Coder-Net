@@ -34,8 +34,8 @@
         <img src="{{p.avi}}" class="avatar" />
         <div id="hover-content" flex="15">
           <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a>
-          <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-click="vm.followOnPost(p);" aria-label="follow"> </md-button>
-          <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
+          <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-show="!vm.followed" ng-click="vm.followOnPost(p); vm.followed = true;" aria-label="follow"> </md-button>
+          <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-show="vm.followed" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
           <md-button class="zmdi zmdi-email" ui-sref="Message({id: p.creatorId})"></md-button>
         </div>
       </div>
