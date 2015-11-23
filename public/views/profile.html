@@ -27,7 +27,7 @@
             <div style="text-align:center;">
               <div layout>
                 <div style='margin: 5px;'>
-                  <a target='_blank'class="list-group-item" ui-sref="Message({id: vm.profile._id})" target="_blank"><i class="zmdi zmdi-email" ></i></a></div>
+                  <a target='_blank'class="list-group-item" ng-show ="vm.isPerson=false" ui-sref="Message({id: vm.profile._id})" target="_blank"><i class="zmdi zmdi-email" ></i></a></div>
 
                 <div style='margin: 5px;' ng-show='vm.profile.profileFBlink'>
                   <a target='_blank'class="list-group-item" href="{{vm.profile.profileFBlink}}" target="_blank"><i class="zmdi zmdi-facebook"  ></i></a></div>
@@ -64,7 +64,7 @@
         <!-- To Create a post -->
   <div layout layout-align="center" ng-show ='nav.status.name;' style="padding-bottom:30px;">
     <div flex="50">
-      <form style="margin-top:50px;"ng-submit="vm.createPost();">
+      <form  ng-show="vm.isPerson=true" style="margin-top:50px;"ng-submit="vm.createPost();">
         <md-input-container>
           <label>Title</label>
           <input required ng-model="vm.post.title"/>
@@ -99,7 +99,7 @@
                   <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}}</a>
                 </div>
               </div>
-              <div flex-offset="5">
+              <div >
                 <div layout="column">
                 <h2 >  {{p.title}} </h2>
                 <h4 ng-bind-html="p.body"></h4>
@@ -117,8 +117,8 @@
                   </div>
                   </div>
                 </div>
-                    <div flex-offset="5">
-                      <h2>{{c.creatorName | firstLetterFilter}} says:</h2>
+                    <div flex-offset="15">
+                      <!-- <h2>{{c.creatorName | firstLetterFilter}} says:</h2> -->
                   <h3>{{c.title | firstLetterFilter}}</h3>
                   <h4>{{c.content | firstLetterFilter}}</h4>
                 </div>
