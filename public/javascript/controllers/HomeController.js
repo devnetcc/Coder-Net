@@ -23,11 +23,11 @@
     vm.getPost = function() {
       HomeFactory.getAllPosts().then(function(res) {
         vm.allPosts = res;
-        for(var i =0; i < vm.person.following.length; i++){
-          if(vm.allPosts.creatorId === vm.person.following[0].celebrityId){
-            vm.allPosts.show = true;
-          }
-        }
+        // for(var i =0; i < vm.person.following.length; i++){
+        //   if(vm.allPosts.creatorId === vm.person.following[0].celebrityId){
+        //     vm.allPosts.show = true;
+        //   }
+        // }
       });
     };
     vm.getPost();

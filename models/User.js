@@ -17,6 +17,7 @@ pic: String,
 location: String, //should there be separate props for city, state, country?
 role: String,
 title: String,
+resume: String,
 userBeen: String,
 userAt: String,
 userGoing: String,
