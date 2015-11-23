@@ -1,8 +1,8 @@
 <div ng-controller="ForumController as vm" class="bodyColor">
 <div style="padding:60px">
-<h3>Title: {{vm.apost.title | firstLetterFilter}}</h3>
+<h3>{{vm.apost.title | firstLetterFilter}}</h3>
 
-<h4>Body: {{vm.apost.body | firstLetterFilter}}</h4>
+<h4 ng-bind-html="vm.apost.body">{{vm.apost.body | firstLetterFilter}}</h4>
 
 <h5>Posted by: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name  | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter }}</a> on {{p.date | dateFilter}}</h5>
 <!-- <div layout> -->

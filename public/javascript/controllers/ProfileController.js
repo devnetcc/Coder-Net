@@ -1,9 +1,9 @@
-// (function() {
-//   'use strict';
+(function() {
+  'use strict';
   angular.module('app')
-    .controller('ProfileController',
+     .controller('ProfileController', ProfileController);
 
-	function ProfileController($scope,ProfileFactory, HomeFactory, UserFactory, $state, $stateParams, Notification,$timeout, $q) {
+    function ProfileController($scope,ProfileFactory, HomeFactory, UserFactory, $state, $stateParams, Notification,$timeout, $q) {
 
 		var vm = this;
 		 vm.profile = {};
@@ -194,7 +194,6 @@ vm.uploadPic = function(){
 vm.sendMsg = function(){
   UserFactory.sendMsg($stateParams.id, vm.person.inbox.message)
   .then(function(res){
-    vm.profile.msgcount++;
     // vm.mymessages = res;
     // $state.go("Profile({id: $stateParams.id})");
   });
@@ -240,41 +239,6 @@ vm.sendMsg = function(){
 
 
 
-      // var yTextPadding = 20;
-      // svg.selectAll(".bartext")
-      // .data(data)
-      // .enter()
-      // .append("text")
-      // .attr("class", "bartext")
-      // .attr("text-anchor", "middle")
-      // .attr("fill", "white")
-      // .attr("x", function(d,i) {
-      //     return x(i)+x.rangeBand()/2;
-      // })
-      // .attr("y", function(d,i) {
-      //     return height-y(d)+yTextPadding;
-      // })
-      // .text(function(d){
-      //      return d;
-      // });
+	}
 
-	})
-  .directive('bars', function ($parse) {
-     return {
-        restrict: 'E',
-        replace: true,
-        template: '<div id="chart"></div>',
-        link: function (scope, element, attrs) {
-          var data = attrs.data.split(','),
-          chart = d3.select('#chart')
-            .append("div").attr("class", "chart")
-            .selectAll('div')
-            .data(data).enter()
-            .append("div")
-            .transition().ease("elastic")
-            .style("width", function(d) { return d + "%"; })
-            .text(function(d) { return d + "%"; });
-        }
-     };
-  });
-// })();
+})();

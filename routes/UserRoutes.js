@@ -34,10 +34,8 @@ var github = new GitHubApi({
 // });
 
 router.param('id', function(req, res, next, id) {
-  User.findOne({
-      _id: id
-    })
-    .populate('comments profilePosts forumPosts')
+  User.findOne({_id: id})
+  .populate('comments profilePosts forumPosts')
     .exec(function(err, result) {
       if (!result) {
         res.status(404).send({
@@ -269,9 +267,7 @@ router.post('/messages/:id', auth, function(req,res,next){
 				if(err) return next(err);
 				if(!result) return next ({err: "That user wasnt found for updating!"});
 			});
-      pusher.trigger('notifications', 'new_notification', {
-          message: "New Message!"
-      });
+
 	User.update({_id: req.payload._id},{$push: {outmessage: {
 		body: req.body.body,
 		from: req.payload.name,
@@ -286,7 +282,9 @@ router.post('/messages/:id', auth, function(req,res,next){
 
 	});
 
-});
+
+	// });
+})
 
 
 
