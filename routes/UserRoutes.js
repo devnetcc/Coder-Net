@@ -135,7 +135,6 @@ router.put('/followOnProfile/:id', function(req, res, next) {
 });
 
 
-console.log('before unfollow route');
 
 router.put('/unfollowProfile/:id', function(req, res, next) {
   console.log(req.params.id); //user id

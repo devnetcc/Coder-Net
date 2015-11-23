@@ -105,7 +105,7 @@ router.put('/upvote/:id', auth, function(req,res, next){
   ForumPost.update({_id: req.params.id}, {$push: {upvotes: req.payload._id}, $pull: {downvotes: req.payload._id}}, function(err, result){
     if (err) return next(err);
     if (!result) return next ({err: "That post wasnt found for updating"});
-    User.findOne({_id: req.body}, function(err,result){
+    User.findOne({_id: req.body.creator}, function(err,result){
             if(err) return next(err);
         if(!result) return next({err: "Couldnt find a user with that id"});
         result.update({$inc:{score: +1}},
@@ -125,7 +125,7 @@ router.put('/upvote/:id', auth, function(req,res, next){
     ForumPost.update({_id: req.params.id}, {$push: {downvotes: req.payload._id}, $pull: {upvotes: req.payload._id}}, function(err, result){
       if (err) return next(err);
       if (!result) return next ({err: "That post wasnt found for updating"});
-      User.findOne({_id: req.body}, function(err,result){
+      User.findOne({_id: req.body.creator}, function(err,result){
               if(err) return next(err);
           if(!result) return next({err: "Couldnt find a user with that id"});
           result.update({$inc:{score: -1}},

@@ -85,7 +85,7 @@
 
     o.upvote = function(postId, creator) {
       var q = $q.defer();
-      $http.put('/api/forum/upvote/' + postId, creator).then(function(res) {
+      $http.put('/api/forum/upvote/' + postId,{creator: creator}).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;
@@ -93,7 +93,7 @@
 
     o.downvote = function(postId, creator) {
       var q = $q.defer();
-      $http.put('/api/forum/downvote/' + postId, creator).then(function(res) {
+      $http.put('/api/forum/downvote/' + postId, {creator: creator}).then(function(res) {
         q.resolve(res.data);
       });
       return q.promise;

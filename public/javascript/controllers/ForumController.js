@@ -5,7 +5,7 @@
 
   function ForumController(ForumFactory, UserFactory, $state, $stateParams) {
     var vm = this;
-    vm.status = vm.UserFactory;
+    vm.status = UserFactory.status;
     vm.topics = ["General", "Job Board", "Interview Prep", "Code Questions", "Meetups", "Bootcamp Reviews", "Tech News", "Developer Tips", "Useful Resouces"];
     vm.fpost = {};
     vm.forumPosts = [];
@@ -39,7 +39,6 @@ vm.cancelEdit = function(){
 
         for (var i=0; i<vm.topicPosts.length; i++) {
           vm.topicPosts[i].score = vm.topicPosts[i].upvotes.length - vm.topicPosts[i].downvotes.length;
-
         }
       });
     };
@@ -51,6 +50,10 @@ vm.cancelEdit = function(){
         });
     };
 
+// ui-sref="EditFPost({id: vm.apost._id})"
+vm.goToEdit = function(){
+  $state.go("EditFPost", {id: vm.apost._id});
+};
     vm.editFPost = function() {
       ForumFactory.editFPost(vm.epost).then(function() {
         $state.go('ForumPost', {
@@ -66,7 +69,6 @@ vm.cancelEdit = function(){
 
         });
     };
-    // ---------------------
 
 
 vm.postComments = function(){

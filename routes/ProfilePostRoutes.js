@@ -207,7 +207,7 @@ router.post('/reblog/:id', auth, function(req, res, next) {
             err: "That post wasnt found for updating"
           });
           User.findOne({
-            _id: req.body
+            _id: req.body.creator
           }, function(err, result) {
             if (err) return next(err);
             if (!result) return next({
@@ -230,8 +230,8 @@ router.post('/reblog/:id', auth, function(req, res, next) {
       });
 
       router.put('/downvote/:id', auth, function(req, res, next) {
-        console.log(req.params.id);
-        console.log(req.body);
+        // console.log(req.params.id);
+        // console.log(req.body);
         ProfilePost.update({
           _id: req.params.id
         }, {
@@ -247,7 +247,7 @@ router.post('/reblog/:id', auth, function(req, res, next) {
             err: "That post wasnt found for updating"
           });
           User.findOne({
-            _id: req.body
+            _id: req.body.creator
           }, function(err, result) {
             if (err) return next(err);
             if (!result) return next({

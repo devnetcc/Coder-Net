@@ -9,7 +9,7 @@
 <!-- <div layout> -->
 <md-button class="zmdi zmdi-thumb-down" ng-click="vm.downvote(vm.apost)" aria-label="down"> </md-button>
 <md-button class="zmdi zmdi-thumb-up" ng-click="vm.upvote(vm.apost)" aria-label="up"> </md-button>
-<md-button class="zmdi zmdi-edit" ui-sref="EditFPost({id: vm.apost._id})"> Edit</md-button>
+<md-button class="zmdi zmdi-edit" ng-click="vm.goToEdit()"> Edit</md-button>
 <md-button class="zmdi zmdi-delete" ng-click="vm.deleteFPost(vm.apost)"> Delete</md-button>
 <!-- </div> -->
 
