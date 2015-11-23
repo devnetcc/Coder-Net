@@ -33,13 +33,14 @@
 </div>
 <md-divider ng-if="!$last" ></md-divider>
 <h5 style="text-align: center"> News Feed </h5>
-
+<!-- <md-button type="button" ng-click="vm.getPost();">Show Post from People you Follow</md-button> -->
+<!-- <md-button type="button" ng-click="vm.getAllPost();">Show Post from Everyone</md-button> -->
 
     <div ng-repeat='p in vm.allPosts' >
-      <div ng-show="p.show">
+      <!-- <div ng-show="vm.allPosts.show=true"> -->
         <div layout>
-          <div flex="15" id="parent">
-        <img src="{{p.avi}}" class="avatar" style="margin-left: 10px"/>
+          <div  flex="15" id="parent">
+        <img ng-src="{{p.avi}}" class="avatar" style="margin-left: 10px"/>
         <div id="hover-content" flex="15">
 
           <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter }}</a>
@@ -51,14 +52,14 @@
       <div flex-offset="5">
         <div layout="column">
         <h2 >  {{p.title}} </h2>
-        <img  src="{{p.pic}}" class="post-pic"/>
+        <img  ng-src="{{p.pic}}" class="post-pic"/>
         <h4 ng-bind-html="p.body"></h4>
         <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}}</a> on {{p.date | dateFilter}}</h5>
         <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
         <div ng-repeat="c in p.comments">
           <div layout>
             <div flex="15" id="parent">
-          <img src="{{c.avi}}" class="avatar" />
+          <img ng-src="{{c.avi}}" class="avatar" />
           <div id="hover-content" flex="15">
             <div layout="column">
             <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-show="!vm.comfollowed" ng-click="vm.followOnPost(c); vm.comfollowed = true;" aria-label="follow"> </md-button>
@@ -111,7 +112,7 @@
         </div>
         <div layout>
           <div flex>
-        <div class="share">
+        <div class="share" ng-show="p.show=true">
           <h4>Share:</h4>
           <a href="#" id="linkedin" class="social-btn"
             socialshare

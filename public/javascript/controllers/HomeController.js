@@ -17,24 +17,60 @@
 
     ProfileFactory.getProfile(vm.status._id).then(function(res){
     	vm.person = res;
+      vm.getAllPost();
     });
 
 
     vm.getPost = function() {
       HomeFactory.getAllPosts().then(function(res) {
-        vm.allPosts = res;
-        for(var i =0; i < vm.person.following.length; i++){
-          if(vm.allPosts.creatorId === vm.person.following[0].celebrityId){
-            vm.allPosts.show = true;
+
+//         var j = vm.allPosts.length -1;
+//         while (j >= 0) {
+//         for(var i =0; i < vm.person.following.length; i++){
+//           if(vm.allPosts[j].creatorId === vm.person.following[i].celebrityId){
+//             console.log("found something");
+//             vm.allPosts.show = true;
+//           }
+//           j--;
+//         }
+// }\
+        for(var i=0; i < vm.allPosts.length; i++){
+          vm.allPosts = res;
+          // vm.allPosts[i].show = false;
+          for(var j = 0; j < vm.person.following.length; j++){
+            if(vm.allPosts[i].creatorId !== vm.person.following[j].celebrityId) {
+               vm.allPosts[i].show = false;
+              //  break;
+            }
+            else{
+              vm.allPosts[i].show = true;
+
+            }
           }
         }
+        console.log(vm.allPosts[0].show);
       });
     };
-    vm.getPost();
 
+    // vm.getPost();
+    vm.getAllPost = function() {
+      console.log("befor going to factory in getAllPost");
+
+      HomeFactory.getAllPosts().then(function(res) {
+        vm.allPosts = res;
+
+        for(var i = 0; i < vm.allPosts.length; i++) {
+          vm.allPosts[i].show = true;
+        }
+        console.log(vm.allPosts.show + 'showing?');
+
+
+
+      });
+    };
     vm.createPost = function() {
       HomeFactory.postPost(vm.post).then(function(res) {
-        vm.allPosts.push(vm.post);
+        // vm.allPosts.push(vm.post);
         vm.post = {};
         vm.getPost(); //this fixes our posted on invalide date bug
 
@@ -116,7 +152,8 @@
             // ProfileFactory.uploadPic(blob).then(function(res){
             //   vm.allPosts.pic = res;
             // });
-        });vm.getPost();
+        });
+        vm.getPost();
       };
 
   }
