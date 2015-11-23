@@ -23,7 +23,7 @@ userAt: String,
 userGoing: String,
 github: String,
 linkedinUrl: String,
-score: { type: Number, default: 0 }, 
+score: { type: Number, default: 0 },
 // inbox: [{
   inmessage: [{
     to: String,

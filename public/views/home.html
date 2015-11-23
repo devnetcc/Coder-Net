@@ -32,7 +32,18 @@
 </div>
 <md-divider ng-if="!$last" ></md-divider>
 <h5 style="text-align: center"> News Feed </h5>
+<!-- <md-button type="button" ng-click="vm.getPost();">Show Post from People you Follow</md-button> -->
+<!-- <md-button type="button" ng-click="vm.getAllPost();">Show Post from Everyone</md-button> -->
+
     <div ng-repeat='p in vm.allPosts' >
+
+      <!-- <div ng-show="vm.allPosts.show=true"> -->
+        <!-- <div layout>
+          <div  flex="15" id="parent">
+        <img ng-src="{{p.avi}}" class="avatar" style="margin-left: 10px"/>
+
+    <div ng-repeat='p in vm.allPosts' > -->
+
 
         <div layout>
           <div style='padding-left:50px;' flex="15" id="parent">
@@ -45,27 +56,27 @@
           <md-button class="zmdi zmdi-email" ui-sref="Message({id: p.creatorId})"></md-button>
         </div>
       </div>
-      <div flex-offset="5">
+      <div>
         <div layout="column">
         <h2 >  {{p.title}} </h2>
-        <div><img src="{{p.pic}}" class="post-pic"/></div>
+        <img  ng-src="{{p.pic}}" class="post-pic"/>
         <h4 ng-bind-html="p.body"></h4>
         <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}}</a> on {{p.date | dateFilter}}</h5>
         <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>
         <div ng-repeat="c in p.comments">
           <div layout>
             <div flex="15" id="parent">
-          <img src="{{c.avi}}" class="avatar" />
+          <img ng-src="{{c.avi}}" class="avatar" />
           <div id="hover-content" flex="15">
-            <div layout="column">
+            <div layout="column" flex>
             <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-show="!vm.comfollowed" ng-click="vm.followOnPost(c); vm.comfollowed = true;" aria-label="follow"> </md-button>
             <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-show="vm.comfollowed" ng-click="vm.unfollowOnPost(c);" aria-label="unfollow"> </md-button>
             <md-button class="zmdi zmdi-email small-btn" ui-sref="Message({id: c.creatorId})"></md-button>
           </div>
           </div>
         </div>
-            <div flex-offset="5">
-              <h2>{{c.creatorName | firstLetterFilter}} says:</h2>
+            <div flex-offset="35" flex>
+              <!-- <h2>{{c.creatorName | firstLetterFilter}} says:</h2> -->
           <h3>{{c.title | firstLetterFilter}}</h3>
           <h4>{{c.content | firstLetterFilter}}</h4>
         </div>
@@ -105,7 +116,8 @@
         </div>
         <div layout>
           <div flex>
-        <div class="share">
+
+        <div class="share" ng-show="p.show=true">
           <h6>Share:</h6>
           <a href="#" id="linkedin" class="social-btn"
             socialshare

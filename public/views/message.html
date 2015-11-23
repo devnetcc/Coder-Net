@@ -2,13 +2,9 @@
   <form ng-submit="vm.sendMsg();">
     To: <a ui-sref="Profile({id: p.creatorId})">{{vm.profile.name  | firstLetterFilter}} </a>
     <md-input-container>
-      <label>Add Additional Recipents</label>
-      <input ng-model="vm.person.contact"/>
-    </md-input-container>
-    <md-input-container>
       <label>Message</label>
-      <textarea ng-model="vm.person.inbox.message.body"></textarea>
+      <textarea ui-tinymce ng-model="vm.person.inbox.message.body"></textarea>
     </md-input-container>
-    <md-button type="submit" ng-click="vm.primary()">Send</md-button>
+    <md-button type="submit" ng-click="vm.primary()" ui-sref="Home">Send</md-button>
   </form>
 </div>
