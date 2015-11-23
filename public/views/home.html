@@ -105,45 +105,45 @@
       </div>
 
     </div>
+    <div layout>
+      <div flex>
+
+    <div class="share" ng-show="p.show=true">
+      <h6>Share:</h6>
+      <a href="#" id="linkedin" class="social-btn"
+        socialshare
+        socialshare-provider="linkedin"
+        socialshare-text="{{p.title}}"
+        socialshare-url="http://localhost:8080">
+        <i class="fa fa-linkedin"></i>
+        </a>
+      <a href="#" id="facebook" class="social-btn"
+        socialshare
+        socialshare-provider="facebook"
+        socialshare-text="{{p.title}}"
+        socialshare-url="http://localhost:8080">
+        <i class="fa fa-facebook"></i>
+        </a>
+      <a href="#" id="twitter" class="social-btn"
+        socialshare
+        socialshare-provider="twitter"
+        socialshare-text="{{p.title}}"
+        socialshare-url="http://localhost:8080">
+        <i class="fa fa-twitter"></i>
+        </a>
+
+      <a href="#" id="google" class="social-btn"
+        socialshare
+        socialshare-provider="google+"
+        socialshare-text="{{p.title}}"
+        socialshare-url="http://localhost:8080">
+        <i class="fa fa-google-plus"></i>
+        </a>
+      </div>
+    </div>
+    </div>
+    <md-divider ng-if="!$last"></md-divider>
+    
         </div>
-        <div layout>
-          <div flex>
 
-        <div class="share" ng-show="p.show=true">
-          <h6>Share:</h6>
-          <a href="#" id="linkedin" class="social-btn"
-            socialshare
-            socialshare-provider="linkedin"
-            socialshare-text="{{p.title}}"
-            socialshare-url="http://localhost:8080">
-            <i class="fa fa-linkedin"></i>
-            </a>
-          <a href="#" id="facebook" class="social-btn"
-            socialshare
-            socialshare-provider="facebook"
-            socialshare-text="{{p.title}}"
-            socialshare-url="http://localhost:8080">
-            <i class="fa fa-facebook"></i>
-            </a>
-          <a href="#" id="twitter" class="social-btn"
-            socialshare
-            socialshare-provider="twitter"
-            socialshare-text="{{p.title}}"
-            socialshare-url="http://localhost:8080">
-            <i class="fa fa-twitter"></i>
-            </a>
-
-          <a href="#" id="google" class="social-btn"
-            socialshare
-            socialshare-provider="google+"
-            socialshare-text="{{p.title}}"
-            socialshare-url="http://localhost:8080">
-            <i class="fa fa-google-plus"></i>
-            </a>
           </div>
-        </div>
-        </div>
-          </div>
-        <md-divider ng-if="!$last"></md-divider>
-
-</div>
