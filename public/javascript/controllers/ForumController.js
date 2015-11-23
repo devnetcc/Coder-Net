@@ -66,7 +66,6 @@ vm.cancelEdit = function(){
 
         });
     };
-    // ---------------------
 
 
 vm.postComments = function(){
