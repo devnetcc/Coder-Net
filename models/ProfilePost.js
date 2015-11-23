@@ -7,6 +7,7 @@ var ProfilePostSchema = new mongoose.Schema({
  creatorId: String,
  date: Date,
  avi: String,
+ pic: String,
  comments: [{
    creatorId: String,
    creatorName: String,

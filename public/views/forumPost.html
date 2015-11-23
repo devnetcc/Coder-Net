@@ -4,8 +4,7 @@
 
 <h4>Body: {{vm.apost.body | firstLetterFilter}}</h4>
 
-<h5>Author: {{vm.apost.createdBy.name | firstLetterFilter}} {{vm.apost.createdBy.lastName | firstLetterFilter }}</h5>
-
+<h5>Posted by: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name  | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter }}</a> on {{p.date | dateFilter}}</h5
 <!-- <div layout> -->
 <md-button class="zmdi zmdi-thumb-down" ng-click="vm.downvote(vm.apost)" aria-label="down"> </md-button>
 <md-button class="zmdi zmdi-thumb-up" ng-click="vm.upvote(vm.apost)" aria-label="up"> </md-button>
@@ -21,7 +20,7 @@
 <md-button ng-click='vm.postComments({id: vm.apost._id})' style="padding-bottom: 50px"> Post Comment </md-button>
 </div>
 <div ng-repeat="c in vm.comments">
-  <h5>{{c.createdBy.name | firstLetterFilter}} {{c.createdBy.lastName | firstLetterFilter}}: </h5><h4>{{c.body | firstLetterFilter}}</h4>
+  <h5> <a ui-sref="Profile({id: c.creatorId})"> {{c.createdBy.name | firstLetterFilter}} {{c.createdBy.lastName | firstLetterFilter}}</a> : </h5><h4>{{c.body | firstLetterFilter}}</h4>
   <h5>{{c.date | dateFilter}}</h5>
   <md-divider ng-if="!$last" style="padding: 5px"></md-divider>
 </div>

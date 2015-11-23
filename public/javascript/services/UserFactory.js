@@ -111,9 +111,8 @@
         });
       return q.promise;
     };
-    o.unFollowProfile = function(profileId, followerID) {
-      console.log(profileId); //profile you follow
-      console.log(followerID); //the follower
+
+    o.unFollowOnProfile = function(profileId, followerID) {
       var q = $q.defer();
       $http.put('/api/users/unfollowProfile/' + profileId , followerID).then(function(res) {
         q.resolve(res.data);

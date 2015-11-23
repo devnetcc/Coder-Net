@@ -15,6 +15,7 @@
      vm.post.tags = [];
     vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80'];
     vm.profilePosts = {};
+    vm.followed = false;
 
 
 vm.primary = function() {
@@ -62,6 +63,25 @@ switch (vm.profile.role) {
 
 };
 vm.getProfile();
+
+vm.followOnProfile = function() {
+  console.log("made it inside global controller on way to factory");
+  UserFactory.followOnProfile($stateParams.id,vm.status)
+    .then(function(res){
+      console.log("got a new follower");
+      vm.getProfile();
+  });
+}
+
+vm.unFollowOnProfile = function() {
+  UserFactory.unFollowOnProfile($stateParams.id, vm.status)
+    .then(function(res) {
+      // vm.followers.splice(vm.followers.indexOf(), 1);
+      vm.getProfile();
+
+    });
+
+};
 
 vm.getProfilePosts = function(){
 HomeFactory.getProfilePosts($stateParams.id).then(function(res){

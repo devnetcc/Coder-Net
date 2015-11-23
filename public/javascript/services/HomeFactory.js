@@ -76,7 +76,16 @@
       });
       return q.promise;
     };
+    o.uploadPic = function(pic) {
 
+      var q = $q.defer();
+      // console.log("heading to route");
+      // console.log(pic);
+      $http.put('/api/posts/pic', pic).then(function(res) {
+        q.resolve(res.data);
+      });
+      return q.promise;
+    };
 
     return o;
   }

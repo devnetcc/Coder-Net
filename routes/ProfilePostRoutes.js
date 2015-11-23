@@ -47,6 +47,9 @@ router.post('/', auth, function(req, res, next) {
   });
 });
 
+router.post('/pic', function(req,res,next){
+  
+});
 router.post('/reblog/:id', auth, function(req, res, next) {
       var comment = req.body;
 
