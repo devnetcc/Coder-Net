@@ -23,6 +23,13 @@
               <span style="padding-left:15px">Following:</span> <a ui-sref="Following({id: vm.profile._id})">{{vm.profile.following.length}}</a><br>
               <md-button class="zmdi zmdi-plus-circle-o" ng-show="!vm.followed" ng-click="vm.followOnProfile(p); vm.followed=true;" aria-label="follow"> Follow</md-button>
               <md-button class="zmdi zmdi-minus-circle-outline" ng-show="vm.followed" ng-click="vm.unfollowOnProfile(p);" aria-label="unfollow"> Unfollow</md-button>
+              <br><g:hangout
+                 render="createhangout"
+                 topic="cpp11"
+                 hangout_type="moderated"
+                 invites="[{ id : '103757504279751950811', invite_type : 'PROFILE' },
+                     { id : 'pearlmcphee@gmail.com', invite_type : 'EMAIL' }]">
+              </g:hangout>
               <!-- Personal Links -->
             <div style="text-align:center;">
               <div layout>
@@ -40,13 +47,7 @@
 
                 <div style='margin: 5px;'ng-show='vm.profile.profileGHlink'>
                   <a target='_blank'class="list-group-item" href="{{vm.profile.profileGHlink}}" target="_blank"><i class="zmdi zmdi-github" ></i></a></div><br><br>
-                  <g:hangout
-                     render="createhangout"
-                     topic="cpp11"
-                     hangout_type="moderated"
-                     invites="[{ id : '103757504279751950811', invite_type : 'PROFILE' },
-                         { id : 'pearlmcphee@gmail.com', invite_type : 'EMAIL' }]">
-                  </g:hangout>
+
                   <script src="https://apis.google.com/js/platform.js" async defer></script>
 
              </div>
