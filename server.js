@@ -59,7 +59,7 @@ var userRoutes = require('./routes/UserRoutes');
 var profilePostRoutes = require('./routes/ProfilePostRoutes');
 var resetRoutes = require('./routes/ResetPassRoutes');
 // var inboxRoutes = require('./routes/InboxRoutes');
-var authRoutes = require('./routes/authRoutes');
+var authRoutes = require('./routes/AuthRoutes');
 var notifRoutes = require('./routes/notifications');
 
 
