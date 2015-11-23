@@ -48,20 +48,17 @@
 			<md-button class="zmdi zmdi-menu zmdi-hc-2x" ng-click="nav.toggleSidenav()" style="padding-top: 12px" aria-label="Toggle Menu">
 			</md-button>
 			<h2 class="logo" ui-sref="Home"> &#060;&nbsp;Coder Net&nbsp;&#062; </h2>
-
 		</section>
 
 
 		<section layout layout-align="end end">
-				<md-select ng-model="someVal" placeholder='Welcome {{nav.status.name}}'>
-
-			<md-option><a ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Welcome {{nav.status.name}} </a></md-option>
-					<md-option value='My Messages'><a ui-sref="MessageCenter({id: nav.status._id})">My Messages</a></md-option>
-					<md-option value='Edit Profile' ><a ng-show='nav.status.email;'  ng-click = "nav.goToEdit(nav.status._id, vm.person)"> Edit Profile</a> </md-option>
+				<md-select ng-model="someVal" placeholder='Welcome {{nav.status.name}}' ng-show='nav.status.email;'>
+					<md-option ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Profile </md-option>
+					<md-option value='My Messages'ui-sref="MessageCenter({id: nav.status._id})"> Messages </md-option>
+					<md-option value='Edit Profile' ng-show='nav.status.email;'  ng-click = "nav.goToEdit(nav.status._id, vm.person)"> Edit Profile </md-option>
+					<md-option type='button' ng-click='nav.logout()'> Logout </md-option>
 			</md-select>
-			<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.email;'> Logout </md-button>
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
-
 		</section>
 
 	</md-toolbar>
