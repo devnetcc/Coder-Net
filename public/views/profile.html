@@ -97,9 +97,6 @@
                 <img src="{{p.avi}}" class="avatar" />
                 <div style="margin-left:50px;"id="hover-content" flex="15">
                   <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}}</a>
-                  <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-click="vm.followOnPost(p);" aria-label="follow"> </md-button>
-                  <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
-                  <md-button class="zmdi zmdi-email" ui-sref="Message({id: p.creatorId})"></md-button>
                 </div>
               </div>
               <div flex-offset="5">
