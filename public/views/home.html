@@ -66,15 +66,15 @@
             <div flex="15" id="parent">
           <img ng-src="{{c.avi}}" class="avatar" />
           <div id="hover-content" flex="15">
-            <div layout="column">
+            <div layout="column" flex>
             <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-show="!vm.comfollowed" ng-click="vm.followOnPost(c); vm.comfollowed = true;" aria-label="follow"> </md-button>
             <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-show="vm.comfollowed" ng-click="vm.unfollowOnPost(c);" aria-label="unfollow"> </md-button>
             <md-button class="zmdi zmdi-email small-btn" ui-sref="Message({id: c.creatorId})"></md-button>
           </div>
           </div>
         </div>
-            <div flex-offset="5">
-              <h2>{{c.creatorName | firstLetterFilter}} says:</h2>
+            <div flex-offset="35" flex>
+              <!-- <h2>{{c.creatorName | firstLetterFilter}} says:</h2> -->
           <h3>{{c.title | firstLetterFilter}}</h3>
           <h4>{{c.content | firstLetterFilter}}</h4>
         </div>
