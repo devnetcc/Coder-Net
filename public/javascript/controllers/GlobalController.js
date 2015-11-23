@@ -17,6 +17,7 @@
     vm.getProfile = function(){
     ProfileFactory.getProfile(vm.status._id).then(function(res){
     	vm.person = res;
+      
     });
   }
     vm.goToEdit = function(id, obj){
@@ -65,13 +66,7 @@
     };
 
 
-    vm.unFollowProfile = function(id) {
-      UserFactory.unFollowProfile($stateParams.id, vm.status)
-        .then(function(res) {
-          vm.followers.splice(vm.followers.indexOf(), 1);
-        });
 
-    };
 
     vm.closeAndGo = function(page, id) {
       $mdSidenav("left").toggle();

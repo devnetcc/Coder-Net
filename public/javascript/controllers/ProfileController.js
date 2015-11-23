@@ -68,8 +68,19 @@ vm.followOnProfile = function() {
   UserFactory.followOnProfile($stateParams.id,vm.status)
     .then(function(res){
       console.log("got a new follower");
+      vm.getProfile();
   });
 }
+
+vm.unFollowOnProfile = function() {
+  UserFactory.unFollowOnProfile($stateParams.id, vm.status)
+    .then(function(res) {
+      // vm.followers.splice(vm.followers.indexOf(), 1);
+      vm.getProfile();
+
+    });
+
+};
 
 vm.getProfilePosts = function(){
 HomeFactory.getProfilePosts($stateParams.id).then(function(res){

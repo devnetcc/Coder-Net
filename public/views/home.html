@@ -1,26 +1,30 @@
 <div ng-controller="HomeController as vm" class="bodyColor">
 
-<div layout layout-align="center center" ng-show ='nav.status.name;'>
-    <div flex="40" style="padding-bottom: 20px;">
-      <form ng-submit="vm.createPost();">
-        <md-input-container layout-padding>
-          <label> Post Title</label>
-          <input required ng-model="vm.post.title" />
-        </md-input-container>
+    <md-button  class="zmdi zmdi-redo" ng-show ='nav.status.name;'ng-click="p.reblog = !p.reblog"> Create Post</md-button>
+      <div uib-collapse="!p.reblog" layout>
+          <div layout="column" layout-align="center center">
+            <md-button required class="md-primary"ng-click="vm.uploadPic()">Upload a Photo</md-button>
+              <div flex="40" style="padding-bottom: 20px;">
+                <form ng-submit="vm.createPost();">
+                  <md-input-container layout-padding>
+                    <label> Post Title</label>
+                    <input required ng-model="vm.post.title" />
+                  </md-input-container>
 
-        <textarea ui-tinymce  ng-model="vm.post.body"></textarea>
-        <md-input-container>
-        <label>Tags</label>
-           <md-chips
-               ng-model="vm.post.tags"
-               readonly="vm.post.readonly"
-               delete-button-label="Remove Tag"
-               delete-hint="Press delete to remove tag"
-               ></md-chips>
-        </md-input-container>
-        <br>
-        <br>
-        <md-button type="submit" class="zmdi zmdi-mail-send" > Post </md-button>
+                  <textarea ui-tinymce  ng-model="vm.post.body"></textarea>
+                  <md-input-container>
+                  <label>Tags</label>
+                     <md-chips
+                         ng-model="vm.post.tags"
+                         readonly="vm.post.readonly"
+                         delete-button-label="Remove Tag"
+                         delete-hint="Press delete to remove tag"
+                         ></md-chips>
+                  </md-input-container>
+                  <br>
+                  <br>
+                  <md-button type="submit" class="zmdi zmdi-mail-send" > Post </md-button>
+        </div>
 </form>
 </div>
 </div>
@@ -36,7 +40,7 @@
           <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name }} {{p.createdBy.lastName }}</a>
           <md-button class="zmdi zmdi-plus-circle-o small-btn" ng-click="vm.followOnPost(p);" aria-label="follow"> </md-button>
           <md-button class="zmdi zmdi-minus-circle-outline small-btn" ng-click="vm.unfollowOnPost(p);" aria-label="unfollow"> </md-button>
-          <md-button class="zmdi zmdi-email" ui-sref="Message({id: p.creatorId})"></md-button>
+          <md-button class="zmdi zmdi-email" ng-click="vm.pop();" ui-sref="Message({id: p.creatorId})"></md-button>
         </div>
       </div>
       <div flex-offset="5">

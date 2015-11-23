@@ -118,29 +118,33 @@ router.put('/followOnProfile/:id', function(req,res,next){
 
 
 
-
+//req.body._id is person doing the unfollowing: need to lession their following array
+//req.params.id is person losing a follower. need to lessen their followers array
 router.put('/unfollowProfile/:id', function(req, res, next) {
-  console.log(req.params.id); //user id
-  console.log(req.params); //user Id Obj
-  User.update({
-    _id: req.body._id
-  }, {
-    $pull: {
-      following: {
-        celebrityId: req.params.id
-      }
-    }
-  }, function(err, result) {
-    console.log(result); //null
-    if (err) return next(err);
-    if (!result) return next(err);
-    // 	result.remove({_id: req.params.id}, function(err, result) {
-    // 	if(err) return next(err);
-    // 	if(!result) return next(err);
-    // })
-    res.send();
+  User.findOne({_id: req.body._id}, function(err,result){
+    if(err) return next(err);
+    if(!result) return next({err: "Couldnt find that user for updating!"});
+
+    result.update({$pull: {following:{
+      celebrityId: req.params.id,
+    }}},
+      function(err,result){
+        if(err) return next(err);
+        if(!result) return next ({err: "That user wasnt found for updating!"});
+      });
+
+  User.update({_id: req.params.id},{$pull: {followers: {
+    followerID: req.body._id,
+    // followerName: req.body.name,
+  }}},
+     function(err, result){
+    if(err) return next(err);
+    if(!result) return next ({err: "That user wasnt found for updating!"});
   });
 
+    res.send(result);
+
+  });
 });
 
 router.put('/followOnPost/:id', function(req, res, next) {
