@@ -1,5 +1,5 @@
 <div style="border:{{vm.profile.color}} 50px solid;padding-top:1px;margin-bottom:-80px;" ng-controller="ProfileController as vm" class="bodyColor">
-  <div style="background-color:white;padding-top:1px;">
+  <div style="background-color:white;padding:30px;" >
 
 
     <img src=' {{vm.profile.badge}}' style="padding: 20px;">
@@ -16,14 +16,13 @@
       <div layout="column">
         <div flex-offset="5" flex="20">
           <h4>{{vm.profile.name | firstLetterFilter}} {{vm.profile.lastName | firstLetterFilter}}</h4>
-          <img ng-show='vm.profile.pic.length'  style='max-width:150px; max-height:150px; border-radius:4px;' src='{{vm.profile.pic}}'>
-          <img ng-show='!vm.profile.pic.length' style='max-width:150px; max-height:150px; border-radius:4px;' src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS_wxp_qEFvoISSQK1duhZLXX-IO4jjyT-_nubJtY3WBryb_wbS'>
+          <img ng-show='vm.profile.pic.length'  style='max-width:150px; max-height:150px; border-radius:4px; padding: 10px;' src='{{vm.profile.pic}}'>
+          <img ng-show='!vm.profile.pic.length' style='max-width:150px; max-height:150px; border-radius:4px; padding: 10px' src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS_wxp_qEFvoISSQK1duhZLXX-IO4jjyT-_nubJtY3WBryb_wbS'>
               <h4>{{vm.profile.location | firstLetterFilter}}</h4>
               <span style="padding-left:15px">Followers:</span> <a ui-sref="Followers({id: vm.profile._id})">{{vm.profile.followers.length}}</a><br>
               <span style="padding-left:15px">Following:</span> <a ui-sref="Following({id: vm.profile._id})">{{vm.profile.following.length}}</a><br>
               <md-button class="zmdi zmdi-plus-circle-o" ng-show="!vm.followed" ng-click="vm.followOnProfile(p); vm.followed=true;" aria-label="follow"> Follow</md-button>
               <md-button class="zmdi zmdi-minus-circle-outline" ng-show="vm.followed" ng-click="vm.unfollowOnProfile(p);" aria-label="unfollow"> Unfollow</md-button>
-              <h4>Contact</h4>
               <!-- Personal Links -->
             <div style="text-align:center;">
               <div layout>
@@ -63,7 +62,7 @@
   </div> <!-- End of Profile display field -->
 
         <!-- To Create a post -->
-  <div layout layout-align="center" ng-show ='nav.status.name;'>
+  <div layout layout-align="center" ng-show ='nav.status.name;' style="padding-bottom:30px;">
     <div flex="50">
       <form style="margin-top:50px;"ng-submit="vm.createPost();">
         <md-input-container>

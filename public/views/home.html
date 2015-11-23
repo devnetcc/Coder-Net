@@ -4,7 +4,7 @@
       <div uib-collapse="!p.reblog" layout>
           <div layout="column" layout-align="center center">
             <md-button required class="md-primary"ng-click="vm.uploadPic()">Upload a Photo</md-button>
-              <div flex="40" style="padding-bottom: 20px;">
+              <div flex="40" style="padding-bottom: 10px;">
                 <form ng-submit="vm.createPost();">
                   <md-input-container layout-padding>
                     <label> Post Title</label>
@@ -16,7 +16,7 @@
                   </md-input-container>
                   <textarea ui-tinymce  ng-model="vm.post.body"></textarea>
                   <md-input-container>
-                  <label>Tags</label>
+                  <label> Insert Tags</label>
                      <md-chips
                          ng-model="vm.post.tags"
                          readonly="vm.post.readonly"
@@ -25,16 +25,13 @@
                          ></md-chips>
                   </md-input-container>
                   <br>
-                  <br>
                   <md-button type="submit" class="zmdi zmdi-mail-send" > Post </md-button>
+                </form>
         </div>
-</form>
 </div>
 </div>
 <md-divider ng-if="!$last" ></md-divider>
 <h5 style="text-align: center"> News Feed </h5>
-
-
     <div ng-repeat='p in vm.allPosts' >
       <div ng-show="p.show">
         <div layout>

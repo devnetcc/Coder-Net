@@ -54,15 +54,15 @@
         </md-input-container>
        <md-input-container >
         <label> Where You've Been  </label>
-        <input  ng-model="vm.profile.userBeen"></input>
+        <textarea  ng-model="vm.profile.userBeen"></textarea>
       </md-input-container>
       <md-input-container >
         <label> Where You're At  </label>
-        <input  ng-model="vm.profile.userAt"></input>
+        <textarea  ng-model="vm.profile.userAt"></textarea>
       </md-input-container>
       <md-input-container >
         <label> Where You're Going?  </label>
-        <input  ng-model="vm.profile.userGoing"></input>
+        <textarea  ng-model="vm.profile.userGoing"></textarea>
       </md-input-container>
 
       <div layout="row" ng-repeat="a in vm.profile.languages" style="padding-left:6px;">
@@ -79,19 +79,19 @@
 
            <!-- <md-button class="md-warn" ng-click='vm.showLinks()'>Click to display link on profile</md-button> -->
         <md-input-container >
-          <input style="text-align:center;" type="text" ng-model='vm.profile.profileFBlink' placeholder="Enter Facebook Profile URL...">
+          <input type="text" ng-model='vm.profile.profileFBlink' placeholder="Enter Facebook Profile URL...">
         </md-input-container>
 
          <md-input-container>
-         <input style="text-align:center;"type="text" ng-model='vm.profile.profileLKlink' placeholder="Enter Linkedin Profile URL...">
+         <input type="text" ng-model='vm.profile.profileLKlink' placeholder="Enter Linkedin Profile URL...">
         </md-input-container>
 
         <md-input-container>
-          <input style="text-align:center;" type="text" ng-model='vm.profile.profileTWlink' placeholder="Enter Twitter Profile URL...">
+          <input type="text" ng-model='vm.profile.profileTWlink' placeholder="Enter Twitter Profile URL...">
         </md-input-container>
 
         <md-input-container>
-          <input style="text-align:center;"type="text" ng-model='vm.profile.profileGHlink' placeholder="Enter Github Profile URL...">
+          <input type="text" ng-model='vm.profile.profileGHlink' placeholder="Enter Github Profile URL...">
         </md-input-container><!-- -->
 
 
