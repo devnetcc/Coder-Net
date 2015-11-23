@@ -10,7 +10,10 @@
                     <label> Post Title</label>
                     <input required ng-model="vm.post.title" />
                   </md-input-container>
-
+                  <md-input-container style="display:hidden;"layout-padding>
+                    <label> Post Url</label>
+                    <input ng-model="vm.post.pic" />
+                  </md-input-container>
                   <textarea ui-tinymce  ng-model="vm.post.body"></textarea>
                   <md-input-container>
                   <label>Tags</label>
@@ -47,6 +50,7 @@
       <div flex-offset="5">
         <div layout="column">
         <h2 >  {{p.title}} </h2>
+        <img  src="{{p.pic}}" class="post-pic"/>
         <h4 ng-bind-html="p.body"></h4>
         <h5> By: <a ui-sref="Profile({id: p.creatorId})">{{p.createdBy.name | firstLetterFilter}} {{p.createdBy.lastName | firstLetterFilter}}</a> on {{p.date | dateFilter}}</h5>
         <h6> Posted in: <a ng-repeat="t in p.tags" ui-sref="Tag({tag: t})">{{t}},</a></h6>

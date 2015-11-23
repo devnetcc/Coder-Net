@@ -108,15 +108,15 @@
           }, function(blob){
               // Returned Stuff
               var filename = blob.filename;
-              var url = blob.url;
+              vm.post.pic = blob.url;
               var id = blob.id;
               var isWriteable = blob.isWriteable;
               var mimetype = blob.mimetype;
               var size = blob.size;
-            ProfileFactory.uploadPic(blob).then(function(res){
-              vm.allPosts.pic = res;
-            });
-        });
+            // ProfileFactory.uploadPic(blob).then(function(res){
+            //   vm.allPosts.pic = res;
+            // });
+        });vm.getPost();
       };
 
   }
