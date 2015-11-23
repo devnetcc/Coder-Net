@@ -4,7 +4,7 @@
     .controller('GlobalController', GlobalController);
 
 
-  function GlobalController(UserFactory, $state, $stateParams, $mdSidenav) {
+  function GlobalController(UserFactory, $state, $stateParams, $mdSidenav, ProfileFactory) {
     var vm = this;
     vm.isLogin = true;
     vm.user = {};
@@ -12,7 +12,16 @@
     vm.status = UserFactory.status;
     vm.followers = [];
     vm.following = {};
+    vm.person = {};
 
+    vm.getProfile = function(){
+    ProfileFactory.getProfile(vm.status._id).then(function(res){
+    	vm.person = res;
+    });
+  }
+    vm.goToEdit = function(id, obj){
+    	$state.go('EditProfile', {id:id, obj:obj});
+    		};
 
     vm.forgot = function() {
       UserFactory.forgot(vm.user).then(function() {
