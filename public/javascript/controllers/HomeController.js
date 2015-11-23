@@ -11,7 +11,7 @@
     vm.allPosts = {};
     vm.allPosts.reblog = false;
     vm.repost = {};
-    vm.showPost = false;
+    vm.allPosts.show = false;
     vm.followed = false;
     vm.comfollowed = false;
 
@@ -23,11 +23,11 @@
     vm.getPost = function() {
       HomeFactory.getAllPosts().then(function(res) {
         vm.allPosts = res;
-        // for(var i =0; i < vm.person.following.length; i++){
-        //   if(vm.allPosts.creatorId === vm.person.following[0].celebrityId){
-        //     vm.showPost = true;
-        //   }
-        // }
+        for(var i =0; i < vm.person.following.length; i++){
+          if(vm.allPosts.creatorId === vm.person.following[0].celebrityId){
+            vm.allPosts.show = true;
+          }
+        }
       });
     };
     vm.getPost();

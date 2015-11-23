@@ -36,6 +36,7 @@
 
 
     <div ng-repeat='p in vm.allPosts' >
+      <div ng-show="p.show">
         <div layout>
           <div flex="15" id="parent">
         <img src="{{p.avi}}" class="avatar" style="margin-left: 10px"/>
@@ -142,6 +143,7 @@
             <i class="fa fa-google-plus"></i>
             </a>
           </div>
+        </div>
         </div>
           </div>
         <md-divider ng-if="!$last"></md-divider>
