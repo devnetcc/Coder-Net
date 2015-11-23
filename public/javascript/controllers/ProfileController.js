@@ -7,42 +7,19 @@
 
 		var vm = this;
 		 vm.profile = {};
-    //  vm.profile.languages.level = [];
-     //
-		//  vm.profile.languages = [];
      vm.status = UserFactory.status;
      vm.user = {};
      vm.person = {};
      vm.mymessages = {};
      vm.post = {};
      vm.post.tags = [];
-    //  vm.profile.profilePosts.tags = [];
     vm.colors = ['#f5f5f5','#b9f6ca','#ff80ab','#ffff8d', '#84ffff', '#80d8ff', '#448aff' ,'#b388ff', '#8c9eff', '#ff8a80'];
     vm.profilePosts = {};
 
 
-// Notification.primary('Primary notification');
 vm.primary = function() {
                  Notification('Message Sent!');
              };
-
-// var pusher = new Pusher('875def9fc21bdcfe8b72');
-// var notificationsChannel = pusher.subscribe('notifications');
-// notificationsChannel.bind('new_notification', function(notification){
-// var message = notification.message;
-// toastr.success(message)
-// });
-// if(vm.profile.inmessage.length > msgcount){
-//   Notification('Message Sent!');
-//
-// }
-
-// var count = vm.profile.inmessage.length;
-// $scope.msgcount = count;
-// $scope.$watch('vm.profile.inmessage.length', function(newValue, oldValue){
-//    if (newValue > oldValue) { return; }
-//   Notification('Wait what!');
-// });
 
 ProfileFactory.getTags($stateParams.tag).then(function(res){
   vm.tags = res;
@@ -86,6 +63,14 @@ switch (vm.profile.role) {
 };
 vm.getProfile();
 
+vm.followOnProfile = function() {
+  console.log("made it inside global controller on way to factory");
+  UserFactory.followOnProfile($stateParams.id,vm.status)
+    .then(function(res){
+      console.log("got a new follower");
+  });
+}
+
 vm.getProfilePosts = function(){
 HomeFactory.getProfilePosts($stateParams.id).then(function(res){
   vm.profilePosts=res;
@@ -99,9 +84,7 @@ HomeFactory.getProfilePosts($stateParams.id).then(function(res){
 vm.getProfilePosts();
 
 
-vm.goToEdit = function(id, obj){
-	$state.go('EditProfile', {id:id, obj:obj});
-		};
+
 
 
 vm.editProfile = function (profile){

@@ -4,7 +4,7 @@
     .controller('GlobalController', GlobalController);
 
 
-  function GlobalController(UserFactory, $state, $stateParams, $mdSidenav) {
+  function GlobalController(UserFactory, $state, $stateParams, $mdSidenav, ProfileFactory) {
     var vm = this;
     vm.isLogin = true;
     vm.user = {};
@@ -12,7 +12,16 @@
     vm.status = UserFactory.status;
     vm.followers = [];
     vm.following = {};
+    vm.person = {};
 
+    vm.getProfile = function(){
+    ProfileFactory.getProfile(vm.status._id).then(function(res){
+    	vm.person = res;
+    });
+  }
+    vm.goToEdit = function(id, obj){
+    	$state.go('EditProfile', {id:id, obj:obj});
+    		};
 
     vm.forgot = function() {
       UserFactory.forgot(vm.user).then(function() {
@@ -55,25 +64,7 @@
       $mdSidenav("left").toggle();
     };
 
-    // conditional statement
-    vm.followOnProfile = function() {
-      if ($stateParams === vm.status) {
-        return null;
-      }
-      UserFactory.followOnProfile($stateParams.id, vm.status)
-        .then(function(res) {
-          //change follow button to unfollow button
-        });
-    };
 
-    if (localStorage) {
-      // LocalStorage is supported!
-      // vm.profile.followers = vm.status;
-      console.log(vm.status);
-    } else {
-      console.log('awww!');
-      // No support. Use a fallback such as browser cookies or store on the server.
-    }
     vm.unFollowProfile = function(id) {
       UserFactory.unFollowProfile($stateParams.id, vm.status)
         .then(function(res) {
