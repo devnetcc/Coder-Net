@@ -198,9 +198,12 @@ router.get('/:id', function(req, res, next) {
   User.findOne({
     _id: req.params.id
   }, function(err, result) {
-
+    if (err) return next(err);
+    if (!result) return next({
+      err: "That user wasnt found for updating!"
+    });
     // console.log(result.token);
-    res.send(req.user);
+    res.send(result);
   });
 });
 

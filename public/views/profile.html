@@ -27,7 +27,7 @@
             <div style="text-align:center;">
               <div layout>
                 <div style='margin: 5px;'>
-                  <a target='_blank'class="list-group-item" ng-show ="vm.isPerson=false" ui-sref="Message({id: vm.profile._id})" target="_blank"><i class="zmdi zmdi-email" ></i></a></div>
+                  <a target='_blank'class="list-group-item"  ui-sref="Message({id: vm.profile._id})" target="_blank"><i class="zmdi zmdi-email" ></i></a></div>
 
                 <div style='margin: 5px;' ng-show='vm.profile.profileFBlink'>
                   <a target='_blank'class="list-group-item" href="{{vm.profile.profileFBlink}}" target="_blank"><i class="zmdi zmdi-facebook"  ></i></a></div>
@@ -39,7 +39,7 @@
                   <a target='_blank'class="list-group-item" href="{{vm.profile.profileTWlink}}" target="_blank"><i class="zmdi zmdi-twitter" ></i></a></div>
 
                 <div style='margin: 5px;'ng-show='vm.profile.profileGHlink'>
-                  <a target='_blank'class="list-group-item" href="{{vm.profile.profileGHlink}}" target="_blank"><i class="zmdi zmdi-github" ></i></a></div>
+                  <a target='_blank'class="list-group-item" href="{{vm.profile.profileGHlink}}" target="_blank"><i class="zmdi zmdi-github" ></i></a></div><br>
                   <script src="https://apis.google.com/js/platform.js" async defer></script>
                   <g:hangout
                      render="createhangout"

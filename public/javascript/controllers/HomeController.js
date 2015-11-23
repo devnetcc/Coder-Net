@@ -24,20 +24,20 @@
     vm.getPost = function() {
       HomeFactory.getAllPosts().then(function(res) {
         vm.allPosts = res;
-        //
-        // for(var i=0; i < vm.allPosts.length; i++){
-        //   // vm.allPosts[i].show = false;
-        //   for(var j = 0; j < vm.person.following.length; j++){
-        //     if(vm.allPosts[i].creatorId === vm.person.following[j].celebrityId) {
-        //        vm.allPosts[i].show = true;
-        //       //  break;
-        //     }
-        //     else{
-        //       vm.allPosts[i].show = false;
-        //
-        //     }
-        //   }
-        // }
+        
+        for(var i=0; i < vm.allPosts.length; i++){
+          // vm.allPosts[i].show = false;
+          for(var j = 0; j < vm.person.following.length; j++){
+            if(vm.allPosts[i].creatorId === vm.person.following[j].celebrityId) {
+               vm.allPosts[i].show = true;
+              //  break;
+            }
+            else{
+              vm.allPosts[i].show = false;
+
+            }
+          }
+        }
 
       });
     };

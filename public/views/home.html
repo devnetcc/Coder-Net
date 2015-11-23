@@ -32,20 +32,11 @@
 </div>
 <md-divider ng-if="!$last" ></md-divider>
 <h5 style="text-align: center"> News Feed </h5>
-<!-- <md-button type="button" ng-click="vm.getPost();">Show Post from People you Follow</md-button> -->
-<!-- <md-button type="button" ng-click="vm.getAllPost();">Show Post from Everyone</md-button> -->
+<md-button type="button" ng-click="vm.getPost();">Show Post from People you Follow</md-button>
+<md-button type="button" ng-click="vm.getAllPost();">Show Post from Everyone</md-button>
 
     <div ng-repeat='p in vm.allPosts' >
-
-      <!-- <div ng-show="vm.allPosts.show=true"> -->
-        <!-- <div layout>
-          <div  flex="15" id="parent">
-        <img ng-src="{{p.avi}}" class="avatar" style="margin-left: 10px"/>
-
-    <div ng-repeat='p in vm.allPosts' > -->
-
-
-        <div layout>
+        <div layout ng-show="p.show">
           <div style='padding-left:50px;' flex="15" id="parent">
         <img src="{{p.avi}}" class="avatar" style="margin-left: 10px"/>
         <div id="hover-content" flex="15">
@@ -113,6 +104,7 @@
     </div>
       </div>
 
+    </div>
         </div>
         <div layout>
           <div flex>
