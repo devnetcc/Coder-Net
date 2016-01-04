@@ -20,7 +20,7 @@
 </head>
 
 <body ng-controller='GlobalController as nav' class="bodyColor">
-
+					<!-- NAVIGATION -->
 	<md-sidenav layout="column" class="md-sidenav-left bodyColor" md-component-id="left">
 		<md-toolbar style=" opacity:0.3; padding: 10px; background-color:#32B2B2; height:125px">
 			<div class="md-toolbar-tools">
@@ -42,15 +42,13 @@
 			</md-list>
 		</md-content>
 	</md-sidenav>
-
-	<md-toolbar style=" background-color:#32B2B2; height:125px" layout>
-		<section layout flex layout-align="left">
+		<!-- HEADER -->
+	<md-toolbar style=" background-color:#32B2B2; height:125px;" layout>
+		<section layout flex layout-align="left" >
 			<md-button class="zmdi zmdi-menu zmdi-hc-2x" ng-click="nav.toggleSidenav()" style="padding-top: 12px" aria-label="Toggle Menu">
 			</md-button>
 			<h2 class="logo" ui-sref="Home"> &#060;&nbsp;Coder Net&nbsp;&#062; </h2>
 		</section>
-
-
 		<section layout layout-align="end end" style="font-size:16px; padding-right: 20px; color: white;">
 				<md-select ng-model="someVal" placeholder='Welcome {{nav.status.name}}' ng-show='nav.status.email;'>
 					<md-option ui-sref="Profile({id: nav.status._id})" ng-show='nav.status.email;'> Profile </md-option>
@@ -58,57 +56,12 @@
 					<md-option value='Edit Profile' ng-show='nav.status.email;'  ng-click = "nav.goToEdit(nav.status._id, vm.person)"> Edit Profile </md-option>
 					<md-option type='button' ng-click='nav.logout()'> Logout </md-option>
 			</md-select>
-
 			<md-button type='button' ui-sref='RegLog' ng-show='!nav.status.email;'> Login/Register </md-button>
 		</section>
-
 	</md-toolbar>
-
 	<ui-view></ui-view>
 
-	<footer class="footer-distributed" style=" background-color:#32B2B2;">
 
-		<div style="text-align:right;margin-bottom:-75px;margin-top:35px">
-			<!-- <p style="margin-bottom:-5px; margin-right:25px;font-family: 'Quicksand', sans-serif;color:white"> Follow Us </p><br> -->
-			<!-- <a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-facebook"></i></a>
-			<a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-linkedin-box"></i></a>
-			<a class="list-group-item" href="#" target="_blank"><i class="zmdi zmdi-twitter"></i></a>
-			<a class="list-group-item" href="https://github.com/devnetcc/Coder-Net" target="_blank"><i class="zmdi zmdi-github"></i></a> -->
-
-		<!--  -->
-		<div  style="text-align:right;padding:10px;">
-		<!-- <a href="#" target="_blank"><img style="border:white 2px solid;border-radius:50%;margin-right:3px;" height='21' width='21' src='http://zizaza.com/cache/big_thumb/iconset/573933/573940/PNG/256/white_simple_social_icons_pack/facebook_facebook_icon_white_icon.png'></a>
-		<a style='border:white 2px solid;border-radius:50%;height:5px' href="#" target="_blank"><b><img height='18' width='18'style='padding-bottom:2px;' src='http://americashomes.com/wp-content/uploads/2014/08/linkedin-icon_white.png'></b></a>
-		<a  href="#" target="_blank"><img height='25' width='25' src="http://luckyday.co/wp-content/themes/luckydaytheme/img/twitter.png"></i></a>
-		<a  href="https://github.com/devnetcc/Coder-Net" target="_blank"><img height='22' width='22' src='http://www.brienpafford.com/img/social/git_white.png'></a> -->
-	</div>
-	</div>
-		<!--  -->
-
-		<div class="footer-right">
-					<p> Follow Us </p>
-					<a href="https://www.facebook.com/search/top/?q=%23webdevelopers" target="_blank"><i class="zmdi zmdi-facebook-box"></i></a>
-					<a href="https://www.linkedin.com/company/coder-camps?trk=company_logo" target="_blank"><i class="zmdi zmdi-linkedin-box"></i></a>
-					<a href="https://twitter.com/WebDeveloperr?lang=en" target="_blank"><i class="zmdi zmdi-twitter-box"></i></a>
-					<a href="https://github.com/devnetcc/Coder-Net" target="_blank"><i class="zmdi zmdi-github-box"></i></a>
-				</div>
-
-
-		<div class="footer-left">
-			<h3 class="logo"> &#060;&nbsp;Coder Net&nbsp;&#062; </h3>
-
-			<p class="footer-links">
-
-				<a ui-sref="Home">Home</a> |
-				<a ui-sref="Forums">Forum</a> |
-				<a ui-sref="About">About</a> |
-				<a ui-sref="Contact">Contact</a> |
-				<a ui-sref="Terms">Terms of Service</a>
-			</p>
-
-			<p>Coder Net &copy; 2015</p>
-		</div>
-	</footer>
 
 
 	<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>

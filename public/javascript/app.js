@@ -22,6 +22,10 @@
         	url: '/about',
         	templateUrl: '/views/about.html'
 				})
+				.state('Splash', {
+        	url: '/splash',
+        	templateUrl: '/views/Splash.html'
+				})
 				.state('Message', {
 	       	url: '/message/:id',
 	       	templateUrl: '/views/message.html'
